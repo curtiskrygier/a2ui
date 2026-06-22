@@ -5252,6 +5252,60 @@ blocks:
     name: shadcn/ui
     url: https://github.com/shadcn-ui/ui
     license: MIT
+- type: page_header
+  description: Full-width app-style page header with title, subtitle, icon, accent color, and optional tag badge. Sets the visual tone of a pop-up app or brief. Use as the first block of any page.
+  compact_description: app-style page header — title, subtitle, icon, accent, tag badge
+  surfaces:
+    works_on: [web, apps-script-web, pdf]
+  fields:
+    title: string (required, markdown)
+    subtitle: string (optional, markdown)
+    icon: string (optional, emoji or short text)
+    tag: string (optional, badge label shown in accent pill)
+    accent: string (optional, hex, default "#6366f1")
+    theme: string (optional, "light"|"dark", default "light")
+    background: string (optional, css background override)
+  source:
+    name: a2ui
+    url: https://github.com/curtiskrygier/a2ui
+- type: back_button
+  description: Styled back navigation button. Links to a URL, a named page slug, or browser history. Three visual styles.
+  compact_description: back navigation — url, nav_slug, or history.back(); ghost/outline/text style
+  surfaces:
+    works_on: [web, apps-script-web]
+  fields:
+    label: string (optional, default "← Back")
+    url: string (optional, href)
+    nav_slug: string (optional, resolves to ?nav=<slug>)
+    style: string (optional, "ghost"|"outline"|"text", default "ghost")
+    accent: string (optional, hex, default "#6366f1")
+  source:
+    name: a2ui
+    url: https://github.com/curtiskrygier/a2ui
+- type: section_break
+  description: Labeled or plain section divider. Supports solid, dashed, or dotted line styles. With a label, renders text centered in the line (Notion-style).
+  compact_description: section divider — optional centered label, solid/dashed/dots style
+  surfaces:
+    works_on: [web, apps-script-web, pdf]
+  fields:
+    label: string (optional, centered in divider line)
+    style: string (optional, "line"|"dashed"|"dots", default "line")
+    accent: string (optional, hex line color, default "#e5e7eb")
+  source:
+    name: a2ui
+    url: https://github.com/curtiskrygier/a2ui
+- type: chip_group
+  description: Row of filter/tag chips, optionally scrollable. Chips can link to URLs and have active state.
+  compact_description: chip/tag row — label, color, url, active state; wrap or scroll layout
+  surfaces:
+    works_on: [web, apps-script-web]
+  fields:
+    label: string (optional, group heading)
+    layout: string (optional, "wrap"|"scroll", default "wrap")
+    chips: 'array (required). Array of {label, color? (hex), url? (href), active? (bool)}'
+  source:
+    name: a2ui
+    url: https://github.com/curtiskrygier/a2ui
 - type: columns
   description: Generic multi-column layout container. Each column holds an array of atom blocks rendered inline. 2–6 columns; collapses to single column on mobile.
   compact_description: multi-column layout — 2–6 cols, each column holds atom blocks

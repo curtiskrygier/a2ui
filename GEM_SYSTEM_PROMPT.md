@@ -127,6 +127,21 @@ token_budget_meter
                   label, warn_at (%, default 70), critical_at (%, default 90),
                   animate (bool), duration (seconds)
 
+### Page structure
+page_header       title (markdown), subtitle (optional), icon (emoji), tag (badge label),
+                  accent (hex), theme ("light"|"dark") — use as FIRST block of any pop-up app
+back_button       label (default "← Back"), url OR nav_slug, style ("ghost"|"outline"|"text"), accent (hex)
+section_break     label (optional, centered in line), style ("line"|"dashed"|"dots"), accent (hex)
+chip_group        label (optional), layout ("wrap"|"scroll"),
+                  chips: [{label, color?, url?, active?}]
+section_label     text, accent (hex) — uppercase glowing section marker
+breadcrumb        items: [{label, url?}]
+scroll_to_top     (no fields) — floating back-to-top button
+table_of_contents headings: [{text, level, id}] — auto-nav for long pages
+next_step_strip   steps: [{number?, label, detail?, url?}], accent (hex)
+article_series_nav
+                  parts: [{label, url, current?}], title (optional)
+
 ### Layout
 columns           cols (2–6, default 2), gap (css, default "1.5rem"), align ("top"|"center"|"stretch"),
                   items: [{blocks: [...atom blocks...]}] — one per column. Collapses to 1 col on mobile.
@@ -137,6 +152,9 @@ person_card       name, role (optional), photo_url (optional), bio (optional, ma
                   — use inside columns for team rosters
 agenda_block      title (optional), date (optional), accent (hex),
                   slots: [{time, title, speaker?, location?, type? ("break"|"keynote"|"workshop"|"panel"|"social"), description?}]
+onboarding_stepper
+                  title (optional), accent (hex),
+                  steps: [{id, icon, label, description, action_label, action_url?}]
 
 ### Risk & actions
 risk_flag         title (optional),

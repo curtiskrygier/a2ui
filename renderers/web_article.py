@@ -1575,6 +1575,71 @@ def _render_pricing_tier_group(b: dict) -> str:
     inner = (f"<strong>{label}</strong><br/>" if label else "") + (f"{text}" if text else f"<em style='color:#999;'>[ pricing_tier_group ]</em>")
     return f'<div style="margin:1rem 0;padding:12px 16px;border:1px solid #e0e0e0;border-radius:8px;">{inner}</div>'
 
+def _render_page_header(b: dict) -> str:
+    accent = b.get("accent", "#6366f1")
+    dark   = b.get("theme") == "dark"
+    bg     = "#0f172a" if dark else b.get("background", f"linear-gradient(135deg,{accent}18 0%,#fff 60%)")
+    tc     = "#f8fafc" if dark else "#111827"
+    sc     = "#94a3b8" if dark else "#6b7280"
+    return (
+        f'<div style="padding:32px 28px 24px;margin:0 0 1.5rem;border-radius:14px;background:{bg};border-bottom:3px solid {accent};">'
+        + (f'<span style="font-size:36px;margin-bottom:10px;display:block;">{b["icon"]}</span>' if b.get("icon") else "")
+        + f'<div style="font-size:28px;font-weight:800;color:{tc};line-height:1.2;margin-bottom:6px;">{_md_inline(b.get("title",""))}</div>'
+        + (f'<div style="font-size:15px;color:{sc};line-height:1.5;margin-bottom:10px;">{_md_inline(b["subtitle"])}</div>' if b.get("subtitle") else "")
+        + (f'<span style="display:inline-block;background:{accent};color:#fff;border-radius:99px;padding:2px 12px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;">{b["tag"]}</span>' if b.get("tag") else "")
+        + '</div>'
+    )
+
+
+def _render_back_button(b: dict) -> str:
+    label  = b.get("label", "← Back")
+    accent = b.get("accent", "#6366f1")
+    style  = b.get("style", "ghost")
+    url    = b.get("url", b.get("nav_slug", "#"))
+    if b.get("nav_slug") and not b.get("url"):
+        url = f'?nav={b["nav_slug"]}'
+    css = (
+        f'border:1.5px solid {accent};color:{accent};background:#fff;border-radius:8px;padding:6px 16px;' if style == "outline"
+        else f'color:{accent};background:none;padding:4px 0;' if style == "text"
+        else f'background:{accent}14;color:{accent};border-radius:8px;padding:6px 16px;'
+    )
+    return (
+        f'<div style="margin:0.5rem 0 1rem;">'
+        f'<a href="{url}" style="display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;text-decoration:none;{css}">{label}</a>'
+        f'</div>'
+    )
+
+
+def _render_section_break(b: dict) -> str:
+    accent      = b.get("accent", "#e5e7eb")
+    style       = b.get("style", "line")
+    label       = b.get("label", "")
+    border_style = "dashed" if style == "dashed" else "dotted" if style == "dots" else "solid"
+    if not label:
+        return f'<hr style="border:none;border-top:1px {border_style} {accent};margin:2rem 0;" />'
+    return (
+        f'<div style="display:flex;align-items:center;gap:12px;margin:2rem 0;">'
+        f'<div style="flex:1;border-top:1px {border_style} {accent};"></div>'
+        f'<span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#9ca3af;white-space:nowrap;">{label}</span>'
+        f'<div style="flex:1;border-top:1px {border_style} {accent};"></div>'
+        f'</div>'
+    )
+
+
+def _render_chip_group(b: dict) -> str:
+    scroll = b.get("layout") == "scroll"
+    chips_html = ""
+    for c in b.get("chips", []):
+        bg  = (c.get("color", "#6366f1") if c.get("active") else (c["color"] + "18" if c.get("color") else "#f3f4f6"))
+        tc  = "#fff" if c.get("active") else (c.get("color") or "#374151")
+        tag = f'a href="{c["url"]}"' if c.get("url") else "span"
+        end = "a" if c.get("url") else "span"
+        chips_html += f'<{tag} style="display:inline-flex;align-items:center;background:{bg};color:{tc};border-radius:99px;padding:4px 14px;font-size:12px;font-weight:500;text-decoration:none;white-space:nowrap;">{c.get("label","")}</{end}>'
+    wrap = "display:flex;flex-wrap:nowrap;overflow-x:auto;gap:8px;padding-bottom:4px;" if scroll else "display:flex;flex-wrap:wrap;gap:8px;"
+    label_html = f'<div style="font-size:12px;font-weight:600;color:#6b7280;margin-bottom:6px;">{b["label"]}</div>' if b.get("label") else ""
+    return f'{label_html}<div style="{wrap}margin:0.75rem 0;">{chips_html}</div>'
+
+
 def _render_columns(b: dict) -> str:
     """Generic multi-column layout container."""
     cols  = max(2, min(6, int(b.get("cols", b.get("columns", 2)))))
@@ -7087,6 +7152,10 @@ _RENDERERS = {
     "feature_matrix": _render_feature_matrix,
     "pricing_tier_card": _render_pricing_tier_card,
     "pricing_tier_group": _render_pricing_tier_group,
+    "page_header":    _render_page_header,
+    "back_button":    _render_back_button,
+    "section_break":  _render_section_break,
+    "chip_group":     _render_chip_group,
     "columns":        _render_columns,
     "person_card":    _render_person_card,
     "agenda_block":   _render_agenda_block,
