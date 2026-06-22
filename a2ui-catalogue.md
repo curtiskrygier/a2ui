@@ -225,6 +225,12 @@
 | `navigation_menu` | ✅ | ❌ | ❌ | ❌ | ⚠️ | ✅ | [ shadcn](https://www.radix-ui.com/primitives/docs/components/navigation-menu) |
 | `multi_select_input` | ✅ | ✅ | ❌ | ❌ | ⚠️ | ✅ | [ui](https://github.com/shadcn-ui/ui) |
 | `otp_input` | ✅ | ⚠️ | ❌ | ❌ | ❌ | ✅ | [ui](https://github.com/shadcn-ui/ui) |
+| `gradient_hero` | ✅ | — | — | — | ✅ | ✅ | [a2ui](https://github.com/curtiskrygier/a2ui) |
+| `icon_list` | ✅ | — | — | — | ✅ | ✅ | [a2ui](https://github.com/curtiskrygier/a2ui) |
+| `highlight_box` | ✅ | — | — | — | ✅ | ✅ | [a2ui](https://github.com/curtiskrygier/a2ui) |
+| `two_tone_card` | ✅ | — | — | — | — | ✅ | [a2ui](https://github.com/curtiskrygier/a2ui) |
+| `metric_row` | ✅ | — | — | — | ✅ | ✅ | [a2ui](https://github.com/curtiskrygier/a2ui) |
+| `numbered_list` | ✅ | — | — | — | ✅ | ✅ | [a2ui](https://github.com/curtiskrygier/a2ui) |
 | `page_header` | ✅ | — | — | — | ✅ | ✅ | [a2ui](https://github.com/curtiskrygier/a2ui) |
 | `back_button` | ✅ | — | — | — | — | ✅ | [a2ui](https://github.com/curtiskrygier/a2ui) |
 | `section_break` | ✅ | — | — | — | ✅ | ✅ | [a2ui](https://github.com/curtiskrygier/a2ui) |
