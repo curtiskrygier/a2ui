@@ -225,6 +225,10 @@
 | `navigation_menu` | ✅ | ❌ | ❌ | ❌ | ⚠️ | ✅ | [ shadcn](https://www.radix-ui.com/primitives/docs/components/navigation-menu) |
 | `multi_select_input` | ✅ | ✅ | ❌ | ❌ | ⚠️ | ✅ | [ui](https://github.com/shadcn-ui/ui) |
 | `otp_input` | ✅ | ⚠️ | ❌ | ❌ | ❌ | ✅ | [ui](https://github.com/shadcn-ui/ui) |
+| `page_header` | ✅ | — | — | — | ✅ | ✅ | [a2ui](https://github.com/curtiskrygier/a2ui) |
+| `back_button` | ✅ | — | — | — | — | ✅ | [a2ui](https://github.com/curtiskrygier/a2ui) |
+| `section_break` | ✅ | — | — | — | ✅ | ✅ | [a2ui](https://github.com/curtiskrygier/a2ui) |
+| `chip_group` | ✅ | — | — | — | — | ✅ | [a2ui](https://github.com/curtiskrygier/a2ui) |
 | `columns` | ✅ | — | — | — | ✅ | ✅ | [a2ui](https://github.com/curtiskrygier/a2ui) |
 | `person_card` | ✅ | — | — | — | ✅ | ✅ | [a2ui](https://github.com/curtiskrygier/a2ui) |
 | `agenda_block` | ✅ | — | — | — | — | ✅ | [a2ui](https://github.com/curtiskrygier/a2ui) |
