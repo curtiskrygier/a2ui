@@ -5252,6 +5252,83 @@ blocks:
     name: shadcn/ui
     url: https://github.com/shadcn-ui/ui
     license: MIT
+- type: skill_bars
+  description: List of labeled horizontal progress bars — each with a fill percentage, optional sublabel, and per-bar color. Use for competency profiles, CV pages, feature comparison.
+  compact_description: labeled horizontal progress bars list — percent fill, per-bar color
+  surfaces:
+    works_on: [web, apps-script-web, pdf]
+  fields:
+    title: string (optional)
+    accent: string (optional, default hex for all bars)
+    style: string (optional, "rounded"|"square", default "rounded")
+    height: integer (optional, bar height in px, default 10)
+    show_percent: bool (optional, default true)
+    skills: 'array (required, alias items). Each: {label, value (0–100, alias percent), color?, sublabel?}'
+  source:
+    name: a2ui
+    url: https://github.com/curtiskrygier/a2ui
+- type: icon_stat_row
+  description: Horizontal strip of stats each with a large emoji icon above the number and a label below. More visual than metric_row — use when icons reinforce meaning.
+  compact_description: icon + big number + label stat strip — more visual than metric_row
+  surfaces:
+    works_on: [web, apps-script-web, pdf]
+  fields:
+    cols: integer (optional, default 4)
+    accent: string (optional, default hex)
+    stats: 'array (required, alias items). Each: {icon (emoji), value, label, prefix?, suffix?, sub?, accent?}'
+  source:
+    name: a2ui
+    url: https://github.com/curtiskrygier/a2ui
+- type: color_section
+  description: Renders child atom blocks inside a colored background container. Use to visually group content with tint, solid, or dark style.
+  compact_description: colored background wrapper — tint/solid/dark, renders child atom blocks
+  surfaces:
+    works_on: [web, apps-script-web]
+  fields:
+    accent: string (optional, hex, default "#6366f1")
+    style: string (optional, "tint"|"solid"|"dark"|"light", default "tint")
+    padding: string (optional, css, default "24px")
+    blocks: array (required, atom blocks rendered inside)
+  source:
+    name: a2ui
+    url: https://github.com/curtiskrygier/a2ui
+- type: tag_cloud
+  description: Visual cloud of tags with variable font size based on weight. Heavier tags appear larger. Use for skill tags, topic clouds, keyword displays.
+  compact_description: weighted tag cloud — variable size by weight, wrap layout
+  surfaces:
+    works_on: [web, apps-script-web, pdf]
+  fields:
+    title: string (optional)
+    accent: string (optional, default hex)
+    min_size: integer (optional, minimum font size px, default 12)
+    max_size: integer (optional, maximum font size px, default 22)
+    tags: 'array (required, alias items). Each: {label, weight? (default 1), color?} or plain string'
+  source:
+    name: a2ui
+    url: https://github.com/curtiskrygier/a2ui
+- type: step_progress
+  description: Horizontal step progress indicator with numbered circles and connecting lines. Completed steps show a tick. Use at the top of wizard or onboarding flows.
+  compact_description: horizontal step progress — numbered circles, connecting lines, current step highlighted
+  surfaces:
+    works_on: [web, apps-script-web, pdf]
+  fields:
+    current: integer (required, 1-based index of active step)
+    accent: string (optional, hex, default "#6366f1")
+    steps: array (required). Array of {label or title}
+  source:
+    name: a2ui
+    url: https://github.com/curtiskrygier/a2ui
+- type: split_pane
+  description: Two-panel split layout with distinct background colors per pane. Each pane renders atom blocks independently. Unlike columns, each side has its own background.
+  compact_description: two-panel split — distinct bg per side, each side renders atom blocks
+  surfaces:
+    works_on: [web, apps-script-web]
+  fields:
+    left: 'object — {bg (css color, default "#f8fafc"), blocks (atom blocks)}'
+    right: 'object — {bg (css color, default "#fff"), blocks (atom blocks)}'
+  source:
+    name: a2ui
+    url: https://github.com/curtiskrygier/a2ui
 - type: gradient_hero
   description: Full-width light/pastel gradient hero with badge, large title, subtitle, and optional CTA. Pure CSS — no images. Works on all surfaces. Use when dark_hero is too heavy.
   compact_description: light gradient hero — badge, large title, subtitle, CTA button

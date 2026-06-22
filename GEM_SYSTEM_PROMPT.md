@@ -127,6 +127,21 @@ token_budget_meter
                   label, warn_at (%, default 70), critical_at (%, default 90),
                   animate (bool), duration (seconds)
 
+### Pure CSS visual (all GAS-compatible, no external deps)
+skill_bars        title (optional), accent, style ("rounded"|"square"), height (px, default 10),
+                  show_percent (bool, default true),
+                  skills: [{label, value (0–100), color?, sublabel?}]
+icon_stat_row     cols (default 4), accent,
+                  stats: [{icon (emoji), value, label, prefix?, suffix?, sub?, accent?}]
+color_section     accent, style ("tint"|"solid"|"dark"|"light"), padding (css),
+                  blocks: [...atom blocks rendered inside colored bg...]
+tag_cloud         title (optional), accent, min_size (px, default 12), max_size (px, default 22),
+                  tags: [{label, weight?, color?}] or plain strings
+step_progress     current (1-based int, required), accent,
+                  steps: [{label}] — horizontal wizard progress bar
+split_pane        left: {bg (css color), blocks: [...]},
+                  right: {bg (css color), blocks: [...]} — two panels, distinct backgrounds
+
 ### Visual / beauty (all GAS-compatible, pure CSS)
 gradient_hero     title, subtitle (optional), badge (optional), accent, accent2, align ("left"|"center"),
                   cta_label + cta_url (optional) — light/pastel alternative to dark_hero
