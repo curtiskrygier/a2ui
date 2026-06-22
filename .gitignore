@@ -15,7 +15,14 @@ benchmarks/.openui_cache/
 catalogue_meet_preview.html
 catalogue_web_preview.html
 GEM_SYSTEM_PROMPT.md
-apps-script-surface/a2ui-gem-renderer/
+apps-script-surface/gas-schema-renderer/.clasp.json
+apps-script-surface/gas-schema-renderer/*.old
+apps-script-surface/gas-schema-renderer/BREVET_2026_*.md
+apps-script-surface/gas-schema-renderer/MULTIPAGE_NAV_ISSUE.md
+apps-script-surface/gas-schema-renderer/geo_iso_*.md
+apps-script-surface/gas-schema-renderer/playbooks/
+apps-script-surface/gas-schema-renderer/source_*.pdf
+apps-script-surface/gas-schema-renderer/source_*.txt
 articles/
 web-article/
 ROAST-*.md
