@@ -3571,6 +3571,80 @@ _RENDERERS['linkedin_post_image'] = function(b) {
   return '<div style="color:#9aa0a6;font-style:italic;padding:12px;">Unknown linkedin_post_image mode: ' + _esc(mode) + '</div>';
 };
 
+// ── Page structure ───────────────────────────────────────────────────────────
+
+_RENDERERS['page_header'] = function(b) {
+  var uid    = Math.random().toString(36).substr(2, 6);
+  var accent = b.accent || '#6366f1';
+  var dark   = b.theme === 'dark';
+  var bg     = dark ? '#0f172a' : (b.background || 'linear-gradient(135deg,' + accent + '18 0%,#fff 60%)');
+  var tc     = dark ? '#f8fafc' : '#111827';
+  var sc     = dark ? '#94a3b8' : '#6b7280';
+  return '<style>' +
+    '.ph-' + uid + '{padding:32px 28px 24px;margin:0 0 1.5rem;border-radius:14px;background:' + bg + ';border-bottom:3px solid ' + accent + ';}' +
+    '.ph-icon-' + uid + '{font-size:36px;margin-bottom:10px;display:block;}' +
+    '.ph-title-' + uid + '{font-size:28px;font-weight:800;color:' + tc + ';line-height:1.2;margin-bottom:6px;}' +
+    '.ph-sub-' + uid + '{font-size:15px;color:' + sc + ';line-height:1.5;margin-bottom:10px;}' +
+    '.ph-tag-' + uid + '{display:inline-block;background:' + accent + ';color:#fff;border-radius:99px;padding:2px 12px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;}' +
+    '</style>' +
+    '<div class="ph-' + uid + '">' +
+    (b.icon ? '<span class="ph-icon-' + uid + '">' + _esc(b.icon) + '</span>' : '') +
+    '<div class="ph-title-' + uid + '">' + _md(b.title || '') + '</div>' +
+    (b.subtitle ? '<div class="ph-sub-' + uid + '">' + _md(b.subtitle) + '</div>' : '') +
+    (b.tag ? '<span class="ph-tag-' + uid + '">' + _esc(b.tag) + '</span>' : '') +
+    '</div>';
+};
+
+_RENDERERS['back_button'] = function(b) {
+  var uid    = Math.random().toString(36).substr(2, 6);
+  var label  = b.label || '← Back';
+  var accent = b.accent || '#6366f1';
+  var style  = b.style || 'ghost';
+  var href   = b.url ? 'href="' + _esc(b.url) + '"' : (b.nav_slug ? 'href="?nav=' + _esc(b.nav_slug) + '"' : 'href="javascript:history.back()"');
+  var css = style === 'outline'
+    ? 'border:1.5px solid ' + accent + ';color:' + accent + ';background:#fff;border-radius:8px;padding:6px 16px;'
+    : style === 'text'
+    ? 'color:' + accent + ';background:none;padding:4px 0;'
+    : 'background:' + accent + '14;color:' + accent + ';border-radius:8px;padding:6px 16px;';
+  return '<div style="margin:0.5rem 0 1rem;">' +
+    '<a ' + href + ' style="display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;text-decoration:none;' + css + '">' + _esc(label) + '</a>' +
+    '</div>';
+};
+
+_RENDERERS['section_break'] = function(b) {
+  var uid    = Math.random().toString(36).substr(2, 6);
+  var accent = b.accent || '#e5e7eb';
+  var style  = b.style || 'line';
+  var label  = b.label || '';
+  var borderStyle = style === 'dashed' ? 'dashed' : style === 'dots' ? 'dotted' : 'solid';
+  if (!label) {
+    return '<hr style="border:none;border-top:1px ' + borderStyle + ' ' + accent + ';margin:2rem 0;" />';
+  }
+  return '<div style="display:flex;align-items:center;gap:12px;margin:2rem 0;">' +
+    '<div style="flex:1;border-top:1px ' + borderStyle + ' ' + accent + ';"></div>' +
+    '<span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#9ca3af;white-space:nowrap;">' + _esc(label) + '</span>' +
+    '<div style="flex:1;border-top:1px ' + borderStyle + ' ' + accent + ';"></div>' +
+    '</div>';
+};
+
+_RENDERERS['chip_group'] = function(b) {
+  var uid    = Math.random().toString(36).substr(2, 6);
+  var scroll = b.layout === 'scroll';
+  var chips  = b.chips || [];
+  var chipsHtml = chips.map(function(c) {
+    var bg     = c.active ? (c.color || '#6366f1') : (c.color ? c.color + '18' : '#f3f4f6');
+    var tc     = c.active ? '#fff' : (c.color || '#374151');
+    var tag    = c.url ? 'a href="' + _esc(c.url) + '"' : 'span';
+    var endTag = c.url ? 'a' : 'span';
+    return '<' + tag + ' style="display:inline-flex;align-items:center;background:' + bg + ';color:' + tc + ';border-radius:99px;padding:4px 14px;font-size:12px;font-weight:500;text-decoration:none;white-space:nowrap;cursor:' + (c.url ? 'pointer' : 'default') + ';">' + _esc(c.label || '') + '</' + endTag + '>';
+  }).join('');
+  var wrap = scroll
+    ? 'display:flex;flex-wrap:nowrap;overflow-x:auto;gap:8px;padding-bottom:4px;scrollbar-width:none;'
+    : 'display:flex;flex-wrap:wrap;gap:8px;';
+  return (b.label ? '<div style="font-size:12px;font-weight:600;color:#6b7280;margin-bottom:6px;">' + _esc(b.label) + '</div>' : '') +
+    '<div style="' + wrap + 'margin:0.75rem 0;">' + chipsHtml + '</div>';
+};
+
 // ── Layout ────────────────────────────────────────────────────────────────────
 
 _RENDERERS['columns'] = function(b) {
