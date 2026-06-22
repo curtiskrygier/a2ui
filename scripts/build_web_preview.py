@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate a self-contained HTML preview of all A2UI atoms rendered in web_article format.
 
-Output: /home/curtis/a2ui-catalogue/catalogue_web_preview.html
+Output: catalogue_web_preview.html (in repo root)
 
 Usage:
     python3 scripts/build_web_preview.py

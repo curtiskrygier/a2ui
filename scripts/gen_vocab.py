@@ -4,10 +4,11 @@ Output: atoms/vocab/{category}.md files
 """
 
 import yaml, os, re, textwrap
+from pathlib import Path
 from collections import defaultdict
 
-SCHEMA_PATH = '/home/curtis/a2ui-catalogue/atoms/schema.yaml'
-OUT_DIR     = '/home/curtis/a2ui-catalogue/atoms/vocab'
+SCHEMA_PATH = str(Path(__file__).parent.parent / 'atoms/schema.yaml')
+OUT_DIR     = str(Path(__file__).parent.parent / 'atoms/vocab')
 
 # Category assignments — determined by atom type name patterns and descriptions
 CATEGORIES = {

@@ -4,15 +4,14 @@ Pre-renders every MeetStudio playbook to HTML using the GDM renderer,
 then assembles a single-page app with sidebar navigation + slide viewer.
 
 Usage:
-    cd /home/curtis/a2ui-catalogue
     python3 scripts/build_playbook_webapp.py
 """
 
 from __future__ import annotations
-import sys, json, asyncio
+import sys, json, asyncio, os
 from pathlib import Path
 
-MEETSTUDIO = Path("/home/curtis/gemini/addons/meetstudio")
+MEETSTUDIO = Path(os.environ.get("MEETSTUDIO_PATH", str(Path(__file__).parent.parent.parent / "gemini/addons/meetstudio")))
 CATALOGUE  = Path(__file__).parent.parent
 OUT_DIR    = CATALOGUE / "apps-script-surface" / "a2ui-playbook-webapp"
 
