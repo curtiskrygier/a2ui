@@ -63,6 +63,13 @@ function _esc(str) {
     .replace(/'/g, '&#39;');
 }
 
+// Only allows https, http, mailto, #anchor, and relative paths. Strips javascript:, data:, etc.
+function _safeUrl(url) {
+  if (!url) return '#';
+  var s = String(url).trim();
+  return /^(https?:\/\/|mailto:|#|\/)/.test(s) ? _esc(s) : '#';
+}
+
 // ── Renderers Registry ────────────────────────────────────────────────────────
 var _RENDERERS = {};
 
@@ -206,26 +213,26 @@ _RENDERERS['bullet_list'] = function(b) {
 
 _RENDERERS['link_button'] = function(b) {
   return '<div style="margin:12px 0;">' +
-         '<a href="' + _esc(b.url) + '" class="asw-btn asw-btn-primary" target="_top">' + _esc(b.label) + '</a>' +
+         '<a href="' + _safeUrl(b.url) + '" class="asw-btn asw-btn-primary" target="_top">' + _esc(b.label) + '</a>' +
          '</div>';
 };
 
 _RENDERERS['cta_button'] = function(b) {
   return '<div style="margin:16px 0;text-align:center;">' +
-         '<a href="' + _esc(b.url) + '" class="asw-btn asw-btn-primary" style="padding:10px 24px;font-size:0.85rem;" target="_top">' + _esc(b.label) + '</a>' +
+         '<a href="' + _safeUrl(b.url) + '" class="asw-btn asw-btn-primary" style="padding:10px 24px;font-size:0.85rem;" target="_top">' + _esc(b.label) + '</a>' +
          '</div>';
 };
 
 _RENDERERS['nav_link'] = function(b) {
-  return '<a href="' + _esc(b.url) + '" class="asw-nav-link" style="font-size:0.88rem;font-weight:500;margin-right:12px;" target="_top">' + _esc(b.label) + '</a>';
+  return '<a href="' + _safeUrl(b.url) + '" class="asw-nav-link" style="font-size:0.88rem;font-weight:500;margin-right:12px;" target="_top">' + _esc(b.label) + '</a>';
 };
 
 _RENDERERS['lesson_nav'] = function(b) {
   var prevHtml = b.prev_url ? 
-    '<a href="' + _esc(b.prev_url) + '" class="asw-lesson-nav-side" target="_top"><span class="nav-arrow">←</span><span>' + _esc(b.prev_title || 'Previous') + '</span></a>' : 
+    '<a href="' + _safeUrl(b.prev_url) + '" class="asw-lesson-nav-side" target="_top"><span class="nav-arrow">←</span><span>' + _esc(b.prev_title || 'Previous') + '</span></a>' : 
     '<span></span>';
   var nextHtml = b.next_url ? 
-    '<a href="' + _esc(b.next_url) + '" class="asw-lesson-nav-side" style="justify-content:flex-end;text-align:right;" target="_top"><span>' + _esc(b.next_title || 'Next') + '</span><span class="nav-arrow">→</span></a>' : 
+    '<a href="' + _safeUrl(b.next_url) + '" class="asw-lesson-nav-side" style="justify-content:flex-end;text-align:right;" target="_top"><span>' + _esc(b.next_title || 'Next') + '</span><span class="nav-arrow">→</span></a>' : 
     '<span></span>';
   
   var moduleLabel = b.module_label ? '<div class="asw-lesson-nav-module">' + _esc(b.module_label) + '</div>' : '';
@@ -431,7 +438,7 @@ _RENDERERS['score_summary'] = function(b) {
   var ctas = '';
   if (b.retry_label || b.continue_label) {
     var retry = b.retry_label ? '<button class="asw-btn asw-btn-ghost" onclick="if(typeof location !== \'undefined\')location.reload();">' + _esc(b.retry_label) + '</button>' : '';
-    var cont = b.continue_label ? '<a href="' + _esc(b.continue_url || '#') + '" class="asw-btn asw-btn-primary" target="_top">' + _esc(b.continue_label) + '</a>' : '';
+    var cont = b.continue_label ? '<a href="' + _safeUrl(b.continue_url || '#') + '" class="asw-btn asw-btn-primary" target="_top">' + _esc(b.continue_label) + '</a>' : '';
     ctas = '<div class="asw-score-ctas">' + retry + cont + '</div>';
   }
 
@@ -732,7 +739,7 @@ _RENDERERS['youtube'] = function(b) {
   return '<div class="asw-degraded-card">' +
          '<div class="asw-degraded-title">📹 YouTube Video Fallback</div>' +
          '<div class="asw-degraded-text">Direct iframe playback is restricted inside the Google Apps Script Web App sandbox environment.</div>' +
-         '<a href="' + _esc(b.url) + '" class="asw-btn asw-btn-ghost" style="margin-top:6px;" target="_top">Watch on YouTube →</a>' +
+         '<a href="' + _safeUrl(b.url) + '" class="asw-btn asw-btn-ghost" style="margin-top:6px;" target="_top">Watch on YouTube →</a>' +
          '</div>';
 };
 
@@ -779,7 +786,7 @@ _RENDERERS['social_feed_embed'] = function(b) {
   return '<div class="asw-degraded-card">' +
          '<div class="asw-degraded-title">💬 Social Media Feed</div>' +
          '<div class="asw-degraded-text">Live media feeds are disabled. Click below to view directly.</div>' +
-         '<a href="' + _esc(b.url || '#') + '" class="asw-btn asw-btn-ghost" style="margin-top:6px;" target="_top">Open Social Feed →</a>' +
+         '<a href="' + _safeUrl(b.url || '#' || '#') + '" class="asw-btn asw-btn-ghost" style="margin-top:6px;" target="_top">Open Social Feed →</a>' +
          '</div>';
 };
 
@@ -842,7 +849,7 @@ _RENDERERS['live_demo_embed'] = function(b) {
   return '<div class="asw-degraded-card">' +
          '<div class="asw-degraded-title">🧪 ' + title + '</div>' +
          '<div class="asw-degraded-text">' + note + '</div>' +
-         '<a href="' + _esc(b.url || '#') + '" class="asw-btn asw-btn-ghost" style="margin-top:6px;" target="_top">Open Demo →</a>' +
+         '<a href="' + _safeUrl(b.url || '#' || '#') + '" class="asw-btn asw-btn-ghost" style="margin-top:6px;" target="_top">Open Demo →</a>' +
          '</div>';
 };
 
@@ -858,8 +865,11 @@ function _markdownToHtml(md) {
   // Italic *word*
   res = res.replace(/\*(.*?)\*/g, '<em>$1</em>');
   
-  // Inline link: [text](url) - force target="_top" for GAS Web App CSP
-  res = res.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_top">$1</a>');
+  // Inline link: [text](url) - allowlist safe schemes only (blocks javascript:, data:, vbscript:)
+  res = res.replace(/\[(.*?)\]\((.*?)\)/g, function(_, text, url) {
+    var safe = /^(https?:\/\/|mailto:|#|\/)/.test(url) ? url : '#';
+    return '<a href="' + safe + '" target="_top">' + text + '</a>';
+  });
   
   return res;
 }
@@ -905,7 +915,7 @@ function submitFeedback(data) {
 _RENDERERS['intro'] = function(b) {
   var parts = [];
   if (b.series_label && b.series_url) {
-    parts.push('<p><em>In <a href="' + _esc(b.series_url) + '">' + _esc(b.series_label) + '</a>, ' +
+    parts.push('<p><em>In <a href="' + _safeUrl(b.series_url) + '">' + _esc(b.series_label) + '</a>, ' +
                _markdownToHtml(b.continuation || 'I covered the background. This article picks up from there.') + '</em></p>');
   }
   if (b.note) parts.push('<p><em>' + _markdownToHtml(b.note) + '</em></p>');
@@ -3588,9 +3598,9 @@ _RENDERERS['gradient_hero'] = function(b) {
     '</style>' +
     '<div class="gh-' + uid + '">' +
     (b.badge ? '<div class="gh-badge-' + uid + '">' + _esc(b.badge) + '</div>' : '') +
-    '<div class="gh-title-' + uid + '">' + _md(b.title || b.heading || '') + '</div>' +
-    (b.subtitle || b.subtext ? '<div class="gh-sub-' + uid + '">' + _md(b.subtitle || b.subtext) + '</div>' : '') +
-    (b.cta_label && b.cta_url ? '<a class="gh-cta-' + uid + '" href="' + _esc(b.cta_url) + '">' + _esc(b.cta_label) + '</a>' : '') +
+    '<div class="gh-title-' + uid + '">' + _markdownToHtml(b.title || b.heading || '') + '</div>' +
+    (b.subtitle || b.subtext ? '<div class="gh-sub-' + uid + '">' + _markdownToHtml(b.subtitle || b.subtext) + '</div>' : '') +
+    (b.cta_label && b.cta_url ? '<a class="gh-cta-' + uid + '" href="' + _safeUrl(b.cta_url) + '">' + _esc(b.cta_label) + '</a>' : '') +
     '</div>';
 };
 
@@ -3607,7 +3617,7 @@ _RENDERERS['icon_list'] = function(b) {
       '<div style="flex:0 0 ' + iconSize + ';height:' + iconSize + ';border-radius:50%;background:' + color + '18;display:flex;align-items:center;justify-content:center;font-size:' + (size==='lg'?'20px':size==='sm'?'13px':'16px') + ';">' + _esc(icon) + '</div>' +
       '<div style="flex:1;padding-top:' + (size==='lg'?'10px':'6px') + ';">' +
       (item.label ? '<div style="font-size:' + fontSize + ';font-weight:700;color:#111827;margin-bottom:2px;">' + _esc(item.label) + '</div>' : '') +
-      (item.text ? '<div style="font-size:' + fontSize + ';color:#4b5563;line-height:1.5;">' + _md(item.text) + '</div>' : '') +
+      (item.text ? '<div style="font-size:' + fontSize + ';color:#4b5563;line-height:1.5;">' + _markdownToHtml(item.text) + '</div>' : '') +
       '</div></div>';
   }).join('');
   return (b.title ? '<div style="font-size:16px;font-weight:700;color:#111827;margin-bottom:14px;">' + _esc(b.title) + '</div>' : '') +
@@ -3631,8 +3641,8 @@ _RENDERERS['highlight_box'] = function(b) {
     '</style>' +
     '<div class="hb-' + uid + '">' +
     (b.icon ? '<span class="hb-icon-' + uid + '">' + _esc(b.icon) + '</span>' : '') +
-    (b.title ? '<div class="hb-title-' + uid + '">' + _md(b.title) + '</div>' : '') +
-    '<div class="hb-text-' + uid + '">' + _md(b.text || '') + '</div>' +
+    (b.title ? '<div class="hb-title-' + uid + '">' + _markdownToHtml(b.title) + '</div>' : '') +
+    '<div class="hb-text-' + uid + '">' + _markdownToHtml(b.text || '') + '</div>' +
     '</div>';
 };
 
@@ -3699,7 +3709,7 @@ _RENDERERS['numbered_list'] = function(b) {
     return '<div style="' + wrap + '">' + numEl +
       '<div' + (style==='large'?' style="padding-top:4px;"':'') + '>' +
       (item.label ? '<div style="font-size:15px;font-weight:700;color:#111827;margin-bottom:3px;">' + _esc(item.label) + '</div>' : '') +
-      (item.text  ? '<div style="font-size:14px;color:#4b5563;line-height:1.6;">' + _md(item.text) + '</div>' : '') +
+      (item.text  ? '<div style="font-size:14px;color:#4b5563;line-height:1.6;">' + _markdownToHtml(item.text) + '</div>' : '') +
       '</div></div>';
   }).join('');
   return (b.title ? '<div style="font-size:16px;font-weight:700;color:#111827;margin-bottom:16px;">' + _esc(b.title) + '</div>' : '') +
@@ -3724,8 +3734,8 @@ _RENDERERS['page_header'] = function(b) {
     '</style>' +
     '<div class="ph-' + uid + '">' +
     (b.icon ? '<span class="ph-icon-' + uid + '">' + _esc(b.icon) + '</span>' : '') +
-    '<div class="ph-title-' + uid + '">' + _md(b.title || '') + '</div>' +
-    (b.subtitle ? '<div class="ph-sub-' + uid + '">' + _md(b.subtitle) + '</div>' : '') +
+    '<div class="ph-title-' + uid + '">' + _markdownToHtml(b.title || '') + '</div>' +
+    (b.subtitle ? '<div class="ph-sub-' + uid + '">' + _markdownToHtml(b.subtitle) + '</div>' : '') +
     (b.tag ? '<span class="ph-tag-' + uid + '">' + _esc(b.tag) + '</span>' : '') +
     '</div>';
 };
@@ -3735,15 +3745,18 @@ _RENDERERS['back_button'] = function(b) {
   var label  = b.label || '← Back';
   var accent = b.accent || '#6366f1';
   var style  = b.style || 'ghost';
-  var href   = b.url ? 'href="' + _esc(b.url) + '"' : (b.nav_slug ? 'href="?nav=' + _esc(b.nav_slug) + '"' : 'href="javascript:history.back()"');
   var css = style === 'outline'
     ? 'border:1.5px solid ' + accent + ';color:' + accent + ';background:#fff;border-radius:8px;padding:6px 16px;'
     : style === 'text'
     ? 'color:' + accent + ';background:none;padding:4px 0;'
     : 'background:' + accent + '14;color:' + accent + ';border-radius:8px;padding:6px 16px;';
-  return '<div style="margin:0.5rem 0 1rem;">' +
-    '<a ' + href + ' style="display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;text-decoration:none;' + css + '">' + _esc(label) + '</a>' +
-    '</div>';
+  var baseStyle = 'display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;text-decoration:none;cursor:pointer;border:none;font-family:inherit;' + css;
+  var el = b.url
+    ? '<a href="' + _safeUrl(b.url) + '" style="' + baseStyle + '">' + _esc(label) + '</a>'
+    : b.nav_slug
+    ? '<a href="?nav=' + _esc(b.nav_slug) + '" style="' + baseStyle + '">' + _esc(label) + '</a>'
+    : '<button onclick="window.history.back()" style="' + baseStyle + '">' + _esc(label) + '</button>';
+  return '<div style="margin:0.5rem 0 1rem;">' + el + '</div>';
 };
 
 _RENDERERS['section_break'] = function(b) {
@@ -3814,7 +3827,7 @@ _RENDERERS['person_card'] = function(b) {
   }).join('');
   var linksHtml = '';
   if (b.email)    linksHtml += '<a href="mailto:' + _esc(b.email) + '" style="color:' + accent + ';font-size:12px;text-decoration:none;">✉ ' + _esc(b.email) + '</a>';
-  if (b.linkedin) linksHtml += '<a href="' + _esc(b.linkedin) + '" target="_blank" style="color:' + accent + ';font-size:12px;text-decoration:none;margin-left:10px;">in LinkedIn</a>';
+  if (b.linkedin) linksHtml += '<a href="' + _safeUrl(b.linkedin) + '" target="_blank" style="color:' + accent + ';font-size:12px;text-decoration:none;margin-left:10px;">in LinkedIn</a>';
   return '<style>' +
     '.pc-' + uid + '{border:1px solid #e5e7eb;border-radius:12px;padding:20px;display:flex;gap:16px;align-items:flex-start;margin:0.5rem 0;background:#fff;}' +
     '.pc-avatar-' + uid + '{flex:0 0 56px;height:56px;border-radius:50%;object-fit:cover;background:' + accent + ';display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;font-weight:700;overflow:hidden;}' +
@@ -3829,7 +3842,7 @@ _RENDERERS['person_card'] = function(b) {
     '<div class="pc-body-' + uid + '">' +
     '<div class="pc-name-' + uid + '">' + _esc(b.name || '') + '</div>' +
     (b.role ? '<div class="pc-role-' + uid + '">' + _esc(b.role) + '</div>' : '') +
-    (b.bio  ? '<div class="pc-bio-'  + uid + '">' + _md(b.bio) + '</div>' : '') +
+    (b.bio  ? '<div class="pc-bio-'  + uid + '">' + _markdownToHtml(b.bio) + '</div>' : '') +
     (tagsHtml ? '<div class="pc-tags-' + uid + '">' + tagsHtml + '</div>' : '') +
     (linksHtml ? '<div>' + linksHtml + '</div>' : '') +
     '</div></div>';
@@ -3881,7 +3894,7 @@ _RENDERERS['risk_flag'] = function(b) {
       '<span style="background:' + cfg.badge + ';color:#fff;border-radius:4px;padding:1px 8px;font-size:10px;font-weight:700;text-transform:uppercase;">' + cfg.label + '</span>' +
       '<span style="font-size:14px;font-weight:600;color:#111827;">' + _esc(r.title || '') + '</span>' +
       '</div>' +
-      (r.description ? '<div style="font-size:13px;color:#374151;line-height:1.5;">' + _md(r.description) + '</div>' : '') +
+      (r.description ? '<div style="font-size:13px;color:#374151;line-height:1.5;">' + _markdownToHtml(r.description) + '</div>' : '') +
       (r.mitigation  ? '<div style="font-size:12px;color:#6b7280;margin-top:6px;">💡 <em>' + _esc(r.mitigation) + '</em></div>' : '') +
       '</div>';
   }).join('');
@@ -3899,7 +3912,7 @@ _RENDERERS['action_items'] = function(b) {
   var rowsHtml = items.map(function(item, i) {
     var cfg = statusCfg[item.status] || statusCfg.open;
     return '<tr style="background:' + (i % 2 === 0 ? '#fff' : '#f9fafb') + ';">' +
-      '<td style="padding:10px 14px;font-size:13px;color:#111827;">' + _md(item.action || '') + '</td>' +
+      '<td style="padding:10px 14px;font-size:13px;color:#111827;">' + _markdownToHtml(item.action || '') + '</td>' +
       '<td style="padding:10px 14px;font-size:12px;color:#6b7280;white-space:nowrap;">' + _esc(item.owner || '—') + '</td>' +
       '<td style="padding:10px 14px;font-size:12px;color:#6b7280;white-space:nowrap;">' + _esc(item.due || '—') + '</td>' +
       '<td style="padding:10px 14px;text-align:center;white-space:nowrap;"><span style="font-size:12px;color:' + cfg.color + ';background:' + cfg.bg + ';border-radius:99px;padding:2px 10px;font-weight:600;">' + cfg.icon + ' ' + _esc(item.status || 'open') + '</span></td>' +
