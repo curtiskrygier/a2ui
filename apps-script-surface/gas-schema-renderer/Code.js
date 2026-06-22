@@ -21,7 +21,7 @@ function _ga4PageView(nav, p) {
         name: 'page_view',
         params: {
           page_title: pageTitle,
-          page_location: 'https://script.google.com/macros/s/AKfycbySUgHU2ynyj-GMc9_oR9qiWlwCVrNSeCwFXY_JYExxIldHYnQFfqgo_vE_uUBJg2L7/exec' + (nav ? '?nav=' + nav : ''),
+          page_location: 'https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec' + (nav ? '?nav=' + nav : ''),
           engagement_time_msec: '1'
         }
       }]
