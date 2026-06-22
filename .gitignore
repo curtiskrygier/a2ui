@@ -23,6 +23,7 @@ apps-script-surface/gas-schema-renderer/geo_iso_*.md
 apps-script-surface/gas-schema-renderer/playbooks/
 apps-script-surface/gas-schema-renderer/source_*.pdf
 apps-script-surface/gas-schema-renderer/source_*.txt
+apps-script-surface/gas-schema-renderer/togaf_page.gs
 articles/
 web-article/
 ROAST-*.md
