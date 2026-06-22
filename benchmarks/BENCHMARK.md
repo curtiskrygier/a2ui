@@ -66,7 +66,7 @@ A2UI (pricing-page, 183 tokens):
 ## Reproducing
 
 ```bash
-cd /home/curtis/a2ui-catalogue/benchmarks
+cd benchmarks
 python run_benchmark.py            # verbose + table
 python run_benchmark.py --format table   # markdown table only
 python run_benchmark.py --format csv
