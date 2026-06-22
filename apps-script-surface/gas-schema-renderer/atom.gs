@@ -3917,4 +3917,121 @@ _RENDERERS['action_items'] = function(b) {
     '<tbody>' + rowsHtml + '</tbody></table></div>';
 };
 
+// ── Pure CSS visual ───────────────────────────────────────────────────────────
+
+_RENDERERS['skill_bars'] = function(b) {
+  var uid    = Math.random().toString(36).substr(2, 6);
+  var skills = b.skills || b.items || [];
+  var style  = b.style || 'rounded';
+  var rad    = style === 'rounded' ? '99px' : '4px';
+  var bars = skills.map(function(s, i) {
+    var pct    = Math.min(100, Math.max(0, parseInt(s.value || s.percent || 0, 10)));
+    var color  = s.color || s.accent || b.accent || '#6366f1';
+    var label  = s.label || s.name || '';
+    var showPct = b.show_percent !== false;
+    return '<div style="margin-bottom:14px;">' +
+      '<div style="display:flex;justify-content:space-between;margin-bottom:5px;">' +
+      '<span style="font-size:13px;font-weight:600;color:#374151;">' + _esc(label) + '</span>' +
+      (showPct ? '<span style="font-size:12px;color:#6b7280;">' + pct + '%</span>' : '') +
+      '</div>' +
+      '<div style="height:' + (b.height || '10') + 'px;background:#e5e7eb;border-radius:' + rad + ';overflow:hidden;">' +
+      '<div style="height:100%;width:' + pct + '%;background:' + color + ';border-radius:' + rad + ';transition:width 0.6s ease;"></div>' +
+      '</div>' +
+      (s.sublabel ? '<div style="font-size:11px;color:#9ca3af;margin-top:3px;">' + _esc(s.sublabel) + '</div>' : '') +
+      '</div>';
+  }).join('');
+  return (b.title ? '<div style="font-size:16px;font-weight:700;color:#111827;margin-bottom:16px;">' + _esc(b.title) + '</div>' : '') +
+    '<div style="margin:1rem 0;">' + bars + '</div>';
+};
+
+_RENDERERS['icon_stat_row'] = function(b) {
+  var uid   = Math.random().toString(36).substr(2, 6);
+  var stats = b.stats || b.items || [];
+  var cols  = Math.min(stats.length, b.cols || 4);
+  var items = stats.map(function(s) {
+    var color = s.accent || s.color || b.accent || '#6366f1';
+    return '<div style="text-align:center;padding:20px 12px;">' +
+      (s.icon ? '<div style="font-size:32px;margin-bottom:8px;">' + _esc(s.icon) + '</div>' : '<div style="width:40px;height:40px;border-radius:50%;background:' + color + '18;margin:0 auto 8px;"></div>') +
+      '<div style="font-size:28px;font-weight:900;color:' + color + ';line-height:1;margin-bottom:4px;">' +
+      (s.prefix ? '<span style="font-size:16px;">' + _esc(s.prefix) + '</span>' : '') +
+      _esc(s.value || '') +
+      (s.suffix ? '<span style="font-size:16px;">' + _esc(s.suffix) + '</span>' : '') +
+      '</div>' +
+      '<div style="font-size:12px;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:0.04em;">' + _esc(s.label || '') + '</div>' +
+      (s.sub ? '<div style="font-size:11px;color:#9ca3af;margin-top:2px;">' + _esc(s.sub) + '</div>' : '') +
+      '</div>';
+  }).join('');
+  return '<div style="display:grid;grid-template-columns:repeat(' + cols + ',1fr);border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;background:#fff;margin:1.5rem 0;">' +
+    items + '</div>';
+};
+
+_RENDERERS['color_section'] = function(b) {
+  var uid    = Math.random().toString(36).substr(2, 6);
+  var accent = b.accent || '#6366f1';
+  var style  = b.style || 'tint';
+  var bg = style === 'tint'  ? accent + '10'
+         : style === 'solid' ? accent
+         : style === 'dark'  ? '#0f172a'
+         : '#f8fafc';
+  var tc = (style === 'solid' || style === 'dark') ? '#fff' : '#111827';
+  var inner = renderAtoms(b.blocks || []);
+  return '<div style="background:' + bg + ';border-radius:14px;padding:' + (b.padding || '24px') + ';margin:1.5rem 0;color:' + tc + ';">' + inner + '</div>';
+};
+
+_RENDERERS['tag_cloud'] = function(b) {
+  var uid  = Math.random().toString(36).substr(2, 6);
+  var tags = b.tags || b.items || [];
+  var base = b.min_size || 12;
+  var range = (b.max_size || 22) - base;
+  var maxW  = Math.max.apply(null, tags.map(function(t){ return t.weight || 1; })) || 1;
+  var html  = tags.map(function(t) {
+    var w     = t.weight || 1;
+    var size  = Math.round(base + (w / maxW) * range);
+    var color = t.color || b.accent || '#6366f1';
+    var alpha = Math.round(10 + (w / maxW) * 25).toString(16);
+    return '<span style="display:inline-block;margin:4px;padding:4px 12px;font-size:' + size + 'px;font-weight:' + (size > 16 ? '700' : '500') + ';color:' + color + ';background:' + color + alpha + ';border-radius:99px;cursor:default;">' + _esc(t.label || t.text || t) + '</span>';
+  }).join('');
+  return (b.title ? '<div style="font-size:16px;font-weight:700;color:#111827;margin-bottom:14px;">' + _esc(b.title) + '</div>' : '') +
+    '<div style="display:flex;flex-wrap:wrap;gap:2px;margin:1rem 0;">' + html + '</div>';
+};
+
+_RENDERERS['step_progress'] = function(b) {
+  var uid   = Math.random().toString(36).substr(2, 6);
+  var steps = b.steps || [];
+  var curr  = (b.current || 1) - 1;
+  var accent = b.accent || '#6366f1';
+  var items = steps.map(function(s, i) {
+    var done    = i < curr;
+    var active  = i === curr;
+    var circBg  = done ? accent : active ? accent : '#e5e7eb';
+    var circTc  = done || active ? '#fff' : '#9ca3af';
+    var labelC  = active ? '#111827' : done ? '#374151' : '#9ca3af';
+    var icon    = done ? '✓' : (i + 1);
+    var lineHtml = i < steps.length - 1
+      ? '<div style="flex:1;height:2px;background:' + (done ? accent : '#e5e7eb') + ';margin-top:-1px;"></div>'
+      : '';
+    return '<div style="display:flex;flex-direction:column;align-items:center;flex:1 1 0;">' +
+      '<div style="display:flex;align-items:center;width:100%;">' +
+      '<div style="width:28px;height:28px;border-radius:50%;background:' + circBg + ';color:' + circTc + ';display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;">' + icon + '</div>' +
+      lineHtml +
+      '</div>' +
+      '<div style="margin-top:6px;font-size:11px;font-weight:' + (active?'700':'500') + ';color:' + labelC + ';text-align:center;width:100%;">' + _esc(s.label || s.title || '') + '</div>' +
+      '</div>';
+  }).join('');
+  return '<div style="display:flex;align-items:flex-start;gap:0;margin:1.5rem 0;padding:0 8px;">' + items + '</div>';
+};
+
+_RENDERERS['split_pane'] = function(b) {
+  var uid    = Math.random().toString(36).substr(2, 6);
+  var left   = b.left  || {};
+  var right  = b.right || {};
+  var leftBg  = left.bg  || left.background  || b.left_bg  || '#f8fafc';
+  var rightBg = right.bg || right.background || b.right_bg || '#fff';
+  var leftBlocks  = renderAtoms(left.blocks  || []);
+  var rightBlocks = renderAtoms(right.blocks || []);
+  return '<div style="display:grid;grid-template-columns:1fr 1fr;border-radius:14px;overflow:hidden;border:1px solid #e5e7eb;margin:1.5rem 0;">' +
+    '<div style="background:' + leftBg  + ';padding:24px;">' + leftBlocks  + '</div>' +
+    '<div style="background:' + rightBg + ';padding:24px;border-left:1px solid #e5e7eb;">' + rightBlocks + '</div>' +
+    '</div>';
+};
 
