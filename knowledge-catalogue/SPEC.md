@@ -207,6 +207,6 @@ The brevet 2026 app was built with this pipeline (retroactively):
 - Schema: `fr-dnb`
 - Audit: `BREVET_2026_AUDIT.md` (the manual gap report that preceded this spec)
 - Payload: `payloads/brevet_full.json`
-- Live: `https://script.google.com/a/krygier.fr/macros/s/AKfycbzEz1TNzeXCfjTLHbpcOUvQHxHnBFj-0l1JvuCLga7J4Gy2bEE25zHJBajvwYdetIcHuA/exec?nav=brevet-2026`
+- Live: `https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec?nav=brevet-2026`
 
 The brevet audit identified 17 gaps. The `fr-dnb.yaml` schema now encodes those lessons — run the suitability checker on the brevet curriculum.md and it will catch all 17 automatically.

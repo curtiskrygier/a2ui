@@ -19,8 +19,8 @@ import sys, json, zlib, base64, argparse, subprocess, tempfile
 from urllib.parse import quote
 
 RENDERERS = {
-    'gem':  'https://script.google.com/a/krygier.fr/macros/s/AKfycbzEz1TNzeXCfjTLHbpcOUvQHxHnBFj-0l1JvuCLga7J4Gy2bEE25zHJBajvwYdetIcHuA/exec',
-    'main': 'https://script.google.com/macros/s/AKfycbxDpNWMnEKmO0M94EiUB8QU3p4gs-cAv3AXhIWO0VtMaTF3BkuOo8FbK69mknE1PAHtSg/exec',
+    'gem':  'https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec',
+    'main': 'https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec',
 }
 
 URL_LIMIT = 8000

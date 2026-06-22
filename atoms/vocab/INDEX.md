@@ -54,7 +54,7 @@ usage: Load this file at the start of any agent session to give Gemini full voca
     { "type": "heading", "level": 1, "text": "Hello World" },
     { "type": "body", "text": "Built with **A2UI**." },
     { "type": "stat_card", "value": "273", "label": "Atoms available", "accent": "#6366f1" },
-    { "type": "cta_button", "label": "Open generator →", "url": "https://script.google.com/macros/s/AKfycbxDpNWMnEKmO0M94EiUB8QU3p4gs-cAv3AXhIWO0VtMaTF3BkuOo8FbK69mknE1PAHtSg/exec" }
+    { "type": "cta_button", "label": "Open generator →", "url": "https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec" }
   ]
 }
 ```
