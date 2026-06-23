@@ -297,7 +297,7 @@ _RENDERERS['quiz_question'] = function(b) {
 
   var optsHtml = '';
   for (var i = 0; i < options.length; i++) {
-    optsHtml += '<div class="asw-quiz-opt" id="' + uid + '-opt-' + i + '" data-idx="' + i + '">' + _esc(options[i]) + '</div>';
+    optsHtml += '<div class="asw-quiz-opt" id="' + uid + '-opt-' + i + '" data-idx="' + i + '" role="radio" aria-checked="false" tabindex="0" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();this.click();}">' + _esc(options[i]) + '</div>';
   }
 
   var expHtml = explanation ? '<div class="asw-quiz-explain" id="' + uid + '-explain">' + _markdownToHtml(explanation) + '</div>' : '';
@@ -307,7 +307,7 @@ _RENDERERS['quiz_question'] = function(b) {
   return '<div class="asw-quiz" id="' + uid + '-quiz">' +
          '<div class="asw-quiz-label">Question</div>' +
          '<div class="asw-quiz-q">' + _esc(b.question) + '</div>' +
-         '<div class="asw-quiz-opts">' + optsHtml + '</div>' +
+         '<div class="asw-quiz-opts" role="radiogroup" aria-label="' + _esc(b.question) + '">' + optsHtml + '</div>' +
          expHtml +
          '</div>' +
          initScript;
@@ -1335,9 +1335,9 @@ _RENDERERS['tabs'] = function(b) {
   var inputs = tabList.map(function(t, i){
     return '<input type="radio" id="tb' + uid + '_' + i + '" name="tab_' + uid + '" style="display:none;"' + (i===0?' checked':'') + '>';
   }).join('');
-  var labels = '<div class="tm-tab-labels-' + uid + '" style="display:flex;flex-wrap:wrap;border-bottom:2px solid #e5e7eb;margin-bottom:0;">' +
+  var labels = '<div class="tm-tab-labels-' + uid + '" style="display:flex;flex-wrap:wrap;border-bottom:2px solid #e5e7eb;margin-bottom:0;" role="tablist">' +
     tabList.map(function(t, i){
-      return '<label for="tb' + uid + '_' + i + '" class="tm-tab-lbl-' + uid + '">' + _esc(t.label||('Tab '+(i+1))) + '</label>';
+      return '<label for="tb' + uid + '_' + i + '" class="tm-tab-lbl-' + uid + '" role="tab" aria-selected="' + (i===0?'true':'false') + '" tabindex="' + (i===0?'0':'-1') + '">' + _esc(t.label||('Tab '+(i+1))) + '</label>';
     }).join('') + '</div>';
   var panels = '<div class="tm-tab-panels-' + uid + '">' +
     tabList.map(function(t, i){
@@ -1352,7 +1352,7 @@ _RENDERERS['tabs'] = function(b) {
       } else if (t.code) {
         content = '<pre><code>' + _esc(t.code) + '</code></pre>';
       }
-      return '<div class="tm-tab-panel-' + uid + '">' + content + '</div>';
+      return '<div class="tm-tab-panel-' + uid + '" role="tabpanel" aria-label="' + _esc(t.label||('Tab '+(i+1))) + '">' + content + '</div>';
     }).join('') + '</div>';
   return '<div style="margin:1.5rem 0;border:1px solid #e5e7eb;border-radius:10px;overflow:hidden;">' + css + inputs + labels + panels + '</div>';
 };
@@ -2149,7 +2149,7 @@ _RENDERERS['flip_card'] = function(b) {
     + '.fcb' + uid + '{background:' + backBg + ';color:#fff;transform:rotateY(180deg);}'
     + '.fch' + uid + '{position:absolute;bottom:10px;right:14px;font-size:0.62rem;opacity:0.45;pointer-events:none;}'
     + '</style>'
-    + '<div id="fco' + uid + '" onclick="this.classList.toggle(\'flp\')">'
+    + '<div id="fco' + uid + '" role="button" tabindex="0" aria-label="Flip card — press to reveal" onclick="this.classList.toggle(\'flp\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();this.classList.toggle(\'flp\');}">'
     + '<div id="fci' + uid + '">'
     + '<div class="fcf' + uid + '">' + frontHtml + '<span class="fch' + uid + '">tap to flip ↺</span></div>'
     + '<div class="fcb' + uid + '">' + backHtml  + '<span class="fch' + uid + '">tap to flip ↺</span></div>'
@@ -3291,15 +3291,15 @@ _RENDERERS['linkedin_post_image'] = function(b) {
 
 _RENDERERS['gradient_hero'] = function(b) {
   var uid      = Math.random().toString(36).substr(2, 6);
-  var accent   = b.accent || '#6366f1';
+  var accent   = b.accent || 'var(--a2ui-accent,#6366f1)';
   var accent2  = b.accent2 || '#8b5cf6';
   var gradient = b.gradient || ('linear-gradient(135deg,' + accent + '22 0%,' + accent2 + '18 60%,#fff8 100%)');
   var align    = b.align === 'center' ? 'center' : 'left';
   return '<style>' +
     '.gh-' + uid + '{padding:48px 32px;border-radius:16px;background:' + gradient + ';margin:0 0 1.5rem;text-align:' + align + ';}' +
     '.gh-badge-' + uid + '{display:inline-block;background:' + accent + ';color:#fff;border-radius:99px;padding:3px 14px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:14px;}' +
-    '.gh-title-' + uid + '{font-size:36px;font-weight:900;line-height:1.15;color:#111827;margin-bottom:12px;letter-spacing:-0.02em;}' +
-    '.gh-sub-' + uid + '{font-size:17px;color:#4b5563;line-height:1.6;margin-bottom:20px;max-width:600px;' + (align==='center'?'margin-left:auto;margin-right:auto;':'') + '}' +
+    '.gh-title-' + uid + '{font-size:36px;font-weight:900;line-height:1.15;color:var(--text,#111827);margin-bottom:12px;letter-spacing:-0.02em;}' +
+    '.gh-sub-' + uid + '{font-size:17px;color:var(--muted,#4b5563);line-height:1.6;margin-bottom:20px;max-width:600px;' + (align==='center'?'margin-left:auto;margin-right:auto;':'') + '}' +
     '.gh-cta-' + uid + '{display:inline-block;background:' + accent + ';color:#fff;border-radius:10px;padding:12px 28px;font-size:15px;font-weight:700;text-decoration:none;}' +
     '</style>' +
     '<div class="gh-' + uid + '">' +
@@ -3317,22 +3317,22 @@ _RENDERERS['icon_list'] = function(b) {
   var iconSize = size === 'lg' ? '42px' : size === 'sm' ? '28px' : '36px';
   var fontSize = size === 'lg' ? '15px' : size === 'sm' ? '13px' : '14px';
   var rowsHtml = items.map(function(item) {
-    var color = item.color || b.accent || '#6366f1';
+    var color = item.color || b.accent || 'var(--a2ui-accent,#6366f1)';
     var icon  = item.icon || '•';
     return '<div style="display:flex;gap:14px;align-items:flex-start;margin-bottom:14px;">' +
       '<div style="flex:0 0 ' + iconSize + ';height:' + iconSize + ';border-radius:50%;background:' + color + '18;display:flex;align-items:center;justify-content:center;font-size:' + (size==='lg'?'20px':size==='sm'?'13px':'16px') + ';">' + _esc(icon) + '</div>' +
       '<div style="flex:1;padding-top:' + (size==='lg'?'10px':'6px') + ';">' +
-      (item.label ? '<div style="font-size:' + fontSize + ';font-weight:700;color:#111827;margin-bottom:2px;">' + _esc(item.label) + '</div>' : '') +
-      (item.text ? '<div style="font-size:' + fontSize + ';color:#4b5563;line-height:1.5;">' + _markdownToHtml(item.text) + '</div>' : '') +
+      (item.label ? '<div style="font-size:' + fontSize + ';font-weight:700;color:var(--text,#111827);margin-bottom:2px;">' + _esc(item.label) + '</div>' : '') +
+      (item.text ? '<div style="font-size:' + fontSize + ';color:var(--muted,#4b5563);line-height:1.5;">' + _markdownToHtml(item.text) + '</div>' : '') +
       '</div></div>';
   }).join('');
-  return (b.title ? '<div style="font-size:16px;font-weight:700;color:#111827;margin-bottom:14px;">' + _esc(b.title) + '</div>' : '') +
+  return (b.title ? '<div style="font-size:16px;font-weight:700;color:var(--text,#111827);margin-bottom:14px;">' + _esc(b.title) + '</div>' : '') +
     '<div style="margin:1rem 0;">' + rowsHtml + '</div>';
 };
 
 _RENDERERS['highlight_box'] = function(b) {
   var uid    = Math.random().toString(36).substr(2, 6);
-  var accent = b.accent || '#6366f1';
+  var accent = b.accent || 'var(--a2ui-accent,#6366f1)';
   var style  = b.style || 'gradient';
   var bg = style === 'gradient'
     ? ('linear-gradient(135deg,' + accent + '18 0%,' + accent + '08 100%)')
@@ -3342,8 +3342,8 @@ _RENDERERS['highlight_box'] = function(b) {
   return '<style>' +
     '.hb-' + uid + '{background:' + bg + ';border:' + border + ';border-radius:12px;padding:24px 28px;margin:1.5rem 0;}' +
     '.hb-icon-' + uid + '{font-size:28px;margin-bottom:10px;display:block;}' +
-    '.hb-title-' + uid + '{font-size:18px;font-weight:800;color:#111827;margin-bottom:8px;}' +
-    '.hb-text-' + uid + '{font-size:14px;color:#374151;line-height:1.65;}' +
+    '.hb-title-' + uid + '{font-size:18px;font-weight:800;color:var(--text,#111827);margin-bottom:8px;}' +
+    '.hb-text-' + uid + '{font-size:14px;color:var(--text,#374151);line-height:1.65;}' +
     '</style>' +
     '<div class="hb-' + uid + '">' +
     (b.icon ? '<span class="hb-icon-' + uid + '">' + _esc(b.icon) + '</span>' : '') +
@@ -3354,12 +3354,12 @@ _RENDERERS['highlight_box'] = function(b) {
 
 _RENDERERS['two_tone_card'] = function(b) {
   var uid    = Math.random().toString(36).substr(2, 6);
-  var accent = b.accent || '#6366f1';
+  var accent = b.accent || 'var(--a2ui-accent,#6366f1)';
   var dark   = b.header_theme === 'dark';
   var headerBg = dark ? '#0f172a' : accent;
   var headerTc = '#fff';
   return '<style>' +
-    '.ttc-' + uid + '{border-radius:14px;overflow:hidden;border:1px solid #e5e7eb;margin:1rem 0;}' +
+    '.ttc-' + uid + '{border-radius:14px;overflow:hidden;border:1px solid var(--border,#e5e7eb);margin:1rem 0;}' +
     '.ttc-head-' + uid + '{background:' + headerBg + ';padding:20px 24px;}' +
     '.ttc-head-icon-' + uid + '{font-size:24px;margin-bottom:8px;display:block;}' +
     '.ttc-head-title-' + uid + '{font-size:18px;font-weight:800;color:' + headerTc + ';margin-bottom:4px;}' +
@@ -3381,7 +3381,7 @@ _RENDERERS['metric_row'] = function(b) {
   var metrics = b.metrics || b.items || [];
   var cols    = Math.min(metrics.length, b.cols || 4);
   var metricsHtml = metrics.map(function(m) {
-    var accent = m.accent || m.color || b.accent || '#6366f1';
+    var accent = m.accent || m.color || b.accent || 'var(--a2ui-accent,#6366f1)';
     var trend  = m.trend === 'up' ? '↑' : m.trend === 'down' ? '↓' : '';
     var trendC = m.trend === 'up' ? '#16a34a' : m.trend === 'down' ? '#dc2626' : '#6b7280';
     return '<div style="text-align:center;padding:16px 8px;">' +
@@ -3391,13 +3391,13 @@ _RENDERERS['metric_row'] = function(b) {
       (m.suffix ? '<span style="font-size:18px;">' + _esc(m.suffix) + '</span>' : '') +
       (trend ? '<span style="font-size:16px;color:' + trendC + ';margin-left:4px;">' + trend + '</span>' : '') +
       '</div>' +
-      '<div style="font-size:12px;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:0.04em;">' + _esc(m.label || '') + '</div>' +
-      (m.sub ? '<div style="font-size:11px;color:#9ca3af;margin-top:2px;">' + _esc(m.sub) + '</div>' : '') +
+      '<div style="font-size:12px;font-weight:600;color:var(--muted,#6b7280);text-transform:uppercase;letter-spacing:0.04em;">' + _esc(m.label || '') + '</div>' +
+      (m.sub ? '<div style="font-size:11px;color:var(--muted,#9ca3af);margin-top:2px;">' + _esc(m.sub) + '</div>' : '') +
       '</div>';
-  }).join('<div style="width:1px;background:#e5e7eb;margin:12px 0;"></div>');
+  }).join('<div style="width:1px;background:var(--border,#e5e7eb);margin:12px 0;"></div>');
   var uid2 = Math.random().toString(36).substr(2, 6);
   return '<style>@media(max-width:600px){.mr-' + uid2 + '{grid-template-columns:repeat(2,1fr)!important;}}</style>' +
-    '<div class="mr-' + uid2 + '" style="display:grid;grid-template-columns:repeat(' + cols + ',1fr);border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;margin:1.5rem 0;background:#fff;">' +
+    '<div class="mr-' + uid2 + '" style="display:grid;grid-template-columns:repeat(' + cols + ',1fr);border:1px solid var(--border,#e5e7eb);border-radius:12px;overflow:hidden;margin:1.5rem 0;background:var(--bg,#fff);">' +
     metricsHtml + '</div>';
 };
 
@@ -3405,7 +3405,7 @@ _RENDERERS['numbered_list'] = function(b) {
   var uid   = Math.random().toString(36).substr(2, 6);
   var items = b.items || [];
   var style = b.style || 'large';
-  var accent = b.accent || '#6366f1';
+  var accent = b.accent || 'var(--a2ui-accent,#6366f1)';
   var rowsHtml = items.map(function(item, i) {
     var num = i + 1;
     var numEl = style === 'large'
@@ -3416,11 +3416,11 @@ _RENDERERS['numbered_list'] = function(b) {
       : 'display:flex;gap:14px;align-items:flex-start;margin-bottom:20px;';
     return '<div style="' + wrap + '">' + numEl +
       '<div' + (style==='large'?' style="padding-top:4px;"':'') + '>' +
-      (item.label ? '<div style="font-size:15px;font-weight:700;color:#111827;margin-bottom:3px;">' + _esc(item.label) + '</div>' : '') +
-      (item.text  ? '<div style="font-size:14px;color:#4b5563;line-height:1.6;">' + _markdownToHtml(item.text) + '</div>' : '') +
+      (item.label ? '<div style="font-size:15px;font-weight:700;color:var(--text,#111827);margin-bottom:3px;">' + _esc(item.label) + '</div>' : '') +
+      (item.text  ? '<div style="font-size:14px;color:var(--muted,#4b5563);line-height:1.6;">' + _markdownToHtml(item.text) + '</div>' : '') +
       '</div></div>';
   }).join('');
-  return (b.title ? '<div style="font-size:16px;font-weight:700;color:#111827;margin-bottom:16px;">' + _esc(b.title) + '</div>' : '') +
+  return (b.title ? '<div style="font-size:16px;font-weight:700;color:var(--text,#111827);margin-bottom:16px;">' + _esc(b.title) + '</div>' : '') +
     '<div style="margin:1rem 0;">' + rowsHtml + '</div>';
 };
 
@@ -3428,7 +3428,7 @@ _RENDERERS['numbered_list'] = function(b) {
 
 _RENDERERS['page_header'] = function(b) {
   var uid    = Math.random().toString(36).substr(2, 6);
-  var accent = b.accent || '#6366f1';
+  var accent = b.accent || 'var(--a2ui-accent,#6366f1)';
   var dark   = b.theme === 'dark';
   var bg     = dark ? '#0f172a' : (b.background || 'linear-gradient(135deg,' + accent + '18 0%,#fff 60%)');
   var tc     = dark ? '#f8fafc' : '#111827';
@@ -3451,10 +3451,10 @@ _RENDERERS['page_header'] = function(b) {
 _RENDERERS['back_button'] = function(b) {
   var uid    = Math.random().toString(36).substr(2, 6);
   var label  = b.label || '← Back';
-  var accent = b.accent || '#6366f1';
+  var accent = b.accent || 'var(--a2ui-accent,#6366f1)';
   var style  = b.style || 'ghost';
   var css = style === 'outline'
-    ? 'border:1.5px solid ' + accent + ';color:' + accent + ';background:#fff;border-radius:8px;padding:6px 16px;'
+    ? 'border:1.5px solid ' + accent + ';color:' + accent + ';background:var(--bg,#fff);border-radius:8px;padding:6px 16px;'
     : style === 'text'
     ? 'color:' + accent + ';background:none;padding:4px 0;'
     : 'background:' + accent + '14;color:' + accent + ';border-radius:8px;padding:6px 16px;';
@@ -3478,7 +3478,7 @@ _RENDERERS['section_break'] = function(b) {
   }
   return '<div style="display:flex;align-items:center;gap:12px;margin:2rem 0;">' +
     '<div style="flex:1;border-top:1px ' + borderStyle + ' ' + accent + ';"></div>' +
-    '<span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#9ca3af;white-space:nowrap;">' + _esc(label) + '</span>' +
+    '<span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted,#9ca3af);white-space:nowrap;">' + _esc(label) + '</span>' +
     '<div style="flex:1;border-top:1px ' + borderStyle + ' ' + accent + ';"></div>' +
     '</div>';
 };
@@ -3497,7 +3497,7 @@ _RENDERERS['chip_group'] = function(b) {
   var wrap = scroll
     ? 'display:flex;flex-wrap:nowrap;overflow-x:auto;gap:8px;padding-bottom:4px;scrollbar-width:none;'
     : 'display:flex;flex-wrap:wrap;gap:8px;';
-  return (b.label ? '<div style="font-size:12px;font-weight:600;color:#6b7280;margin-bottom:6px;">' + _esc(b.label) + '</div>' : '') +
+  return (b.label ? '<div style="font-size:12px;font-weight:600;color:var(--muted,#6b7280);margin-bottom:6px;">' + _esc(b.label) + '</div>' : '') +
     '<div style="' + wrap + 'margin:0.75rem 0;">' + chipsHtml + '</div>';
 };
 
@@ -3527,22 +3527,22 @@ _RENDERERS['columns'] = function(b) {
 
 _RENDERERS['person_card'] = function(b) {
   var uid    = Math.random().toString(36).substr(2, 6);
-  var accent = b.accent || '#6366f1';
+  var accent = b.accent || 'var(--a2ui-accent,#6366f1)';
   var photo  = b.photo_url || b.photo || '';
   var tags   = b.tags || [];
   var tagsHtml = tags.map(function(t) {
-    return '<span style="background:#f3f4f6;color:#374151;border-radius:99px;padding:2px 10px;font-size:11px;font-weight:500;">' + _esc(t) + '</span>';
+    return '<span style="background:#f3f4f6;color:var(--text,#374151);border-radius:99px;padding:2px 10px;font-size:11px;font-weight:500;">' + _esc(t) + '</span>';
   }).join('');
   var linksHtml = '';
   if (b.email)    linksHtml += '<a href="mailto:' + _esc(b.email) + '" style="color:' + accent + ';font-size:12px;text-decoration:none;">✉ ' + _esc(b.email) + '</a>';
   if (b.linkedin) linksHtml += '<a href="' + _safeUrl(b.linkedin) + '" target="_blank" style="color:' + accent + ';font-size:12px;text-decoration:none;margin-left:10px;">in LinkedIn</a>';
   return '<style>' +
-    '.pc-' + uid + '{border:1px solid #e5e7eb;border-radius:12px;padding:20px;display:flex;gap:16px;align-items:flex-start;margin:0.5rem 0;background:#fff;}' +
+    '.pc-' + uid + '{border:1px solid var(--border,#e5e7eb);border-radius:12px;padding:20px;display:flex;gap:16px;align-items:flex-start;margin:0.5rem 0;background:var(--bg,#fff);}' +
     '.pc-avatar-' + uid + '{flex:0 0 56px;height:56px;border-radius:50%;object-fit:cover;background:' + accent + ';display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;font-weight:700;overflow:hidden;}' +
     '.pc-body-' + uid + '{flex:1;min-width:0;}' +
-    '.pc-name-' + uid + '{font-size:16px;font-weight:700;color:#111827;margin-bottom:2px;}' +
-    '.pc-role-' + uid + '{font-size:13px;color:#6b7280;margin-bottom:8px;}' +
-    '.pc-bio-' + uid + '{font-size:13px;color:#374151;line-height:1.5;margin-bottom:8px;}' +
+    '.pc-name-' + uid + '{font-size:16px;font-weight:700;color:var(--text,#111827);margin-bottom:2px;}' +
+    '.pc-role-' + uid + '{font-size:13px;color:var(--muted,#6b7280);margin-bottom:8px;}' +
+    '.pc-bio-' + uid + '{font-size:13px;color:var(--text,#374151);line-height:1.5;margin-bottom:8px;}' +
     '.pc-tags-' + uid + '{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;}' +
     '</style>' +
     '<div class="pc-' + uid + '">' +
@@ -3560,7 +3560,7 @@ _RENDERERS['person_card'] = function(b) {
 
 _RENDERERS['agenda_block'] = function(b) {
   var uid    = Math.random().toString(36).substr(2, 6);
-  var accent = b.accent || '#6366f1';
+  var accent = b.accent || 'var(--a2ui-accent,#6366f1)';
   var slots  = b.slots || [];
   var typeColors = { break: '#f3f4f6', keynote: '#ede9fe', workshop: '#dbeafe', panel: '#d1fae5', social: '#fef3c7' };
   var slotsHtml = slots.map(function(s) {
@@ -3568,18 +3568,18 @@ _RENDERERS['agenda_block'] = function(b) {
     return '<div style="display:flex;gap:0;border-bottom:1px solid #f3f4f6;">' +
       '<div style="flex:0 0 72px;padding:12px 8px;font-size:12px;font-weight:600;color:' + accent + ';border-right:2px solid ' + accent + ';text-align:right;">' + _esc(s.time || '') + '</div>' +
       '<div style="flex:1;padding:10px 14px;background:' + bg + ';">' +
-      '<div style="font-size:14px;font-weight:600;color:#111827;">' + _esc(s.title || '') + '</div>' +
-      (s.speaker  ? '<div style="font-size:12px;color:#6b7280;margin-top:2px;">👤 ' + _esc(s.speaker) + '</div>' : '') +
-      (s.location ? '<div style="font-size:12px;color:#6b7280;margin-top:2px;">📍 ' + _esc(s.location) + '</div>' : '') +
-      (s.description ? '<div style="font-size:12px;color:#374151;margin-top:4px;">' + _esc(s.description) + '</div>' : '') +
-      (s.type ? '<div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:#9ca3af;margin-top:4px;">' + _esc(s.type) + '</div>' : '') +
+      '<div style="font-size:14px;font-weight:600;color:var(--text,#111827);">' + _esc(s.title || '') + '</div>' +
+      (s.speaker  ? '<div style="font-size:12px;color:var(--muted,#6b7280);margin-top:2px;">👤 ' + _esc(s.speaker) + '</div>' : '') +
+      (s.location ? '<div style="font-size:12px;color:var(--muted,#6b7280);margin-top:2px;">📍 ' + _esc(s.location) + '</div>' : '') +
+      (s.description ? '<div style="font-size:12px;color:var(--text,#374151);margin-top:4px;">' + _esc(s.description) + '</div>' : '') +
+      (s.type ? '<div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--muted,#9ca3af);margin-top:4px;">' + _esc(s.type) + '</div>' : '') +
       '</div></div>';
   }).join('');
-  return '<style>.ag-' + uid + '{border:1px solid #e5e7eb;border-radius:10px;overflow:hidden;margin:1.5rem 0;}</style>' +
+  return '<style>.ag-' + uid + '{border:1px solid var(--border,#e5e7eb);border-radius:10px;overflow:hidden;margin:1.5rem 0;}</style>' +
     '<div class="ag-' + uid + '">' +
-    (b.title || b.date ? '<div style="padding:12px 16px;background:#f9fafb;border-bottom:1px solid #e5e7eb;display:flex;justify-content:space-between;align-items:center;">' +
-      (b.title ? '<span style="font-size:15px;font-weight:700;color:#111827;">' + _esc(b.title) + '</span>' : '<span></span>') +
-      (b.date  ? '<span style="font-size:12px;color:#6b7280;">' + _esc(b.date) + '</span>' : '') +
+    (b.title || b.date ? '<div style="padding:12px 16px;background:var(--surface,#f9fafb);border-bottom:1px solid var(--border,#e5e7eb);display:flex;justify-content:space-between;align-items:center;">' +
+      (b.title ? '<span style="font-size:15px;font-weight:700;color:var(--text,#111827);">' + _esc(b.title) + '</span>' : '<span></span>') +
+      (b.date  ? '<span style="font-size:12px;color:var(--muted,#6b7280);">' + _esc(b.date) + '</span>' : '') +
       '</div>' : '') +
     slotsHtml + '</div>';
 };
@@ -3600,13 +3600,13 @@ _RENDERERS['risk_flag'] = function(b) {
     return '<div style="border-left:4px solid ' + cfg.border + ';background:' + cfg.bg + ';border-radius:0 8px 8px 0;padding:12px 16px;margin-bottom:10px;">' +
       '<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">' +
       '<span style="background:' + cfg.badge + ';color:#fff;border-radius:4px;padding:1px 8px;font-size:10px;font-weight:700;text-transform:uppercase;">' + cfg.label + '</span>' +
-      '<span style="font-size:14px;font-weight:600;color:#111827;">' + _esc(r.title || '') + '</span>' +
+      '<span style="font-size:14px;font-weight:600;color:var(--text,#111827);">' + _esc(r.title || '') + '</span>' +
       '</div>' +
-      (r.description ? '<div style="font-size:13px;color:#374151;line-height:1.5;">' + _markdownToHtml(r.description) + '</div>' : '') +
-      (r.mitigation  ? '<div style="font-size:12px;color:#6b7280;margin-top:6px;">💡 <em>' + _esc(r.mitigation) + '</em></div>' : '') +
+      (r.description ? '<div style="font-size:13px;color:var(--text,#374151);line-height:1.5;">' + _markdownToHtml(r.description) + '</div>' : '') +
+      (r.mitigation  ? '<div style="font-size:12px;color:var(--muted,#6b7280);margin-top:6px;">💡 <em>' + _esc(r.mitigation) + '</em></div>' : '') +
       '</div>';
   }).join('');
-  return (b.title ? '<div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#6b7280;margin-bottom:8px;">' + _esc(b.title) + '</div>' : '') + rowsHtml;
+  return (b.title ? '<div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--muted,#6b7280);margin-bottom:8px;">' + _esc(b.title) + '</div>' : '') + rowsHtml;
 };
 
 _RENDERERS['action_items'] = function(b) {
@@ -3620,20 +3620,20 @@ _RENDERERS['action_items'] = function(b) {
   var rowsHtml = items.map(function(item, i) {
     var cfg = statusCfg[item.status] || statusCfg.open;
     return '<tr style="background:' + (i % 2 === 0 ? '#fff' : '#f9fafb') + ';">' +
-      '<td style="padding:10px 14px;font-size:13px;color:#111827;">' + _markdownToHtml(item.action || '') + '</td>' +
-      '<td style="padding:10px 14px;font-size:12px;color:#6b7280;white-space:nowrap;">' + _esc(item.owner || '—') + '</td>' +
-      '<td style="padding:10px 14px;font-size:12px;color:#6b7280;white-space:nowrap;">' + _esc(item.due || '—') + '</td>' +
+      '<td style="padding:10px 14px;font-size:13px;color:var(--text,#111827);">' + _markdownToHtml(item.action || '') + '</td>' +
+      '<td style="padding:10px 14px;font-size:12px;color:var(--muted,#6b7280);white-space:nowrap;">' + _esc(item.owner || '—') + '</td>' +
+      '<td style="padding:10px 14px;font-size:12px;color:var(--muted,#6b7280);white-space:nowrap;">' + _esc(item.due || '—') + '</td>' +
       '<td style="padding:10px 14px;text-align:center;white-space:nowrap;"><span style="font-size:12px;color:' + cfg.color + ';background:' + cfg.bg + ';border-radius:99px;padding:2px 10px;font-weight:600;">' + cfg.icon + ' ' + _esc(item.status || 'open') + '</span></td>' +
       '</tr>';
   }).join('');
-  return '<div style="margin:1.5rem 0;border:1px solid #e5e7eb;border-radius:10px;overflow:hidden;">' +
-    (b.title ? '<div style="padding:10px 16px;background:#f9fafb;border-bottom:1px solid #e5e7eb;font-size:14px;font-weight:700;color:#111827;">' + _esc(b.title) + '</div>' : '') +
+  return '<div style="margin:1.5rem 0;border:1px solid var(--border,#e5e7eb);border-radius:10px;overflow:hidden;">' +
+    (b.title ? '<div style="padding:10px 16px;background:var(--surface,#f9fafb);border-bottom:1px solid var(--border,#e5e7eb);font-size:14px;font-weight:700;color:var(--text,#111827);">' + _esc(b.title) + '</div>' : '') +
     '<table style="width:100%;border-collapse:collapse;">' +
     '<thead><tr style="background:#f3f4f6;">' +
-    '<th style="padding:8px 14px;text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#6b7280;">Action</th>' +
-    '<th style="padding:8px 14px;text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#6b7280;">Owner</th>' +
-    '<th style="padding:8px 14px;text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#6b7280;">Due</th>' +
-    '<th style="padding:8px 14px;text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#6b7280;">Status</th>' +
+    '<th style="padding:8px 14px;text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--muted,#6b7280);">Action</th>' +
+    '<th style="padding:8px 14px;text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--muted,#6b7280);">Owner</th>' +
+    '<th style="padding:8px 14px;text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--muted,#6b7280);">Due</th>' +
+    '<th style="padding:8px 14px;text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--muted,#6b7280);">Status</th>' +
     '</tr></thead>' +
     '<tbody>' + rowsHtml + '</tbody></table></div>';
 };
@@ -3645,23 +3645,30 @@ _RENDERERS['skill_bars'] = function(b) {
   var skills = b.skills || b.items || [];
   var style  = b.style || 'rounded';
   var rad    = style === 'rounded' ? '99px' : '4px';
+  var animate = b.animate !== false;
+  var cssKey  = 'sb' + uid;
+  var animCss = animate
+    ? '<style>@keyframes ' + cssKey + '{from{width:0}to{width:var(--sb-w)}}.' + cssKey + '-bar{animation:' + cssKey + ' 0.9s cubic-bezier(0.4,0,0.2,1) both;}</style>'
+    : '';
   var bars = skills.map(function(s, i) {
     var pct    = Math.min(100, Math.max(0, parseInt(s.value || s.percent || 0, 10)));
-    var color  = s.color || s.accent || b.accent || '#6366f1';
+    var color  = s.color || s.accent || b.accent || 'var(--a2ui-accent,#6366f1)';
     var label  = s.label || s.name || '';
     var showPct = b.show_percent !== false;
+    var delay   = animate ? 'animation-delay:' + (i * 120) + 'ms;' : '';
     return '<div style="margin-bottom:14px;">' +
       '<div style="display:flex;justify-content:space-between;margin-bottom:5px;">' +
-      '<span style="font-size:13px;font-weight:600;color:#374151;">' + _esc(label) + '</span>' +
-      (showPct ? '<span style="font-size:12px;color:#6b7280;">' + pct + '%</span>' : '') +
+      '<span style="font-size:13px;font-weight:600;color:var(--text,#374151);">' + _esc(label) + '</span>' +
+      (showPct ? '<span style="font-size:12px;color:var(--muted,#6b7280);">' + pct + '%</span>' : '') +
       '</div>' +
-      '<div style="height:' + (b.height || '10') + 'px;background:#e5e7eb;border-radius:' + rad + ';overflow:hidden;">' +
-      '<div style="height:100%;width:' + pct + '%;background:' + color + ';border-radius:' + rad + ';transition:width 0.6s ease;"></div>' +
+      '<div style="height:' + (b.height || '10') + 'px;background:var(--border,#e5e7eb);border-radius:' + rad + ';overflow:hidden;">' +
+      '<div class="' + (animate ? cssKey + '-bar' : '') + '" style="height:100%;--sb-w:' + pct + '%;width:' + pct + '%;background:' + color + ';border-radius:' + rad + ';' + delay + '"></div>' +
       '</div>' +
-      (s.sublabel ? '<div style="font-size:11px;color:#9ca3af;margin-top:3px;">' + _esc(s.sublabel) + '</div>' : '') +
+      (s.sublabel ? '<div style="font-size:11px;color:var(--muted,#9ca3af);margin-top:3px;">' + _esc(s.sublabel) + '</div>' : '') +
       '</div>';
   }).join('');
-  return (b.title ? '<div style="font-size:16px;font-weight:700;color:#111827;margin-bottom:16px;">' + _esc(b.title) + '</div>' : '') +
+  return animCss +
+    (b.title ? '<div style="font-size:16px;font-weight:700;color:var(--text,#111827);margin-bottom:16px;">' + _esc(b.title) + '</div>' : '') +
     '<div style="margin:1rem 0;">' + bars + '</div>';
 };
 
@@ -3670,7 +3677,7 @@ _RENDERERS['icon_stat_row'] = function(b) {
   var stats = b.stats || b.items || [];
   var cols  = Math.min(stats.length, b.cols || 4);
   var items = stats.map(function(s) {
-    var color = s.accent || s.color || b.accent || '#6366f1';
+    var color = s.accent || s.color || b.accent || 'var(--a2ui-accent,#6366f1)';
     return '<div style="text-align:center;padding:20px 12px;">' +
       (s.icon ? '<div style="font-size:32px;margin-bottom:8px;">' + _esc(s.icon) + '</div>' : '<div style="width:40px;height:40px;border-radius:50%;background:' + color + '18;margin:0 auto 8px;"></div>') +
       '<div style="font-size:28px;font-weight:900;color:' + color + ';line-height:1;margin-bottom:4px;">' +
@@ -3678,18 +3685,18 @@ _RENDERERS['icon_stat_row'] = function(b) {
       _esc(s.value || '') +
       (s.suffix ? '<span style="font-size:16px;">' + _esc(s.suffix) + '</span>' : '') +
       '</div>' +
-      '<div style="font-size:12px;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:0.04em;">' + _esc(s.label || '') + '</div>' +
-      (s.sub ? '<div style="font-size:11px;color:#9ca3af;margin-top:2px;">' + _esc(s.sub) + '</div>' : '') +
+      '<div style="font-size:12px;font-weight:600;color:var(--muted,#6b7280);text-transform:uppercase;letter-spacing:0.04em;">' + _esc(s.label || '') + '</div>' +
+      (s.sub ? '<div style="font-size:11px;color:var(--muted,#9ca3af);margin-top:2px;">' + _esc(s.sub) + '</div>' : '') +
       '</div>';
   }).join('');
   return '<style>@media(max-width:600px){.isr-' + uid + '{grid-template-columns:repeat(2,1fr)!important;}}</style>' +
-    '<div class="isr-' + uid + '" style="display:grid;grid-template-columns:repeat(' + cols + ',1fr);border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;background:#fff;margin:1.5rem 0;">' +
+    '<div class="isr-' + uid + '" style="display:grid;grid-template-columns:repeat(' + cols + ',1fr);border:1px solid var(--border,#e5e7eb);border-radius:12px;overflow:hidden;background:var(--bg,#fff);margin:1.5rem 0;">' +
     items + '</div>';
 };
 
 _RENDERERS['color_section'] = function(b) {
   var uid    = Math.random().toString(36).substr(2, 6);
-  var accent = b.accent || '#6366f1';
+  var accent = b.accent || 'var(--a2ui-accent,#6366f1)';
   var style  = b.style || 'tint';
   var bg = style === 'tint'  ? accent + '10'
          : style === 'solid' ? accent
@@ -3709,11 +3716,11 @@ _RENDERERS['tag_cloud'] = function(b) {
   var html  = tags.map(function(t) {
     var w     = t.weight || 1;
     var size  = Math.round(base + (w / maxW) * range);
-    var color = t.color || b.accent || '#6366f1';
+    var color = t.color || b.accent || 'var(--a2ui-accent,#6366f1)';
     var alpha = Math.round(10 + (w / maxW) * 25).toString(16);
     return '<span style="display:inline-block;margin:4px;padding:4px 12px;font-size:' + size + 'px;font-weight:' + (size > 16 ? '700' : '500') + ';color:' + color + ';background:' + color + alpha + ';border-radius:99px;cursor:default;">' + _esc(t.label || t.text || t) + '</span>';
   }).join('');
-  return (b.title ? '<div style="font-size:16px;font-weight:700;color:#111827;margin-bottom:14px;">' + _esc(b.title) + '</div>' : '') +
+  return (b.title ? '<div style="font-size:16px;font-weight:700;color:var(--text,#111827);margin-bottom:14px;">' + _esc(b.title) + '</div>' : '') +
     '<div style="display:flex;flex-wrap:wrap;gap:2px;margin:1rem 0;">' + html + '</div>';
 };
 
@@ -3721,7 +3728,7 @@ _RENDERERS['step_progress'] = function(b) {
   var uid   = Math.random().toString(36).substr(2, 6);
   var steps = b.steps || [];
   var curr  = (b.current || 1) - 1;
-  var accent = b.accent || '#6366f1';
+  var accent = b.accent || 'var(--a2ui-accent,#6366f1)';
   var items = steps.map(function(s, i) {
     var done    = i < curr;
     var active  = i === curr;
@@ -3752,9 +3759,125 @@ _RENDERERS['split_pane'] = function(b) {
   var leftBlocks  = renderAtoms(left.blocks  || []);
   var rightBlocks = renderAtoms(right.blocks || []);
   return '<style>@media(max-width:600px){.sp-' + uid + '{grid-template-columns:1fr!important;}.sp-' + uid + '>div:last-child{border-left:none!important;border-top:1px solid #e5e7eb;}}</style>' +
-    '<div class="sp-' + uid + '" style="display:grid;grid-template-columns:1fr 1fr;border-radius:14px;overflow:hidden;border:1px solid #e5e7eb;margin:1.5rem 0;">' +
+    '<div class="sp-' + uid + '" style="display:grid;grid-template-columns:1fr 1fr;border-radius:14px;overflow:hidden;border:1px solid var(--border,#e5e7eb);margin:1.5rem 0;">' +
     '<div style="background:' + leftBg  + ';padding:24px;">' + leftBlocks  + '</div>' +
-    '<div style="background:' + rightBg + ';padding:24px;border-left:1px solid #e5e7eb;">' + rightBlocks + '</div>' +
+    '<div style="background:' + rightBg + ';padding:24px;border-left:1px solid var(--border,#e5e7eb);">' + rightBlocks + '</div>' +
     '</div>';
 };
 
+
+// ─── palette ─────────────────────────────────────────────────────────────────
+_RENDERERS['palette'] = function(b) {
+  var accent  = b.accent  || '#6366f1';
+  var accent2 = b.accent2 || b.accent || '#8b5cf6';
+  var text    = b.text_color    || '';
+  var bg      = b.bg_color      || '';
+  var muted   = b.muted_color   || '';
+  var gap     = b.block_gap     || '1.25rem';
+  var extra   = '';
+  if (text)  extra += '--text:' + _esc(text) + ';';
+  if (bg)    extra += '--bg:'   + _esc(bg)   + ';';
+  if (muted) extra += '--muted:' + _esc(muted) + ';';
+  return '<style>:root{--a2ui-accent:' + _esc(accent) + ';--a2ui-accent2:' + _esc(accent2) + ';--a2ui-block-gap:' + _esc(gap) + ';' + extra + '}</style>';
+};
+
+// ─── drive_image ─────────────────────────────────────────────────────────────
+// Converts a Drive file ID (or full Drive share URL) to the correct uc?export=view URL.
+_RENDERERS['drive_image'] = function(b) {
+  var raw = b.url || b.id || '';
+  var fileId = raw;
+  var m = raw.match(/\/d\/([a-zA-Z0-9_-]+)/);
+  if (m) fileId = m[1];
+  var src = 'https://drive.google.com/uc?id=' + encodeURIComponent(fileId) + '&export=view';
+  var alt = _esc(b.alt || b.caption || '');
+  var caption = b.caption ? '<figcaption style="font-size:0.82rem;color:var(--muted,#6b7280);margin-top:8px;font-style:italic;">' + _esc(b.caption) + '</figcaption>' : '';
+  var radius = b.rounded !== false ? 'border-radius:8px;' : '';
+  var w = b.width ? 'width:' + _esc(String(b.width)) + ';' : 'max-width:100%;';
+  return '<figure style="margin:1.2rem 0;text-align:center;">' +
+    '<img src="' + src + '" alt="' + alt + '" style="' + w + radius + 'display:block;margin:0 auto;" loading="lazy">' +
+    caption + '</figure>';
+};
+
+// ─── print_button ─────────────────────────────────────────────────────────────
+_RENDERERS['print_button'] = function(b) {
+  var label  = _esc(b.label  || 'Print this page');
+  var align  = b.align || 'left';
+  var accent = b.accent || 'var(--a2ui-accent,#6366f1)';
+  var size   = b.size === 'sm' ? '0.8rem' : b.size === 'lg' ? '1rem' : '0.875rem';
+  var icon   = b.icon !== false ? '🖨️ ' : '';
+  return '<div style="margin:var(--a2ui-block-gap,1.25rem) 0;text-align:' + align + ';">' +
+    '<button onclick="window.print()" style="background:' + accent + ';color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:' + size + ';font-weight:600;cursor:pointer;font-family:inherit;">' +
+    icon + label + '</button></div>';
+};
+
+// ─── maps_embed ───────────────────────────────────────────────────────────────
+// Embeds a Google Maps location via a place name or coordinates.
+// q: search query (address or place name) — shown publicly in the URL, do not put credentials here.
+_RENDERERS['maps_embed'] = function(b) {
+  var q       = _esc(b.q || b.query || b.location || '');
+  var height  = _esc(String(b.height || '360'));
+  var caption = b.caption ? '<figcaption style="font-size:0.82rem;color:var(--muted,#6b7280);margin-top:6px;">' + _esc(b.caption) + '</figcaption>' : '';
+  var src     = 'https://maps.google.com/maps?q=' + encodeURIComponent(b.q || b.query || b.location || '') + '&output=embed&z=' + _esc(String(b.zoom || 14));
+  return '<figure style="margin:var(--a2ui-block-gap,1.25rem) 0;">' +
+    '<iframe src="' + src + '" width="100%" height="' + height + '" style="border:0;border-radius:10px;display:block;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="' + q + '"></iframe>' +
+    caption + '</figure>';
+};
+
+// ─── sheet_form ───────────────────────────────────────────────────────────────
+// Renders a form whose submit calls google.script.run.a2uiSheetFormSubmit().
+// Requires the a2uiSheetFormSubmit() function to be deployed server-side (Code.js).
+_RENDERERS['sheet_form'] = function(b) {
+  var uid      = 'sf' + Math.random().toString(36).substr(2, 6);
+  var fields   = b.fields || [];
+  var title    = b.title   || '';
+  var submit   = _esc(b.submit_label || 'Submit');
+  var accent   = b.accent || 'var(--a2ui-accent,#6366f1)';
+  var sheet    = b.sheet || '';
+  var ssId     = b.spreadsheet_id || '';
+  var titleHtml = title ? '<div style="font-weight:700;font-size:1rem;color:var(--text,#111827);margin-bottom:16px;">' + _esc(title) + '</div>' : '';
+
+  var fieldHtml = fields.map(function(f) {
+    var lbl  = _esc(f.label || '');
+    var name = _esc(f.name  || f.label || '');
+    var req  = f.required ? ' required' : '';
+    var hint = f.hint ? '<div style="font-size:0.75rem;color:var(--muted,#6b7280);margin-top:2px;">' + _esc(f.hint) + '</div>' : '';
+    var fid  = uid + '-' + name;
+    var inp  = '';
+    var base = 'id="' + fid + '" name="' + name + '" style="width:100%;padding:8px 10px;border:1px solid var(--border,#e5e7eb);border-radius:6px;font-size:0.875rem;font-family:inherit;background:var(--bg,#fff);color:var(--text,#111827);"' + req;
+    if (f.type === 'textarea') {
+      inp = '<textarea ' + base + ' rows="' + (f.rows || 3) + '"></textarea>';
+    } else if (f.type === 'select' && f.options) {
+      var opts = f.options.map(function(o){ return '<option value="' + _esc(o) + '">' + _esc(o) + '</option>'; }).join('');
+      inp = '<select ' + base + '>' + opts + '</select>';
+    } else {
+      inp = '<input type="' + _esc(f.type || 'text') + '" ' + base + ' placeholder="' + _esc(f.placeholder || '') + '">';
+    }
+    return '<div style="margin-bottom:12px;">' +
+      '<label for="' + fid + '" style="display:block;font-size:0.82rem;font-weight:600;color:var(--text,#111827);margin-bottom:4px;">' + lbl + '</label>' +
+      inp + hint + '</div>';
+  }).join('');
+
+  var spinCss = '<style>@keyframes sf-spin{to{transform:rotate(360deg)}}.sf-spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,0.4);border-top-color:#fff;border-radius:50%;animation:sf-spin 0.6s linear infinite;vertical-align:middle;margin-right:6px;}</style>';
+  var script = '<script>(function(){'
+    + 'var form=document.getElementById("' + uid + '");'
+    + 'form.addEventListener("submit",function(e){'
+    + 'e.preventDefault();'
+    + 'var btn=form.querySelector("button[type=submit]");'
+    + 'btn.disabled=true;btn.innerHTML="<span class=\'sf-spinner\'></span>Sending…";'
+    + 'var data={};'
+    + 'new FormData(form).forEach(function(v,k){data[k]=v;});'
+    + 'google.script.run'
+    + '.withSuccessHandler(function(){btn.innerHTML="✓ Submitted";btn.style.background="#10b981";form.reset();})'
+    + '.withFailureHandler(function(err){btn.disabled=false;btn.textContent="Retry";alert("Error: "+err.message);})'
+    + '.a2uiSheetFormSubmit(' + JSON.stringify(sheet) + ',data,' + JSON.stringify(ssId) + ');'
+    + '});'
+    + '})();</script>';
+
+  return '<div style="margin:var(--a2ui-block-gap,1.25rem) 0;padding:20px;border:1px solid var(--border,#e5e7eb);border-radius:10px;background:var(--bg,#fff);">'
+    + titleHtml
+    + '<form id="' + uid + '" novalidate>'
+    + fieldHtml
+    + '<button type="submit" style="background:' + accent + ';color:#fff;border:none;border-radius:8px;padding:10px 24px;font-size:0.875rem;font-weight:600;cursor:pointer;font-family:inherit;">' + submit + '</button>'
+    + '</form></div>'
+    + script;
+};

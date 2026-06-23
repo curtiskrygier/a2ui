@@ -9561,3 +9561,254 @@ _RENDERERS.update({t: _stub(t) for t in [
     "case_study_card", "study_timer", "rubric_card", "spaced_repetition_card",
     "leaderboard_card", "nav_bar", "nav_link",
 ]})
+
+
+# ─── palette ──────────────────────────────────────────────────────────────────
+def _render_palette(b: dict) -> str:
+    accent  = b.get("accent", "#6366f1")
+    accent2 = b.get("accent2", b.get("accent", "#8b5cf6"))
+    gap     = b.get("block_gap", "1.25rem")
+    extra   = ""
+    if b.get("text_color"): extra += f"--text:{b['text_color']};"
+    if b.get("bg_color"):   extra += f"--bg:{b['bg_color']};"
+    if b.get("muted_color"):extra += f"--muted:{b['muted_color']};"
+    return f"<style>:root{{--a2ui-accent:{accent};--a2ui-accent2:{accent2};--a2ui-block-gap:{gap};{extra}}}</style>"
+
+_RENDERERS["palette"] = _render_palette
+
+
+# ─── drive_image ──────────────────────────────────────────────────────────────
+def _render_drive_image(b: dict) -> str:
+    import re, urllib.parse
+    raw = b.get("url") or b.get("id") or ""
+    m = re.search(r"/d/([a-zA-Z0-9_-]+)", raw)
+    file_id = m.group(1) if m else raw
+    src = f"https://drive.google.com/uc?id={urllib.parse.quote(file_id)}&export=view"
+    alt = b.get("alt") or b.get("caption") or ""
+    caption_html = f'<figcaption style="font-size:0.82rem;color:#6b7280;margin-top:8px;font-style:italic;">{b["caption"]}</figcaption>' if b.get("caption") else ""
+    radius = "border-radius:8px;" if b.get("rounded", True) else ""
+    w = f"width:{b['width']};" if b.get("width") else "max-width:100%;"
+    return f'<figure style="margin:1.2rem 0;text-align:center;"><img src="{src}" alt="{alt}" style="{w}{radius}display:block;margin:0 auto;" loading="lazy">{caption_html}</figure>'
+
+_RENDERERS["drive_image"] = _render_drive_image
+
+
+# ─── print_button ─────────────────────────────────────────────────────────────
+def _render_print_button(b: dict) -> str:
+    label  = b.get("label", "Print this page")
+    align  = b.get("align", "left")
+    accent = b.get("accent", "var(--a2ui-accent,#6366f1)")
+    size   = {"sm": "0.8rem", "lg": "1rem"}.get(b.get("size", "md"), "0.875rem")
+    icon   = "🖨️ " if b.get("icon", True) else ""
+    return (f'<div style="margin:var(--a2ui-block-gap,1.25rem) 0;text-align:{align};">'
+            f'<button onclick="window.print()" style="background:{accent};color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:{size};font-weight:600;cursor:pointer;">'
+            f'{icon}{label}</button></div>')
+
+_RENDERERS["print_button"] = _render_print_button
+
+
+# ─── maps_embed ───────────────────────────────────────────────────────────────
+def _render_maps_embed(b: dict) -> str:
+    import urllib.parse
+    q       = b.get("q") or b.get("query") or b.get("location") or ""
+    height  = str(b.get("height", 360))
+    zoom    = str(b.get("zoom", 14))
+    caption = b.get("caption", "")
+    src     = f"https://maps.google.com/maps?q={urllib.parse.quote(q)}&output=embed&z={zoom}"
+    cap_html = f'<figcaption style="font-size:0.82rem;color:#6b7280;margin-top:6px;">{caption}</figcaption>' if caption else ""
+    return (f'<figure style="margin:var(--a2ui-block-gap,1.25rem) 0;">'
+            f'<iframe src="{src}" width="100%" height="{height}" style="border:0;border-radius:10px;display:block;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="{q}"></iframe>'
+            f'{cap_html}</figure>')
+
+_RENDERERS["maps_embed"] = _render_maps_embed
+
+
+# ─── sheet_form ───────────────────────────────────────────────────────────────
+# In the web/PDF renderer context there's no google.script.run — render a static note.
+def _render_sheet_form(b: dict) -> str:
+    title = b.get("title", "Form")
+    fields = b.get("fields", [])
+    field_rows = "".join(
+        f'<div style="margin-bottom:10px;font-size:0.85rem;"><strong>{f.get("label","")}</strong>'
+        f'{"&nbsp;<span style=\"color:#ef4444\">*</span>" if f.get("required") else ""}'
+        f'<div style="padding:6px 10px;border:1px solid #e5e7eb;border-radius:6px;color:#9ca3af;margin-top:4px;">'
+        f'{f.get("placeholder","")}&nbsp;</div></div>'
+        for f in fields
+    )
+    note = '<div style="margin-top:12px;font-size:0.78rem;color:#9ca3af;font-style:italic;">⚠ sheet_form requires Google Apps Script — form submission not available in this renderer.</div>'
+    return (f'<div style="margin:var(--a2ui-block-gap,1.25rem) 0;padding:20px;border:1px solid #e5e7eb;border-radius:10px;">'
+            f'{"<div style=\"font-weight:700;margin-bottom:14px;\">" + title + "</div>" if title else ""}'
+            f'{field_rows}{note}</div>')
+
+_RENDERERS["sheet_form"] = _render_sheet_form
+
+
+# ─── atoms_unstub.gs Python companions ────────────────────────────────────────
+def _render_trend_indicator(b: dict) -> str:
+    d = b.get("trend_direction") or b.get("direction", "stable")
+    label = b.get("label", "")
+    ctx = b.get("context", "")
+    cfg = {"up": ("↑","#10b981","#d1fae5"), "down": ("↓","#ef4444","#fee2e2"), "stable": ("→","#6b7280","#f3f4f6")}.get(d, ("→","#6b7280","#f3f4f6"))
+    col = b.get("color", cfg[1])
+    ctx_html = f'<span style="font-size:.75rem;color:#6b7280;margin-left:6px;">{ctx}</span>' if ctx else ""
+    return f'<span style="display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:20px;background:{cfg[2]};font-size:.82rem;font-weight:600;color:{col};">{cfg[0]} {label}{ctx_html}</span>'
+
+def _render_metric_delta(b: dict) -> str:
+    label, cur = b.get("label",""), b.get("current_value") or b.get("value","")
+    delta, dtype = b.get("delta_value",""), b.get("delta_type","increase")
+    col = "#10b981" if dtype=="increase" else "#ef4444" if dtype=="decrease" else "#6b7280"
+    bg  = "#d1fae5" if dtype=="increase" else "#fee2e2" if dtype=="decrease" else "#f3f4f6"
+    arr = "↑" if dtype=="increase" else "↓" if dtype=="decrease" else "→"
+    delta_html = f'<span style="display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:12px;background:{bg};color:{col};font-size:.8rem;font-weight:600;">{arr} {delta}</span>' if delta else ""
+    return f'<div style="display:inline-flex;flex-direction:column;padding:16px 20px;border:1px solid #e5e7eb;border-radius:10px;background:#fff;min-width:140px;"><div style="font-size:.75rem;font-weight:600;color:#6b7280;text-transform:uppercase;">{label}</div><div style="font-size:2rem;font-weight:700;color:#111827;margin:4px 0;">{cur}</div>{delta_html}</div>'
+
+def _render_review_callout(b: dict) -> str:
+    rating, max_r = round(b.get("rating",5)), b.get("max_rating",5)
+    stars = "".join(f'<span style="color:{"#fbbf24" if i<=rating else "#e5e7eb"};">★</span>' for i in range(1,max_r+1))
+    product = f'<div style="font-size:.75rem;font-weight:600;color:#6b7280;text-transform:uppercase;margin-bottom:8px;">{b.get("product_name","")}</div>' if b.get("product_name") else ""
+    author  = f'<div style="margin-top:10px;font-size:.8rem;font-weight:600;color:#6b7280;">— {b.get("author_name","")}</div>' if b.get("author_name") else ""
+    return f'<div style="margin:var(--a2ui-block-gap,1.25rem) 0;padding:20px;border:1px solid #e5e7eb;border-radius:10px;">{product}<div style="margin-bottom:10px;">{stars}</div><blockquote style="margin:0;font-size:.9rem;line-height:1.6;font-style:italic;">"{b.get("review_text","")}"</blockquote>{author}</div>'
+
+def _render_sparkline(b: dict) -> str:
+    data = b.get("data", [])
+    if not data: return ""
+    color = b.get("color", "#6366f1")
+    lw = b.get("line_width", 2)
+    w, h = 120, 32
+    mn, mx = min(data), max(data)
+    r = mx - mn or 1
+    pts = " ".join(f'{(i/(len(data)-1))*w:.1f},{h-((v-mn)/r)*(h-4)-2:.1f}' for i,v in enumerate(data))
+    fill_pts = " ".join(f'{(i/(len(data)-1))*w:.1f},{h-((v-mn)/r)*(h-4)-2:.1f}' for i,v in enumerate(data))
+    area = f"0,{h} {fill_pts} {w},{h}"
+    return f'<svg width="{w}" height="{h}" style="display:inline-block;vertical-align:middle;"><polygon points="{area}" fill="{color}" fill-opacity="0.1"/><polyline points="{pts}" fill="none" stroke="{color}" stroke-width="{lw}" stroke-linejoin="round" stroke-linecap="round"/></svg>'
+
+def _render_toggle_switch(b: dict) -> str:
+    import random, string
+    uid = "tog" + "".join(random.choices(string.ascii_lowercase, k=5))
+    label = b.get("label","")
+    checked = " checked" if b.get("is_checked") else ""
+    name = b.get("name", uid)
+    accent = b.get("accent","#6366f1")
+    return (f'<div style="display:flex;align-items:center;gap:10px;margin:var(--a2ui-block-gap,1.25rem) 0;">'
+            f'<input type="checkbox" id="{uid}" name="{name}"{checked} style="display:none;">'
+            f'<label for="{uid}" style="display:inline-flex;align-items:center;gap:10px;cursor:pointer;font-size:.875rem;color:#111827;">'
+            f'<span style="width:44px;height:24px;border-radius:12px;background:{""+accent if b.get("is_checked") else "#d1d5db"};display:inline-flex;align-items:center;padding:2px;">'
+            f'<span style="width:20px;height:20px;border-radius:50%;background:#fff;transform:translateX({"20px" if b.get("is_checked") else "0"});transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.2);"></span></span>'
+            f'{label}</label></div>')
+
+def _render_sentiment_summary(b: dict) -> str:
+    idx = b.get("sentiment_index") or b.get("positive", 0)
+    neg = b.get("negative", 100 - idx)
+    neu = max(0, 100 - idx - neg)
+    title = f'<div style="font-weight:700;font-size:.9rem;color:#111827;margin-bottom:14px;">{b.get("title","")}</div>' if b.get("title") else ""
+    def bar(lbl, pct, col, bg): return f'<div style="margin-bottom:10px;"><div style="display:flex;justify-content:space-between;font-size:.78rem;color:#6b7280;margin-bottom:3px;"><span>{lbl}</span><span>{pct}%</span></div><div style="background:{bg};border-radius:4px;height:8px;"><div style="background:{col};width:{pct}%;height:100%;border-radius:4px;"></div></div></div>'
+    score = f'<div style="text-align:center;margin-bottom:16px;"><div style="font-size:2.5rem;font-weight:700;color:#10b981;">{idx}%</div><div style="font-size:.78rem;color:#6b7280;">Positive sentiment</div></div>'
+    return f'<div style="margin:var(--a2ui-block-gap,1.25rem) 0;padding:20px;border:1px solid #e5e7eb;border-radius:10px;">{title}{score}{bar("Positive",idx,"#10b981","#d1fae5")}{bar("Neutral",neu,"#6b7280","#f3f4f6")}{bar("Negative",neg,"#ef4444","#fee2e2")}</div>'
+
+def _render_expandable_text(b: dict) -> str:
+    summary = b.get("summary","Read more")
+    details = _md_inline(b.get("details") or b.get("content",""))
+    open_attr = " open" if b.get("initial_state_expanded") else ""
+    return f'<details{open_attr} style="margin:var(--a2ui-block-gap,1.25rem) 0;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;"><summary style="padding:10px 14px;font-size:.875rem;font-weight:600;color:#111827;cursor:pointer;background:#f9fafb;list-style:none;">▶ {summary}</summary><div style="padding:14px 16px;font-size:.875rem;line-height:1.6;">{details}</div></details>'
+
+def _render_conversion_funnel(b: dict) -> str:
+    title = f'<div style="font-weight:700;font-size:.9rem;color:#111827;margin-bottom:14px;">{b.get("title","")}</div>' if b.get("title") else ""
+    steps, accent = b.get("steps",[]), b.get("accent","#6366f1")
+    max_v = max((float(s.get("value",0)) for s in steps), default=1) or 1
+    html = ""
+    for i, s in enumerate(steps):
+        val = float(s.get("value",0))
+        pct = val / max_v * 100
+        opacity = max(0.3, 1 - i*0.12)
+        conv = f"{val/float(steps[i-1].get('value',1))*100:.0f}% of prev" if i > 0 else ""
+        html += f'<div style="text-align:center;margin-bottom:4px;"><div style="display:inline-block;width:{pct:.0f}%;background:{accent};opacity:{opacity:.2f};color:#fff;padding:8px 12px;border-radius:4px;font-size:.85rem;font-weight:600;min-width:140px;">{s.get("stage") or s.get("label","")} — {s.get("value","")}</div>{"<div style=font-size:.72rem;color:#9ca3af;margin-top:2px>"+conv+"</div>" if conv else ""}</div>'
+    return f'<div style="margin:var(--a2ui-block-gap,1.25rem) 0;padding:16px;border:1px solid #e5e7eb;border-radius:10px;">{title}{html}</div>'
+
+def _render_stacked_area(b: dict) -> str:
+    title = f'<div style="font-weight:700;font-size:.9rem;color:#111827;margin-bottom:12px;">{b.get("title","")}</div>' if b.get("title") else ""
+    labels, series = b.get("labels",[]), b.get("series",[])
+    colors = ["#6366f1","#10b981","#f59e0b","#ef4444","#8b5cf6","#0ea5e9"]
+    totals = [sum(s.get("data",[0]*99)[i] if i<len(s.get("data",[])) else 0 for s in series) for i,_ in enumerate(labels)]
+    max_t = max(totals) if totals else 1
+    rows = ""
+    for i, lbl in enumerate(labels):
+        segs = "".join(f'<div style="width:{s.get("data",[0]*99)[i]/max_t*100:.1f}%;height:100%;background:{s.get("color",colors[si%len(colors)])};display:inline-block;" title="{s.get("label","")}: {s.get("data",[0]*99)[i]}"></div>' for si,s in enumerate(series) if i<len(s.get("data",[])))
+        rows += f'<div style="margin-bottom:8px;"><div style="font-size:.75rem;color:#6b7280;margin-bottom:2px;">{lbl}</div><div style="height:20px;border-radius:4px;overflow:hidden;background:#f3f4f6;display:flex;">{segs}</div></div>'
+    legend = "".join(f'<span style="display:inline-flex;align-items:center;gap:4px;font-size:.75rem;margin-right:12px;"><span style="width:10px;height:10px;border-radius:2px;background:{s.get("color",colors[si%len(colors)])}"></span>{s.get("label","")}</span>' for si,s in enumerate(series))
+    return f'<div style="margin:var(--a2ui-block-gap,1.25rem) 0;padding:16px;border:1px solid #e5e7eb;border-radius:10px;">{title}{rows}<div style="margin-top:10px;">{legend}</div></div>'
+
+def _render_data_grid(b: dict) -> str:
+    title = f'<div style="font-weight:700;font-size:.9rem;padding:10px 12px;background:#1e293b;color:#f8fafc;border-radius:8px 8px 0 0;">{b.get("title","")}</div>' if b.get("title") else ""
+    cols, rows_data = b.get("columns",[]), b.get("rows",[])
+    ths = "".join(f'<th style="padding:8px 12px;text-align:left;font-size:.75rem;font-weight:600;color:#6b7280;">{c.get("header",c.get("key",""))}</th>' for c in cols)
+    trs = ""
+    for ri, row in enumerate(rows_data):
+        tds = ""
+        for c in cols:
+            val = str(row.get(c.get("key",""),""))
+            if c.get("type") == "status":
+                smap = {"active":("✓","#10b981","#d1fae5"),"inactive":("✗","#ef4444","#fee2e2"),"pending":("○","#f59e0b","#fef3c7")}
+                cfg = smap.get(val.lower(), ("?","#6b7280","#f3f4f6"))
+                cell = f'<span style="padding:2px 8px;border-radius:12px;font-size:.75rem;font-weight:600;background:{cfg[2]};color:{cfg[1]};">{cfg[0]} {val}</span>'
+            elif c.get("type") == "tag":
+                cell = f'<span style="padding:2px 8px;border-radius:12px;font-size:.75rem;background:#dbeafe;color:#1d4ed8;">{val}</span>'
+            else:
+                cell = val
+            tds += f'<td style="padding:8px 12px;font-size:.82rem;color:#374151;border-bottom:1px solid #f3f4f6;">{cell}</td>'
+        bg = "#f9fafb" if ri%2 else "#fff"
+        trs += f'<tr style="background:{bg};">{tds}</tr>'
+    return f'<div style="margin:var(--a2ui-block-gap,1.25rem) 0;border:1px solid #e5e7eb;border-radius:10px;overflow:hidden;">{title}<div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;"><thead><tr style="background:#f9fafb;">{ths}</tr></thead><tbody>{trs}</tbody></table></div></div>'
+
+def _render_action_required_card(b: dict) -> str:
+    urgency = b.get("urgency") or b.get("level","medium")
+    umap = {"high":("#ef4444","#fef2f2","🔴"),"medium":("#f59e0b","#fffbeb","🟡"),"low":("#3b82f6","#eff6ff","🔵")}
+    col,bg,di = umap.get(urgency,umap["medium"])
+    icon = b.get("icon",di)
+    btn = f'<a href="{b.get("action_url","#")}" target="_top" style="display:inline-block;margin-top:14px;padding:8px 20px;background:{col};color:#fff;border-radius:8px;font-size:.85rem;font-weight:600;text-decoration:none;">{b.get("action_label","Take action")}</a>' if b.get("action_label") and b.get("action_url") else ""
+    return f'<div style="margin:var(--a2ui-block-gap,1.25rem) 0;padding:18px 20px;border-left:4px solid {col};border-radius:0 10px 10px 0;background:{bg};"><div style="display:flex;align-items:flex-start;gap:12px;"><span style="font-size:1.4rem;">{icon}</span><div><div style="font-weight:700;font-size:.95rem;">{b.get("title","Action Required")}</div>{"<div style=font-size:.85rem;color:#6b7280;margin-top:4px;line-height:1.5>"+b.get("description","")+"</div>" if b.get("description") else ""}{btn}</div></div></div>'
+
+# Lightweight dispatch for remaining stubs — they all follow the same pattern
+def _render_avatar_group(b: dict) -> str:
+    avatars = b.get("avatars",[])[:6]; total = b.get("total_count",len(avatars))
+    colors = ["#6366f1","#10b981","#f59e0b","#ef4444","#8b5cf6","#0ea5e9"]
+    imgs = "".join(f'<div title="{a.get("name","")}" style="width:36px;height:36px;border-radius:50%;background:{colors[i%len(colors)]};border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:#fff;margin-left:{"-10" if i>0 else "0"}px;">{"".join(w[0] for w in a.get("name","?").split()[:2]).upper()}</div>' for i,a in enumerate(avatars))
+    extra = f'<div style="width:36px;height:36px;border-radius:50%;background:#e5e7eb;border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:#6b7280;margin-left:-10px;">+{total-len(avatars)}</div>' if total>len(avatars) else ""
+    label = f'<span style="font-size:.82rem;color:#6b7280;margin-left:10px;">{b.get("label","")}</span>' if b.get("label") else ""
+    return f'<div style="display:flex;align-items:center;margin:var(--a2ui-block-gap,1.25rem) 0;">{imgs}{extra}{label}</div>'
+
+def _render_tree_view(b: dict) -> str:
+    def node(n, d=0):
+        kids = n.get("children",[])
+        pad = d*16; icon = n.get("icon","📁" if kids else "📄")
+        lbl = f'<span style="padding-left:{pad}px;font-size:.85rem;">{icon} {n.get("label","")}</span>'
+        if not kids: return f'<div style="padding:3px 8px;color:#374151;">{lbl}</div>'
+        inner = "".join(node(c,d+1) for c in kids)
+        return f'<details{"open" if n.get("expanded",True) else ""}><summary style="padding:3px 8px;cursor:pointer;list-style:none;color:#374151;">{lbl}</summary>{inner}</details>'
+    title = f'<div style="font-weight:700;font-size:.9rem;margin-bottom:10px;">{b.get("title","")}</div>' if b.get("title") else ""
+    return f'<div style="margin:var(--a2ui-block-gap,1.25rem) 0;padding:12px;border:1px solid #e5e7eb;border-radius:10px;">{title}{"".join(node(n) for n in b.get("nodes",[]))}</div>'
+
+def _render_noop_stub(name):
+    def r(b: dict) -> str:
+        return f'<div style="padding:12px;border:1px dashed #e5e7eb;border-radius:8px;font-size:.78rem;color:#9ca3af;">[{name}]</div>'
+    return r
+
+_RENDERERS["trend_indicator"]       = _render_trend_indicator
+_RENDERERS["metric_delta"]          = _render_metric_delta
+_RENDERERS["review_callout"]        = _render_review_callout
+_RENDERERS["sparkline"]             = _render_sparkline
+_RENDERERS["toggle_switch"]         = _render_toggle_switch
+_RENDERERS["sentiment_summary"]     = _render_sentiment_summary
+_RENDERERS["expandable_text"]       = _render_expandable_text
+_RENDERERS["conversion_funnel"]     = _render_conversion_funnel
+_RENDERERS["stacked_area"]          = _render_stacked_area
+_RENDERERS["data_grid"]             = _render_data_grid
+_RENDERERS["action_required_card"]  = _render_action_required_card
+_RENDERERS["avatar_group"]          = _render_avatar_group
+_RENDERERS["tree_view"]             = _render_tree_view
+# Remaining: delegate to noop with name label (avoids silent blank)
+for _stub in ["call_mood_board","capability_checklist","combobox","contributor_list","customer_logo_grid",
+              "expert_endorsement","gauge_sla","github_repo_card","heatmap_calendar","image_hotspots",
+              "inventory_table","live_aggregator","media_mention_card","media_stream_card","multi_select_input",
+              "otp_input","prerequisite_checklist","product_thumbnail","rating_comparison","scatter_trend",
+              "social_proof_banner"]:
+    _RENDERERS[_stub] = _render_noop_stub(_stub)

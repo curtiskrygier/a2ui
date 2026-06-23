@@ -257,7 +257,6 @@ blocks:
   description: GitHub repo card — fetches live star/fork/language/push data from GitHub
     API at render time and embeds as self-contained HTML
   compact_description: live GitHub repo card with stars forks and language
-  status: stub
   surfaces:
     works_on:
     - web
@@ -669,7 +668,6 @@ blocks:
 - type: sparkline
   description: Renders a small, simple line chart without axes or coordinates, showing
   compact_description: inline SVG trend line chart general trends.
-  status: stub
   source: &id003
     name: UIverse.io community
     url: https://uiverse.io
@@ -840,7 +838,6 @@ blocks:
     color: string (hex or named color for the donut segment, e.g., '#2196F3')
     size: string (CSS size value, e.g., '100px')
 - type: metric_delta
-  status: stub
   description: Renders a key performance indicator with its current value and a numerical
   compact_description: big number metric with directional change indicator or percentage
   source:
@@ -895,7 +892,6 @@ blocks:
     showing positive/negative/neutral mix, sentiment index progress arc, and emotional
     journey area timeline.
   compact_description: meeting sentiment analyzer with index arc and timeline chart
-  status: stub
   source:
     name: a2ui-catalogue
     url: https://github.com/curtiskrygier/a2ui-catalogue
@@ -922,7 +918,6 @@ blocks:
     themes: 'list of dictionaries representing key themes with weights or moods: [{''theme'':
       ''Technical Alignment'', ''mood'': ''Analytical'', ''score'': 85}, ...]'
 - type: trend_indicator
-  status: stub
   description: Renders a simple visual indicator (e.g., arrow, icon) representing
   compact_description: compact inline value with mini trend bar the direction of a
   source:
@@ -1758,7 +1753,6 @@ blocks:
     color: string (optional). Arc stroke colour. Default "#38bdf8".
     size: '"sm" | "md" | "lg"  (optional, default "md"). Circle diameter.'
 - type: action_required_card
-  status: stub
   description: A card highlighting an important status or issue that requires immediate
   compact_description: prominent card prompting a required user action user attention,
   source:
@@ -1967,7 +1961,6 @@ blocks:
 - type: rating_comparison
   description: Renders a comparison of multiple items based on star ratings or numerical
   compact_description: multiple items rated across dimensions scores.
-  status: stub
   source:
     name: a2ui-catalogue
     url: https://a2ui.dev/catalogue
@@ -1983,7 +1976,6 @@ blocks:
   fields:
     items: array
 - type: capability_checklist
-  status: stub
   description: Renders a list of capabilities, indicating which items possess each
   compact_description: feature capability tick list per tier capability using checkmarks
   source:
@@ -2010,7 +2002,6 @@ blocks:
 - type: toggle_switch
   description: Renders a visual on/off switch.
   compact_description: CSS toggle switch input
-  status: stub
   source: *id003
   surfaces:
     works_on:
@@ -2032,7 +2023,6 @@ blocks:
 - type: expandable_text
   description: Renders a block of text that can be expanded or collapsed to reveal
   compact_description: truncated text with read more expand toggle more content.
-  status: stub
   source:
     name: a2ui-catalogue
     url: https://a2ui.dev
@@ -2082,7 +2072,6 @@ blocks:
 - type: image_hotspots
   description: Renders an image with interactive points that display information on
   compact_description: image with clickable annotated hotspot overlays hover.
-  status: stub
   source: *id003
   surfaces:
     works_on:
@@ -2291,7 +2280,6 @@ blocks:
 - type: avatar_group
   description: Renders a stack or row of small user avatars, often indicating a group
   compact_description: stacked user avatar group with overflow count or community.
-  status: stub
   source: *id003
   surfaces:
     works_on:
@@ -2311,7 +2299,6 @@ blocks:
     total_count: integer
     label: string
 - type: contributor_list
-  status: stub
   description: Renders a list of individuals who have contributed to a project or
   compact_description: list of contributors with avatar and role community, with their
   source:
@@ -2336,7 +2323,6 @@ blocks:
 - type: customer_logo_grid
   description: Renders a grid or row of logos from featured customers or partners.
   compact_description: grid of customer or partner logos
-  status: stub
   source:
     name: a2ui-catalogue
     url: https://a2ui.com/catalogue
@@ -2360,7 +2346,6 @@ blocks:
 - type: social_proof_banner
   description: Renders a prominent banner highlighting a key social proof metric or
   compact_description: social proof strip with stats and logos achievement.
-  status: stub
   source: *id003
   surfaces:
     works_on:
@@ -2383,7 +2368,6 @@ blocks:
 - type: media_mention_card
   description: Renders a card showcasing a mention or feature in a media publication.
   compact_description: press or media mention with logo and quote
-  status: stub
   source:
     name: a2ui-catalogue
     url: https://a2ui.com/catalogue
@@ -2410,7 +2394,6 @@ blocks:
 - type: expert_endorsement
   description: Renders an endorsement from an industry expert, including their quote,
   compact_description: expert quote with credentials and photo name, and credentials.
-  status: stub
   source:
     name: a2ui-catalogue
     url: https://a2ui.com/catalogue
@@ -2437,7 +2420,6 @@ blocks:
 - type: review_callout
   description: Renders a short, impactful quote from a customer review, often accompanied
   compact_description: highlighted customer review excerpt by a star rating.
-  status: stub
   source:
     name: a2ui-catalogue
     url: https://a2ui.com/catalogue
@@ -2608,11 +2590,9 @@ blocks:
     url: https://github.com/curtiskrygier/a2ui-catalogue
     license: MIT
 - type: prerequisite_checklist
-  status: stub
   description: Renders a callout box highlighting required tools, knowledge, or setups
     needed before starting a guide.
   compact_description: highlight prerequisite knowledge and system requirements before
-  status: stub
   surfaces:
     works_on:
     - web
@@ -3946,7 +3926,6 @@ blocks:
   description: Renders a premium pipeline conversion funnel with tapered glowing step
     bars, percentage conversion rates, and leakage drop-off markers.
   compact_description: pipeline conversion funnel with step tapering and leak markers
-  status: stub
   surfaces:
     works_on:
     - web
@@ -3968,7 +3947,6 @@ blocks:
   description: Renders a semi-circular radial gauge track with high contrast status
     quadrants, a glowing needle tick, and a prominent central KPI readout.
   compact_description: radial SLA gauge with glowing pointer and large metric value
-  status: stub
   surfaces:
     works_on:
     - web
@@ -3992,7 +3970,6 @@ blocks:
   description: Renders cumulative layered area chart trends utilizing overlapping
     translucent gradient fills and glowing series borders.
   compact_description: stacked area chart with overlapping glowing translucent gradients
-  status: stub
   surfaces:
     works_on:
     - web
@@ -4015,7 +3992,6 @@ blocks:
   description: Renders a coordinate scatter grid representing discrete data points
     intersected by a prominent glowing linear regression line.
   compact_description: coordinate scatter plot with regression trend line
-  status: stub
   surfaces:
     works_on:
     - web
@@ -4039,7 +4015,6 @@ blocks:
     detected sentiments, dominant moods with color codings, active themes, and word
     weightings.
   compact_description: visual summary board of call sentiments moods and active themes
-  status: stub
   surfaces:
     works_on:
     - web
@@ -4904,7 +4879,6 @@ blocks:
     SKU, price with optional compare-at strike-through, status badge, and tag chips.
     Adapted from Polaris ResourceItem + Thumbnail patterns.
   compact_description: product card with image, price, status badge, and tags
-  status: stub
   surfaces:
     works_on:
     - web
@@ -4961,7 +4935,6 @@ blocks:
     Rows with available stock below the optional threshold are highlighted amber as
     a low-stock warning. Adapted from Polaris DataTable patterns.
   compact_description: inventory table with SKU, stock levels, and low-stock row highlight
-  status: stub
   surfaces:
     works_on:
     - web
@@ -5066,13 +5039,11 @@ blocks:
     url: https://atlassian.design
     license: Apache-2.0
 - type: data_grid
-  status: stub
   description: IBM Carbon Design System enterprise data grid with typed columns (string/number/status/tag),
     optional row-selection checkboxes, sortable column indicators, zebra-stripe rows,
     and optional pagination footer. More capable than table and data_table_sortable
     for enterprise data-dense layouts. Adapted from IBM Carbon DataTable patterns.
   compact_description: enterprise data grid with typed columns, row selection, and
-  status: stub
   surfaces:
     works_on:
     - web
@@ -5104,7 +5075,6 @@ blocks:
     specific. Expanded/collapsed state set per node. Adapted from IBM Carbon TreeView
     component.
   compact_description: recursive hierarchical tree with expand/collapse per node
-  status: stub
   surfaces:
     works_on:
     - web
@@ -5130,7 +5100,6 @@ blocks:
     (arbitrary x/y grid) and github_activity_grid (year-spanning GitHub-specific format).
     Adapted from IBM Carbon AI Applications data visualisation patterns.
   compact_description: calendar month heatmap with date-value density colouring
-  status: stub
   surfaces:
     works_on:
     - web
@@ -5158,7 +5127,6 @@ blocks:
     user types. Renders with a search icon, chevron, and an open option list for article
     preview. Native <datalist> enables browser-level autocomplete.
   compact_description: searchable filterable dropdown — shadcn/Headless UI pattern
-  status: stub
   surfaces:
     works_on:
     - web
@@ -5245,7 +5213,6 @@ blocks:
   description: Tag/chip style multi-value selector. Displays selected values as removable
     chips above a filtered option list. Shadcn multi-select pattern.
   compact_description: chip-style multi-value select input — shadcn pattern
-  status: stub
   surfaces:
     works_on:
     - web
@@ -5273,7 +5240,6 @@ blocks:
   description: One-time password entry field. Renders N individual digit boxes (default
     6) with filled/unfilled visual state. Shadcn InputOTP pattern.
   compact_description: N-box one-time password digit input — shadcn OTP pattern
-  status: stub
   surfaces:
     works_on:
     - web
@@ -5659,13 +5625,11 @@ blocks:
     url: https://a2ui.dev/catalogue
     license: MIT
 - type: media_stream_card
-  status: stub
   description: Auto-detecting media embed that accepts a raw URL and builds the correct
     iframe for YouTube, Loom, Google Slides, or Vimeo. Displays a labelled card shell
     with a skeleton shimmer while loading. Designed for stage-first delivery where
     the URL is the only payload.
   compact_description: Auto-detecting YouTube/Loom/Slides/Vimeo embed with skeleton
-  status: stub
   surfaces:
     works_on:
     - web
@@ -5695,7 +5659,6 @@ blocks:
     bars with optional value labels. Designed for stage-first delivery where items
     update incrementally via fiber.
   compact_description: Real-time comparative bars for votes, counts, or percentages
-  status: stub
   surfaces:
     works_on:
     - web
@@ -9529,3 +9492,359 @@ blocks:
     items: array (required). Array of {slug, label, icon?} objects in order from root
       to current page.
   source: *id005
+
+- type: palette
+  compact_description: Sets page-level CSS custom properties (accent colours, block gap) for consistent theming across all atoms. Use as the first block in any payload.
+  surfaces:
+    - gas
+    - web
+  fields:
+    accent: hex colour string. Sets --a2ui-accent CSS var used by all atoms as default accent.
+    accent2: hex colour string (optional). Secondary accent.
+    block_gap: CSS length (default 1.25rem). Vertical gap between atom blocks.
+    text_color: hex (optional). Overrides --text CSS var.
+    bg_color: hex (optional). Overrides --bg CSS var.
+
+- type: print_button
+  compact_description: A button that triggers window.print() to print or save the current page as PDF.
+  surfaces:
+    - gas
+    - web
+  fields:
+    label: string (default "Print this page")
+    align: left, center, or right
+    size: sm, md, or lg
+    accent: hex colour for button background
+    icon: boolean (default true) — show printer emoji prefix
+
+- type: drive_image
+  compact_description: Embeds a Google Drive image by file ID or share URL, converting it to the correct export URL that works inside GAS iframes.
+  surfaces:
+    - gas
+    - web
+  fields:
+    url: Drive share URL OR file ID
+    id: alias for url
+    alt: alt text for accessibility
+    caption: caption text shown below image
+    rounded: boolean (default true) — rounded corners
+    width: CSS width string (default "max-width:100%")
+
+- type: maps_embed
+  compact_description: Embeds a Google Maps location search in an iframe. Suitable for event location, office address, field ops context.
+  surfaces:
+    - gas
+    - web
+  fields:
+    q: address or place name to search (required)
+    height: iframe height in px (default 360)
+    zoom: map zoom level 1-20 (default 14)
+    caption: optional caption below the map
+
+- type: sheet_form
+  compact_description: A form that submits data to a named Google Sheet tab via google.script.run. Requires the GAS project to be bound to a Spreadsheet.
+  surfaces:
+    - gas
+  fields:
+    title: optional form heading
+    sheet: sheet tab name to write to (required). Created automatically if it doesn't exist.
+    submit_label: button label (default "Submit")
+    accent: hex colour for submit button
+    fields: array (required). Each item has label, name (optional), type (text/email/textarea/select), placeholder, required, hint, options (for select), rows (for textarea)
+
+- type: reveal
+  compact_description: Wraps child blocks with entrance animations triggered on load. animation choices: fade_up, fade_in, slide_left, slide_right, scale_in, stagger.
+  surfaces:
+    - gas
+  fields:
+    animation: "fade_up (default), fade_in, slide_left, slide_right, scale_in, stagger"
+    duration: animation duration in ms (default 500)
+    delay: initial delay in ms before first block animates (default 0)
+    stagger_delay: ms between each block when animation is stagger (default 120)
+    blocks: array of child atoms to wrap
+
+- type: skeleton
+  compact_description: CSS shimmer loading placeholder. type choices: text, card, avatar_row, image, list, table.
+  surfaces:
+    - gas
+  fields:
+    type: "text (default), card, avatar_row, image, list, table"
+    rows: number of placeholder rows (default 3)
+    cols: number of columns for table type (default 3)
+    height: height for image type (default 200px)
+
+- type: marquee
+  compact_description: Infinite horizontal scrolling ticker. Items can be text strings, logos (image_url), or icon+label chips.
+  surfaces:
+    - gas
+  fields:
+    items: array of {text?, label?, icon?, image_url?, url?}
+    title: optional label above the marquee strip
+    speed: seconds for one full cycle (default 30)
+    gap: px spacing between items (default 48)
+    direction: "normal (left scroll, default) or right"
+    separator: optional separator character between items
+    pause_on_hover: pause animation on hover (default true)
+    bg: background colour (default var(--surface))
+    rounded: rounded corners (default true)
+
+- type: pulse_dot
+  compact_description: Pulsing status or attention indicator dot. Inline or block display.
+  surfaces:
+    - gas
+  fields:
+    color: dot colour (default #10b981 green)
+    size: "sm, md (default), lg"
+    label: optional text beside the dot
+    speed: animation cycle in seconds (default 1.8)
+    inline: render inline (default true)
+
+- type: loading_dots
+  compact_description: Three-dot pulsing loader. Use during async content load or as a status indicator.
+  surfaces:
+    - gas
+  fields:
+    color: dot colour (default var(--a2ui-accent))
+    size: "sm, md (default), lg"
+    label: optional text beside the dots
+    align: "flex-start (default) or center"
+
+- type: progress_ring
+  compact_description: Animated SVG circular progress gauge. Animates from 0 to value on load.
+  surfaces:
+    - gas
+    - web
+  fields:
+    value: numeric value 0-100 (required)
+    size: ring diameter in px (default 100)
+    stroke_width: ring stroke thickness (default 8)
+    color: ring fill colour (default var(--a2ui-accent))
+    track_color: background ring colour (default var(--border))
+    label: optional caption below the ring
+    show_value: show numeric value inside ring (default true)
+    unit: unit string (default %)
+
+- type: confetti_burst
+  compact_description: JS confetti celebration effect. trigger load fires immediately, trigger button shows a clickable button.
+  surfaces:
+    - gas
+  fields:
+    trigger: "button (default) or load"
+    label: button label (default Celebrate!)
+    count: number of confetti pieces (default 80)
+    colors: array of hex colours
+    duration: total animation duration in ms (default 2000)
+    accent: button colour
+
+- type: ripple_button
+  compact_description: CTA button with a CSS ripple click effect. Optionally links to a URL.
+  surfaces:
+    - gas
+  fields:
+    label: button text (required)
+    url: optional link target
+    icon: optional emoji or icon prefix
+    accent: button background colour
+    size: "sm, md (default), lg"
+    full_width: stretch to container width (default false)
+    align: "flex-start (default), center, right"
+
+- type: wave_divider
+  compact_description: Animated SVG wave as a decorative section separator.
+  surfaces:
+    - gas
+    - web
+  fields:
+    color: wave fill colour (default var(--a2ui-accent))
+    height: wave height in px (default 60)
+    speed: animation cycle in seconds (default 8)
+    opacity: fill opacity (default 0.15)
+    flip: reverse wave direction (default false)
+    animate: animate the wave (default true)
+
+- type: floating_badge
+  compact_description: An emoji or icon that bobs up and down continuously. Great for CTAs and achievement moments.
+  surfaces:
+    - gas
+  fields:
+    icon: emoji or character to float (required)
+    label: optional caption below
+    size: "sm, md (default), lg"
+    speed: bob cycle in seconds (default 3)
+    shadow: drop shadow that deepens on rise (default true)
+    align: "center (default), left, right"
+
+- type: shimmer_text
+  compact_description: Headline text with an animated shimmer/gloss sweep across a gradient. Use for hero taglines.
+  surfaces:
+    - gas
+  fields:
+    text: the text to render (required)
+    size: font-size CSS value (default 2rem)
+    from: gradient start colour (default #6366f1)
+    to: gradient end colour (default #8b5cf6)
+    via: mid shimmer colour (default #ffffff)
+    speed: animation cycle in seconds (default 2.5)
+    weight: font-weight (default 800)
+    align: "left (default), center, right"
+
+- type: number_flip
+  compact_description: Slot-machine style digit reveal. Each digit flips in from above on load.
+  surfaces:
+    - gas
+  fields:
+    value: the number or string to display (required)
+    prefix: text before the number
+    suffix: text after the number
+    label: caption below
+    size: font-size CSS value (default 3rem)
+    color: digit colour (default var(--a2ui-accent))
+    duration: total animation window in ms (default 1200)
+    align: "center (default), left"
+
+- type: spotlight_card
+  compact_description: A content card where a radial gradient spotlight follows the cursor. Child blocks or content field.
+  surfaces:
+    - gas
+  fields:
+    blocks: array of child atoms inside the card
+    content: markdown string (if no blocks)
+    accent: spotlight tint colour (default var(--a2ui-accent))
+
+- type: animated_border
+  compact_description: Card or section with a rotating conic gradient border. Child blocks or content inside.
+  surfaces:
+    - gas
+  fields:
+    blocks: array of child atoms inside
+    content: markdown string (if no blocks)
+    from: gradient start colour (default #6366f1)
+    to: gradient end colour (default #8b5cf6)
+    via: gradient mid colour (default #0ea5e9)
+    speed: rotation speed in seconds (default 3)
+    padding: inner padding (default 20px)
+    radius: border radius (default 12px)
+
+- type: typing_indicator
+  compact_description: Chat-style three-dot typing indicator with optional label. Renders as a rounded speech bubble.
+  surfaces:
+    - gas
+  fields:
+    label: optional text inside (eg. "Claude is thinking")
+    color: dot and text colour (default #6b7280)
+    bg: bubble background (default var(--surface))
+
+- type: countdown_ring
+  compact_description: Circular SVG countdown that depletes as seconds tick down.
+  surfaces:
+    - gas
+  fields:
+    duration_sec: total countdown in seconds (required, default 60)
+    size: ring diameter in px (default 80)
+    color: ring colour (default var(--a2ui-accent))
+    label: caption below
+
+# ── Google Icon atoms ──────────────────────────────────────────────────────────
+
+- type: google_icon
+  compact_description: A single Material Symbol icon from Google Fonts CDN. Browse 2500+ icon names at fonts.google.com/icons.
+  surfaces:
+    - gas
+  fields:
+    name: icon ligature name (required, e.g. "home", "check_circle", "rocket_launch")
+    size: font-size CSS value (default 24px)
+    color: icon colour (default currentColor)
+    filled: render the filled variant (default false — outlined)
+    weight: font weight 100-700 (default 400)
+    style: "outlined (default) or rounded"
+    label: optional text beside the icon
+    inline: render inline-flex (default true)
+
+- type: icon_badge
+  compact_description: Material Symbol icon inside a coloured circular badge. Good for stat rows and feature lists.
+  surfaces:
+    - gas
+  fields:
+    name: icon ligature name (required)
+    icon_size: icon size in px (default 24)
+    bg: badge background colour (default var(--a2ui-accent))
+    color: icon colour (default #fff)
+    padding: badge padding (default 12px)
+    radius: badge border radius (default 50%)
+    filled: filled icon variant (default false)
+    label: optional caption below
+
+- type: icon_row
+  compact_description: Horizontal strip of Material Symbol icon + label pairs. Good for feature/capability lists.
+  surfaces:
+    - gas
+  fields:
+    items: array of {name or icon, label or text, color?}
+    icon_size: px (default 20)
+    color: default icon colour (default var(--a2ui-accent))
+    filled: filled icon variant (default false)
+    style: "outlined (default) or rounded"
+    gap: gap between items (default 12px)
+
+- type: workspace_logo
+  compact_description: A single Google Workspace product logo from Google's official CDN (fonts.gstatic.com). Falls back to coloured letter badge for unknown apps.
+  surfaces:
+    - gas
+    - web
+  fields:
+    app: app name (required) — gmail, drive, docs, sheets, slides, calendar, meet, forms, chat, classroom, keep, sites, vault, groups, tasks, contacts, jamboard, admin, appsheet, currents
+    size: display size in px (default 48 — SVG scales to any size)
+    label: caption below logo (default capitalised app name; set to empty string to hide)
+    inline: render inline (default true)
+
+- type: workspace_logo_strip
+  compact_description: Horizontal strip of Google Workspace product logos. Greyscale by default, restores colour on hover.
+  surfaces:
+    - gas
+    - web
+  fields:
+    apps: array of app names (default gmail, drive, docs, sheets, slides, meet)
+    title: optional label above the strip
+    size: logo size in px (default 40)
+    gap: gap between logos (default 24px)
+    greyscale: render greyscale until hover (default true)
+    bg: strip background colour (default transparent)
+    align: "flex-start (default), center, flex-end"
+
+- type: workspace_logo_grid
+  compact_description: Grid of Google Workspace product logos with labels. Good for "Integrations" or "Works with" sections.
+  surfaces:
+    - gas
+    - web
+  fields:
+    apps: array of app names (default all 20 known apps)
+    title: optional section heading
+    size: logo size in px (default 48)
+    cols: grid columns (default 5)
+    greyscale: render greyscale (default false)
+    show_labels: show app name labels (default true)
+
+- type: icon_feature_grid
+  compact_description: Feature grid using Material Symbol icons — better than emoji for Workspace UI contexts.
+  surfaces:
+    - gas
+  fields:
+    title: optional section heading
+    cols: grid columns (default 3)
+    icon_size: icon size in px (default 28)
+    filled: filled icon variant (default false)
+    accent: default icon colour
+    style: "outlined (default) or rounded"
+    items: array of {icon (ligature name), title, text, color?}
+
+- type: icon_checklist
+  compact_description: Checklist where each item has a Material Symbol icon (not just a check mark). Good for capability or requirements lists.
+  surfaces:
+    - gas
+  fields:
+    title: optional heading
+    default_icon: fallback icon for items without one (default check_circle)
+    icon_size: px (default 20)
+    filled: filled icon variant (default true)
+    accent: default icon colour
+    items: array of strings or {text, icon?, sublabel?, color?}
