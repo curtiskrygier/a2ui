@@ -774,6 +774,32 @@ function a2uiProgressWrite(courseId, progressData) {
   } catch(e) { return false; }
 }
 
+// Called by sheet_form atom via google.script.run.a2uiSheetFormSubmit(sheetName, data, spreadsheetId).
+// spreadsheetId: optional Google Spreadsheet ID. If omitted, falls back to the bound spreadsheet.
+// sheetName: tab name to write to (created if missing). data: {fieldName: value, ...}.
+function a2uiSheetFormSubmit(sheetName, data, spreadsheetId) {
+  try {
+    var ss;
+    if (spreadsheetId) {
+      ss = SpreadsheetApp.openById(spreadsheetId);
+    } else {
+      ss = SpreadsheetApp.getActiveSpreadsheet();
+    }
+    if (!ss) throw new Error('No spreadsheet found. Pass spreadsheet_id in the sheet_form atom, or bind this GAS project to a Sheet.');
+    var sheet = ss.getSheetByName(sheetName) || ss.insertSheet(sheetName);
+    var keys  = Object.keys(data || {});
+    if (sheet.getLastRow() === 0) {
+      sheet.appendRow(['timestamp'].concat(keys));
+      sheet.getRange(1, 1, 1, keys.length + 1).setFontWeight('bold');
+    }
+    var row = [new Date().toISOString()].concat(keys.map(function(k){ return data[k]; }));
+    sheet.appendRow(row);
+    return true;
+  } catch(e) {
+    throw new Error(e.message);
+  }
+}
+
 function _lmsGetSheet_(courseId) {
   var name  = 'A2UI Progress: ' + courseId;
   var files = DriveApp.searchFiles(
