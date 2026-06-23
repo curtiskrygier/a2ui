@@ -235,14 +235,21 @@
 </div>
 
 <script>
-  var BASE_URL = '<?= webAppUrl ?>';
+  var BASE_URL = '';
   var URL_LIMIT = 6000; // chars — stay well under GAS query string limit
+
+  // Fetch the public exec URL from the server — the only reliable source in GAS context
+  google.script.run
+    .withSuccessHandler(function(url) { BASE_URL = url || ''; })
+    .withFailureHandler(function() {})
+    .getWebAppUrl();
 
   function generate() {
     var raw = document.getElementById('json-input').value.trim();
     var err = document.getElementById('error-msg');
     err.style.display = 'none';
 
+    if (!BASE_URL) { showError('URL not ready yet — wait a moment and try again.'); return; }
     if (!raw) { showError('Paste your JSON first.'); return; }
 
     var sanitized = raw.replace(/"(?:[^"\\]|\\.)*"/g, function(m) {
