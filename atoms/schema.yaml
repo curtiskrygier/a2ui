@@ -9553,7 +9553,7 @@ blocks:
     fields: array (required). Each item has label, name (optional), type (text/email/textarea/select), placeholder, required, hint, options (for select), rows (for textarea)
 
 - type: reveal
-  compact_description: Wraps child blocks with entrance animations triggered on load. animation choices: fade_up, fade_in, slide_left, slide_right, scale_in, stagger.
+  compact_description: "Wraps child blocks with entrance animations triggered on load. animation choices: fade_up, fade_in, slide_left, slide_right, scale_in, stagger."
   surfaces:
     - gas
   fields:
@@ -9564,7 +9564,7 @@ blocks:
     blocks: array of child atoms to wrap
 
 - type: skeleton
-  compact_description: CSS shimmer loading placeholder. type choices: text, card, avatar_row, image, list, table.
+  compact_description: "CSS shimmer loading placeholder. type choices: text, card, avatar_row, image, list, table."
   surfaces:
     - gas
   fields:
