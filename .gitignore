@@ -16,6 +16,7 @@ catalogue_meet_preview.html
 catalogue_web_preview.html
 apps-script-surface/gas-schema-renderer/.clasp.json
 apps-script-surface/gas-schema-renderer/Code.private.js
+apps-script-surface/gas-schema-renderer-private/
 apps-script-surface/gas-schema-renderer/*.old
 apps-script-surface/gas-schema-renderer/BREVET_2026_*.md
 apps-script-surface/gas-schema-renderer/MULTIPAGE_NAV_ISSUE.md
