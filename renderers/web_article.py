@@ -9628,17 +9628,18 @@ _RENDERERS["maps_embed"] = _render_maps_embed
 def _render_sheet_form(b: dict) -> str:
     title = b.get("title", "Form")
     fields = b.get("fields", [])
+    req_star = '&nbsp;<span style="color:#ef4444">*</span>'
     field_rows = "".join(
-        f'<div style="margin-bottom:10px;font-size:0.85rem;"><strong>{f.get("label","")}</strong>'
-        f'{"&nbsp;<span style=\"color:#ef4444\">*</span>" if f.get("required") else ""}'
-        f'<div style="padding:6px 10px;border:1px solid #e5e7eb;border-radius:6px;color:#9ca3af;margin-top:4px;">'
-        f'{f.get("placeholder","")}&nbsp;</div></div>'
+        '<div style="margin-bottom:10px;font-size:0.85rem;"><strong>' + f.get("label", "") + '</strong>'
+        + (req_star if f.get("required") else "")
+        + '<div style="padding:6px 10px;border:1px solid #e5e7eb;border-radius:6px;color:#9ca3af;margin-top:4px;">'
+        + f.get("placeholder", "") + '&nbsp;</div></div>'
         for f in fields
     )
     note = '<div style="margin-top:12px;font-size:0.78rem;color:#9ca3af;font-style:italic;">⚠ sheet_form requires Google Apps Script — form submission not available in this renderer.</div>'
-    return (f'<div style="margin:var(--a2ui-block-gap,1.25rem) 0;padding:20px;border:1px solid #e5e7eb;border-radius:10px;">'
-            f'{"<div style=\"font-weight:700;margin-bottom:14px;\">" + title + "</div>" if title else ""}'
-            f'{field_rows}{note}</div>')
+    title_div = '<div style="font-weight:700;margin-bottom:14px;">' + title + "</div>" if title else ""
+    return ('<div style="margin:var(--a2ui-block-gap,1.25rem) 0;padding:20px;border:1px solid #e5e7eb;border-radius:10px;">'
+            + title_div + field_rows + note + '</div>')
 
 _RENDERERS["sheet_form"] = _render_sheet_form
 
