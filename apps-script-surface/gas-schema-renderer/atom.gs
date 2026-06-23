@@ -738,10 +738,20 @@ _RENDERERS['script_run_button'] = function(b) {
 // ── Category E: Degraded Renderers ───────────────────────────────────────────
 
 _RENDERERS['youtube'] = function(b) {
-  return '<div class="asw-degraded-card">' +
-         '<div class="asw-degraded-title">📹 YouTube Video Fallback</div>' +
-         '<div class="asw-degraded-text">Direct iframe playback is restricted inside the Google Apps Script Web App sandbox environment.</div>' +
-         '<a href="' + _safeUrl(b.url) + '" class="asw-btn asw-btn-ghost" style="margin-top:6px;" target="_top">Watch on YouTube →</a>' +
+  var raw = b.url || '';
+  var vid = '';
+  var m = raw.match(/(?:v=|youtu\.be\/|embed\/)([a-zA-Z0-9_-]{11})/);
+  if (m) vid = m[1];
+  if (!vid) return '<div class="asw-degraded-card"><div class="asw-degraded-title">📹 YouTube</div><div class="asw-degraded-text">Invalid or missing YouTube URL.</div></div>';
+  var src = 'https://www.youtube.com/embed/' + vid + '?rel=0&modestbranding=1&playsinline=1';
+  var cap = b.caption ? '<p style="font-size:0.75rem;color:var(--muted);margin:6px 0 0;text-align:center">' + _esc(b.caption) + '</p>' : '';
+  return '<div style="width:100%;margin:12px 0">' +
+         '<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px">' +
+         '<iframe src="' + src + '" ' +
+         'style="position:absolute;top:0;left:0;width:100%;height:100%;border:none" ' +
+         'allow="autoplay; encrypted-media; picture-in-picture" ' +
+         'allowfullscreen></iframe>' +
+         '</div>' + cap +
          '</div>';
 };
 
