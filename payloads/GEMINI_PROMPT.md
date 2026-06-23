@@ -40,6 +40,12 @@ action_items    — items: [{owner(initials), text}]
 highlight_box   — accent, title, body
 icon_list       — items: [{icon(emoji), text}]
 
+### News & headline atoms (use when topic = news briefing, digest, top stories)
+
+breaking_banner — label("BREAKING"|"EXCLUSIVE"|"UPDATE"), title, summary?, source?, time?, accent
+headline_list   — title?, accent, items: [{rank?, title, source?, time?, tag?, url?}]
+news_digest     — title?, accent, items: [{title, body?, tag?, source?}] — grid of compact story cards
+
 ## Rules
 
 - Exactly one hub block at top level
@@ -90,6 +96,9 @@ metric_row      — metrics: [{label, value, sub?, trend?}]
 key_takeaways   — points: [string]
 highlight_box   — accent, title, body
 icon_list       — items: [{icon(emoji), text}]
+headline_list   — title?, accent, items: [{rank?, title, source?, time?, tag?}]
+breaking_banner — label?, title, summary?, source?, time?, accent
+news_digest     — title?, accent, items: [{title, body?, tag?, source?}]
 
 ## Composition rules
 
