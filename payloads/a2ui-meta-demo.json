@@ -64,11 +64,13 @@
                   "type": "video_pair",
                   "left": {
                     "url": "https://www.youtube.com/watch?v=STEP1_VIDEO_ID",
-                    "label": "① Prompt → Schema  —  ask Gemini, get JSON back"
+                    "label": "Prompt → Schema",
+                    "detail": "Open Gemini. Paste the A2UI prompt. Describe your topic. Get valid JSON back in seconds."
                   },
                   "right": {
                     "url": "https://www.youtube.com/watch?v=STEP2_VIDEO_ID",
-                    "label": "② Schema → App  —  paste, click Open, app appears"
+                    "label": "Schema → App",
+                    "detail": "Paste the JSON into the A2UI renderer. Click Generate. Click Open. The app is live."
                   }
                 }
               ]

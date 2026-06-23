@@ -836,34 +836,41 @@ _RENDERERS['diagram'] = function(b) {
 };
 
 _RENDERERS['video_pair'] = function(b) {
-  // Schema format: { left: {url, label}, right: {url, label} }
+  // Schema format: { left: {url, label, detail}, right: {url, label, detail} }
   // Legacy format: { videos: [{url, label}] }
   var sides = b.left && b.right
     ? [b.left, b.right]
     : (b.videos || []).slice(0, 2);
 
-  function _ytEmbed(v) {
+  var nums = ['①', '②'];
+
+  function _row(v, i) {
     var raw = v.url || '';
     var m = raw.match(/(?:v=|youtu\.be\/|embed\/)([a-zA-Z0-9_-]{11})/);
     var vid = m ? m[1] : '';
-    var label = v.label || v.title || '';
-    var labelHtml = label
-      ? '<p style="margin:6px 0 0;font-size:0.78rem;font-weight:600;color:var(--text);text-align:center">' + _esc(label) + '</p>'
-      : '';
-    if (!vid) return '<div style="flex:1;min-width:0">' +
-      '<div style="background:var(--surface2,#1e1e2e);border-radius:10px;padding:24px;text-align:center;color:var(--muted)">No video URL</div>' +
-      labelHtml + '</div>';
-    var src = 'https://www.youtube.com/embed/' + vid + '?rel=0&modestbranding=1&playsinline=1';
-    return '<div style="flex:1;min-width:0">' +
-      '<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px">' +
-      '<iframe src="' + src + '" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none" ' +
-      'allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>' +
-      '</div>' + labelHtml + '</div>';
+    var label = _esc(v.label || v.title || '');
+    var detail = v.detail ? '<p style="margin:8px 0 0;font-size:0.82rem;color:var(--muted);line-height:1.6">' + _markdownToHtml(v.detail) + '</p>' : '';
+    var videoInner = vid
+      ? '<iframe src="https://www.youtube.com/embed/' + vid + '?rel=0&modestbranding=1&playsinline=1" ' +
+        'style="position:absolute;top:0;left:0;width:100%;height:100%;border:none" ' +
+        'allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>'
+      : '<div style="position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--surface2,#1a1a2e);color:var(--muted);font-size:0.8rem;border-radius:10px">Video placeholder</div>';
+
+    return '<div style="display:flex;gap:20px;align-items:center;margin:16px 0;padding:16px;background:var(--surface2,#1a1a2e);border-radius:12px">' +
+      '<div style="flex:0 0 58%;min-width:0">' +
+        '<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:8px">' +
+          videoInner +
+        '</div>' +
+      '</div>' +
+      '<div style="flex:1;min-width:0">' +
+        '<p style="margin:0;font-size:1.5rem;font-weight:800;color:var(--accent,#6366f1)">' + nums[i] + '</p>' +
+        '<p style="margin:4px 0 0;font-size:1rem;font-weight:700;color:var(--text)">' + label + '</p>' +
+        detail +
+      '</div>' +
+    '</div>';
   }
 
-  return '<div style="display:flex;gap:16px;flex-wrap:wrap;margin:12px 0">' +
-    sides.map(_ytEmbed).join('') +
-    '</div>';
+  return '<div style="margin:8px 0">' + sides.map(_row).join('') + '</div>';
 };
 
 _RENDERERS['live_demo_embed'] = function(b) {
