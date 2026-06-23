@@ -43,9 +43,7 @@ function doGet(e) {
   if (nav === 'nist-ai-rmf') return _renderNistAirmfPage();
   if (nav) return _renderNamedPage(nav, from || '');
   if (p) return _renderFromParam(p, from || '');
-  var indexTmpl = HtmlService.createTemplateFromFile('Index');
-  indexTmpl.webAppUrl = _getWebAppUrl();
-  return indexTmpl.evaluate()
+  return HtmlService.createHtmlOutputFromFile('Index')
     .setTitle('A2UI — Page Generator')
     .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
 }
@@ -281,6 +279,10 @@ function _renderScreenshotPage(encoded) {
 }
 
 // ── Named page nav system ─────────────────────────────────────────────────────
+
+function getWebAppUrl() {
+  return _getWebAppUrl();
+}
 
 function _getWebAppUrl() {
   try { return ScriptApp.getService().getUrl(); } catch(e) { return ''; }
