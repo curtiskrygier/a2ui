@@ -6,8 +6,10 @@ Outputs to public/atoms/{type}/index.html — served at a2uicatalog.ai/atoms/{ty
 Run:
   python3 scripts/generate_atom_pages.py
 """
+import base64
 import json
 import sys
+import zlib
 from pathlib import Path
 
 try:
@@ -20,6 +22,63 @@ ROOT       = Path(__file__).parent.parent
 SCHEMA     = ROOT / "atoms" / "schema.yaml"
 OUTPUT_DIR = ROOT / "public" / "atoms"
 DOMAIN     = "a2uicatalog.ai"
+GAS_RENDERER = "https://script.google.com/macros/s/AKfycbwwGCeqX1jn0nnH5F-jc1dpXj1wlfJayMrF7V648oY6AgHJY-85b6-OQyWxOx5bFBMv/exec"
+
+sys.path.insert(0, str(ROOT / "web-article"))
+try:
+    import renderer as _web_renderer
+    _RENDERER_TYPES = set(_web_renderer._RENDERERS.keys())
+except Exception:
+    _web_renderer = None
+    _RENDERER_TYPES = set()
+
+# Representative example blocks for atoms supported by the web-article renderer.
+# These are richer than example_payload() can generate automatically.
+_EXAMPLE_BLOCKS = {
+    "body":        {"type": "body", "text": "This is a body paragraph. It supports **bold**, *italic*, and `inline code` via lightweight markdown."},
+    "heading":     {"type": "heading", "text": "Section Heading"},
+    "subheading":  {"type": "subheading", "text": "Subheading text"},
+    "quote":       {"type": "quote", "text": "The vocabulary IS the discovery layer.", "attribution": "A2UI"},
+    "divider":     {"type": "divider"},
+    "code":        {"type": "code", "language": "json", "content": '{\n  "type": "stat_card",\n  "value": "1B+",\n  "label": "daily executions"\n}'},
+    "pipeline":    {"type": "pipeline", "steps": ["schema.yaml", "generate.py", "public/", "Cloudflare Edge"]},
+    "bullet_list": {"type": "bullet_list", "items": [
+        {"text": "First item in the list"},
+        {"label": "Labelled item", "text": "with supporting description"},
+        {"text": "Third item"},
+    ]},
+    "callout":     {"type": "callout", "callout_type": "info", "body": "This is an informational callout. Use `warning`, `tip`, or `note` for other styles."},
+    "steps":       {"type": "steps", "steps": [
+        {"title": "Step one", "body": "The first thing to do."},
+        {"title": "Step two", "body": "Then this."},
+        {"title": "Step three", "body": "Finally, this."},
+    ]},
+    "table":       {"type": "table", "caption": "Example fields", "headers": ["Field", "Type", "Required"], "rows": [
+        ["value", "string", "yes"],
+        ["label", "string", "yes"],
+        ["trend", "string", "no"],
+    ]},
+    "key_value":   {"type": "key_value", "pairs": [
+        {"key": "API_KEY", "value": "your-api-key-here"},
+        {"key": "BASE_URL", "value": "https://a2uicatalog.ai"},
+        {"key": "SURFACE",  "value": "web"},
+    ]},
+    "timeline":    {"type": "timeline", "events": [
+        {"date": "2024", "title": "A2UI v1", "body": "First atoms defined."},
+        {"date": "2025", "title": "467 atoms", "body": "Full schema published."},
+        {"date": "2026", "title": "ARD catalog", "body": "Live on a2uicatalog.ai."},
+    ]},
+    "before_after": {"type": "before_after", "language": "js",
+        "before_label": "Before", "after_label": "After",
+        "before": "const html = buildPage(data);",
+        "after":  'const html = render([{"type":"body","text":"Hello"}]);'},
+    "annotated_code": {"type": "annotated_code", "language": "json",
+        "code": '{\n  "type": "stat_card",  // [1]\n  "value": "1B+",      // [2]\n  "label": "daily executions"\n}',
+        "callouts": [
+            {"line": 1, "note": "The atom type — matches schema.yaml"},
+            {"line": 2, "note": "The primary display value"},
+        ]},
+}
 
 PAGE_CSS = """
 <style>
@@ -45,6 +104,10 @@ td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--muted);ve
 td:first-child{color:var(--text);font-weight:600;font-family:monospace}
 .back{display:inline-block;margin-top:32px;font-size:13px;color:var(--muted);border:1px solid var(--border);border-radius:6px;padding:8px 14px;text-decoration:none}
 .back:hover{border-color:var(--cyan);color:var(--cyan)}
+.try-btn{display:inline-block;margin-top:32px;margin-left:12px;font-size:13px;font-weight:700;color:var(--bg);background:var(--cyan);border-radius:6px;padding:8px 18px;text-decoration:none;letter-spacing:.03em}
+.try-btn:hover{background:#00d4e0}
+.preview-box{background:#fff;border-radius:8px;padding:24px;margin-top:8px;color:#1a1a1a;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:15px;line-height:1.6}
+.preview-box *{max-width:100%}
 footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--border);font-size:12px;color:var(--muted);display:flex;justify-content:space-between}
 footer a{color:var(--cyan);text-decoration:none}
 </style>
@@ -135,11 +198,48 @@ def degraded_notes(atom):
 </div>"""
 
 
+def make_renderer_url(atom):
+    block = json.loads(example_payload(atom))
+    raw = json.dumps([block], ensure_ascii=False).encode()
+    compressed = zlib.compress(raw, level=9, wbits=31)
+    enc = base64.urlsafe_b64encode(compressed).rstrip(b'=').decode()
+    return f"{GAS_RENDERER}?p={enc}"
+
+
+def live_preview(atom):
+    atom_type = atom.get("type", "")
+    if atom_type not in _RENDERER_TYPES or _web_renderer is None:
+        return ""
+    block = _EXAMPLE_BLOCKS.get(atom_type)
+    if not block:
+        # Fall back to building a minimal block from schema fields
+        block = {"type": atom_type}
+        for name, ftype in (atom.get("fields") or {}).items():
+            if "optional" in str(ftype).lower():
+                continue
+            ft = str(ftype).lower()
+            if "string" in ft or "text" in ft:
+                block[name] = f"Example {name.replace('_', ' ')}"
+    try:
+        html = _web_renderer.render([block])
+        if not html.strip():
+            return ""
+    except Exception:
+        return ""
+    return f"""
+<div class="section">
+  <div class="label">Live preview</div>
+  <div class="preview-box">{html}</div>
+</div>"""
+
+
 def render_page(atom):
     atom_type    = atom.get("type", "")
     desc         = atom.get("description", "")
     compact      = atom.get("compact_description", "")
     display_name = atom_type.replace("_", " ").title()
+    preview      = live_preview(atom)
+    renderer_url = make_renderer_url(atom)
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -167,6 +267,8 @@ def render_page(atom):
 
   {degraded_notes(atom)}
 
+  {preview}
+
   <div class="section">
     <div class="label">Fields</div>
     {fields_table(atom)}
@@ -183,6 +285,7 @@ def render_page(atom):
   </div>
 
   <a class="back" href="https://{DOMAIN}/.well-known/ai-catalog.json">← Full ARD catalog</a>
+  <a class="try-btn" href="{renderer_url}" target="_blank" rel="noopener">Try it live →</a>
 
   <footer>
     <span>A2UI Atom Catalog · <a href="https://github.com/a2uicatalog/a2ui">github.com/a2uicatalog/a2ui</a></span>

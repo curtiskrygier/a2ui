@@ -29,6 +29,10 @@ td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--muted);ve
 td:first-child{color:var(--text);font-weight:600;font-family:monospace}
 .back{display:inline-block;margin-top:32px;font-size:13px;color:var(--muted);border:1px solid var(--border);border-radius:6px;padding:8px 14px;text-decoration:none}
 .back:hover{border-color:var(--cyan);color:var(--cyan)}
+.try-btn{display:inline-block;margin-top:32px;margin-left:12px;font-size:13px;font-weight:700;color:var(--bg);background:var(--cyan);border-radius:6px;padding:8px 18px;text-decoration:none;letter-spacing:.03em}
+.try-btn:hover{background:#00d4e0}
+.preview-box{background:#fff;border-radius:8px;padding:24px;margin-top:8px;color:#1a1a1a;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:15px;line-height:1.6}
+.preview-box *{max-width:100%}
 footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--border);font-size:12px;color:var(--muted);display:flex;justify-content:space-between}
 footer a{color:var(--cyan);text-decoration:none}
 </style>
@@ -53,6 +57,32 @@ footer a{color:var(--cyan);text-decoration:none}
 <div class="section">
   <div class="label">Degraded on</div>
   <table><thead><tr><th>Surface</th><th>Note</th></tr></thead><tbody><tr><td>meet-stage</td><td>CSS :target lightbox may not work in iframe — images show without lightbox</td></tr><tr><td>pdf</td><td>grid renders but lightbox is non-functional — use image_pair or image</td></tr></tbody></table>
+</div>
+
+  
+<div class="section">
+  <div class="label">Live preview</div>
+  <div class="preview-box">
+<style>
+.gd41d8c-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:1.5rem 0;}
+@media(max-width:600px){.gd41d8c-wrap{grid-template-columns:repeat(2,1fr);}}
+.gd41d8c-item{position:relative;overflow:hidden;border-radius:8px;cursor:zoom-in;aspect-ratio:16/10;background:#f1f3f4;}
+.gd41d8c-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.2s ease;}
+.gd41d8c-item:hover img{transform:scale(1.04);}
+.gd41d8c-item figcaption{position:absolute;bottom:0;left:0;right:0;padding:6px 10px;
+  background:linear-gradient(transparent,rgba(0,0,0,0.6));color:#fff;font-size:0.75rem;
+  opacity:0;transition:opacity 0.2s ease;}
+.gd41d8c-item:hover figcaption{opacity:1;}
+.gd41d8c-lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9999;
+  align-items:center;justify-content:center;padding:20px;}
+.gd41d8c-lb:target{display:flex;}
+.gd41d8c-lb img{max-width:90vw;max-height:88vh;border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,0.5);}
+.gd41d8c-lb-close{position:absolute;top:16px;right:24px;color:#fff;font-size:2rem;
+  text-decoration:none;line-height:1;opacity:0.7;}
+.gd41d8c-lb-close:hover{opacity:1;}
+.gd41d8c-lb figcaption{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);
+  color:rgba(255,255,255,0.7);font-size:0.85rem;text-align:center;}
+</style><div class="gd41d8c-wrap"></div></div>
 </div>
 
   <div class="section">
@@ -88,6 +118,7 @@ footer a{color:var(--cyan);text-decoration:none}
   </div>
 
   <a class="back" href="https://a2uicatalog.ai/.well-known/ai-catalog.json">← Full ARD catalog</a>
+  <a class="try-btn" href="https://script.google.com/macros/s/AKfycbwwGCeqX1jn0nnH5F-jc1dpXj1wlfJayMrF7V648oY6AgHJY-85b6-OQyWxOx5bFBMv/exec?p=H4sIAAAAAAACA4uuViqpLEhVslJQSk_MyUktqlSqjQUAAllyexUAAAA" target="_blank" rel="noopener">Try it live →</a>
 
   <footer>
     <span>A2UI Atom Catalog · <a href="https://github.com/a2uicatalog/a2ui">github.com/a2uicatalog/a2ui</a></span>

@@ -29,6 +29,10 @@ td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--muted);ve
 td:first-child{color:var(--text);font-weight:600;font-family:monospace}
 .back{display:inline-block;margin-top:32px;font-size:13px;color:var(--muted);border:1px solid var(--border);border-radius:6px;padding:8px 14px;text-decoration:none}
 .back:hover{border-color:var(--cyan);color:var(--cyan)}
+.try-btn{display:inline-block;margin-top:32px;margin-left:12px;font-size:13px;font-weight:700;color:var(--bg);background:var(--cyan);border-radius:6px;padding:8px 18px;text-decoration:none;letter-spacing:.03em}
+.try-btn:hover{background:#00d4e0}
+.preview-box{background:#fff;border-radius:8px;padding:24px;margin-top:8px;color:#1a1a1a;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:15px;line-height:1.6}
+.preview-box *{max-width:100%}
 footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--border);font-size:12px;color:var(--muted);display:flex;justify-content:space-between}
 footer a{color:var(--cyan);text-decoration:none}
 </style>
@@ -53,6 +57,12 @@ footer a{color:var(--cyan);text-decoration:none}
 <div class="section">
   <div class="label">Degraded on</div>
   <table><thead><tr><th>Surface</th><th>Note</th></tr></thead><tbody><tr><td>googlechat</td><td>HTML tables not supported in Chat cards — use bullet_list or key_value instead</td></tr></tbody></table>
+</div>
+
+  
+<div class="section">
+  <div class="label">Live preview</div>
+  <div class="preview-box"><div style="overflow-x:auto;margin:1.5rem 0;"><table style="border-collapse:collapse;width:100%;font-size:0.9em;"><caption style="font-size:0.85rem;opacity:0.6;margin-bottom:8px;text-align:left;">Example fields</caption><thead><tr><th style="background:#f1f3f4;border:1px solid #dadce0;padding:10px 14px;text-align:left;font-weight:600;white-space:nowrap;">Field</th><th style="background:#f1f3f4;border:1px solid #dadce0;padding:10px 14px;text-align:left;font-weight:600;white-space:nowrap;">Type</th><th style="background:#f1f3f4;border:1px solid #dadce0;padding:10px 14px;text-align:left;font-weight:600;white-space:nowrap;">Required</th></tr></thead><tbody><tr><td style="border:1px solid #dadce0;padding:9px 14px;vertical-align:top;line-height:1.5;">value</td><td style="border:1px solid #dadce0;padding:9px 14px;vertical-align:top;line-height:1.5;">string</td><td style="border:1px solid #dadce0;padding:9px 14px;vertical-align:top;line-height:1.5;">yes</td></tr><tr><td style="border:1px solid #dadce0;padding:9px 14px;vertical-align:top;line-height:1.5;background:#f8f9fa;">label</td><td style="border:1px solid #dadce0;padding:9px 14px;vertical-align:top;line-height:1.5;background:#f8f9fa;">string</td><td style="border:1px solid #dadce0;padding:9px 14px;vertical-align:top;line-height:1.5;background:#f8f9fa;">yes</td></tr><tr><td style="border:1px solid #dadce0;padding:9px 14px;vertical-align:top;line-height:1.5;">trend</td><td style="border:1px solid #dadce0;padding:9px 14px;vertical-align:top;line-height:1.5;">string</td><td style="border:1px solid #dadce0;padding:9px 14px;vertical-align:top;line-height:1.5;">no</td></tr></tbody></table></div></div>
 </div>
 
   <div class="section">
@@ -93,6 +103,7 @@ footer a{color:var(--cyan);text-decoration:none}
   </div>
 
   <a class="back" href="https://a2uicatalog.ai/.well-known/ai-catalog.json">← Full ARD catalog</a>
+  <a class="try-btn" href="https://script.google.com/macros/s/AKfycbwwGCeqX1jn0nnH5F-jc1dpXj1wlfJayMrF7V648oY6AgHJY-85b6-OQyWxOx5bFBMv/exec?p=H4sIAAAAAAACA4uuViqpLEhVslJQKklMyklV0lFQykhNTEktKgaKRccCuUX55RB2bSwALZ4VTi4AAAA" target="_blank" rel="noopener">Try it live →</a>
 
   <footer>
     <span>A2UI Atom Catalog · <a href="https://github.com/a2uicatalog/a2ui">github.com/a2uicatalog/a2ui</a></span>
