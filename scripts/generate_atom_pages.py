@@ -591,7 +591,7 @@ def render_page(atom):
     <pre style="margin:0;font-size:12px;"><code>git clone https://github.com/a2uicatalog/a2ui
 cd apps-script-surface/gas-schema-renderer
 clasp push &amp;&amp; clasp deploy</code></pre>
-    <a href="https://github.com/a2uicatalog/a2ui/tree/main/apps-script-surface/gas-schema-renderer" target="_blank" rel="noopener" style="display:inline-block;margin-top:12px;font-size:12px;color:#818cf8;text-decoration:none;">View renderer source →</a>
+    <a href="https://{DOMAIN}/renderer" style="display:inline-block;margin-top:12px;font-size:12px;color:#818cf8;text-decoration:none;">Full deploy guide →</a>
   </div>
 
   <footer>
