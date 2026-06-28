@@ -303,16 +303,7 @@ def live_preview(atom):
     atom_type = atom.get("type", "")
     if atom_type not in _RENDERER_TYPES or _web_renderer is None:
         return ""
-    block = _EXAMPLE_BLOCKS.get(atom_type)
-    if not block:
-        # Fall back to building a minimal block from schema fields
-        block = {"type": atom_type}
-        for name, ftype in (atom.get("fields") or {}).items():
-            if "optional" in str(ftype).lower():
-                continue
-            ft = str(ftype).lower()
-            if "string" in ft or "text" in ft:
-                block[name] = f"Example {name.replace('_', ' ')}"
+    block = _EXAMPLE_BLOCKS.get(atom_type) or json.loads(example_payload(atom))
     try:
         html = _web_renderer.render([block])
         if not html.strip():
