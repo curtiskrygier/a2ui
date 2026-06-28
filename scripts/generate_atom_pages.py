@@ -108,6 +108,12 @@ td:first-child{color:var(--text);font-weight:600;font-family:monospace}
 .try-btn:hover{background:#00d4e0}
 .preview-box{background:#fff;border-radius:8px;padding:24px;margin-top:8px;color:#1a1a1a;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:15px;line-height:1.6}
 .preview-box *{max-width:100%}
+.preview-box p,.preview-box li,.preview-box td,.preview-box th,.preview-box td:first-child{color:#333;font-family:inherit}
+.preview-box pre{background:#f4f4f4;border:1px solid #e0e0e0}
+.preview-box pre code{color:#333}
+.preview-box h2,.preview-box h3{color:#111}
+.preview-box a{color:#0969da}
+.preview-box ul{color:#333}
 footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--border);font-size:12px;color:var(--muted);display:flex;justify-content:space-between}
 footer a{color:var(--cyan);text-decoration:none}
 </style>
