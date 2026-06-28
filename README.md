@@ -60,7 +60,36 @@ A2UI        68 tok  ████
 | **No CDN** | Works inside GAS sandboxed iframes with no external requests |
 | **Large payload support** | Automatically switches to POST for schemas too large for a URL |
 
-Copy [`apps-script-surface/a2ui-gem-renderer/atom.gs`](apps-script-surface/a2ui-gem-renderer/atom.gs) and [`atoms_charts.gs`](apps-script-surface/a2ui-gem-renderer/atoms_charts.gs) into any GAS project and call `renderAtoms(blocks, { theme: 'light' })`.
+### Deploy your own renderer (recommended)
+
+The renderer is fully open source. Deploy your own instance — you own the URL, you own the deployment, no dependency on the catalog's demo endpoint.
+
+```bash
+git clone https://github.com/a2uicatalog/a2ui
+cd apps-script-surface/gas-schema-renderer
+clasp login
+clasp create --type webapp --title "My A2UI Renderer"
+clasp push
+clasp deploy
+# → Your renderer is live at https://script.google.com/macros/s/YOUR_ID/exec
+```
+
+Call it with any payload from the catalog:
+
+```javascript
+function doGet() {
+  const blocks = [
+    { type: "stat_card", value: "1,234", label: "Daily users", delta: "+12%", is_up: true },
+    { type: "progress_bar", value: 75, label: "Q2 target" }
+  ];
+  const url = "https://script.google.com/macros/s/YOUR_ID/exec";
+  return HtmlService.createHtmlOutput(
+    `<script>window.location="${url}?p=${encode(blocks)}"</script>`
+  );
+}
+```
+
+The catalog's "Try it live" button uses a shared demo instance of the same renderer. For anything beyond exploration, deploy your own.
 
 ---
 
