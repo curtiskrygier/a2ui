@@ -72,9 +72,38 @@ footer a{color:var(--cyan);text-decoration:none}
     <div class="label">Example payload</div>
     <pre><code>{
   "type": "cohort_retention",
-  "cohorts": [],
-  "periods": [],
-  "color_scale": []
+  "cohorts": [
+    {
+      "label": "Jan 2025",
+      "data": [
+        100,
+        72,
+        58,
+        45
+      ]
+    },
+    {
+      "label": "Feb 2025",
+      "data": [
+        80,
+        65,
+        50,
+        38
+      ]
+    }
+  ],
+  "periods": [
+    "Week 1",
+    "Week 2",
+    "Week 3",
+    "Week 4"
+  ],
+  "color_scale": [
+    "#3b82f6",
+    "#10b981",
+    "#f59e0b",
+    "#ef4444"
+  ]
 }</code></pre>
   </div>
 
@@ -100,7 +129,7 @@ footer a{color:var(--cyan);text-decoration:none}
   </div>
 
   <a class="back" href="https://a2uicatalog.ai/.well-known/ai-catalog.json">← Full ARD catalog</a>
-  <a class="try-btn" href="https://script.google.com/macros/s/AKfycbwwGCeqX1jn0nnH5F-jc1dpXj1wlfJayMrF7V648oY6AgHJY-85b6-OQyWxOx5bFBMv/exec?p=H4sIAAAAAAACA02NQQqAMAwEv1Jy9gVe_YFXKUXbQIu1kZiLlP5djSAed2aXrSBJMkJvYKBILGZEwSKJCnQGJOKmMsy8PmDJ5NfjJlMFOXd1XoeO_8OXadHecUdOFL7oKRO7w8_6PNlm2wVOQ8zyiQAAAA" target="_blank" rel="noopener">Try it live →</a>
+  <a class="try-btn" href="https://script.google.com/macros/s/AKfycbwwGCeqX1jn0nnH5F-jc1dpXj1wlfJayMrF7V648oY6AgHJY-85b6-OQyWxOx5bFBMv/exec?p=H4sIAAAAAAACA2WQQY_CIBCF_8pkeuVAaXHRq4mHPe7Fg2kMtNPYFItBLsb0vy_MboyJXHh5730zhCemKXnCHeA-XEJM8EOJljSFBQVgutCVw8HGuRjOh36-Z-f0xPS4cdYzeI7v4J_3X_TWkS_Nb7uAkkqXxmCTLXEtpYAvJUAbAa3uVgFvxIHcB2EysNEZyHdjurXL2Y3iFAbeh0eiGepCsFIv1bxUix0_0od4vveWP-CEVeOMGjelVdXSbQ0PqUa9JelY0tjmg3nn-gvKWJSROgEAAA" target="_blank" rel="noopener">Try it live →</a>
 
   <footer>
     <span>A2UI Atomic Catalog · <a href="https://github.com/a2uicatalog/a2ui">github.com/a2uicatalog/a2ui</a></span>

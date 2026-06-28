@@ -146,7 +146,7 @@ def fields_table(atom):
 
 
 def _infer_list(name, atom_type):
-    if name == "blocks":
+    if name in ["blocks", "children"]:
         return [{"type": "body", "text": "Example content."}]
     if name == "steps":
         return [{"title": "Step one", "body": "First thing to do."}, {"title": "Step two", "body": "Then this."}]
@@ -174,6 +174,128 @@ def _infer_list(name, atom_type):
         return [{"line": 1, "note": "This line does X"}]
     if name == "slides":
         return [{"id": "s1", "label": "Slide 1", "blocks": []}]
+    if name == "options":
+        return [{"label": "Option A", "value": "a"}, {"label": "Option B", "value": "b"}, {"label": "Option C", "value": "c"}]
+    if name == "nodes":
+        if "file_tree" in atom_type or "tree" in atom_type:
+            return [{"label": "src/", "children": [{"label": "index.ts"}]}, {"label": "package.json"}]
+        if "sankey" in atom_type:
+            return [{"id": "a", "label": "Source"}, {"id": "b", "label": "Target"}]
+        return [{"id": "node-1", "label": "Node 1"}, {"id": "node-2", "label": "Node 2"}]
+    if name == "features":
+        return ["Core feature", "Advanced analytics", "API access"]
+    if name in ["labels", "labels_x"]:
+        return ["Category A", "Category B", "Category C", "Category D"]
+    if name == "labels_y":
+        return ["Low", "Medium", "High"]
+    if name in ["color_scale", "colors"]:
+        return ["#3b82f6", "#10b981", "#f59e0b", "#ef4444"]
+    if name == "periods":
+        return ["Week 1", "Week 2", "Week 3", "Week 4"]
+    if name == "themes":
+        return [{"label": "Positive", "count": 42}, {"label": "Neutral", "count": 18}, {"label": "Negative", "count": 7}]
+    if name == "specs":
+        return [{"label": "Weight", "value": "1.2 kg"}, {"label": "Dimensions", "value": "20×15 cm"}]
+    if name == "datasets":
+        return [{"label": "Dataset A", "data": [65, 59, 80, 72]}, {"label": "Dataset B", "data": [28, 48, 40, 55]}]
+    if name in ["series", "data_points"]:
+        if name == "data_points":
+            return [{"x": 10, "y": 20}, {"x": 30, "y": 45}, {"x": 50, "y": 35}]
+        return [{"label": "Series A", "data": [10, 20, 30, 40]}, {"label": "Series B", "data": [5, 15, 25, 35]}]
+    if name == "data":
+        if "pie" in atom_type or "donut" in atom_type:
+            return [{"label": "Category A", "value": 40}, {"label": "Category B", "value": 35}, {"label": "Category C", "value": 25}]
+        if "calendar" in atom_type or "heatmap" in atom_type:
+            return [{"date": "2026-06-01", "value": 5}, {"date": "2026-06-15", "value": 12}]
+        return [10, 25, 40, 30, 55]
+    if name == "skills":
+        return [{"label": "Python", "value": 85}, {"label": "JavaScript", "value": 70}, {"label": "TypeScript", "value": 65}]
+    if name == "stats":
+        return [{"label": "Views", "value": "1.2M"}, {"label": "Clicks", "value": "42K"}, {"label": "CTR", "value": "3.5%"}]
+    if name == "cards":
+        return [{"title": "Card 1", "body": "First card content."}, {"title": "Card 2", "body": "Second card content."}]
+    if name == "cohorts":
+        return [{"label": "Jan 2025", "data": [100, 72, 58, 45]}, {"label": "Feb 2025", "data": [80, 65, 50, 38]}]
+    if name == "shape":
+        return [{"type": "rect", "width": "100%", "height": "20px"}, {"type": "rect", "width": "60%", "height": "20px"}]
+    if name == "product_names":
+        return ["Starter", "Pro", "Enterprise"]
+    if name == "tiers":
+        return [{"name": "Starter", "price": "$9/mo", "features": []}, {"name": "Pro", "price": "$29/mo", "features": []}]
+    if name == "pros":
+        return ["Scalable architecture", "Clean API design", "Excellent documentation"]
+    if name == "cons":
+        return ["Steeper learning curve", "Limited third-party plugins"]
+    if name == "products":
+        return [{"name": "Product A"}, {"name": "Product B"}]
+    if name == "comparison_points":
+        return [{"label": "Performance", "a": "Fast", "b": "Moderate"}, {"label": "Price", "a": "$9", "b": "$19"}]
+    if name == "capability_names":
+        return ["Vision", "Code execution", "Web search"]
+    if name == "hotspots":
+        return [{"x": 25, "y": 30, "label": "Feature A"}, {"x": 60, "y": 70, "label": "Feature B"}]
+    if name == "menu_items":
+        return [{"label": "Dashboard"}, {"label": "Settings"}, {"label": "Help"}]
+    if name == "avatars":
+        return [{"src": "https://example.com/image.png", "name": "Alice"}, {"src": "https://example.com/image.png", "name": "Bob"}]
+    if name == "contributors":
+        return [{"name": "Alice", "role": "Developer"}, {"name": "Bob", "role": "Designer"}]
+    if name == "logos":
+        return [{"src": "https://example.com/image.png", "alt": "Company A"}, {"src": "https://example.com/image.png", "alt": "Company B"}]
+    if name == "keys":
+        return ["Ctrl", "Shift", "K"]
+    if name == "objectives":
+        return ["Understand the core concept", "Apply it in practice", "Evaluate the results"]
+    if name == "changes":
+        return [{"type": "added", "text": "New feature added"}, {"type": "fixed", "text": "Bug fix applied"}]
+    if name == "platforms":
+        return ["twitter", "linkedin", "facebook"]
+    if name == "enabled_emojis":
+        return ["👍", "❤️", "🎉", "🚀"]
+    if name == "headings":
+        return [{"level": 2, "text": "Introduction"}, {"level": 2, "text": "Methods"}, {"level": 2, "text": "Results"}]
+    if name == "commands":
+        return [{"label": "New File", "shortcut": "Ctrl+N"}, {"label": "Open File", "shortcut": "Ctrl+O"}]
+    if name == "footnotes":
+        return [{"id": 1, "text": "Source: Example Report, 2026."}]
+    if name == "capabilities":
+        return [{"label": "Vision", "supported": True}, {"label": "Code execution", "supported": True}, {"label": "Web search", "supported": False}]
+    if name == "breakdown":
+        return [{"stars": 5, "count": 48}, {"stars": 4, "count": 30}, {"stars": 3, "count": 12}]
+    if name == "tags":
+        return ["typescript", "react", "a2ui"]
+    if name == "models":
+        return [{"name": "GPT-4", "context": "128k"}, {"name": "Claude Sonnet", "context": "200k"}]
+    if name == "columns":
+        return [{"title": "To Do", "cards": []}, {"title": "In Progress", "cards": []}, {"title": "Done", "cards": []}]
+    if name == "selected":
+        return ["Option A"]
+    if name == "slots":
+        return [{"time": "09:00", "title": "Opening keynote"}, {"time": "10:00", "title": "Workshop A"}]
+    if name == "risks":
+        return [{"label": "Scope creep", "severity": "high"}, {"label": "Timeline slip", "severity": "medium"}]
+    if name == "words":
+        return ["Amazing", "Fast", "Reliable", "Scalable"]
+    if name == "answers":
+        return [{"text": "Option A"}, {"text": "Option B"}, {"text": "Option C"}]
+    if name in ["docs", "folder_id"]:
+        return [{"title": "Doc 1", "url": "https://example.com"}, {"title": "Doc 2", "url": "https://example.com"}]
+    if name == "terms":
+        return [{"term": "API", "definition": "Application Programming Interface"}, {"term": "A2UI", "definition": "Adaptive Atom-based UI"}]
+    if name == "lines":
+        return ["$ npm install a2ui", "added 42 packages", "✓ Done in 1.2s"]
+    if name == "choices":
+        return [{"label": "Path A", "next": "node-a"}, {"label": "Path B", "next": "node-b"}]
+    if name == "badges":
+        return [{"label": "TypeScript", "color": "#3178c6"}, {"label": "React", "color": "#61dafb"}, {"label": "A2UI", "color": "#6366f1"}]
+    if name == "paths":
+        return [{"label": "Beginner Path", "steps": []}, {"label": "Advanced Path", "steps": []}]
+    if name == "checkpoints":
+        return [{"time": "1:30", "question": "What is X?"}, {"time": "3:00", "question": "How does Y work?"}]
+    if name == "notes":
+        return [{"text": "Important annotation", "range": "line 5"}]
+    if name == "criteria":
+        return [{"label": "Accuracy", "score": 4, "max": 5}, {"label": "Clarity", "score": 3, "max": 5}]
     return []
 
 
@@ -223,6 +345,72 @@ def _infer_string(name, atom_type):
         return "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
     if "url" in n or "href" in n or "link" in n or "src" in n:
         return "https://example.com"
+    # Common field names that hit the generic fallback
+    if n == "message":    return "Your action was completed successfully."
+    if n in ["type", "kind", "variant_type"]: return "info"
+    if n == "question":   return "Which option do you prefer?"
+    if n == "quote":      return "The vocabulary IS the discovery layer."
+    if n == "headline":   return "Main headline text here"
+    if n == "prompt":     return "Describe what you'd like to create."
+    if n == "alt":        return "Descriptive alt text for this image"
+    if n == "term":       return "API"
+    if n == "definition": return "Application Programming Interface"
+    if n == "price":      return "$29/mo"
+    if n == "platform":   return "twitter"
+    if n == "command":    return "npm install a2ui"
+    if n == "output":     return "✓ Done in 1.2s"
+    if n == "template":   return "Hello, {{name}}!"
+    if n == "trigger":    return "click"
+    if n == "range":      return "A1:D10"
+    if n == "schema":     return '{"type": "example", "value": "1,234"}'
+    if n == "height":     return "80px"
+    if n == "header":     return "Section Header"
+    if n == "currency":   return "USD"
+    if n == "frequency":  return "monthly"
+    if n == "subject":    return "Example subject matter"
+    if n == "details":    return "Click to expand and read the full details."
+    if n == "shell":      return "bash"
+    if n == "method":     return "GET"
+    if n == "action":     return "submit"
+    if n == "alternative":return "new_component"
+    if n == "logs":       return "2026-06-28 INFO: Process started\n2026-06-28 INFO: Completed."
+    if n == "data":       return '{"key": "value", "count": 42}'
+    if n == "version":    return "1.2.0"
+    if n == "bio":        return "Short author biography goes here."
+    if n == "attribution":return "Source: Example Report, 2026"
+    if n == "behavior":   return "smooth"
+    if n == "user":       return "How does this work?"
+    if n == "response":   return "Here's a clear explanation of how it works."
+    if n == "query":      return "inbox is:unread"
+    if n == "counts":     return "42"
+    if n == "email":      return "user@example.com"
+    if n == "project":    return "my-project-id"
+    if n == "collection": return "users"
+    if n in ["from", "source"]: return "start-node"
+    if n in ["to", "target"]:   return "end-node"
+    if n == "center":     return "Core Concept"
+    if n == "surface":    return "gas"
+    if n == "result":     return "Improved"
+    if n == "mime":       return "application/pdf"
+    if n == "scenario":   return "Success path"
+    if n == "requires":   return "complete_intro"
+    if n == "course":     return "A2UI Fundamentals"
+    if n == "situation":  return "A startup facing rapid growth challenges."
+    if n == "front":      return "What is an atom?"
+    if n == "back":       return "A self-contained UI block with a type and fields."
+    if n == "q":          return "Eiffel Tower, Paris"
+    if n == "sheet":      return "Sheet1"
+    if n == "app":        return "MyWorkspace"
+    if n == "alt_text":   return "Descriptive alt text for accessibility"
+    if n == "auth_token": return "your-api-token"
+    if n == "trigger_text": return "Click to trigger"
+    if n == "author_name":  return "Author Name"
+    if n == "spreadsheet_id": return "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgVE2upms"
+    if n == "course_id":  return "course-101"
+    if n == "icon_type":  return "star"
+    if n == "delta_type": return "increase"
+    if n == "trend_direction": return "up"
+    if n == "product_id": return "prod-001"
     return n.replace("_", " ").capitalize()
 
 
