@@ -214,6 +214,8 @@ def _infer_string(name, atom_type):
     if n in ["date", "timestamp"]: return "2026-06-28"
     if n == "repo":       return "a2uicatalog/a2ui"
     if n == "width":      return "100%"
+    if "gap" in n or "spacing" in n or "padding" in n or "margin" in n: return "1.25rem"
+    if "radius" in n:     return "8px"
     if n in ["callout_type", "alert_type"]: return "info"
     if "image" in n or "img" in n or "photo" in n or "avatar" in n:
         return "https://example.com/image.png"
@@ -230,7 +232,7 @@ def example_payload(atom):
     example   = {"type": atom_type}
     for name, ftype in fields.items():
         ft = str(ftype).lower()
-        if "optional" in ft:
+        if "optional" in ft or "default" in ft:
             continue
         if "bool" in ft:
             example[name] = True
@@ -292,12 +294,22 @@ def degraded_notes(atom):
 </div>"""
 
 
+# Config/style atoms that need companion blocks to render anything visible
+_COMPANION_BLOCKS = {
+    "palette": [{"type": "stat_card", "value": "1,234", "label": "Accent applied", "trend": "up"},
+                {"type": "progress_bar", "value": 75, "label": "Progress with accent"}],
+    "data_source": [{"type": "body", "text": "Data source connected."}],
+}
+
+
 def make_renderer_url(atom):
-    block = json.loads(example_payload(atom))
-    payload = {
-        "title": atom.get("type", "").replace("_", " ").title(),
+    atom_type = atom.get("type", "")
+    block     = json.loads(example_payload(atom))
+    blocks    = [block] + _COMPANION_BLOCKS.get(atom_type, [])
+    payload   = {
+        "title": atom_type.replace("_", " ").title(),
         "theme": "dark",
-        "blocks": [block],
+        "blocks": blocks,
     }
     raw = json.dumps(payload, ensure_ascii=False).encode()
     compressed = zlib.compress(raw, level=9, wbits=31)
