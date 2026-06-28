@@ -70,7 +70,7 @@ def generate_queries(atom):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--domain", default="aicatalog.ai")
+    parser.add_argument("--domain", default="a2uicatalog.ai")
     parser.add_argument("--output", default=OUTPUT)
     args = parser.parse_args()
 
