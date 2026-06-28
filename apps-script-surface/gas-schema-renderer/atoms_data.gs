@@ -16,6 +16,43 @@
 //   adsb_feed and metar_feed use CacheService (15s TTL) to avoid hitting external APIs
 //   on every page load — OpenSky rate limit is 400 req/day unauthenticated.
 
+// ── firestore_read server-side callable ──────────────────────────────────────
+// Called from client via google.script.run.fetchFirestoreDoc(project, collection, docId).
+// Returns deserialized plain JS object, or null on error.
+// Requires: oauthScopes includes https://www.googleapis.com/auth/datastore
+
+function fetchFirestoreDoc(project, collection, docId) {
+  var token = ScriptApp.getOAuthToken();
+  var url   = 'https://firestore.googleapis.com/v1/projects/' + project +
+              '/databases/(default)/documents/' + collection + '/' + docId;
+  try {
+    var resp = UrlFetchApp.fetch(url, {
+      headers: { Authorization: 'Bearer ' + token },
+      muteHttpExceptions: true
+    });
+    if (resp.getResponseCode() !== 200) return null;
+    return _fsDoc(JSON.parse(resp.getContentText()).fields);
+  } catch(e) { return null; }
+}
+
+function _fsDoc(fields) {
+  if (!fields) return null;
+  var out = {};
+  for (var k in fields) out[k] = _fsVal(fields[k]);
+  return out;
+}
+function _fsVal(v) {
+  if (!v) return null;
+  if ('stringValue'  in v) return v.stringValue;
+  if ('integerValue' in v) return parseInt(v.integerValue);
+  if ('doubleValue'  in v) return v.doubleValue;
+  if ('booleanValue' in v) return v.booleanValue;
+  if ('nullValue'    in v) return null;
+  if ('arrayValue'   in v) return (v.arrayValue.values || []).map(_fsVal);
+  if ('mapValue'     in v) return _fsDoc(v.mapValue.fields);
+  return null;
+}
+
 // ── Shared server-side helpers ────────────────────────────────────────────────
 
 function _parseMETAR(raw) {
@@ -320,6 +357,52 @@ _RENDERERS['metar_feed'] = function(b) {
             '.withSuccessHandler(dispatch)' +
             '.withFailureHandler(function(){})' +
             '.fetchDataSource("' + _esc(url) + '","text","");' +
+        '}' +
+      '},' + Math.round(refresh * 1000) + ');' : '') +
+  '})();<\/script>';
+};
+
+// ── firestore_read ────────────────────────────────────────────────────────────
+// Data connector: reads a named Firestore document (noun) on render (verb: read).
+// Publishes deserialized doc to window.A2UI_DATA[name]; visual atoms subscribe
+// via window.A2UI_CALLBACKS[name]. Optional client refresh via google.script.run.
+//
+// Fields:
+//   name       — connector name other atoms subscribe to (required)
+//   project    — GCP project ID owning the Firestore database (required)
+//   collection — Firestore collection name (required)
+//   doc_id     — document ID within the collection (required)
+//   refresh    — client-side refresh interval seconds (0 = initial load only, default 0)
+//
+// Note: appsscript.json must declare oauthScopes with datastore scope.
+_RENDERERS['firestore_read'] = function(b) {
+  var name       = b.name       || 'firestore';
+  var project    = b.project    || '';
+  var collection = b.collection || '';
+  var docId      = b.doc_id     || '';
+  var refresh    = b.refresh    || 0;
+
+  var initial = null;
+  if (project && collection && docId) {
+    initial = fetchFirestoreDoc(project, collection, docId);
+  }
+
+  return '<script>(function(){' +
+    'window.A2UI_DATA=window.A2UI_DATA||{};' +
+    'window.A2UI_CALLBACKS=window.A2UI_CALLBACKS||{};' +
+    'function dispatch(data){' +
+      'window.A2UI_DATA["' + _esc(name) + '"]=data;' +
+      'var cb=window.A2UI_CALLBACKS["' + _esc(name) + '"];' +
+      'if(typeof cb==="function")cb(data);' +
+    '}' +
+    (initial !== null ? 'setTimeout(function(){dispatch(' + JSON.stringify(initial) + ');},80);' : '') +
+    (refresh > 0 && project && collection && docId ?
+      'setInterval(function(){' +
+        'if(typeof google!=="undefined"&&google.script){' +
+          'google.script.run' +
+            '.withSuccessHandler(dispatch)' +
+            '.withFailureHandler(function(){})' +
+            '.fetchFirestoreDoc("' + _esc(project) + '","' + _esc(collection) + '","' + _esc(docId) + '");' +
         '}' +
       '},' + Math.round(refresh * 1000) + ');' : '') +
   '})();<\/script>';

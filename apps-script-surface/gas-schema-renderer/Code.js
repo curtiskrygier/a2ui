@@ -39,7 +39,7 @@ function doGet(e) {
   if (e && e.parameter && e.parameter.mode === 'screenshot' && p) {
     return _renderScreenshotPage(p);
   }
-  if (nav === 'brevet-2026') return _renderBrevetPage();
+  if (nav === 'brevet-2026')  return _renderBrevetPage();
   if (nav === 'nist-ai-rmf') return _renderNistAirmfPage();
   if (nav) return _renderNamedPage(nav, from || '');
   if (p) return _renderFromParam(p, from || '');
@@ -414,6 +414,39 @@ function fetchDataSource(url, format, path) {
     if (path) path.split('.').forEach(function(k) { if (data && k) data = data[k]; });
     return data;
   } catch (err) { return null; }
+}
+
+/**
+ * Fetch real departure or arrival data for an airport from OpenSky Network.
+ * Returns {flights: [...]} or {error: string}.
+ * Each flight: {callsign, airport, time, status}
+ *   - departures: airport = estArrivalAirport, time = firstSeen
+ *   - arrivals:   airport = estDepartureAirport, time = lastSeen
+ */
+function getFlightsLFBO(mode, airport) {
+  var now   = Math.floor(Date.now() / 1000);
+  var begin = now - 10800; // 3 hours window covers current departures + upcoming arrivals
+  var base  = 'https://opensky-network.org/api/flights/';
+  var url   = mode === 'arrivals'
+    ? base + 'arrival?airport='   + airport + '&begin=' + begin + '&end=' + now
+    : base + 'departure?airport=' + airport + '&begin=' + begin + '&end=' + now;
+  try {
+    var resp = UrlFetchApp.fetch(url, {muteHttpExceptions: true, followRedirects: true});
+    if (resp.getResponseCode() !== 200) return {error: resp.getResponseCode()};
+    var raw = JSON.parse(resp.getContentText());
+    if (!Array.isArray(raw)) return {error: 'bad_response'};
+    var flights = raw
+      .filter(function(f) { return f.callsign && f.callsign.trim(); })
+      .map(function(f) {
+        return {
+          callsign: f.callsign.trim(),
+          airport:  mode === 'arrivals' ? (f.estDepartureAirport || '?') : (f.estArrivalAirport || '?'),
+          time:     mode === 'arrivals' ? f.lastSeen : f.firstSeen
+        };
+      })
+      .sort(function(a, b) { return b.time - a.time; }); // most recent first
+    return {flights: flights};
+  } catch(e) { return {error: e.toString()}; }
 }
 
 /** Kept for backward compatibility — thin wrapper around _parseMETAR + fetchDataSource. */
@@ -837,4 +870,56 @@ function a2uiCohortRead(courseId) {
     }
     return rows;
   } catch(e) { return []; }
+}
+
+// ── poll_live — anonymous vote counter backed by Firestore ────────────────────
+//
+// Architecture: voter calls google.script.run.submitPollVote() → GAS runs
+// server-side as USER_DEPLOYING → writes to Firestore via OAuth token that
+// never reaches the client. Voter sees only the returned tally.
+
+var _POLL_PROJECT = 'optical-highway-493012-a1';
+
+// questionId and option are the only things that come from the client.
+// The GCP project ID lives here server-side and is never sent to voters.
+function submitPollVote(questionId, option) {
+  var token    = ScriptApp.getOAuthToken();
+  var docPath  = 'projects/' + _POLL_PROJECT + '/databases/(default)/documents/polls/' + questionId;
+  var batchUrl = 'https://firestore.googleapis.com/v1/projects/' + _POLL_PROJECT +
+                 '/databases/(default)/documents:batchWrite';
+  var body = JSON.stringify({
+    writes: [{
+      transform: {
+        document: docPath,
+        fieldTransforms: [{ fieldPath: option, increment: { integerValue: '1' } }]
+      }
+    }]
+  });
+  try {
+    UrlFetchApp.fetch(batchUrl, {
+      method: 'POST', contentType: 'application/json',
+      headers: { Authorization: 'Bearer ' + token },
+      payload: body, muteHttpExceptions: true
+    });
+  } catch(e) {}
+  return fetchPollResults(questionId);
+}
+
+function fetchPollResults(questionId) {
+  var token = ScriptApp.getOAuthToken();
+  var url   = 'https://firestore.googleapis.com/v1/projects/' + _POLL_PROJECT +
+              '/databases/(default)/documents/polls/' + questionId;
+  try {
+    var resp = UrlFetchApp.fetch(url, {
+      headers: { Authorization: 'Bearer ' + token }, muteHttpExceptions: true
+    });
+    if (resp.getResponseCode() !== 200) return {};
+    var fields = JSON.parse(resp.getContentText()).fields || {};
+    var out = {};
+    for (var k in fields) {
+      var v = fields[k];
+      out[k] = v.integerValue ? parseInt(v.integerValue) : (v.doubleValue || 0);
+    }
+    return out;
+  } catch(e) { return {}; }
 }

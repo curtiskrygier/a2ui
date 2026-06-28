@@ -1180,28 +1180,17 @@ _RENDERERS['geo_europe_airspace'] = function(b) {
 
 // ── geo_iso_takeoff ── A321neo isometric takeoff simulation ──────────────────
 _RENDERERS['geo_iso_takeoff'] = function(b) {
-  var uid     = 'gito' + Math.random().toString(36).substr(2, 6);
-  var title   = _esc(b.title   || 'LFBO RWY 32L — A321neo DEPARTURE');
-  var airline = ((b.airline     || 'AIB') + '').toUpperCase();
-  var acType  = ((b.aircraft_type || 'A21N') + '').toUpperCase();
-  // Initial accent for HUD / LIVE RADAR button
+  var uid      = 'gito' + Math.random().toString(36).substr(2, 6);
+  var title    = _esc(b.title   || 'LFBO RWY 32L — A321neo DEPARTURE');
+  var airline  = ((b.airline     || 'AIB') + '').toUpperCase();
+  var acType   = ((b.aircraft_type || 'A21N') + '').toUpperCase();
+  var autoNext = b.auto_next || '';
+  var autoMs   = b.auto_next_ms !== undefined ? b.auto_next_ms : 7000;
   var accentMap = {AIB:'#009ace',EZY:'#ff6600',AFR:'#0050a0',BAW:'#eb2226',DLH:'#1a3c8f',RYR:'#073590'};
-  var accent  = accentMap[airline] || '#009ace';
+  var accent   = accentMap[airline] || '#009ace';
 
   var lS = acType === 'A21N' ? 1.25 : 1.0;
   var wS = acType === 'A21N' ? 1.10 : 1.0;
-
-  // Pre-generate radar URL server-side — bypasses client btoa issues
-  var radarPayload = JSON.stringify([{
-    type:'airspace_command_deck', height:'fullscreen',
-    center_lat:43.629, center_lon:1.363, center_icao:'LFBO', country:'FR', zoom:35,
-    chyron_title:'LFBO TMA — APPROACH CONTROL',
-    chyron_subtitle:'Runway 32L/R Active • Toulouse Blagnac',
-    ticker_text:'✈️ TOULOUSE BLAGNAC APPROACH CONTROL • RUNWAY 32L/R ACTIVE • LIVE ADS-B ACTIVE •',
-    ticker_speed: 45
-  }]);
-  var radarUrl = ScriptApp.getService().getUrl() + '?p=' +
-    Utilities.base64EncodeWebSafe(Utilities.newBlob(radarPayload).getBytes()).replace(/=/g, '');
 
   return '<style>' +
     '#' + uid + 'w{position:relative;width:100%;height:100vh;background:#02040c;overflow:hidden;font-family:"Courier New",monospace;}' +
@@ -1218,10 +1207,6 @@ _RENDERERS['geo_iso_takeoff'] = function(b) {
     '#' + uid + 'sel{background:#0d1220;color:#00f2ff;border:1px solid rgba(0,242,255,.25);' +
       'border-radius:4px;font-family:"Courier New",monospace;font-size:9px;padding:4px 8px;' +
       'outline:none;cursor:pointer;font-weight:700;}' +
-    '#' + uid + 'btn{position:absolute;bottom:28px;right:28px;z-index:20;' +
-      'background:' + accent + ';color:#000;font:700 11px "Courier New",monospace;' +
-      'padding:11px 22px;border-radius:4px;text-decoration:none;letter-spacing:.12em;}' +
-    '#' + uid + 'btn:hover{opacity:.8;}' +
     '</style>' +
     '<div id="' + uid + 'w">' +
       '<canvas id="' + uid + 'c"></canvas>' +
@@ -1233,7 +1218,7 @@ _RENDERERS['geo_iso_takeoff'] = function(b) {
       '<div id="' + uid + 'sel-wrap">' +
         '<span id="' + uid + 'sel-label">LIVERY</span>' +
         '<select id="' + uid + 'sel">' +
-          '<option value="AIB"' + (airline==='AIB'?' selected':'') + '>AIRBUS FACTORY HOUSE</option>' +
+          '<option value="AIB"' + (airline==='AIB'?' selected':'') + '>HOUSE WHITE · FACTORY</option>' +
           '<option value="EZY"' + (airline==='EZY'?' selected':'') + '>EASYJET ORANGE</option>' +
           '<option value="AFR"' + (airline==='AFR'?' selected':'') + '>AIR FRANCE FLAGSHIP</option>' +
           '<option value="BAW"' + (airline==='BAW'?' selected':'') + '>BRITISH AIRWAYS</option>' +
@@ -1241,7 +1226,6 @@ _RENDERERS['geo_iso_takeoff'] = function(b) {
           '<option value="RYR"' + (airline==='RYR'?' selected':'') + '>RYANAIR DARK BLUE</option>' +
         '</select>' +
       '</div>' +
-      '<a id="' + uid + 'btn" href="' + radarUrl + '" target="_top">LIVE RADAR →</a>' +
     '</div>' +
 
     '<script>(function(){' +
@@ -1619,6 +1603,7 @@ _RENDERERS['geo_iso_takeoff'] = function(b) {
         'requestAnimationFrame(frame);' +
       '}' +
       'frame();' +
+      (autoNext ? 'setTimeout(function(){if(typeof window._A2UI_GO==="function")window._A2UI_GO("' + _esc(autoNext) + '");},' + autoMs + ');' : '') +
     '})();<\/script>';
 };
 
@@ -2355,4 +2340,178 @@ _RENDERERS['geo_iso_fleet'] = function(b){
       '}'+
       'loop();'+
     '})();<\/script>';
+};
+
+// ── globe_3d ───────────────────────────────────────────────────────────────────
+// Interactive spinning 3-D wireframe or earth globe on HTML5 canvas.
+// Draggable with inertia. Supports dot pins and great-circle arcs.
+// Fields:
+//   size   — diameter px (default 300)
+//   color  — accent hex (default #6366f1)
+//   speed  — auto-spin radians/frame (default 0.006)
+//   lines  — latitude line count (default 10)
+//   theme  — wire|earth (default wire)
+//   dots   — [{lat,lon,label?,color?}] pins
+//   arcs   — [{from:[lat,lon],to:[lat,lon],color?}] great-circle arcs
+_RENDERERS['globe_3d'] = function(b) {
+  var size  = b.size  || 300;
+  var color = b.color || '#6366f1';
+  var speed = b.speed !== undefined ? b.speed : 0.006;
+  var lines = b.lines || 10;
+  var theme = b.theme || 'wire';
+  var dots  = JSON.stringify(b.dots || []);
+  var arcs  = JSON.stringify(b.arcs || []);
+  var uid   = 'glb' + Math.random().toString(36).substr(2,6);
+
+  return (
+    '<div style="display:flex;justify-content:center;margin:1.2rem 0;">' +
+      '<canvas id="' + uid + '" width="' + size + '" height="' + size + '" ' +
+        'style="border-radius:50%;cursor:grab;display:block;">' +
+      '</canvas>' +
+    '</div>' +
+    '<script>(function(){' +
+      'var c=document.getElementById("' + uid + '");' +
+      'if(!c)return;' +
+      'var ctx=c.getContext("2d");' +
+      'var W=c.width,H=c.height,R=W*0.42,cx=W/2,cy=H/2;' +
+      'var COLOR="' + _esc(color) + '",THEME="' + _esc(theme) + '";' +
+      'var LINES=' + lines + ',SPEED=' + speed + ';' +
+      'var DOTS=' + dots + ',ARCS=' + arcs + ';' +
+
+      // Rotation + inertia state
+      'var ry=0,rx=0.3,vy=SPEED,vx=0;' +
+      'var drag=false,lx=0,ly=0;' +
+
+      // Mouse drag
+      'c.addEventListener("mousedown",function(e){drag=true;lx=e.clientX;ly=e.clientY;vy=0;vx=0;c.style.cursor="grabbing";});' +
+      'window.addEventListener("mouseup",function(){drag=false;c.style.cursor="grab";});' +
+      'window.addEventListener("mousemove",function(e){' +
+        'if(!drag)return;' +
+        'var dx=e.clientX-lx,dy=e.clientY-ly;' +
+        'vy=dx*0.008;vx=dy*0.008;' +
+        'ry+=vy;rx+=vx;lx=e.clientX;ly=e.clientY;' +
+      '});' +
+
+      // Touch drag
+      'var lt=null;' +
+      'c.addEventListener("touchstart",function(e){e.preventDefault();lt=e.touches[0];vy=0;vx=0;},{passive:false});' +
+      'c.addEventListener("touchmove",function(e){e.preventDefault();' +
+        'if(!lt)return;var t=e.touches[0];' +
+        'var dx=t.clientX-lt.clientX,dy=t.clientY-lt.clientY;' +
+        'vy=dx*0.008;vx=dy*0.008;ry+=vy;rx+=vx;lt=t;' +
+      '},{passive:false});' +
+      'c.addEventListener("touchend",function(){lt=null;},{passive:false});' +
+
+      // Project lat/lon → screen {x,y,z}. z>0 = front hemisphere.
+      // Convention: lat=0,lon=0 faces viewer; lat=90 = north pole up.
+      'function proj(lat,lon){' +
+        'var ph=lat*Math.PI/180,th=lon*Math.PI/180;' +
+        'var x=Math.cos(ph)*Math.sin(th),y=Math.sin(ph),z=Math.cos(ph)*Math.cos(th);' +
+        'var x1=x*Math.cos(ry)+z*Math.sin(ry),z1=-x*Math.sin(ry)+z*Math.cos(ry);' +
+        'var y2=y*Math.cos(rx)-z1*Math.sin(rx),z2=y*Math.sin(rx)+z1*Math.cos(rx);' +
+        'return{x:cx+R*x1,y:cy-R*y2,z:z2};' +
+      '}' +
+
+      // Draw a [lat,lon] polyline, skipping back-facing segments
+      'function poly(pts,stroke,alpha,lw){' +
+        'ctx.save();ctx.strokeStyle=stroke;ctx.globalAlpha=alpha;ctx.lineWidth=lw||0.7;' +
+        'ctx.beginPath();var go=false;' +
+        'for(var i=0;i<pts.length;i++){' +
+          'var p=proj(pts[i][0],pts[i][1]);' +
+          'if(p.z<0){go=false;continue;}' +
+          'if(!go){ctx.moveTo(p.x,p.y);go=true;}else{ctx.lineTo(p.x,p.y);}' +
+        '}' +
+        'ctx.stroke();ctx.restore();' +
+      '}' +
+
+      // Great-circle arc: slerp in Cartesian space, apply rotation inline
+      'function arc(from,to,col){' +
+        'var la1=from[0]*Math.PI/180,lo1=from[1]*Math.PI/180;' +
+        'var la2=to[0]*Math.PI/180,lo2=to[1]*Math.PI/180;' +
+        'var ax=Math.cos(la1)*Math.sin(lo1),ay=Math.sin(la1),az=Math.cos(la1)*Math.cos(lo1);' +
+        'var bx=Math.cos(la2)*Math.sin(lo2),by=Math.sin(la2),bz=Math.cos(la2)*Math.cos(lo2);' +
+        'ctx.save();ctx.strokeStyle=col||"#f59e0b";ctx.lineWidth=1.5;ctx.globalAlpha=0.9;' +
+        'ctx.beginPath();var go=false;' +
+        'for(var i=0;i<=60;i++){' +
+          'var t=i/60,x=ax*(1-t)+bx*t,y=ay*(1-t)+by*t,z=az*(1-t)+bz*t;' +
+          'var m=Math.sqrt(x*x+y*y+z*z);x/=m;y/=m;z/=m;' +
+          'var x1=x*Math.cos(ry)+z*Math.sin(ry),z1=-x*Math.sin(ry)+z*Math.cos(ry);' +
+          'var y2=y*Math.cos(rx)-z1*Math.sin(rx),z2=y*Math.sin(rx)+z1*Math.cos(rx);' +
+          'if(z2<0){go=false;continue;}' +
+          'var px=cx+R*x1,py=cy-R*y2;' +
+          'if(!go){ctx.moveTo(px,py);go=true;}else{ctx.lineTo(px,py);}' +
+        '}' +
+        'ctx.stroke();ctx.restore();' +
+      '}' +
+
+      // Simplified continent outlines
+      'var CONT=[' +
+        '[[73,-141],[71,-90],[61,-94],[50,-55],[44,-67],[25,-80],[15,-85],[9,-79],[25,-110],[32,-117],[49,-124],[73,-141]],' +
+        '[[-3,-78],[3,-52],[-3,-43],[-23,-43],[-34,-58],[-55,-68],[-50,-75],[-18,-70],[-3,-78]],' +
+        '[[71,28],[61,5],[43,-5],[36,5],[37,35],[48,40],[60,30],[71,28]],' +
+        '[[37,10],[37,36],[12,44],[0,42],[-5,40],[-34,26],[-34,18],[0,10],[15,-17],[37,10]],' +
+        '[[71,30],[71,140],[53,142],[25,122],[1,104],[15,50],[12,44],[37,36],[48,40],[71,30]],' +
+        '[[-18,122],[-25,114],[-38,145],[-18,148],[-12,136],[-18,122]]' +
+      '];' +
+
+      'function draw(){' +
+        'ctx.clearRect(0,0,W,H);' +
+        // Atmosphere glow
+        'var ag=ctx.createRadialGradient(cx,cy,R*0.88,cx,cy,R*1.12);' +
+        'ag.addColorStop(0,"rgba(99,102,241,0.10)");ag.addColorStop(1,"rgba(0,0,0,0)");' +
+        'ctx.beginPath();ctx.arc(cx,cy,R*1.12,0,Math.PI*2);ctx.fillStyle=ag;ctx.fill();' +
+        // Sphere base
+        'var sg=ctx.createRadialGradient(cx-R*0.3,cy-R*0.3,0,cx,cy,R);' +
+        'sg.addColorStop(0,"rgba(25,25,55,0.95)");sg.addColorStop(1,"rgba(5,5,18,0.98)");' +
+        'ctx.beginPath();ctx.arc(cx,cy,R,0,Math.PI*2);ctx.fillStyle=sg;ctx.fill();' +
+        // Clip all geo content to sphere
+        'ctx.save();ctx.beginPath();ctx.arc(cx,cy,R,0,Math.PI*2);ctx.clip();' +
+        // Latitude lines
+        'for(var i=1;i<LINES;i++){' +
+          'var lat=90-(180*i/LINES),pts=[];' +
+          'for(var j=0;j<=120;j++){pts.push([lat,j*3-180]);}' +
+          'poly(pts,COLOR,0.18,0.6);' +
+        '}' +
+        // Longitude lines
+        'for(var i=0;i<LINES*2;i++){' +
+          'var lon=(i*360/(LINES*2))-180,pts=[];' +
+          'for(var j=0;j<=60;j++){pts.push([-90+j*3,lon]);}' +
+          'poly(pts,COLOR,0.18,0.6);' +
+        '}' +
+        // Continent outlines (earth theme)
+        'if(THEME==="earth"){' +
+          'for(var ci=0;ci<CONT.length;ci++){poly(CONT[ci],"#4ade80",0.75,1.3);}' +
+        '}' +
+        // Arcs
+        'for(var ai=0;ai<ARCS.length;ai++){arc(ARCS[ai].from,ARCS[ai].to,ARCS[ai].color);}' +
+        'ctx.restore();' +
+        // Dot pins — drawn after clip restore so labels aren't cut
+        'for(var di=0;di<DOTS.length;di++){' +
+          'var d=DOTS[di],p=proj(d.lat,d.lon);' +
+          'if(p.z<0.05)continue;' +
+          'ctx.beginPath();ctx.arc(p.x,p.y,6,0,Math.PI*2);' +
+          'ctx.strokeStyle=d.color||"#f59e0b";ctx.lineWidth=1;ctx.globalAlpha=0.35;ctx.stroke();ctx.globalAlpha=1;' +
+          'ctx.beginPath();ctx.arc(p.x,p.y,3.5,0,Math.PI*2);' +
+          'ctx.fillStyle=d.color||"#f59e0b";ctx.fill();' +
+          'ctx.strokeStyle="#fff";ctx.lineWidth=1.2;ctx.stroke();' +
+          'if(d.label){ctx.fillStyle="#fff";ctx.font="bold 11px sans-serif";ctx.globalAlpha=0.9;ctx.fillText(d.label,p.x+8,p.y+4);ctx.globalAlpha=1;}' +
+        '}' +
+        // Specular highlight
+        'var hl=ctx.createRadialGradient(cx-R*0.38,cy-R*0.38,0,cx-R*0.38,cy-R*0.38,R*0.55);' +
+        'hl.addColorStop(0,"rgba(255,255,255,0.13)");hl.addColorStop(1,"rgba(255,255,255,0)");' +
+        'ctx.beginPath();ctx.arc(cx,cy,R,0,Math.PI*2);ctx.fillStyle=hl;ctx.fill();' +
+      '}' +
+
+      // Animation loop: inertia decay → resume auto-spin
+      'function loop(){' +
+        'if(!drag){' +
+          'ry+=vy;rx+=vx;' +
+          'vy=vy*0.97+(Math.abs(vy)<0.0005?SPEED:0);' +
+          'vx*=0.95;' +
+        '}' +
+        'draw();requestAnimationFrame(loop);' +
+      '}' +
+      'loop();' +
+    '})();<\/script>'
+  );
 };

@@ -4,7 +4,8 @@
   "exceptionLogging": "STACKDRIVER",
   "runtimeVersion": "V8",
   "oauthScopes": [
-    "https://www.googleapis.com/auth/script.external_request"
+    "https://www.googleapis.com/auth/script.external_request",
+    "https://www.googleapis.com/auth/datastore"
   ],
   "webapp": {
     "executeAs": "USER_DEPLOYING",

@@ -29,6 +29,12 @@ _RENDERERS['airspace_command_deck'] = function(b) {
   var fullscreen    = b.height === 'fullscreen';
   var h             = fullscreen ? '100vh' : (b.height || 520) + 'px';
   var zoom          = b.zoom           || 35;
+  var zoomIn        = b.zoom_in        || 0;
+  var zoomPeriod    = b.zoom_period    || 20000;
+  var spotlight     = b.spotlight      || false;
+  var splDwell      = b.spotlight_dwell || 2000;
+  var splIntro      = b.spotlight_intro || 3500;  // ms of wide runway view before first lock
+  var splCount      = b.spotlight_count || 10;
   var locked        = b.lockedCallsign || '';
   var panelType     = b.panel_type     || '';
   var panelTitle    = b.panel_title    || '';
@@ -38,12 +44,17 @@ _RENDERERS['airspace_command_deck'] = function(b) {
   var chyronSub    = b.chyron_subtitle || 'Toulouse Blagnac Approach Control';
   var tickerText   = b.ticker_text  || '✈ TOULOUSE AIRSPACE ✈';
   var tickerSpeed  = b.ticker_speed || 45;
+  var titleSize    = b.title_size   || (fullscreen ? 'clamp(1rem,2.2vw,1.4rem)' : 'clamp(0.75rem,1.8vw,1rem)');
+  var subSize      = b.sub_size     || (fullscreen ? '0.82rem' : '0.65rem');
+  var tickerSize   = b.ticker_size  || (fullscreen ? '0.88rem' : '0.72rem');
+  var tickerH      = fullscreen ? '44px' : '32px';
   var showSlate    = b.show_slate   || false;
   var slateTitle   = b.slate_title  || 'CALIBRATING';
   var slateSub     = b.slate_description || 'Booting radar...';
-  var pollQ        = b.poll_question || '';
-  var pollOpts     = b.poll_options  || [];
-  var pollVals     = b.poll_values   || [];
+  var pollQ        = b.poll_question    || '';
+  var pollQid      = b.poll_question_id || '';
+  var pollOpts     = b.poll_options     || [];
+  var pollVals     = b.poll_values      || [];
 
   // ── Simulated flights ─────────────────────────────────────────────────────
   // Each flight: {callsign, type, alt ft, spd kt, bearing° from LFBO, dist nm, status, colour}
@@ -83,32 +94,102 @@ _RENDERERS['airspace_command_deck'] = function(b) {
       '</div>';
   }
 
-  // ── Poll overlay (if poll_question set) ──────────────────────────────────
+  // ── Poll overlay ──────────────────────────────────────────────────────────
+  // Live interactive mode when poll_question_id is set; falls back to static display.
   var pollHtml = '';
   if (pollQ && pollOpts.length > 0) {
-    var totalVotes = 0;
-    for (var pi = 0; pi < pollVals.length; pi++) totalVotes += (pollVals[pi] || 0);
-    if (totalVotes === 0) totalVotes = 1;
-    var pollRows = '';
-    for (var pi = 0; pi < pollOpts.length; pi++) {
-      var pct = Math.round(((pollVals[pi] || 0) / totalVotes) * 100);
-      pollRows +=
-        '<div style="margin-bottom:10px;">' +
-        '<div style="font-size:0.7rem;color:rgba(255,255,255,0.75);margin-bottom:4px;">' + _esc(pollOpts[pi]) + '</div>' +
-        '<div style="display:flex;align-items:center;gap:8px;">' +
-        '<div style="flex:1;height:6px;background:rgba(255,255,255,0.08);border-radius:3px;overflow:hidden;">' +
-        '<div style="width:' + pct + '%;height:100%;background:#00f2ff;border-radius:3px;box-shadow:0 0 8px #00f2ff88;"></div></div>' +
-        '<span style="font-size:0.65rem;color:#00f2ff;width:28px;text-align:right;">' + pct + '%</span>' +
-        '</div></div>';
+    if (pollQid) {
+      // ── Interactive live poll (Firestore-backed) ─────────────────────────
+      var puid = 'atcpl' + uid;
+      var pollBtns = '', pollBars = '';
+      for (var pi = 0; pi < pollOpts.length; pi++) {
+        var opt = pollOpts[pi];
+        var val   = (typeof opt === 'object') ? (opt.value || '') : opt;
+        var lbl   = (typeof opt === 'object') ? (opt.label || opt.value || '') : opt;
+        var emoji = (typeof opt === 'object') ? (opt.emoji || '') : '';
+        pollBtns +=
+          '<button onclick="window[\'' + puid + '\'].vote(\'' + _esc(val) + '\')" ' +
+          'style="flex:1;padding:9px 6px;border:1px solid rgba(0,242,255,0.35);border-radius:6px;' +
+          'background:transparent;color:rgba(255,255,255,0.85);cursor:pointer;' +
+          'font-size:0.7rem;font-weight:700;font-family:\'Courier New\',monospace;' +
+          'letter-spacing:0.06em;transition:all 0.15s;" ' +
+          'onmouseover="this.style.background=\'rgba(0,242,255,0.12)\'" ' +
+          'onmouseout="this.style.background=\'transparent\'">' +
+          _esc(emoji) + ' ' + _esc(lbl) + '</button>';
+        pollBars +=
+          '<div style="margin:5px 0;">' +
+          '<div style="display:flex;justify-content:space-between;font-size:0.58rem;color:rgba(255,255,255,0.45);margin-bottom:2px;">' +
+          '<span>' + _esc(emoji) + ' ' + _esc(lbl) + '</span>' +
+          '<span id="' + puid + 'n_' + _esc(val) + '">—</span></div>' +
+          '<div style="background:rgba(255,255,255,0.07);border-radius:100px;height:4px;">' +
+          '<div id="' + puid + 'b_' + _esc(val) + '" style="height:100%;border-radius:100px;' +
+          'background:#00f2ff;width:0%;transition:width 0.45s;box-shadow:0 0 6px #00f2ff66;"></div></div></div>';
+      }
+      pollHtml =
+        '<div style="position:absolute;right:12px;bottom:' + tickerH + ';margin-bottom:8px;width:258px;' +
+        'background:rgba(0,6,18,0.92);border:1px solid rgba(0,242,255,0.3);border-radius:8px;' +
+        'padding:14px;backdrop-filter:blur(10px);font-family:\'Courier New\',monospace;">' +
+        '<div style="font-size:0.58rem;color:#00f2ff;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:10px;">' + _esc(pollQ) + '</div>' +
+        '<div id="' + puid + 'btns" style="display:flex;gap:6px;">' + pollBtns + '</div>' +
+        '<div id="' + puid + 'results" style="display:none;margin-top:8px;">' + pollBars +
+        '<div id="' + puid + 'total" style="font-size:0.53rem;color:rgba(255,255,255,0.22);text-align:right;margin-top:6px;"></div>' +
+        '</div></div>' +
+        '<script>(function(){' +
+        'var voted=false;' +
+        'window["' + puid + '"]={' +
+        'vote:function(opt){' +
+          'if(voted)return;voted=true;' +
+          'document.getElementById("' + puid + 'btns").style.opacity="0.35";' +
+          'document.getElementById("' + puid + 'btns").style.pointerEvents="none";' +
+          'if(typeof google!=="undefined"&&google.script){' +
+            'google.script.run' +
+              '.withSuccessHandler(function(t){window["' + puid + '"].show(t);})' +
+              '.withFailureHandler(function(){})' +
+              '.submitPollVote("' + _esc(pollQid) + '",opt);' +
+          '}' +
+        '},' +
+        'show:function(tally){' +
+          'tally=tally||{};' +
+          'var keys=Object.keys(tally);' +
+          'var total=keys.reduce(function(s,k){return s+(tally[k]||0);},0);' +
+          'keys.forEach(function(k){' +
+            'var n=document.getElementById("' + puid + 'n_"+k);' +
+            'var bar=document.getElementById("' + puid + 'b_"+k);' +
+            'if(n)n.textContent=tally[k]||0;' +
+            'if(bar)bar.style.width=(total?Math.round((tally[k]||0)/total*100):0)+"%";' +
+          '});' +
+          'var t=document.getElementById("' + puid + 'total");' +
+          'if(t)t.textContent=total>0?total+" vote"+(total!==1?"s":"")+" total":"Thanks for voting!";' +
+          'document.getElementById("' + puid + 'btns").style.display="none";' +
+          'document.getElementById("' + puid + 'results").style.display="block";' +
+        '}}' +
+        '})();<\/script>';
+    } else {
+      // ── Static display poll (pre-computed percentages) ───────────────────
+      var totalVotes = 0;
+      for (var pi = 0; pi < pollVals.length; pi++) totalVotes += (pollVals[pi] || 0);
+      if (totalVotes === 0) totalVotes = 1;
+      var pollRows = '';
+      for (var pi = 0; pi < pollOpts.length; pi++) {
+        var pct = Math.round(((pollVals[pi] || 0) / totalVotes) * 100);
+        pollRows +=
+          '<div style="margin-bottom:10px;">' +
+          '<div style="font-size:0.7rem;color:rgba(255,255,255,0.75);margin-bottom:4px;">' + _esc(pollOpts[pi]) + '</div>' +
+          '<div style="display:flex;align-items:center;gap:8px;">' +
+          '<div style="flex:1;height:6px;background:rgba(255,255,255,0.08);border-radius:3px;overflow:hidden;">' +
+          '<div style="width:' + pct + '%;height:100%;background:#00f2ff;border-radius:3px;box-shadow:0 0 8px #00f2ff88;"></div></div>' +
+          '<span style="font-size:0.65rem;color:#00f2ff;width:28px;text-align:right;">' + pct + '%</span>' +
+          '</div></div>';
+      }
+      pollHtml =
+        '<div style="position:absolute;right:12px;bottom:' + tickerH + ';margin-bottom:8px;width:258px;' +
+        'background:rgba(0,8,20,0.88);border:1px solid rgba(0,242,255,0.25);border-radius:8px;' +
+        'padding:14px;backdrop-filter:blur(6px);font-family:\'Courier New\',monospace;">' +
+        '<div style="font-size:0.65rem;color:#00f2ff;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">' + _esc(pollQ) + '</div>' +
+        pollRows +
+        '<div style="font-size:0.6rem;color:rgba(255,255,255,0.25);margin-top:8px;">' + totalVotes + ' votes</div>' +
+        '</div>';
     }
-    pollHtml =
-      '<div style="position:absolute;right:12px;bottom:44px;width:280px;' +
-      'background:rgba(0,8,20,0.88);border:1px solid rgba(0,242,255,0.25);border-radius:8px;' +
-      'padding:14px;backdrop-filter:blur(6px);">' +
-      '<div style="font-size:0.65rem;color:#00f2ff;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">' + _esc(pollQ) + '</div>' +
-      pollRows +
-      '<div style="font-size:0.6rem;color:rgba(255,255,255,0.25);margin-top:8px;">' + totalVotes + ' votes</div>' +
-      '</div>';
   }
 
   // ── Supervisor panel ──────────────────────────────────────────────────────
@@ -157,8 +238,8 @@ _RENDERERS['airspace_command_deck'] = function(b) {
     '<div style="position:absolute;top:14px;left:14px;' +
       'background:rgba(0,0,0,0.6);border-left:2px solid #00f2ff;padding:8px 14px;border-radius:0 6px 6px 0;' +
       'backdrop-filter:blur(4px);">' +
-      '<div style="font-size:clamp(0.75rem,1.8vw,1rem);font-weight:700;color:#00f2ff;letter-spacing:0.08em;text-transform:uppercase;">' + _esc(chyronTitle) + '</div>' +
-      '<div id="' + uid + 'csub" style="font-size:0.65rem;color:rgba(255,255,255,0.55);letter-spacing:0.04em;margin-top:2px;">' + _esc(chyronSub) + '</div>' +
+      '<div style="font-size:' + titleSize + ';font-weight:700;color:#00f2ff;letter-spacing:0.08em;text-transform:uppercase;">' + _esc(chyronTitle) + '</div>' +
+      '<div id="' + uid + 'csub" style="font-size:' + subSize + ';color:rgba(255,255,255,0.55);letter-spacing:0.04em;margin-top:2px;">' + _esc(chyronSub) + '</div>' +
     '</div>' +
 
     // Weather panel + data status indicator — top right
@@ -187,13 +268,13 @@ _RENDERERS['airspace_command_deck'] = function(b) {
     pollHtml +
 
     // Ticker — bottom bar
-    '<div style="position:absolute;bottom:0;left:0;right:0;height:32px;' +
-      'background:rgba(0,0,0,0.85);border-top:1px solid rgba(0,242,255,0.15);' +
+    '<div style="position:absolute;bottom:0;left:0;right:0;height:' + tickerH + ';' +
+      'background:rgba(0,0,0,0.9);border-top:1px solid rgba(0,242,255,0.2);' +
       'overflow:hidden;display:flex;align-items:center;">' +
-      '<div style="flex-shrink:0;padding:0 10px;font-size:0.58rem;color:#00f2ff;' +
-        'letter-spacing:0.12em;border-right:1px solid rgba(0,242,255,0.2);white-space:nowrap;">LFBO ATC</div>' +
+      '<div style="flex-shrink:0;padding:0 12px;font-size:' + (fullscreen ? '0.72rem' : '0.58rem') + ';color:#00f2ff;' +
+        'font-weight:700;letter-spacing:0.14em;border-right:1px solid rgba(0,242,255,0.25);white-space:nowrap;">LFBO ATC</div>' +
       '<div style="overflow:hidden;flex:1;">' +
-        '<div id="' + uid + 'tkr" style="white-space:nowrap;font-size:0.62rem;color:rgba(255,255,255,0.7);' +
+        '<div id="' + uid + 'tkr" style="white-space:nowrap;font-size:' + tickerSize + ';font-weight:700;color:rgba(255,255,255,0.88);' +
           'animation:' + uid + 'tk ' + tickerDur + ' linear infinite;">' +
           _esc(tickerText) + ' &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + _esc(tickerText) +
         '</div>' +
@@ -208,11 +289,31 @@ _RENDERERS['airspace_command_deck'] = function(b) {
       'c.width=c.offsetWidth||window.innerWidth||700;c.height=c.offsetHeight||window.innerHeight||520;' +
       'var W=c.width,H=c.height;' +
       'var CX=W/2,CY=H*0.48;' +
-      'var ZOOM=' + zoom + ';' + // nm radius visible
-      'var NM=Math.min(W,H)*0.42/ZOOM;' + // pixels per nm
-      'var LOCKED="' + _esc(locked) + '";' +
+      'var ZOOM_WIDE=' + zoom + ';' +
+      (spotlight
+        ? (function(){
+            // Sort server-side — embed as pure integer arrays (zero string-encoding risk)
+            var orig = JSON.parse(FLIGHTS);
+            var fl = orig.slice().sort(function(a,b){return a.dist-b.dist;}).slice(0, splCount);
+            fl.sort(function(a,b){return a.brg-b.brg;});
+            // Map each sorted flight to its index in the original FLIGHTS array
+            var idxArr = fl.map(function(f){
+              for(var i=0;i<orig.length;i++){if(orig[i].c===f.c)return i;}
+              return 0;
+            });
+            var distArr = fl.map(function(f){return f.dist;});
+            return 'var ZOOM=4;var NM=Math.min(W,H)*0.42/ZOOM;' + // start zoomed into runway
+                   'var LOCKED=null;';
+          })()
+        : 'var ZOOM_TIGHT=' + (zoomIn || zoom) + ';' +
+          'var ZOOM_PERIOD=' + zoomPeriod + ';' +
+          'var _ZOOM_ANIM=' + (zoomIn ? 'true' : 'false') + ';' +
+          'var _ZOOM_T0=Date.now()-ZOOM_PERIOD/2;' +
+          'var ZOOM=_ZOOM_ANIM?ZOOM_TIGHT:ZOOM_WIDE;' +
+          'var NM=Math.min(W,H)*0.42/ZOOM;' +
+          'var LOCKED="' + _esc(locked) + '";'
+      ) +
       'var FLIGHTS=' + FLIGHTS + ';' +
-      // Animate each flight toward LFBO slowly (approach speed ~4nm/min sim)
       'FLIGHTS.forEach(function(f){' +
         'f.px=CX+Math.sin(f.brg*Math.PI/180)*f.dist*NM;' +
         'f.py=CY-Math.cos(f.brg*Math.PI/180)*f.dist*NM;' +
@@ -221,6 +322,40 @@ _RENDERERS['airspace_command_deck'] = function(b) {
         'f.vy= Math.cos(f.brg*Math.PI/180)*0.12;' +
         'f.trail=[];f.tick=0;' +
       '});' +
+      // Spotlight: drive rotation with setInterval (avoids per-frame index crash risk)
+      (spotlight
+        ? (function(){
+            // Build callsigns via String.fromCharCode — zero string-encoding risk
+            var orig = JSON.parse(FLIGHTS);
+            var fl = orig.slice().sort(function(a,b){return a.dist-b.dist;}).slice(0,splCount);
+            fl.sort(function(a,b){return a.brg-b.brg;});
+            var distArr = fl.map(function(f){return f.dist;});
+            var codeArr = fl.map(function(f){
+              return 'String.fromCharCode(' + f.c.split('').map(function(ch){return ch.charCodeAt(0);}).join(',') + ')';
+            });
+            return 'var _SPL_CALLS=[' + codeArr.join(',') + '];' +
+                   'var _SPL_DISTS=[' + distArr.join(',') + '];' +
+                   'var _SPL_I=0;' +
+                   // Runway intro: wide view for splIntro ms, then engage spotlight cycling
+                   'LOCKED=null;' +
+                   'setTimeout(function(){' +
+                     'LOCKED=_SPL_CALLS[0];' +
+                     'setInterval(function(){' +
+                       '_SPL_I=(_SPL_I+1)%_SPL_CALLS.length;' +
+                       'LOCKED=_SPL_CALLS[_SPL_I];' +
+                     '},' + splDwell + ');' +
+                   '},' + splIntro + ');' +
+                   // Click-to-lock overrides auto cycling
+                   'c.onclick=function(e){' +
+                     'var r=c.getBoundingClientRect();' +
+                     'var mx=(e.clientX-r.left)*(c.width/r.width),my=(e.clientY-r.top)*(c.height/r.height);' +
+                     'var best=null,bd=50;' +
+                     'for(var _i=0;_i<FLIGHTS.length;_i++){var _f=FLIGHTS[_i],_d=Math.sqrt((_f.px-mx)*(_f.px-mx)+(_f.py-my)*(_f.py-my));if(_d<bd){bd=_d;best=_f;}}' +
+                     'if(best)LOCKED=best.c;' +
+                   '};';
+          })()
+        : ''
+      ) +
       'var sweep=0;var isoYaw=0;' +
       'var blink=true;setInterval(function(){blink=!blink;},800);' +
 
@@ -443,18 +578,31 @@ _RENDERERS['airspace_command_deck'] = function(b) {
           'if(f.lat===null||f.lon===null)return;' +
           'var pos=llToCanvas(f.lat,f.lon);' +
           'var dx=pos.x-CX,dy=pos.y-CY;' +
-          'if(Math.sqrt(dx*dx+dy*dy)>ZOOM*NM*1.05)return;' + // clip to zoom
+          // clip in NM units so intro zoom-in (NM changes) never discards flights that are in range
+          'if(Math.sqrt(dx*dx+dy*dy)/NM>ZOOM_WIDE*1.1)return;' +
           'var is7700=f.squawk==="7700",is7600=f.squawk==="7600";' +
           'FLIGHTS.push({' +
             'c:f.callsign,t:"ADS-B",' +
             'alt:f.alt_ft,spd:f.spd_kt,hdg:f.hdg,' +
+            'lat:f.lat,lon:f.lon,' +
             'px:pos.x,py:pos.y,' +
-            'live:true,' + // skip simulated position update each frame
+            'live:true,' + // reproject each frame via llToCanvas so zoom animation repositions them
             'status:f.alt_ft<2000?"FINAL":f.alt_ft<5000?"APPROACH":f.alt_ft<8000?"DESCENT":"EN-ROUTE",' +
             'col:f.callsign===LOCKED?"#00f2ff":is7700?"#ff3b30":is7600?"#ff9f0a":"#ffffff",' +
             'squawk:f.squawk,trail:[],tick:0' +
           '});' +
         '});' +
+        // When live data arrives with spotlight active, cycle through 10 closest real callsigns
+        'if(typeof _SPL_CALLS!=="undefined"&&FLIGHTS.length>0){' +
+          'var _sorted=FLIGHTS.slice().sort(function(a,b){' +
+            'var da=Math.sqrt((a.px-CX)*(a.px-CX)+(a.py-CY)*(a.py-CY));' +
+            'var db=Math.sqrt((b.px-CX)*(b.px-CX)+(b.py-CY)*(b.py-CY));' +
+            'return da-db;' +
+          '});' +
+          '_SPL_CALLS=_sorted.slice(0,10).map(function(f){return f.c;});' +
+          '_SPL_I=Math.min(_SPL_I||0,_SPL_CALLS.length-1);' +
+          'if(!LOCKED||FLIGHTS.every(function(f){return f.c!==LOCKED;})){LOCKED=_SPL_CALLS[0];}' +
+        '}' +
         'setDataStatus(FLIGHTS.length>0,FLIGHTS.length);' +
       '}' +
 
@@ -548,6 +696,24 @@ _RENDERERS['airspace_command_deck'] = function(b) {
       '}' +
 
       'function frame(){' +
+        'requestAnimationFrame(frame);' +
+        // Resize canvas if it was initialised while hidden (slide was display:none)
+        'var _cw=c.offsetWidth||window.innerWidth||700,_ch=c.offsetHeight||window.innerHeight||520;' +
+        'if(_cw!==c.width||_ch!==c.height){c.width=_cw;c.height=_ch;W=_cw;H=_ch;CX=W/2;CY=H*0.48;}' +
+        (spotlight
+          ? // zoom to 30% wider than locked flight's live distance, min 3nm, fallback to wide
+            'var _lf=null;for(var _li=0;_li<FLIGHTS.length;_li++){if(FLIGHTS[_li].c===LOCKED){_lf=FLIGHTS[_li];break;}}' +
+            'var _sd=_lf?Math.sqrt((_lf.px-CX)*(_lf.px-CX)+(_lf.py-CY)*(_lf.py-CY))/NM:ZOOM_WIDE;' +
+            'var _zTgt=LOCKED&&_lf?Math.max(3,_sd*1.3):ZOOM_WIDE;' +
+            'ZOOM+=(_zTgt-ZOOM)*0.08;' +
+            'NM=Math.min(W,H)*0.42/ZOOM;'
+          : 'if(_ZOOM_ANIM){' +
+              'var _t=((Date.now()-_ZOOM_T0)%ZOOM_PERIOD)/ZOOM_PERIOD;' +
+              'var _e=(1-Math.cos(Math.PI*2*_t))/2;' +
+              'ZOOM=ZOOM_WIDE-(ZOOM_WIDE-ZOOM_TIGHT)*_e;' +
+              'NM=Math.min(W,H)*0.42/ZOOM;' +
+            '}'
+        ) +
         'ctx.clearRect(0,0,W,H);' +
 
         // Background gradient
@@ -614,41 +780,81 @@ _RENDERERS['airspace_command_deck'] = function(b) {
 
         // Flights — live positions from adsb_feed; simulated positions animate toward airport
         'FLIGHTS.forEach(function(f){' +
-          'if(!f.live){' +
+          'if(f.live){' +
+            // Reproject from lat/lon so zoom animation repositions live aircraft correctly
+            'var _lp=llToCanvas(f.lat,f.lon);f.px=_lp.x;f.py=_lp.y;' +
+          '}else{' +
             'f.dist=Math.max(0.5,f.dist-0.015);' +
             'f.px=CX+Math.sin(f.brg*Math.PI/180)*f.dist*NM;' +
             'f.py=CY-Math.cos(f.brg*Math.PI/180)*f.dist*NM;' +
           '}' +
-          // Trail
-          'f.tick++;if(f.tick%8===0){f.trail.push({x:f.px,y:f.py});if(f.trail.length>6)f.trail.shift();}' +
+          // Trail — lat/lon for live (reprojects with zoom), dist+brg for sim
+          'f.tick++;if(f.tick%8===0){' +
+            'f.trail.push(f.live?{lat:f.lat,lon:f.lon}:{d:f.dist,b:f.brg});' +
+            'if(f.trail.length>6)f.trail.shift();' +
+          '}' +
           'for(var ti=0;ti<f.trail.length;ti++){' +
+            'var _td=f.trail[ti];var _tp;' +
+            'if(_td.lat!==undefined){_tp=llToCanvas(_td.lat,_td.lon);}' +
+            'else{_tp={x:CX+Math.sin(_td.b*Math.PI/180)*_td.d*NM,y:CY-Math.cos(_td.b*Math.PI/180)*_td.d*NM};}' +
+            'var _tx=_tp.x,_ty=_tp.y;' +
             'var a=(ti+1)/f.trail.length*0.35;' +
-            'ctx.beginPath();ctx.arc(f.trail[ti].x,f.trail[ti].y,1,0,Math.PI*2);' +
+            'ctx.beginPath();ctx.arc(_tx,_ty,1,0,Math.PI*2);' +
             'ctx.fillStyle="rgba(0,242,255,"+a+")";ctx.fill();' +
           '}' +
-          // Reticle for locked callsign
+          // Reticle for locked callsign — large pulsing ring so it's unmissable
           'var isLocked=LOCKED&&f.c===LOCKED;' +
           'if(isLocked){' +
+            'var _pulse=0.5+0.5*Math.sin(Date.now()/200);' + // 0..1 pulse
+            'var _r1=28+_pulse*14;' + // 28–42px
             'ctx.save();ctx.translate(f.px,f.py);' +
-            'var rot=(Date.now()/1000)%(Math.PI*2);ctx.rotate(rot);' +
-            'ctx.strokeStyle="#00f2ff";ctx.lineWidth=1;ctx.setLineDash([3,3]);' +
-            'ctx.beginPath();ctx.arc(0,0,22,0,Math.PI*2);ctx.stroke();' +
-            'ctx.setLineDash([]);ctx.restore();' +
+            'ctx.strokeStyle="rgba(0,242,255,"+(0.9-_pulse*0.3)+")";ctx.lineWidth=2;' +
+            'ctx.beginPath();ctx.arc(0,0,_r1,0,Math.PI*2);ctx.stroke();' +
+            'ctx.strokeStyle="rgba(0,242,255,0.25)";ctx.lineWidth=1;' +
+            'ctx.beginPath();ctx.arc(0,0,_r1+10,0,Math.PI*2);ctx.stroke();' +
+            'ctx.restore();' +
           '}' +
           // Aircraft silhouette (top-down plan view, oriented by heading)
           'if(blink||isLocked){' +
             'var fc=isLocked?"#00f2ff":f.col;' +
-            'drawPlane(ctx,f.px,f.py,f.hdg||0,isLocked?5.5:3.2,fc,isLocked);' +
+            'var _ps=Math.max(3.5,4.5*Math.sqrt(ZOOM_WIDE/ZOOM));' +
+            'drawPlane(ctx,f.px,f.py,f.hdg||0,isLocked?_ps*1.6:_ps,fc,isLocked);' +
           '}' +
-          // Labels: callsign + FL + speed + airline
-          'var lx=f.px+14,ly=f.py-4;' +
+          // Labels: rich card for spotlight/locked, compact otherwise
           'var al=getAL(f.c);' +
-          'ctx.fillStyle=isLocked?"#00f2ff":f.col;' +
-          'ctx.font=(isLocked?"bold ":"")+"9px \'Courier New\'";ctx.textAlign="left";' +
-          'ctx.fillText(f.c,lx,ly);' +
-          'ctx.fillStyle="rgba(255,255,255,0.45)";ctx.font="8px \'Courier New\'";' +
-          'ctx.fillText("FL"+Math.round((f.alt||0)/100)+"  "+(f.spd||0)+"kt",lx,ly+10);' +
-          'if(al.n){ctx.fillStyle="rgba(255,255,255,0.3)";ctx.font="7.5px \'Courier New\'";ctx.fillText(al.n,lx,ly+20);}' +
+          'if(isLocked){' +
+            'var _cw=168,_ch=72;' +
+            'var _cx=f.px+20,_cy=f.py-40;' +
+            'if(_cx+_cw>W-8)_cx=f.px-_cw-12;' +
+            'if(_cy<8)_cy=f.py+12;' +
+            'ctx.save();' +
+            'ctx.fillStyle="rgba(0,8,24,0.88)";ctx.strokeStyle="#00f2ff";ctx.lineWidth=1.2;' +
+            'ctx.shadowBlur=10;ctx.shadowColor="rgba(0,242,255,0.35)";' +
+            'ctx.beginPath();ctx.roundRect(_cx,_cy,_cw,_ch,5);ctx.fill();ctx.stroke();' +
+            'ctx.shadowBlur=0;' +
+            // callsign large
+            'ctx.fillStyle="#00f2ff";ctx.font="bold 13px \'Courier New\'";ctx.textAlign="left";' +
+            'ctx.fillText(f.c,_cx+8,_cy+18);' +
+            // aircraft type top-right
+            'ctx.fillStyle="rgba(0,242,255,0.5)";ctx.font="9px \'Courier New\'";ctx.textAlign="right";' +
+            'ctx.fillText(f.t||"",_cx+_cw-8,_cy+18);' +
+            // airline name
+            'if(al.n){ctx.fillStyle="rgba(255,255,255,0.65)";ctx.font="9px \'Courier New\'";ctx.textAlign="left";ctx.fillText(al.n,_cx+8,_cy+32);}' +
+            // FL + speed
+            'ctx.fillStyle="rgba(0,242,255,0.8)";ctx.font="10px \'Courier New\'";' +
+            'ctx.fillText("FL"+Math.round((f.alt||0)/100)+"  ▸  "+(f.spd||0)+"kt",_cx+8,_cy+48);' +
+            // status bar
+            'ctx.fillStyle="#00ff41";ctx.font="bold 8px \'Courier New\'";' +
+            'ctx.fillText(f.status||"",_cx+8,_cy+64);' +
+            'ctx.restore();' +
+          '}else{' +
+            'var lx=f.px+14,ly=f.py-4;' +
+            'ctx.fillStyle=f.col;ctx.font="9px \'Courier New\'";ctx.textAlign="left";' +
+            'ctx.fillText(f.c,lx,ly);' +
+            'ctx.fillStyle="rgba(255,255,255,0.45)";ctx.font="8px \'Courier New\'";' +
+            'ctx.fillText("FL"+Math.round((f.alt||0)/100)+"  "+(f.spd||0)+"kt",lx,ly+10);' +
+            'if(al.n){ctx.fillStyle="rgba(255,255,255,0.3)";ctx.font="7.5px \'Courier New\'";ctx.fillText(al.n,lx,ly+20);}' +
+          '}' +
         '});' +
 
         // Separation conflict vectors (O(N²), amber dashed lines + badge)
@@ -657,16 +863,18 @@ _RENDERERS['airspace_command_deck'] = function(b) {
         // Country boundary overlay (subtle, helps orient position within FIR)
         'drawCountryOverlay(ctx);' +
 
-        // Overlay corner — mode / count label
+        // Overlay corner — mode / count label + zoom readout
         'ctx.fillStyle="rgba(0,242,255,0.15)";ctx.font="8px \'Courier New\'";ctx.textAlign="right";' +
         'ctx.fillText(FLIGHTS.length + " TFC · RWY 32L/R ACTIVE",W-12,H-38);' +
+        // Debug readout top-left — visible callsign + zoom so any screenshot confirms state
+        'ctx.fillStyle="rgba(0,242,255,0.55)";ctx.font="9px \'Courier New\'";ctx.textAlign="left";' +
+        'ctx.fillText((LOCKED||"--")+" Z:"+Math.round(ZOOM)+"nm",12,16);' +
 
         // Minimap inset — country shape + TMA extent circle
         'drawMiniMap(ctx);' +
 
         'isoYaw+=0.008;' +
         'updateFlightList();' +
-        'requestAnimationFrame(frame);' +
       '}' +
       'frame();' +
     '})();<\/script>' +
@@ -703,16 +911,18 @@ _RENDERERS['playbook'] = function(b) {
       content + '</div>';
   });
 
-  // Nav pill buttons
+  // Nav pill buttons — solid fill style, per-slide accent when active
   var navBtns = '';
   slides.forEach(function(slide, idx) {
-    var sid = _esc(slide.id || String(idx));
+    var sid   = _esc(slide.id || String(idx));
+    var sacc  = _esc(slide.accent || '#00f2ff');
     navBtns +=
       '<button id="' + uid + 'n_' + sid + '" ' +
+      'data-acc="' + sacc + '" ' +
       'onclick="' + uid + 'go(\'' + sid + '\')" ' +
-      'style="font-family:\'Courier New\',monospace;font-size:0.75rem;padding:6px 14px;' +
-      'border-radius:6px;border:1px solid rgba(255,255,255,0.1);background:transparent;' +
-      'color:rgba(255,255,255,0.5);cursor:pointer;white-space:nowrap;transition:all 0.15s;">' +
+      'style="font-family:\'Courier New\',monospace;font-size:0.72rem;font-weight:700;padding:9px 20px;' +
+      'border-radius:4px;border:none;background:rgba(255,255,255,0.06);' +
+      'color:rgba(255,255,255,0.4);cursor:pointer;white-space:nowrap;letter-spacing:0.1em;transition:all 0.15s;">' +
       _esc(slide.label || slide.id || String(idx)) + '</button>';
   });
 
@@ -737,22 +947,351 @@ _RENDERERS['playbook'] = function(b) {
     'border-radius:10px;padding:8px 14px;backdrop-filter:blur(12px);">' +
     navBtns + '</div>' +
     '<script>(function(){' +
+    // duration/next map for auto-advance
+    'var _dur=' + JSON.stringify((function() {
+      var d = {};
+      slides.forEach(function(s) { if (s.duration) d[s.id || ''] = s.duration; });
+      return d;
+    })()) + ';' +
+    'var _nxt=' + JSON.stringify((function() {
+      var n = {};
+      slides.forEach(function(s, i) {
+        var nextId = s.next || (slides[(i + 1) % slides.length] || {}).id || '0';
+        n[s.id || ''] = nextId;
+      });
+      return n;
+    })()) + ';' +
+    'var _tmr=null;' +
     'window.' + uid + 'go=function(id){' +
+      'if(_tmr)clearTimeout(_tmr);' +
       'document.querySelectorAll(".' + uid + 'sl").forEach(function(e){e.style.display="none";});' +
       'document.querySelectorAll("#' + uid + 'nav button").forEach(function(btn){' +
-        'btn.style.background="transparent";btn.style.color="rgba(255,255,255,0.5)";' +
-        'btn.style.borderColor="rgba(255,255,255,0.1)";' +
+        'btn.style.background="rgba(255,255,255,0.06)";btn.style.color="rgba(255,255,255,0.4)";' +
       '});' +
       'var el=document.getElementById("' + uid + 's_"+id);' +
       'if(el)el.style.display="block";' +
       'var bn=document.getElementById("' + uid + 'n_"+id);' +
-      'if(bn){bn.style.background="rgba(0,242,255,0.18)";bn.style.color="#00f2ff";' +
-        'bn.style.borderColor="rgba(0,242,255,0.5)";}' +
+      'if(bn){var acc=bn.getAttribute("data-acc")||"#00f2ff";' +
+        'bn.style.background=acc;bn.style.color="#000";}' +
       'window.scrollTo(0,0);' +
       'if(window.history)window.history.replaceState(null,"","#"+id);' +
+      'if(_dur[id])_tmr=setTimeout(function(){window.' + uid + 'go(_nxt[id]);},_dur[id]);' +
     '};' +
+    'window._A2UI_GO=window.' + uid + 'go;' +
     'var hash=window.location.hash.slice(1);' +
     'window.' + uid + 'go(hash||"' + firstId + '");' +
     '})();<\/script>' +
     '</div>';
+};
+
+// ── fids_board ────────────────────────────────────────────────────────────────
+// Airport split-flap departure/arrival board.
+// Connects to adsb_feed via data_source to update status of real flights.
+// Falls back to a simulated LFBO schedule when no live data is available.
+//
+// Fields:
+//   mode          — 'departures' | 'arrivals' (default 'departures')
+//   airport       — ICAO code displayed top-right (default 'LFBO')
+//   airport_name  — full name displayed (default 'TOULOUSE-BLAGNAC')
+//   rows          — number of rows (default 10)
+//   height        — px number or 'fullscreen' (default 'fullscreen')
+//   data_source   — adsb_feed name to subscribe to for live callsign status
+//   refresh_ms    — board refresh interval ms (default 9000)
+_RENDERERS['fids_board'] = function(b) {
+  var uid         = 'fids' + Math.random().toString(36).substr(2, 6);
+  var mode        = b.mode === 'arrivals' ? 'arrivals' : 'departures';
+  var modeLabel   = mode === 'arrivals' ? 'ARRIVÉES' : 'DÉPARTS';
+  var airport     = (b.airport || 'LFBO').toUpperCase();
+  var airportName = b.airport_name || 'TOULOUSE-BLAGNAC';
+  var rows        = Math.min(b.rows || 10, 15);
+  var fullscreen  = b.height === 'fullscreen';
+  var h           = fullscreen ? '100vh' : (b.height || 600) + 'px';
+  var dataSource  = b.data_source || '';
+  var refreshMs   = b.refresh_ms !== undefined ? b.refresh_ms : 9000;
+
+  // ── Simulated LFBO schedule ────────────────────────────────────────────────
+  var SCHED_DEP = JSON.stringify([
+    {call:'AFR7201',dest:'PARIS CDG',           gate:'D42'},
+    {call:'EZY4821',dest:'LONDON GATWICK',       gate:'C18'},
+    {call:'VLG2241',dest:'BARCELONA-EL PRAT',   gate:'A07'},
+    {call:'RYR8432',dest:'MILAN BERGAMO',        gate:'B22'},
+    {call:'IBE3421',dest:'MADRID BARAJAS',       gate:'D31'},
+    {call:'TAP456', dest:'LISBOA HUMBERTO D.',   gate:'C09'},
+    {call:'AFR6129',dest:'NICE CÔTE D\'AZUR',   gate:'A15'},
+    {call:'EZY6234',dest:'GENÈVE',               gate:'B08'},
+    {call:'RYR109B',dest:'PORTO FRANCISCO S.',   gate:'C24'},
+    {call:'TO5421', dest:'AMSTERDAM SCHIPHOL',   gate:'D12'},
+    {call:'VLG8832',dest:'ROME FIUMICINO',       gate:'A03'},
+    {call:'RYR2248',dest:'MARRAKECH MENARA',     gate:'B17'},
+    {call:'HOP7734',dest:'LYON SAINT-EXUPÉRY',  gate:'D38'},
+    {call:'EZY3112',dest:'BERLIN BRANDEBOURG',   gate:'C11'},
+    {call:'RAM4521',dest:'CASABLANCA MED V',     gate:'A19'}
+  ]);
+
+  var SCHED_ARR = JSON.stringify([
+    {call:'BAW345', dest:'LONDON HEATHROW',      gate:'D44'},
+    {call:'DLH892', dest:'FRANCFORT AM MAIN',    gate:'C20'},
+    {call:'KLM2187',dest:'AMSTERDAM SCHIPHOL',   gate:'A09'},
+    {call:'AZA211', dest:'ROME FIUMICINO',       gate:'B24'},
+    {call:'SWR1834',dest:'ZURICH KLOTEN',        gate:'D33'},
+    {call:'BEL3712',dest:'BRUXELLES ZAVENTEM',   gate:'C10'},
+    {call:'TUI6623',dest:'PALMA DE MAJORQUE',    gate:'A17'},
+    {call:'AFR1842',dest:'PARIS ORLY',           gate:'B10'},
+    {call:'VLG4491',dest:'VALENCE MANISES',      gate:'C26'},
+    {call:'RYR5523',dest:'DUBLIN',               gate:'D14'},
+    {call:'EZY7781',dest:'ÉDIMBOURG',            gate:'A05'},
+    {call:'TSC8834',dest:'MONTRÉAL TRUDEAU',     gate:'B19'},
+    {call:'RAM974', dest:'CASABLANCA MED V',     gate:'D40'},
+    {call:'AEA2812',dest:'MADRID BARAJAS',        gate:'C13'},
+    {call:'THY316', dest:'ISTANBUL SABIHA',      gate:'A21'}
+  ]);
+
+  // ── Static row HTML (cells have IDs for JS updates) ────────────────────────
+  var headerRow =
+    '<div style="display:grid;grid-template-columns:68px 90px 1fr 140px 56px;' +
+    'gap:0 2px;padding:0 12px;margin-bottom:4px;">' +
+    ['HEURE','VOL', mode === 'arrivals' ? 'PROVENANCE' : 'DESTINATION','STATUT','PORTE'].map(function(h) {
+      return '<div style="font-size:0.52rem;color:rgba(245,158,11,0.45);letter-spacing:0.18em;padding:4px 6px;">' + h + '</div>';
+    }).join('') + '</div>';
+
+  var rowDivs = '';
+  for (var ri = 0; ri < rows; ri++) {
+    rowDivs +=
+      '<div id="' + uid + 'r' + ri + '" style="display:grid;grid-template-columns:68px 90px 1fr 140px 56px;' +
+      'gap:0 2px;padding:0 12px;border-top:1px solid rgba(245,158,11,0.07);">' +
+      '<div id="' + uid + 'r' + ri + '_t" class="' + uid + 'cell" style="font-size:0.82rem;color:rgba(245,158,11,0.7);padding:7px 6px;">——:——</div>' +
+      '<div id="' + uid + 'r' + ri + '_c" class="' + uid + 'cell" style="font-size:0.82rem;color:#fff;font-weight:700;padding:7px 6px;">————————</div>' +
+      '<div id="' + uid + 'r' + ri + '_d" class="' + uid + 'cell" style="font-size:0.8rem;color:rgba(255,255,255,0.85);padding:7px 6px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">—</div>' +
+      '<div id="' + uid + 'r' + ri + '_s" class="' + uid + 'cell" style="font-size:0.75rem;padding:7px 6px;"></div>' +
+      '<div id="' + uid + 'r' + ri + '_g" class="' + uid + 'cell" style="font-size:0.82rem;color:rgba(245,158,11,0.8);padding:7px 6px;">—</div>' +
+      '</div>';
+  }
+
+  return '<style>' +
+    '@keyframes ' + uid + 'fl{0%{transform:perspective(300px) rotateX(0deg);opacity:1}' +
+      '45%{transform:perspective(300px) rotateX(-90deg);opacity:0}' +
+      '55%{transform:perspective(300px) rotateX(90deg);opacity:0}' +
+      '100%{transform:perspective(300px) rotateX(0deg);opacity:1}}' +
+    '.' + uid + 'flip{animation:' + uid + 'fl 0.42s ease-in-out;}' +
+    '.' + uid + 'cell{font-family:"Courier New",monospace;letter-spacing:0.05em;transition:color 0.2s;}' +
+    '</style>' +
+    '<div style="position:relative;background:#050400;border-radius:' + (fullscreen?'0':'10px') + ';' +
+    'overflow:hidden;height:' + h + ';font-family:\'Courier New\',monospace;' +
+    'display:flex;flex-direction:column;justify-content:center;">' +
+
+    // Header
+    '<div style="padding:20px 18px 12px;border-bottom:2px solid rgba(245,158,11,0.2);">' +
+      '<div style="display:flex;justify-content:space-between;align-items:flex-end;">' +
+        '<div>' +
+          '<div style="font-size:0.52rem;color:rgba(245,158,11,0.5);letter-spacing:0.22em;margin-bottom:2px;">A2UI · TOULOUSE-BLAGNAC · INFORMATION VOLS</div>' +
+          '<div style="font-size:clamp(1rem,2.2vw,1.35rem);font-weight:700;color:#f59e0b;letter-spacing:0.1em;text-transform:uppercase;">' + _esc(airportName) + '</div>' +
+        '</div>' +
+        '<div style="text-align:right;">' +
+          '<div style="font-size:1.4rem;font-weight:900;color:#f59e0b;letter-spacing:0.08em;">' + _esc(airport) + '</div>' +
+          '<div id="' + uid + 'mode" style="font-size:0.62rem;color:rgba(245,158,11,0.6);letter-spacing:0.2em;margin-top:2px;">' + _esc(modeLabel) + '</div>' +
+        '</div>' +
+      '</div>' +
+    '</div>' +
+
+    // Column headers
+    headerRow +
+
+    // Rows
+    '<div style="flex:1;overflow:hidden;">' + rowDivs + '</div>' +
+
+    // Bottom bar — live indicator + time
+    '<div style="padding:8px 18px;border-top:1px solid rgba(245,158,11,0.12);' +
+    'display:flex;justify-content:space-between;align-items:center;">' +
+      '<div style="display:flex;align-items:center;gap:6px;">' +
+        '<span id="' + uid + 'sdot" style="display:inline-block;width:6px;height:6px;border-radius:50%;' +
+          'background:#f59e0b;box-shadow:0 0 8px #f59e0b;animation:' + uid + 'blink 2s infinite;"></span>' +
+        '<span style="font-size:0.58rem;color:rgba(245,158,11,0.6);letter-spacing:0.14em;" id="' + uid + 'src">DONNÉES SIMULÉES</span>' +
+      '</div>' +
+      '<div id="' + uid + 'clk" style="font-size:0.78rem;color:rgba(245,158,11,0.7);letter-spacing:0.1em;font-weight:700;"></div>' +
+    '</div>' +
+
+    '</div>' +
+
+    '<style>@keyframes ' + uid + 'blink{0%,100%{opacity:1;}50%{opacity:0.25;}}</style>' +
+
+    '<script>(function(){' +
+      'var SCHED=' + (mode === 'arrivals' ? SCHED_ARR : SCHED_DEP) + ';' +
+      'var ROWS=' + rows + ';' +
+      'var LIVE_SCHED=null;' +
+      'var ARR_MODE=' + (mode === 'arrivals' ? 'true' : 'false') + ';' +
+      'var STATUSES_DEP=["À L\'HEURE","À L\'HEURE","À L\'HEURE","EMBARQUEMENT","EMBARQUEMENT","EN COURS","RETARDÉ"];' +
+      'var STATUSES_ARR=["À L\'HEURE","À L\'HEURE","ATTERRI","ATTERRI","DÉBARQUEMENT","EN APPROCHE","RETARDÉ"];' +
+      'var STATUSES=' + (mode === 'arrivals' ? 'STATUSES_ARR' : 'STATUSES_DEP') + ';' +
+      'var STATUS_COLORS={"À L\'HEURE":"#22c55e","EMBARQUEMENT":"#00f2ff","EN COURS":"#00f2ff","RETARDÉ":"#ef4444","EN ROUTE":"#a3a3a3","ATTERRI":"#22c55e","DÉBARQUEMENT":"#00f2ff","EN APPROCHE":"#f59e0b","SURVEILLANCE":"#f59e0b"};' +
+      // Airline prefix → likely city for display hint
+      'var AIRLINE_MAP={"AFR":"PARIS CDG","EZY":"LONDON GATWICK","RYR":"DUBLIN","BAW":"LONDON HEATHROW","DLH":"FRANCFORT","KLM":"AMSTERDAM","VLG":"BARCELONE","IBE":"MADRID","TAP":"LISBONNE","SWR":"ZURICH","BEL":"BRUXELLES","TUI":"PALMA","RAM":"CASABLANCA","THY":"ISTANBUL","TSC":"MONTRÉAL","HOP":"PARIS ORLY","AZA":"ROME","TO_":"AMSTERDAM","AEA":"MADRID","EJU":"AMSTERDAM"};' +
+
+      // Clock
+      'function tick(){' +
+        'var n=new Date();' +
+        'var h=n.getHours().toString().padStart(2,"0");' +
+        'var m=n.getMinutes().toString().padStart(2,"0");' +
+        'var s=n.getSeconds().toString().padStart(2,"0");' +
+        'var el=document.getElementById("' + uid + 'clk");' +
+        'if(el)el.textContent=h+":"+m+":"+s+" LT";' +
+      '}' +
+      'setInterval(tick,1000);tick();' +
+
+      // Flip animation helper
+      'function flipCell(el,val,color){' +
+        'if(!el)return;' +
+        'el.classList.add("' + uid + 'flip");' +
+        'setTimeout(function(){' +
+          'el.textContent=val;' +
+          'if(color)el.style.color=color;' +
+        '},210);' +
+        'setTimeout(function(){el.classList.remove("' + uid + 'flip");},440);' +
+      '}' +
+
+      // Build board rows — live ADS-B data when available, simulated fallback
+      'function buildRows(){' +
+        'var now=new Date();' +
+        'var out=[];' +
+        'var h=now.getHours().toString().padStart(2,"0");' +
+        'var m=now.getMinutes().toString().padStart(2,"0");' +
+        'if(LIVE_SCHED&&LIVE_SCHED.length){' +
+          // Live mode: real aircraft from ADS-B feed
+          'for(var i=0;i<Math.min(ROWS,LIVE_SCHED.length);i++){' +
+            'var s=LIVE_SCHED[i];' +
+            'out.push({t:h+":"+m,c:s.call,d:s.dest,s:s.status,g:s.gate});' +
+          '}' +
+        '}else{' +
+          // Simulated fallback
+          'for(var i=0;i<ROWS;i++){' +
+            'var sched=SCHED[i%SCHED.length];' +
+            'var dep=new Date(now.getTime()+(ARR_MODE?(i*4-16)*60000:(i*5+2)*60000));' +
+            'var hh=dep.getHours().toString().padStart(2,"0");' +
+            'var mm=dep.getMinutes().toString().padStart(2,"0");' +
+            'var st=i===0?"EN COURS":i===1?"EMBARQUEMENT":STATUSES[i%STATUSES.length];' +
+            'out.push({t:hh+":"+mm,c:sched.call,d:sched.dest,s:st,g:sched.gate});' +
+          '}' +
+        '}' +
+        'return out;' +
+      '}' +
+
+      // Set a cell directly (no animation) — used for initial render
+      'function setCell(el,val,color){if(!el)return;el.textContent=val;if(color)el.style.color=color;}' +
+
+      // Update all rows — direct set on first render, flip animation on updates
+      'var _rows=null;' +
+      'function updateBoard(){' +
+        'var next=buildRows();' +
+        'var first=!_rows;' +
+        'for(var i=0;i<ROWS;i++){' +
+          'var prev=_rows?_rows[i]:{};' +
+          'var row=next[i];' +
+          'var et=document.getElementById("' + uid + 'r"+i+"_t");' +
+          'var ec=document.getElementById("' + uid + 'r"+i+"_c");' +
+          'var ed=document.getElementById("' + uid + 'r"+i+"_d");' +
+          'var es=document.getElementById("' + uid + 'r"+i+"_s");' +
+          'var eg=document.getElementById("' + uid + 'r"+i+"_g");' +
+          'if(first){' +
+            // First render: set directly (slide may be hidden, animations won't run)
+            'setCell(et,row.t,"rgba(245,158,11,0.7)");' +
+            'setCell(ec,row.c,"#ffffff");' +
+            'setCell(ed,row.d,"rgba(255,255,255,0.85)");' +
+            'setCell(es,row.s,STATUS_COLORS[row.s]||"#f59e0b");' +
+            'setCell(eg,row.g,"rgba(245,158,11,0.8)");' +
+          '}else{' +
+            // Subsequent renders: staggered flip animation
+            '(function(ri,r,p,_et,_ec,_ed,_es,_eg){' +
+              'setTimeout(function(){' +
+                'if(p.t!==r.t)flipCell(_et,r.t,"rgba(245,158,11,0.7)");' +
+                'if(p.c!==r.c)flipCell(_ec,r.c,"#ffffff");' +
+                'if(p.d!==r.d)flipCell(_ed,r.d,"rgba(255,255,255,0.85)");' +
+                'if(p.s!==r.s)flipCell(_es,r.s,STATUS_COLORS[r.s]||"#f59e0b");' +
+                'if(p.g!==r.g)flipCell(_eg,r.g,"rgba(245,158,11,0.8)");' +
+              '},ri*38);' +
+            '})(i,row,prev,et,ec,ed,es,eg);' +
+          '}' +
+        '}' +
+        '_rows=next;' +
+      '}' +
+      'updateBoard();' +
+      (refreshMs > 0 ? 'setInterval(updateBoard,' + refreshMs + ');' : '') +
+
+      // ── OpenSky: real routes with actual destinations ─────────────────────────
+      // Primary source: real callsigns + real DESTINATION/PROVENANCE from OpenSky.
+      // Secondary: ADS-B onFeed() overlays live STATUS on matched callsigns.
+      'window.A2UI_DATA=window.A2UI_DATA||{};' +
+      'window.A2UI_CALLBACKS=window.A2UI_CALLBACKS||{};' +
+      'var ADSB_STATUS={};' + // callsign → live status from ADS-B
+      // ICAO airport → display name lookup
+      'var AIRPORT_NAMES={' +
+        '"LFPG":"PARIS CDG","LFPO":"PARIS ORLY","EGLL":"LONDON HEATHROW",' +
+        '"EGKK":"LONDON GATWICK","EHAM":"AMSTERDAM","EDDF":"FRANCFORT",' +
+        '"LEBL":"BARCELONE","LEMD":"MADRID","LPPT":"LISBONNE",' +
+        '"LSZH":"ZURICH","EBBR":"BRUXELLES","LFRS":"NANTES",' +
+        '"LFML":"MARSEILLE","LFMN":"NICE","LFLL":"LYON",' +
+        '"LFBD":"BORDEAUX","LFRN":"RENNES","LFQQ":"LILLE",' +
+        '"GCFV":"FUERTEVENTURA","GCLP":"LAS PALMAS","LEPA":"PALMA",' +
+        '"LIRF":"ROME FCO","LIMC":"MILAN","LICJ":"PALERME",' +
+        '"EGPH":"EDINBURGH","EGCC":"MANCHESTER","EIDW":"DUBLIN",' +
+        '"LOWW":"VIENNE","LKPR":"PRAGUE","EPWA":"VARSOVIE",' +
+        '"LTFM":"ISTANBUL","LTBA":"ISTANBUL ATATURK",' +
+        '"GMMN":"CASABLANCA","DTTA":"TUNIS","DAAG":"ALGER",' +
+        '"CYUL":"MONTRÉAL","KJFK":"NEW YORK","OMDB":"DUBAI"' +
+      '};' +
+      // Fetch real flight data from OpenSky via GAS backend
+      'google.script.run' +
+        '.withSuccessHandler(function(result){' +
+          'if(!result||result.error||!result.flights)return;' +
+          'var now=new Date();' +
+          'var h=now.getHours().toString().padStart(2,"0");' +
+          'var m=now.getMinutes().toString().padStart(2,"0");' +
+          'LIVE_SCHED=result.flights.slice(0,' + rows + ').map(function(f){' +
+            'var ts=new Date(f.time*1000);' +
+            'var th=ts.getHours().toString().padStart(2,"0");' +
+            'var tm=ts.getMinutes().toString().padStart(2,"0");' +
+            'var airportName=AIRPORT_NAMES[f.airport]||(f.airport||"---");' +
+            'var liveStatus=ADSB_STATUS[f.callsign];' +
+            'var defaultStatus=ARR_MODE?"ATTERRI":"À L\'HEURE";' +
+            'return{call:f.callsign,dest:airportName,status:liveStatus||defaultStatus,gate:h+":"+m};' +
+          '});' +
+          'updateBoard();' +
+          'var srcEl=document.getElementById("' + uid + 'src");' +
+          'if(srcEl)srcEl.textContent="DONNÉES LIVE OPENSKY · " + result.flights.length + " VOLS";' +
+        '})' +
+        '.getFlightsLFBO("' + _esc(mode) + '","' + _esc(airport) + '");' +
+      // ADS-B: overlay live status on board rows that match real callsigns
+      (dataSource ?
+        '(function(){' +
+          'var LFBO_LAT=43.629,LFBO_LON=1.363;' +
+          'function bearingTo(lat1,lon1,lat2,lon2){' +
+            'var dL=(lon2-lon1)*Math.PI/180;' +
+            'lat1=lat1*Math.PI/180;lat2=lat2*Math.PI/180;' +
+            'var y=Math.sin(dL)*Math.cos(lat2);' +
+            'var x=Math.cos(lat1)*Math.sin(lat2)-Math.sin(lat1)*Math.cos(lat2)*Math.cos(dL);' +
+            'return(Math.atan2(y,x)*180/Math.PI+360)%360;' +
+          '}' +
+          'function onFeed(flights){' +
+            'ADSB_STATUS={};' +
+            'flights.forEach(function(f){' +
+              'if(!f.callsign)return;' +
+              'var hdgToLFBO=bearingTo(f.lat,f.lon,LFBO_LAT,LFBO_LON);' +
+              'var diff=Math.abs(((f.hdg-hdgToLFBO+180)%360)-180);' +
+              'var approaching=diff<70;' +
+              'var st=f.alt_ft<1500?(approaching?"ATTERRI":"EN COURS"):' +
+                     'f.alt_ft<8000?(approaching?"EN APPROCHE":"EN COURS"):"EN ROUTE";' +
+              'ADSB_STATUS[f.callsign.trim()]=st;' +
+            '});' +
+            // Update status column on existing rows if callsign matches
+            'if(LIVE_SCHED){' +
+              'LIVE_SCHED.forEach(function(r){' +
+                'if(ADSB_STATUS[r.call])r.status=ADSB_STATUS[r.call];' +
+              '});' +
+              'updateBoard();' +
+            '}' +
+          '}' +
+          'var prev=window.A2UI_CALLBACKS["' + _esc(dataSource) + '"];' +
+          'window.A2UI_CALLBACKS["' + _esc(dataSource) + '"]=function(d){onFeed(d);if(typeof prev==="function")prev(d);};' +
+          'if(window.A2UI_DATA["' + _esc(dataSource) + '"])onFeed(window.A2UI_DATA["' + _esc(dataSource) + '"]);' +
+        '})();' : '') +
+
+    '})();<\/script>';
 };

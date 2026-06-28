@@ -3909,3 +3909,83 @@ _RENDERERS['sheet_form'] = function(b) {
     + '</form></div>'
     + script;
 };
+
+// ── poll_live ─────────────────────────────────────────────────────────────────
+// Anonymous live vote counter. Voter clicks → google.script.run calls
+// submitPollVote(questionId, option) server-side → Firestore atomic increment
+// → tally returned to client. GCP project ID stays in Code.js, never in URL.
+//
+// Fields:
+//   question    — question text (required)
+//   question_id — Firestore doc ID in polls/ collection (required)
+//   options     — array of {value, label, emoji} (default: 🔥 yes / 🤷 no)
+//   accent      — accent colour (default #00f2ff)
+_RENDERERS['poll_live'] = function(b) {
+  var uid      = 'pl' + Math.random().toString(36).substr(2, 8);
+  var qid      = b.question_id || 'poll';
+  var question = b.question || 'Do you think this is cool?';
+  var accent   = b.accent   || '#00f2ff';
+  var options  = b.options  || [
+    { value: 'yes', label: 'This is cool', emoji: '🔥' },
+    { value: 'no',  label: 'Not my thing', emoji: '🤷'  }
+  ];
+
+  var buttons = options.map(function(opt) {
+    return '<button onclick="window[\'' + uid + '\'].vote(\'' + _esc(opt.value) + '\')" ' +
+      'style="flex:1;padding:14px 10px;border:1.5px solid ' + accent + '44;border-radius:12px;' +
+      'background:transparent;color:rgba(255,255,255,0.8);cursor:pointer;font-size:0.9rem;' +
+      'font-weight:600;font-family:inherit;transition:all 0.15s;" ' +
+      'onmouseover="this.style.background=\'' + accent + '22\'" ' +
+      'onmouseout="this.style.background=\'transparent\'">' +
+      opt.emoji + ' ' + _esc(opt.label) + '</button>';
+  }).join('');
+
+  var bars = options.map(function(opt) {
+    return '<div style="margin:6px 0;">' +
+      '<div style="display:flex;justify-content:space-between;font-size:0.78rem;color:rgba(255,255,255,0.5);margin-bottom:3px;">' +
+      '<span>' + opt.emoji + ' ' + _esc(opt.label) + '</span>' +
+      '<span id="' + uid + 'n_' + _esc(opt.value) + '">—</span></div>' +
+      '<div style="background:rgba(255,255,255,0.07);border-radius:100px;height:6px;">' +
+      '<div id="' + uid + 'b_' + _esc(opt.value) + '" style="height:100%;border-radius:100px;' +
+      'background:' + accent + ';width:0%;transition:width 0.4s;"></div></div></div>';
+  }).join('');
+
+  return '<div style="margin:16px;padding:20px;border:1px solid ' + accent + '33;border-radius:14px;' +
+    'background:rgba(255,255,255,0.03);">' +
+    '<p style="font-size:0.95rem;font-weight:700;color:rgba(255,255,255,0.9);margin:0 0 16px;text-align:center;">' +
+    _esc(question) + '</p>' +
+    '<div id="' + uid + 'btns" style="display:flex;gap:10px;">' + buttons + '</div>' +
+    '<div id="' + uid + 'results" style="display:none;margin-top:16px;">' + bars +
+    '<p id="' + uid + 'total" style="font-size:0.72rem;color:rgba(255,255,255,0.3);text-align:right;margin-top:8px;"></p></div>' +
+    '</div>' +
+    '<script>(function(){' +
+    'var voted=false;' +
+    'window["' + uid + '"]={' +
+    'vote:function(opt){' +
+      'if(voted)return;voted=true;' +
+      'document.getElementById("' + uid + 'btns").style.opacity="0.4";' +
+      'document.getElementById("' + uid + 'btns").style.pointerEvents="none";' +
+      'if(typeof google!=="undefined"&&google.script){' +
+        'google.script.run' +
+          '.withSuccessHandler(function(t){window["' + uid + '"].show(t);})' +
+          '.withFailureHandler(function(){})' +
+          '.submitPollVote("' + _esc(qid) + '",opt);' +
+      '}' +
+    '},' +
+    'show:function(tally){' +
+      'tally=tally||{};' +
+      'var keys=Object.keys(tally);' +
+      'var total=keys.reduce(function(s,k){return s+(tally[k]||0);},0);' +
+      'keys.forEach(function(k){' +
+        'var n=document.getElementById("' + uid + 'n_"+k);' +
+        'var bar=document.getElementById("' + uid + 'b_"+k);' +
+        'if(n)n.textContent=tally[k]||0;' +
+        'if(bar)bar.style.width=(total?Math.round((tally[k]||0)/total*100):0)+"%";' +
+      '});' +
+      'var t=document.getElementById("' + uid + 'total");' +
+      'if(t)t.textContent=total>0?total+" vote"+(total!==1?"s":"")+" total":"Thanks for voting!";' +
+      'document.getElementById("' + uid + 'btns").style.display="none";' +
+      'document.getElementById("' + uid + 'results").style.display="block";' +
+    '}};' +
+    '})();<\/script>';
+};
