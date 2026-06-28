@@ -139,23 +139,111 @@ def fields_table(atom):
     return f"<table><thead><tr><th>Field</th><th>Type</th><th></th></tr></thead><tbody>{rows}</tbody></table>"
 
 
+def _infer_list(name, atom_type):
+    if name == "blocks":
+        return [{"type": "body", "text": "Example content."}]
+    if name == "steps":
+        return [{"title": "Step one", "body": "First thing to do."}, {"title": "Step two", "body": "Then this."}]
+    if name == "points":
+        return ["First key point", "Second key point", "Third key point"]
+    if name == "items":
+        if any(x in atom_type for x in ["checklist", "icon_list", "bullet"]):
+            return [{"label": "First item"}, {"label": "Second item"}]
+        return [{"label": "Item 1"}, {"label": "Item 2"}]
+    if name == "metrics":
+        return [{"label": "Revenue", "value": "$1.2M", "trend": "up"}, {"label": "Users", "value": "42K", "trend": "up"}]
+    if name == "events":
+        return [{"date": "2025", "title": "Launch", "body": "First release."}, {"date": "2026", "title": "Today", "body": "Still growing."}]
+    if name == "pairs":
+        return [{"key": "API_KEY", "value": "your-key"}, {"key": "ENV", "value": "production"}]
+    if name == "links":
+        return [{"label": "GitHub", "url": "https://github.com/a2uicatalog/a2ui"}]
+    if name == "tabs":
+        return [{"label": "Tab 1", "content": "Content one."}, {"label": "Tab 2", "content": "Content two."}]
+    if name == "headers":
+        return ["Name", "Value", "Status"]
+    if name == "rows":
+        return [["Example", "42", "Active"], ["Another", "17", "Pending"]]
+    if name == "callouts":
+        return [{"line": 1, "note": "This line does X"}]
+    if name == "slides":
+        return [{"id": "s1", "label": "Slide 1", "blocks": []}]
+    return []
+
+
+def _infer_string(name, atom_type):
+    n = name.lower()
+    if n in ["value", "stat", "metric", "count", "figure", "amount"]:    return "1,234"
+    if n in ["percent", "rate"]:                                           return "75%"
+    if n in ["label", "title", "heading", "name", "display_name"]:
+        return atom_type.replace("_", " ").title() if atom_type else "Example Title"
+    if n in ["subtitle", "subtext", "tagline", "sub", "eyebrow"]:        return "A short supporting line"
+    if n in ["description", "body", "content", "detail", "summary", "note", "copy"]:
+        return "A concise description of the content."
+    if n == "text":
+        if any(x in atom_type for x in ["badge", "chip", "tag", "pill", "lozenge", "label", "status"]):
+            return "New"
+        return "A concise description of the content."
+    if n == "badge":      return "New"
+    if n == "status":     return "Active"
+    if n == "tag":        return "Example"
+    if n == "caption":    return "A descriptive caption"
+    if n == "trend":      return "up"
+    if n == "theme":      return "dark"
+    if n == "align":      return "center"
+    if n == "size":       return "md"
+    if n == "variant":    return "primary"
+    if n == "icon":       return "⭐"
+    if n == "emoji":      return "🚀"
+    if n in ["color", "accent", "accent2", "fill", "highlight"]: return "#6366f1"
+    if n in ["bg", "background", "bg_color"]:                    return "#0c1117"
+    if n == "animation":  return "fade"
+    if n in ["duration", "transition"]: return "300ms"
+    if n in ["delay", "stagger", "stagger_delay"]: return "0ms"
+    if n == "language":   return "json"
+    if n in ["code", "content", "snippet"]: return '{"type": "example"}'
+    if n in ["before", "after"]: return "// example code"
+    if n in ["id", "key", "slug"]: return "example-id"
+    if n in ["author", "by"]: return "Author Name"
+    if n in ["date", "timestamp"]: return "2026-06-28"
+    if n == "repo":       return "a2uicatalog/a2ui"
+    if n == "width":      return "100%"
+    if n in ["callout_type", "alert_type"]: return "info"
+    if "image" in n or "img" in n or "photo" in n or "avatar" in n:
+        return "https://example.com/image.png"
+    if "video" in n or "youtube" in n:
+        return "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    if "url" in n or "href" in n or "link" in n or "src" in n:
+        return "https://example.com"
+    return n.replace("_", " ").capitalize()
+
+
 def example_payload(atom):
-    fields = atom.get("fields", {})
-    example = {"type": atom.get("type", "")}
+    atom_type = atom.get("type", "")
+    fields    = atom.get("fields") or {}
+    example   = {"type": atom_type}
     for name, ftype in fields.items():
-        if "optional" in str(ftype).lower():
-            continue
         ft = str(ftype).lower()
+        if "optional" in ft:
+            continue
         if "bool" in ft:
             example[name] = True
         elif "int" in ft or "number" in ft:
-            example[name] = 0
-        elif "list" in ft or "array" in ft:
-            example[name] = []
-        elif "url" in ft:
+            n = name.lower()
+            if any(x in n for x in ["percent", "progress", "score", "rating"]): example[name] = 75
+            elif any(x in n for x in ["max", "total"]):                          example[name] = 5
+            elif any(x in n for x in ["current", "step"]):                       example[name] = 2
+            elif any(x in atom_type for x in ["progress", "gauge", "bar", "ring", "circle", "donut"]): example[name] = 75
+            else:                                                                  example[name] = 1
+        elif "list" in ft or "array" in ft or name in [
+            "items", "blocks", "steps", "points", "events", "metrics",
+            "pairs", "links", "tabs", "rows", "headers", "callouts", "slides",
+        ]:
+            example[name] = _infer_list(name, atom_type)
+        elif "url" in ft or any(x in name.lower() for x in ["url", "href", "src"]):
             example[name] = "https://example.com"
         else:
-            example[name] = f"Your {name.replace('_', ' ')}"
+            example[name] = _infer_string(name, atom_type)
     return json.dumps(example, indent=2)
 
 
@@ -311,6 +399,7 @@ html,body{background:var(--bg);color:var(--text);font-family:-apple-system,Blink
 body{max-width:1100px;margin:0 auto;padding:48px 24px 96px}
 header{margin-bottom:40px}
 h1{font-size:2.4rem;font-weight:800;letter-spacing:-1px;margin-bottom:6px}
+.tagline{font-size:1.15rem;color:var(--cyan);font-weight:600;margin-bottom:6px;letter-spacing:.01em}
 .sub{color:var(--muted);font-size:1rem;margin-bottom:24px}
 .sub a{color:var(--cyan);text-decoration:none}
 .controls{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:28px}
@@ -412,6 +501,7 @@ def generate_index(atoms):
 <body>
   <header>
     <h1>A2UI Atom Catalog</h1>
+    <p class="tagline">Useful for Humans. Declarative for AI Agents.</p>
     <p class="sub">{len(atoms)} typed atoms for web, Meet, Apps Script, Chat &middot; <a href="/.well-known/ai-catalog.json">ARD catalog</a> &middot; <a href="https://github.com/a2uicatalog/a2ui">GitHub</a></p>
     <div class="controls">
       <input id="search" type="search" placeholder="Search atoms…" autocomplete="off">
