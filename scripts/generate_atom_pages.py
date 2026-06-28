@@ -200,7 +200,12 @@ def degraded_notes(atom):
 
 def make_renderer_url(atom):
     block = json.loads(example_payload(atom))
-    raw = json.dumps([block], ensure_ascii=False).encode()
+    payload = {
+        "title": atom.get("type", "").replace("_", " ").title(),
+        "theme": "dark",
+        "blocks": [block],
+    }
+    raw = json.dumps(payload, ensure_ascii=False).encode()
     compressed = zlib.compress(raw, level=9, wbits=31)
     enc = base64.urlsafe_b64encode(compressed).rstrip(b'=').decode()
     return f"{GAS_RENDERER}?p={enc}"
