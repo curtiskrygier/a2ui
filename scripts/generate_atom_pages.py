@@ -328,9 +328,8 @@ def render_page(atom):
     desc         = atom.get("description", "")
     compact      = atom.get("compact_description", "")
     display_name = atom_type.replace("_", " ").title()
-    is_web_article = atom_type in _RENDERER_TYPES
-    preview        = live_preview(atom)
-    try_btn        = "" if is_web_article else (
+    preview  = live_preview(atom)
+    try_btn  = "" if atom_type in _RENDERER_TYPES else (
         f'<a class="try-btn" href="{make_renderer_url(atom)}" target="_blank" rel="noopener">Try it live →</a>'
     )
 
@@ -542,9 +541,8 @@ def generate_surface_page(surface, atoms):
         display_name = atom_type.replace("_", " ").title()
         has_preview  = atom_type in _RENDERER_TYPES and _web_renderer is not None
 
-        if has_preview and not is_gas:
-            preview_html = live_preview(atom)
-            action = preview_html
+        if has_preview:
+            action = live_preview(atom)
         else:
             url    = make_renderer_url(atom)
             action = f'<a class="try-btn" href="{url}" target="_blank" rel="noopener">Try it live →</a>'
