@@ -10074,16 +10074,23 @@ def _render_cursor_glow(b: dict) -> str:
     opacity = float(b.get("opacity", 0.18))
     speed  = float(b.get("speed", 0.1))
     blend  = b.get("blend", "screen")
+    h      = int(b.get("height", 220))
     return (
-        f'<div id="cg_{uid}" style="position:fixed;pointer-events:none;z-index:9998;'
+        f'<div id="cgw_{uid}" style="position:relative;overflow:hidden;height:{h}px;'
+        f'background:var(--bg,#0c1117);border-radius:8px;">'
+        f'<div id="cg_{uid}" style="position:absolute;pointer-events:none;'
         f'width:{size}px;height:{size}px;border-radius:50%;'
         f'background:radial-gradient(circle,{color} 0%,transparent 70%);'
         f'opacity:{opacity};mix-blend-mode:{blend};'
         f'transform:translate(-50%,-50%);top:-999px;left:-999px;transition:none;"></div>'
+        f'</div>'
         f'<script>(function(){{'
+        f'var wrap=document.getElementById("cgw_{uid}");'
         f'var el=document.getElementById("cg_{uid}");'
-        f'var tx=0,ty=0,cx=0,cy=0;'
-        f'document.addEventListener("mousemove",function(e){{tx=e.clientX;ty=e.clientY;}});'
+        f'var tx=-999,ty=-999,cx=-999,cy=-999;'
+        f'wrap.addEventListener("mousemove",function(e){{'
+        f'var r=wrap.getBoundingClientRect();tx=e.clientX-r.left;ty=e.clientY-r.top;}});'
+        f'wrap.addEventListener("mouseleave",function(){{tx=-999;ty=-999;}});'
         f'(function loop(){{'
         f'cx+=(tx-cx)*{speed};cy+=(ty-cy)*{speed};'
         f'el.style.left=Math.round(cx)+"px";el.style.top=Math.round(cy)+"px";'
@@ -10100,31 +10107,33 @@ def _render_cursor_trail(b: dict) -> str:
     length = int(b.get("length", 16))
     size   = int(b.get("size", 10))
     speed  = float(b.get("speed", 0.35))
+    h      = int(b.get("height", 200))
     return (
+        f'<div id="ctw_{uid}" style="position:relative;overflow:hidden;height:{h}px;'
+        f'background:var(--bg,#0c1117);border-radius:8px;cursor:none;"></div>'
         f'<script>(function(){{'
+        f'var wrap=document.getElementById("ctw_{uid}");'
         f'var n={length},s={speed},col="{color}",dotSz={size};'
-        f'var dots=[];var pts=[];\n'
+        f'var dots=[],pts=[],active=false;'
         f'for(var i=0;i<n;i++){{'
-        f'var d=document.createElement("div");'
-        f'var scale=1-i/n;'
-        f'd.style.cssText="position:fixed;pointer-events:none;z-index:9997;border-radius:50%;'
+        f'var d=document.createElement("div");var scale=1-i/n;'
+        f'd.style.cssText="position:absolute;pointer-events:none;border-radius:50%;'
         f'width:"+Math.round(dotSz*scale)+"px;height:"+Math.round(dotSz*scale)+"px;'
         f'background:"+col+";opacity:"+(1-i/n*0.8)+";transform:translate(-50%,-50%);'
         f'top:-999px;left:-999px;";'
-        f'document.body.appendChild(d);dots.push(d);pts.push([0,0]);'
+        f'wrap.appendChild(d);dots.push(d);pts.push([-999,-999]);'
         f'}}'
-        f'var mx=0,my=0;'
-        f'document.addEventListener("mousemove",function(e){{mx=e.clientX;my=e.clientY;}});'
+        f'var mx=-999,my=-999;'
+        f'wrap.addEventListener("mousemove",function(e){{'
+        f'var r=wrap.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;active=true;}});'
+        f'wrap.addEventListener("mouseleave",function(){{active=false;}});'
         f'(function loop(){{'
+        f'if(active){{'
         f'pts[0][0]+=(mx-pts[0][0])*s;pts[0][1]+=(my-pts[0][1])*s;'
         f'for(var j=1;j<n;j++){{'
-        f'pts[j][0]+=(pts[j-1][0]-pts[j][0])*s;'
-        f'pts[j][1]+=(pts[j-1][1]-pts[j][1])*s;'
-        f'}}'
+        f'pts[j][0]+=(pts[j-1][0]-pts[j][0])*s;pts[j][1]+=(pts[j-1][1]-pts[j][1])*s;}}'
         f'for(var k=0;k<n;k++){{'
-        f'dots[k].style.left=Math.round(pts[k][0])+"px";'
-        f'dots[k].style.top=Math.round(pts[k][1])+"px";'
-        f'}}'
+        f'dots[k].style.left=Math.round(pts[k][0])+"px";dots[k].style.top=Math.round(pts[k][1])+"px";}}}}'
         f'requestAnimationFrame(loop);}})();}})();</script>'
     )
 
@@ -10171,18 +10180,27 @@ def _render_spotlight_cursor(b: dict) -> str:
     darkness = float(b.get("darkness", 0.82))
     color    = b.get("colour", b.get("color", "rgba(0,0,0)"))
     soft     = int(b.get("soft_edge", 60))
+    h        = int(b.get("height", 280))
     return (
-        f'<div id="sp_{uid}" style="position:fixed;inset:0;pointer-events:none;z-index:9990;'
+        f'<div id="spw_{uid}" style="position:relative;overflow:hidden;height:{h}px;'
+        f'background:var(--bg,#0c1117);border-radius:8px;cursor:crosshair;">'
+        f'<div id="sp_{uid}" style="position:absolute;inset:0;pointer-events:none;'
         f'background:radial-gradient(circle {radius}px at -999px -999px,'
         f'transparent 0%,transparent {radius}px,{color} {radius+soft}px);'
         f'opacity:{darkness};transition:none;"></div>'
+        f'</div>'
         f'<script>(function(){{'
+        f'var wrap=document.getElementById("spw_{uid}");'
         f'var el=document.getElementById("sp_{uid}");'
         f'var r={radius},soft={soft};'
-        f'document.addEventListener("mousemove",function(e){{'
-        f'el.style.background="radial-gradient(circle "+r+"px at "+e.clientX+"px "+e.clientY+"px,'
-        f'transparent 0%,transparent "+r+"px,rgba(0,0,0,1) "+(r+soft)+"px)";'
-        f'}});}})();</script>'
+        f'wrap.addEventListener("mousemove",function(e){{'
+        f'var rect=wrap.getBoundingClientRect();'
+        f'var x=e.clientX-rect.left,y=e.clientY-rect.top;'
+        f'el.style.background="radial-gradient(circle "+r+"px at "+x+"px "+y+"px,'
+        f'transparent 0%,transparent "+r+"px,rgba(0,0,0,1) "+(r+soft)+"px)";}});'
+        f'wrap.addEventListener("mouseleave",function(){{'
+        f'el.style.background="radial-gradient(circle "+r+"px at -999px -999px,'
+        f'transparent 0%,transparent "+r+"px,rgba(0,0,0,1) "+(r+soft)+"px)";}});}})();</script>'
     )
 
 _RENDERERS["spotlight_cursor"] = _render_spotlight_cursor

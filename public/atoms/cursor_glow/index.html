@@ -64,7 +64,7 @@ footer a{color:var(--cyan);text-decoration:none}
   
 <div class="section">
   <div class="label">Live preview</div>
-  <div class="preview-box"><div id="cg_41d9c7" style="position:fixed;pointer-events:none;z-index:9998;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,#6366f1 0%,transparent 70%);opacity:0.18;mix-blend-mode:screen;transform:translate(-50%,-50%);top:-999px;left:-999px;transition:none;"></div><script>(function(){var el=document.getElementById("cg_41d9c7");var tx=0,ty=0,cx=0,cy=0;document.addEventListener("mousemove",function(e){tx=e.clientX;ty=e.clientY;});(function loop(){cx+=(tx-cx)*0.1;cy+=(ty-cy)*0.1;el.style.left=Math.round(cx)+"px";el.style.top=Math.round(cy)+"px";requestAnimationFrame(loop);})();})();</script></div>
+  <div class="preview-box"><div id="cgw_41d9c7" style="position:relative;overflow:hidden;height:220px;background:var(--bg,#0c1117);border-radius:8px;"><div id="cg_41d9c7" style="position:absolute;pointer-events:none;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,#6366f1 0%,transparent 70%);opacity:0.18;mix-blend-mode:screen;transform:translate(-50%,-50%);top:-999px;left:-999px;transition:none;"></div></div><script>(function(){var wrap=document.getElementById("cgw_41d9c7");var el=document.getElementById("cg_41d9c7");var tx=-999,ty=-999,cx=-999,cy=-999;wrap.addEventListener("mousemove",function(e){var r=wrap.getBoundingClientRect();tx=e.clientX-r.left;ty=e.clientY-r.top;});wrap.addEventListener("mouseleave",function(){tx=-999;ty=-999;});(function loop(){cx+=(tx-cx)*0.1;cy+=(ty-cy)*0.1;el.style.left=Math.round(cx)+"px";el.style.top=Math.round(cy)+"px";requestAnimationFrame(loop);})();})();</script></div>
 </div>
 
   <div class="section">
