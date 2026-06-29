@@ -69,7 +69,7 @@ def test_googlechat_renderer_covers_works_on(atoms):
     sys.path.insert(0, str(Path(__file__).parent.parent))
     from renderers.googlechat import RENDERERS as chat_renderers
     for name, atom in atoms.items():
-        if 'googlechat' in atom['surfaces'].get('works_on', []):
+        if 'google-chat' in atom['surfaces'].get('works_on', []):
             assert name in chat_renderers, f"{name}: works_on googlechat but missing from renderers/googlechat.py"
 
 

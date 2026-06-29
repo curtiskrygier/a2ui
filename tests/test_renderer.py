@@ -441,13 +441,13 @@ def test_openui_atoms_work_on_meet_stage(atoms):
     for t in ["form", "form_input", "form_select", "form_radio_group", "form_checkbox_group",
               "form_switch_group", "form_slider", "form_date_picker", "modal", "follow_up_chips"]:
         works_on = atoms[t]["surfaces"]["works_on"]
-        assert "meet-stage" in works_on, f"{t} missing meet-stage in works_on"
+        assert "google-meet-stage" in works_on, f"{t} missing meet-stage in works_on"
 
 
 def test_modal_works_on_meet_stage(atoms):
-    assert "meet-stage" in atoms["modal"]["surfaces"]["works_on"]
+    assert "google-meet-stage" in atoms["modal"]["surfaces"]["works_on"]
     incompatible = [e["surface"] for e in atoms["modal"]["surfaces"].get("incompatible_on", [])]
-    assert "meet-stage" not in incompatible
+    assert "google-meet-stage" not in incompatible
 
 
 # ── Surface compatibility via schema ──────────────────────────────────────────
@@ -455,7 +455,7 @@ def test_modal_works_on_meet_stage(atoms):
 def test_tabs_incompatible_googlechat(atoms):
     surfaces = atoms["tabs"]["surfaces"]
     incompatible = [e["surface"] for e in surfaces.get("incompatible_on", [])]
-    assert "googlechat" in incompatible
+    assert "google-chat" in incompatible
 
 
 def test_youtube_incompatible_email(atoms):
@@ -466,12 +466,12 @@ def test_youtube_incompatible_email(atoms):
 
 def test_carousel_works_on_meet_stage(atoms):
     works_on = atoms["carousel"]["surfaces"]["works_on"]
-    assert "meet-stage" in works_on
+    assert "google-meet-stage" in works_on
 
 
 def test_body_works_everywhere(atoms):
     works_on = atoms["body"]["surfaces"]["works_on"]
-    assert set(works_on) == {"web", "meet-stage", "googlechat", "email", "pdf", "google-apps-script-web"}
+    assert set(works_on) == {"web", "google-meet-stage", "google-chat", "email", "pdf", "google-apps-script-web"}
 
 
 # ── Vercel Geist-inspired atoms ───────────────────────────────────────────────
@@ -528,9 +528,9 @@ def test_choicebox_group_accent(renderer):
 
 def test_choicebox_group_works_on_meet_stage(atoms):
     works_on = atoms["choicebox_group"]["surfaces"]["works_on"]
-    assert "meet-stage" in works_on
+    assert "google-meet-stage" in works_on
     incompatible = [e["surface"] for e in atoms["choicebox_group"]["surfaces"].get("incompatible_on", [])]
-    assert "meet-stage" not in incompatible
+    assert "google-meet-stage" not in incompatible
 
 
 def test_feedback_prompt_thumbs(renderer):
@@ -571,7 +571,7 @@ def test_feedback_prompt_with_action_url(renderer):
 
 def test_feedback_prompt_works_on_meet_stage(atoms):
     works_on = atoms["feedback_prompt"]["surfaces"]["works_on"]
-    assert "meet-stage" in works_on
+    assert "google-meet-stage" in works_on
 
 
 # ── Aceternity UI-inspired atoms ──────────────────────────────────────────────
@@ -604,7 +604,7 @@ def test_marquee_strip_direction_right(renderer):
 
 def test_marquee_strip_works_on_meet_stage(atoms):
     works_on = atoms["marquee_strip"]["surfaces"]["works_on"]
-    assert "meet-stage" in works_on
+    assert "google-meet-stage" in works_on
 
 
 def test_typewriter_text_basic(renderer):
@@ -632,7 +632,7 @@ def test_typewriter_text_custom_style(renderer):
 
 def test_typewriter_text_works_on_meet_stage(atoms):
     works_on = atoms["typewriter_text"]["surfaces"]["works_on"]
-    assert "meet-stage" in works_on
+    assert "google-meet-stage" in works_on
 
 
 def test_animated_border_card_basic(renderer):
@@ -660,7 +660,7 @@ def test_animated_border_card_dark_bg(renderer):
 
 def test_animated_border_card_works_on_meet_stage(atoms):
     works_on = atoms["animated_border_card"]["surfaces"]["works_on"]
-    assert "meet-stage" in works_on
+    assert "google-meet-stage" in works_on
 
 
 # ── Aceternity UI-inspired atoms (batch 2) ────────────────────────────────────
@@ -680,7 +680,7 @@ def test_aurora_background_custom_colors(renderer):
     assert "#10b981" in html
 
 def test_aurora_background_works_on_meet_stage(atoms):
-    assert "meet-stage" in atoms["aurora_background"]["surfaces"]["works_on"]
+    assert "google-meet-stage" in atoms["aurora_background"]["surfaces"]["works_on"]
 
 def test_dot_grid_background_dots(renderer):
     html = r(renderer, {"component": "dot_grid_background", "variant": "dots",
@@ -693,7 +693,7 @@ def test_dot_grid_background_grid_variant(renderer):
     assert "linear-gradient" in html
 
 def test_dot_grid_background_works_on_meet_stage(atoms):
-    assert "meet-stage" in atoms["dot_grid_background"]["surfaces"]["works_on"]
+    assert "google-meet-stage" in atoms["dot_grid_background"]["surfaces"]["works_on"]
 
 def test_shimmer_button_basic(renderer):
     html = r(renderer, {"component": "shimmer_button", "label": "Deploy now"})
@@ -708,7 +708,7 @@ def test_shimmer_button_as_link(renderer):
     assert 'href="https://github.com"' in html
 
 def test_shimmer_button_works_on_meet_stage(atoms):
-    assert "meet-stage" in atoms["shimmer_button"]["surfaces"]["works_on"]
+    assert "google-meet-stage" in atoms["shimmer_button"]["surfaces"]["works_on"]
 
 def test_card_stack_basic(renderer):
     html = r(renderer, {"component": "card_stack", "cards": [
@@ -726,7 +726,7 @@ def test_card_stack_four_cards(renderer):
     assert html.count("rotate") == 4
 
 def test_card_stack_works_on_meet_stage(atoms):
-    assert "meet-stage" in atoms["card_stack"]["surfaces"]["works_on"]
+    assert "google-meet-stage" in atoms["card_stack"]["surfaces"]["works_on"]
 
 def test_meteor_shower_basic(renderer):
     html = r(renderer, {"component": "meteor_shower", "count": 10})
@@ -740,7 +740,7 @@ def test_meteor_shower_with_content(renderer):
     assert "Watch this space" in html
 
 def test_meteor_shower_works_on_meet_stage(atoms):
-    assert "meet-stage" in atoms["meteor_shower"]["surfaces"]["works_on"]
+    assert "google-meet-stage" in atoms["meteor_shower"]["surfaces"]["works_on"]
 
 def test_source_inspiration_on_all_aceternity_atoms(atoms):
     aceternity = ['marquee_strip', 'typewriter_text', 'animated_border_card',
@@ -766,7 +766,7 @@ def test_blur_fade_in_delay(renderer):
     assert "0.5s" in html
 
 def test_blur_fade_in_works_on_meet_stage(atoms):
-    assert "meet-stage" in atoms["blur_fade_in"]["surfaces"]["works_on"]
+    assert "google-meet-stage" in atoms["blur_fade_in"]["surfaces"]["works_on"]
 
 def test_blur_fade_in_source_inspiration(atoms):
     assert "Magic UI" in atoms["blur_fade_in"]["source_inspiration"]["name"]
@@ -794,7 +794,7 @@ def test_glow_button_as_anchor(renderer):
     assert 'href="#demo"' in html
 
 def test_glow_button_works_on_meet_stage(atoms):
-    assert "meet-stage" in atoms["glow_button"]["surfaces"]["works_on"]
+    assert "google-meet-stage" in atoms["glow_button"]["surfaces"]["works_on"]
 
 # ── animated_beam ─────────────────────────────────────────────────────────────
 
@@ -823,7 +823,7 @@ def test_animated_beam_straight_path(renderer):
     assert " L" in html
 
 def test_animated_beam_works_on_meet_stage(atoms):
-    assert "meet-stage" in atoms["animated_beam"]["surfaces"]["works_on"]
+    assert "google-meet-stage" in atoms["animated_beam"]["surfaces"]["works_on"]
 
 def test_animated_beam_source_inspiration(atoms):
     assert "Magic UI" in atoms["animated_beam"]["source_inspiration"]["name"]
@@ -851,7 +851,7 @@ def test_encrypted_reveal_frames_clamped(renderer):
     assert html.count("%;") <= 21
 
 def test_encrypted_reveal_works_on_meet_stage(atoms):
-    assert "meet-stage" in atoms["encrypted_reveal"]["surfaces"]["works_on"]
+    assert "google-meet-stage" in atoms["encrypted_reveal"]["surfaces"]["works_on"]
 
 def test_encrypted_reveal_source_inspiration(atoms):
     assert "Magic UI" in atoms["encrypted_reveal"]["source_inspiration"]["name"]

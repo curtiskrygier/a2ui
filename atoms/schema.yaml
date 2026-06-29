@@ -5,8 +5,8 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
-    - googlechat
+    - google-meet-stage
+    - google-chat
     - email
     - pdf
     - google-apps-script-web
@@ -25,8 +25,8 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
-    - googlechat
+    - google-meet-stage
+    - google-chat
     - email
     - pdf
     - google-apps-script-web
@@ -39,8 +39,8 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
-    - googlechat
+    - google-meet-stage
+    - google-chat
     - email
     - pdf
     - google-apps-script-web
@@ -53,8 +53,8 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
-    - googlechat
+    - google-meet-stage
+    - google-chat
     - email
     - pdf
     - google-apps-script-web
@@ -67,12 +67,12 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - email
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: blockquote styling stripped — renders as plain text
   fields:
     text: string
@@ -84,11 +84,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: renders as monospace text, no syntax highlighting
     - surface: email
       note: pre/code styling unreliable across email clients — use plain text or image
@@ -102,11 +102,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: monospace background stripped — use bullet_list instead
     - surface: email
       note: background colour unreliable — use bullet_list instead
@@ -119,8 +119,8 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
-    - googlechat
+    - google-meet-stage
+    - google-chat
     - email
     - pdf
     - google-apps-script-web
@@ -135,12 +135,12 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - email
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: hr not supported in Chat cards — omit or use heading instead
   source: *id001
 - type: youtube
@@ -149,13 +149,13 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     degraded_on:
     - surface: google-apps-script-web
       note: iframe embeds may be blocked by google-apps-script-web CSP in IFRAME sandbox
         mode
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: iframes not supported — use image with link instead
     - surface: email
       reason: iframes stripped by all email clients — use image thumbnail with link
@@ -176,7 +176,7 @@ blocks:
       Policy.
 
       '
-    meet_stage_params: 'On meet-stage, the renderer uses autoplay+muted params so
+    meet_stage_params: 'On google-meet-stage, the renderer uses autoplay+muted params so
       video starts immediately without user interaction: ?autoplay=1&mute=1&controls=0&loop=1&playlist={vid_id}&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&fs=0
       autoplay=1 + mute=1 is required as a pair — Chrome blocks unmuted autoplay.
       controls=0 hides the player bar. loop=1 requires playlist={vid_id} to work.
@@ -197,12 +197,12 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - email
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: external images may be blocked by Chat security policy — use Chat-hosted
         URLs
   fields:
@@ -217,11 +217,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: table layout may reflow — use two separate image blocks instead
     - surface: email
       note: side-by-side layout unreliable on mobile email — use two separate images
@@ -241,11 +241,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: SVG may not render — use PNG export instead
     - surface: email
       note: SVG support inconsistent across email clients — use PNG export
@@ -262,9 +262,9 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: use repo_links instead — no network fetch at stage render time
-    - surface: googlechat
+    - surface: google-chat
       note: not supported
     - surface: email
       note: not supported
@@ -281,12 +281,12 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - email
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: list styling stripped — renders as plain links
   fields:
     links:
@@ -299,8 +299,8 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
-    - googlechat
+    - google-meet-stage
+    - google-chat
     - email
     - pdf
     - google-apps-script-web
@@ -314,11 +314,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: border-left and background colour stripped — use bold text prefix instead
     - surface: email
       note: background colour unreliable — test across clients or use plain bold text
@@ -333,11 +333,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: custom list styling stripped — use bullet_list with manual numbering
     - surface: email
       note: flexbox layout unreliable — use ordered_list or bullet_list
@@ -352,12 +352,12 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - email
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: HTML tables not supported in Chat cards — use bullet_list or key_value
         instead
   fields:
@@ -371,11 +371,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on: null
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: CSS radio button trick not supported — use separate code blocks
     - surface: email
       reason: CSS :checked not supported in email — use separate code blocks
@@ -394,11 +394,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: table layout stripped — use bullet_list with bold keys instead
     - surface: email
       note: table styling may vary — test or use bullet_list
@@ -416,13 +416,13 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: colour panels may not export cleanly — use two separate code blocks
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: side-by-side layout and colour styling not supported — use two code
         blocks
     - surface: email
@@ -441,11 +441,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: complex table layout not supported — use key_value + code block instead
     - surface: email
       note: nested table styling unreliable — use key_value + code block
@@ -475,12 +475,12 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: CSS :target lightbox may not work in iframe — images show without lightbox
     - surface: pdf
       note: grid renders but lightbox is non-functional — use image_pair or image
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: CSS grid and :target not supported — use image_pair instead
     - surface: email
       reason: CSS grid and :target stripped — use individual image blocks
@@ -498,11 +498,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on: null
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: iframes not supported — use two image thumbnails with links
     - surface: email
       reason: iframes stripped — use image thumbnails with links
@@ -526,13 +526,13 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: only first slide renders — use gallery instead
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: CSS radio button trick not supported — use image_pair or gallery
     - surface: email
       reason: CSS :checked not supported in email — use individual images
@@ -550,11 +550,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: flexbox layout and custom styling stripped — use bullet_list with bold
         dates
     - surface: email
@@ -575,13 +575,13 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: callout bubbles may not render inline — consider code + steps instead
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: inline flexbox badges not supported — use code block + bullet_list
     - surface: email
       reason: inline positioning unreliable — use code block + bullet_list
@@ -603,13 +603,13 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: glow animations not rendered — displays as flat card
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: complex CSS not supported — use key_value or body instead
     - surface: email
       reason: CSS gradients and animations unreliable — use plain text
@@ -626,13 +626,13 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: animation not rendered — shows static bar
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: CSS animations not supported — use bullet_list or body
     - surface: email
       reason: CSS animations stripped — use plain percentage text
@@ -649,7 +649,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
     - surface: email
@@ -657,7 +657,7 @@ blocks:
     - surface: pdf
       note: pulse animations not rendered — badges display as flat
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: inline flex and border-radius not supported — use bullet_list
   fields:
     title: string (optional)
@@ -675,11 +675,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on: null
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: Requires SVG or Canvas rendering which is not supported. Consider `metric_delta`
         or `trend_indicator` for textual trends.
     - surface: email
@@ -702,11 +702,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on: null
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: Requires complex grid and color rendering which is not supported. No
         direct alternative.
     - surface: email
@@ -733,11 +733,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on: null
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: Requires complex SVG bubble rendering which is not supported.
     - surface: email
       reason: Requires SVG, not supported in static emails.
@@ -763,11 +763,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on: null
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: Requires complex SVG path calculations.
     - surface: email
       reason: Requires SVG, not supported in static emails.
@@ -791,11 +791,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on: null
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: Requires complex triangular layout and color scale.
     - surface: email
       reason: Requires SVG or CSS grid.
@@ -817,10 +817,10 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Only the metric value, label, and percentage will be rendered as text.
         The visual donut chart is not supported.
     incompatible_on:
@@ -847,8 +847,8 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
-    - googlechat
+    - google-meet-stage
+    - google-chat
     - email
     - pdf
     - google-apps-script-web
@@ -871,11 +871,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on: null
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: Requires detailed HTML/SVG listing styles.
     - surface: email
       reason: Requires complex SVG layouts.
@@ -899,11 +899,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on: null
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: Requires complex SVG emotional timeline path rendering.
     - surface: email
       reason: Requires SVG path calculations.
@@ -927,8 +927,8 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
-    - googlechat
+    - google-meet-stage
+    - google-chat
     - email
     - pdf
     - google-apps-script-web
@@ -949,10 +949,10 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as a series of linked text elements without visual separators
         or interactive styling.
     - surface: email
@@ -973,10 +973,10 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as a set of buttons or text links. Complex styling and active
         page indication might be limited.
     - surface: email
@@ -1004,11 +1004,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-side-panel
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as a plain text list with emoji status markers; no connectors
         or animation.
     - surface: email
@@ -1032,10 +1032,10 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as a series of buttons or text links. Visual tab styling and active
         state might be limited.
     - surface: email
@@ -1057,12 +1057,12 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - email
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as a list of hyperlinks. Internal document anchors are not supported;
         links must point to external URLs or other cards.
   fields:
@@ -1078,11 +1078,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as a simple list of questions and answers without interactive
         collapse/expand functionality.
     - surface: email
@@ -1100,8 +1100,8 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
-    - googlechat
+    - google-meet-stage
+    - google-chat
     - email
     - pdf
     - google-apps-script-web
@@ -1120,8 +1120,8 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
-    - googlechat
+    - google-meet-stage
+    - google-chat
     - email
     - pdf
     - google-apps-script-web
@@ -1139,11 +1139,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as a simple blockquote with text attribution; avatar image is
         not supported.
     - surface: email
@@ -1165,8 +1165,8 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
-    - googlechat
+    - google-meet-stage
+    - google-chat
     - email
     - pdf
     - google-apps-script-web
@@ -1186,11 +1186,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on: null
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: Relies on CSS `:checked` pseudo-class for interactivity, which is not
         supported.
     - surface: email
@@ -1213,11 +1213,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on: null
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: Relies on CSS `:hover` pseudo-class for interactivity, which is not
         supported.
     - surface: email
@@ -1240,11 +1240,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on: null
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: Relies on CSS `:hover` pseudo-class for interactivity, which is not
         supported.
     - surface: email
@@ -1270,11 +1270,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on: null
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: Relies on CSS `:checked` pseudo-class for interactivity, which is not
         supported.
     - surface: email
@@ -1296,11 +1296,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on: null
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: Relies on CSS `:checked` pseudo-class for interactivity and fixed positioning,
         which are not supported.
     - surface: email
@@ -1325,10 +1325,10 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as a clickable link to the audio file, no embedded player.
     - surface: email
       note: Renders as a clickable link to the audio file, no embedded player.
@@ -1347,8 +1347,8 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
-    - googlechat
+    - google-meet-stage
+    - google-chat
     - email
     - pdf
     - google-apps-script-web
@@ -1366,10 +1366,10 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as an image followed by a clickable link to the PDF, without complex
         layout.
     - surface: email
@@ -1390,8 +1390,8 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
-    - googlechat
+    - google-meet-stage
+    - google-chat
     - email
     - pdf
     - google-apps-script-web
@@ -1410,10 +1410,10 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as an image followed by a clickable link to the video, no play
         icon overlay.
     - surface: email
@@ -1434,10 +1434,10 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as a basic card with image, title, description, and link, without
         advanced styling.
     - surface: email
@@ -1463,11 +1463,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-side-panel
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as plain monospace text block; no colour highlighting.
     - surface: pdf
       note: Renders as a static diff without colour; additions and removals shown
@@ -1495,10 +1495,10 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders code snippets stacked vertically instead of side-by-side.
     - surface: email
       note: Renders code snippets stacked vertically instead of side-by-side.
@@ -1518,11 +1518,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on: null
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: Requires complex CSS for device framing, which is not supported.
     - surface: email
       reason: Requires complex CSS for device framing, which is not supported.
@@ -1543,8 +1543,8 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
-    - googlechat
+    - google-meet-stage
+    - google-chat
     - email
     - pdf
     - google-apps-script-web
@@ -1560,10 +1560,10 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as a basic card with text and button; no custom icons, complex
         layouts, or animations.
     incompatible_on:
@@ -1588,11 +1588,11 @@ blocks:
     - google-apps-script-side-panel
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Fixed positioning relative to Meet iframe; renders at iframe edge
     - surface: pdf
       note: Renders as a styled notification card inline (not fixed)
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as a plain notification text card
     incompatible_on:
     - surface: email
@@ -1616,11 +1616,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on: null
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: Google Chat does not support custom UI elements with animated loading
         states.
     - surface: email
@@ -1641,10 +1641,10 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as a basic card with image, title, text, and button; limited layout
         flexibility and styling.
     - surface: email
@@ -1663,11 +1663,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on: null
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: Google Chat does not support custom animated loading indicators.
     - surface: email
       reason: Email does not support custom animated loading indicators.
@@ -1681,10 +1681,10 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as plain text; no custom background colors, rounded corners, or
         advanced styling.
     - surface: email
@@ -1706,10 +1706,10 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as basic text; no custom icons, colors, or complex inline styling.
     - surface: email
       note: Renders as basic text; no custom icons, colors, or complex inline styling.
@@ -1724,10 +1724,10 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Can display static stars using Unicode characters or images, but no interactive
         rating functionality.
     - surface: email
@@ -1748,14 +1748,14 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-side-panel
     - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as a static arc at target value without mount animation
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: Google Chat does not support custom SVG or CSS-animated progress arcs.
     - surface: email
       reason: SVG animation not supported in email clients.
@@ -1774,8 +1774,8 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
-    - googlechat
+    - google-meet-stage
+    - google-chat
     - google-apps-script-web
     degraded_on:
     - surface: email
@@ -1797,11 +1797,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as a series of lists or key-value pairs due to lack of table support.
     incompatible_on:
     - surface: email
@@ -1820,8 +1820,8 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
-    - googlechat
+    - google-meet-stage
+    - google-chat
     - email
     - pdf
     - google-apps-script-web
@@ -1845,11 +1845,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as stacked individual cards or sections within a single card.
     - surface: email
       note: Renders as stacked blocks without complex column layouts.
@@ -1865,8 +1865,8 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
-    - googlechat
+    - google-meet-stage
+    - google-chat
     - email
     - pdf
     - google-apps-script-web
@@ -1884,11 +1884,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as stacked lists of attributes and values for each item.
     incompatible_on:
     - surface: email
@@ -1908,11 +1908,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as a list of key-value pairs.
     incompatible_on:
     - surface: email
@@ -1931,11 +1931,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as a simplified list of products with their features, losing grid
         layout and icons.
     - surface: email
@@ -1954,10 +1954,10 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as two stacked cards, losing the explicit 'VS' visual separation.
     - surface: email
       note: Renders as two stacked blocks, losing the explicit 'VS' visual separation
@@ -1980,8 +1980,8 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
-    - googlechat
+    - google-meet-stage
+    - google-chat
     - email
     - pdf
     - google-apps-script-web
@@ -1997,11 +1997,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as a simplified list of capabilities with text indicators for
         each item.
     incompatible_on:
@@ -2018,11 +2018,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on: null
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: CSS pseudo-classes like :checked and advanced styling are not supported.
     - surface: email
       reason: CSS pseudo-classes like :checked and advanced styling are not supported.
@@ -2042,11 +2042,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on: null
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: CSS pseudo-classes like :checked or :target and dynamic content display
         are not supported.
     - surface: email
@@ -2065,11 +2065,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on: null
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: CSS transforms, transitions, and pseudo-classes like :hover are not
         supported.
     - surface: email
@@ -2088,11 +2088,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on: null
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: CSS positioning, pseudo-classes like :hover, and dynamic content display
         are not supported.
     - surface: email
@@ -2111,11 +2111,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on: null
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: CSS pseudo-classes like :hover or :focus-within and dynamic display
         are not supported.
     - surface: email
@@ -2133,11 +2133,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on: null
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: CSS pseudo-classes like :checked and :hover for interactive forms are
         not supported.
     - surface: email
@@ -2156,11 +2156,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on: null
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: CSS pseudo-classes like :checked and advanced styling for form elements
         are not supported.
     - surface: email
@@ -2179,11 +2179,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on: null
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: CSS transforms, transitions, and pseudo-classes like :hover are not
         supported.
     - surface: email
@@ -2202,11 +2202,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on: null
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: CSS pseudo-classes like :checked and advanced styling for form elements
         are not supported.
     - surface: email
@@ -2225,11 +2225,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on: null
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: CSS transforms, transitions, and pseudo-classes like :target or :checked
         are not supported.
     - surface: email
@@ -2252,11 +2252,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as basic text and author name; avatar and complex styling are
         not supported.
     - surface: email
@@ -2275,11 +2275,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as text (e.g., '4.5 stars') or using emoji stars; visual styling
         of stars is not supported.
     - surface: email
@@ -2296,11 +2296,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as a limited number of small images or a text count; stacking/overlapping
         is not supported.
     - surface: email
@@ -2320,11 +2320,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as a basic text list; avatars and rich formatting are not supported.
     - surface: email
       note: Renders as a basic text list; avatars and rich formatting may be rendered
@@ -2342,11 +2342,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as a limited number of stacked images or a text list of names;
         grid layout is not supported.
     - surface: email
@@ -2362,11 +2362,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as basic text and icon; banner styling and rich layout are not
         supported.
     - surface: email
@@ -2387,11 +2387,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as basic text and publication logo; card styling and rich layout
         are not supported.
     - surface: email
@@ -2413,11 +2413,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as basic text and expert name; avatar and rich formatting are
         not supported.
     - surface: email
@@ -2439,11 +2439,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as basic text and author name; star rating may be shown as emojis
         or text.
     - surface: email
@@ -2465,12 +2465,12 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     degraded_on:
     - surface: google-apps-script-web
       note: social platform iframes generally blocked by X-Frame-Options
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: Google Chat does not support embedding arbitrary HTML or iframes for
         social media posts.
     - surface: email
@@ -2492,9 +2492,9 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Interactive copy-to-clipboard actions and prompt animations are disabled.
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as standard unformatted monospace text block without terminal
         window aesthetics.
     - surface: email
@@ -2518,9 +2518,9 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Nested toggle states and hover highlights are completely unavailable.
-    - surface: googlechat
+    - surface: google-chat
       note: Flattens to a plain text bulleted list using indentation characters.
     - surface: email
       note: Dynamic expanding or collapsing of directory nodes is non-functional.
@@ -2540,9 +2540,9 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Tab switching logic feels slow or becomes unresponsive.
-    - surface: googlechat
+    - surface: google-chat
       note: Displays all code blocks sequentially or drops all but the first tab.
     - surface: email
       note: Interactivity is broken so all snippet variations render stacked vertically.
@@ -2563,9 +2563,9 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Layout shifts or responsive styling can clip wide URL strings.
-    - surface: googlechat
+    - surface: google-chat
       note: Strips method badges and colors, rendering as basic raw markdown text.
     - surface: email
       note: Complex inline structures and method badge background colors drop out.
@@ -2588,9 +2588,9 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Copy shortcuts and secret-masking toggle utilities are disabled.
-    - surface: googlechat
+    - surface: google-chat
       note: Falls back to a standard markdown definition list without visual separation.
     - surface: email
       note: Table alignment borders can break depending on the email client.
@@ -2610,7 +2610,7 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Converts the warning wrapper box into a standard unstyled text list.
     - surface: email
       note: Custom background colors and alert icons are dropped by basic client engines.
@@ -2631,7 +2631,7 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Discards button styles and shows plain text characters in brackets.
     - surface: email
       note: Key cap shadows and rounded corners are flattened by client processors.
@@ -2652,10 +2652,10 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Wide table blocks introduce harsh horizontal scrolling on restricted screen
         areas.
-    - surface: googlechat
+    - surface: google-chat
       note: Complete loss of structural grids, collapsing into standard text sentences.
     - surface: email
       note: Responsive tabular configurations fail, causing text truncation or line
@@ -2676,7 +2676,7 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as unstyled plain text in brackets instead of a colored badge.
     - surface: email
       note: Custom border radius and background colors may fail to render.
@@ -2696,7 +2696,7 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Box styling lost, collapses into standard text with manual prefix.
     - surface: email
       note: Alert background colors and icons frequently drop out.
@@ -2716,7 +2716,7 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Converted into basic text without protective boundary boxes.
     - surface: email
       note: Colorful alert panels flatten to default background containers.
@@ -2734,9 +2734,9 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Interactive copy mechanics are disabled.
-    - surface: googlechat
+    - surface: google-chat
       note: Loses dark console background, shows as basic inline code.
     - surface: email
       note: Inline code background and execution symbols often stripped.
@@ -2755,9 +2755,9 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Clipboard API operations are blocked or unsupported.
-    - surface: googlechat
+    - surface: google-chat
       note: Hidden entirely — interactive buttons not supported in message layouts.
     - surface: email
       note: JavaScript clipboard actions fail completely in client sandboxes.
@@ -2776,9 +2776,9 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: High-frequency scrollbars are restricted or difficult to navigate.
-    - surface: googlechat
+    - surface: google-chat
       note: Large logs cause truncation or massive message overflow.
     - surface: email
       note: Max-height constraints fail, expanding the log indefinitely.
@@ -2797,9 +2797,9 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Dynamic node toggles and mouse interaction fully disabled.
-    - surface: googlechat
+    - surface: google-chat
       note: Collapses into a raw non-interactive string code block.
     - surface: email
       note: Interactive expanding nodes fail, forcing full vertical expansion.
@@ -2818,7 +2818,7 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Outer borders disappear, presenting as plain bullet lists.
     - surface: email
       note: Background gradients and accent borders dropped by standard clients.
@@ -2837,7 +2837,7 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Outer wrapper styling drops, showing standard paragraph text.
     - surface: email
       note: Container spacing and custom padding are compressed.
@@ -2856,7 +2856,7 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Target icons convert back to standard text bullets.
     - surface: email
       note: Custom check icons and borders fail to display.
@@ -2875,9 +2875,9 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Timeline vertical paths and relative positioning can misalign.
-    - surface: googlechat
+    - surface: google-chat
       note: Visual timeline tracks collapse into standard header lists.
     - surface: email
       note: Left margin tracks and connection lines disappear on older renderers.
@@ -2898,7 +2898,7 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Multi-column grouping panels flatten to markdown segments.
     - surface: email
       note: Segment grid structures drop, rendering all elements stacked.
@@ -2920,7 +2920,7 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Rich link metadata cards degrade into simple bracketed URLs.
     - surface: email
       note: Tracking parameters on anchor links may flag spam filters.
@@ -2939,7 +2939,7 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: File size badges and download icons are discarded.
     - surface: email
       note: Dynamic download metrics and layouts fail to display.
@@ -2958,9 +2958,9 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Floating side positions collapse inline due to confined viewport.
-    - surface: googlechat
+    - surface: google-chat
       note: Absolute placement breaks, pushing text inline with the message.
     - surface: email
       note: Multi-column side floats drop, forcing block underneath normal text.
@@ -2980,7 +2980,7 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as unstyled plain text instead of a color-coded label.
     - surface: email
       note: Custom background and border treatments may fail to display.
@@ -3000,7 +3000,7 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Collapses into plain unbordered body copy sentences.
     - surface: email
       note: Accent borders and caution colors stripped by simple processors.
@@ -3019,9 +3019,9 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Interactive checking performs sluggishly.
-    - surface: googlechat
+    - surface: google-chat
       note: Degrades into a static markdown bullet list.
     - surface: email
       note: Dynamic check state saving is completely broken.
@@ -3040,9 +3040,9 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Hover tooltips and interactive gestures fail to initialise.
-    - surface: googlechat
+    - surface: google-chat
       note: Drops definition utility, leaves only the term text.
     - surface: email
       note: Floating elements fail, rendering definitions invisible.
@@ -3062,7 +3062,7 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Falls back to raw text timing statement.
     - surface: email
       note: Badge decorations fail to scale or colour.
@@ -3081,9 +3081,9 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Live progression trackers fail to update.
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as simple numbered fraction text.
     - surface: email
       note: Step wizard layout flattens to default text.
@@ -3103,9 +3103,9 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: JavaScript popup triggers are blocked in restricted contexts.
-    - surface: googlechat
+    - surface: google-chat
       note: Hidden — sharing script bindings unavailable.
     - surface: email
       note: Dynamic script-based link builders cannot load inside messages.
@@ -3125,9 +3125,9 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Form input handling may block submissions.
-    - surface: googlechat
+    - surface: google-chat
       note: Data capture forms are invalid components.
     - surface: email
       note: Inline forms fail — replace with external link anchor.
@@ -3147,7 +3147,7 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Avatar drops, flattens to generic markdown text.
     - surface: email
       note: Column layout strips, stacking content blocks vertically.
@@ -3169,9 +3169,9 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Flexbox card sizing fails to size uniformly.
-    - surface: googlechat
+    - surface: google-chat
       note: Collapses into basic single-line hyperlinks.
     - surface: email
       note: CSS grid reverts to simple text list.
@@ -3190,7 +3190,7 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Indexed list flattens into single unstyled lines.
     - surface: email
       note: Border tracks and active flags are stripped.
@@ -3210,9 +3210,9 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Count animations and click actions trigger slowly.
-    - surface: googlechat
+    - surface: google-chat
       note: Interactive event bindings are blocked entirely.
     - surface: email
       note: Tracking selections are inert without network connection.
@@ -3253,9 +3253,9 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Clip-to-copy actions are unavailable.
-    - surface: googlechat
+    - surface: google-chat
       note: Background bars revert to general quote indicators.
     - surface: email
       note: Share action triggers are omitted by sandboxes.
@@ -3275,7 +3275,7 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Callout cards break into fundamental text lines.
     - surface: email
       note: Button backgrounds and icons flatten inside email layers.
@@ -3295,9 +3295,9 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Async profile follow tracking may fail to sync.
-    - surface: googlechat
+    - surface: google-chat
       note: Inline action buttons are unsupported.
     - surface: email
       note: Scripted follow actions degrade to plain hyperlinks.
@@ -3317,9 +3317,9 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: High frequency scroll monitoring triggers suffer from visual frame latency.
-    - surface: googlechat
+    - surface: google-chat
       note: Dynamic scroll tracking layout elements are completely stripped.
     - surface: email
       note: Script-driven viewport position tracking fails in client readers.
@@ -3339,9 +3339,9 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Sticky placement logic loses layout sync relative to video stages.
-    - surface: googlechat
+    - surface: google-chat
       note: Multi-level structure drops, collapsing to plain flat text.
     - surface: email
       note: Scroll monitoring active section highlighting fails completely.
@@ -3360,7 +3360,7 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Cover visuals drop, returning unformatted markdown headers.
     - surface: email
       note: Complex layout positioning and custom fonts break down.
@@ -3381,9 +3381,9 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Scroll animation shifts generate noticeable redraw lag.
-    - surface: googlechat
+    - surface: google-chat
       note: Removed — message frames prohibit floating navigation triggers.
     - surface: email
       note: Inline frame actions break across email display engines.
@@ -3402,7 +3402,7 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Progress bars convert to basic markdown links.
     - surface: email
       note: Box borders and status indicators stripped by processors.
@@ -3421,9 +3421,9 @@ blocks:
     works_on:
     - web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Live sandboxed tabs and result viewports fail to initialize.
-    - surface: googlechat
+    - surface: google-chat
       note: Blocked — degrades to CodePen URL link.
     - surface: email
       note: Third-party sandboxes reject external frame initialization.
@@ -3444,9 +3444,9 @@ blocks:
     works_on:
     - web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Virtual environments hit thread execution limits within stages.
-    - surface: googlechat
+    - surface: google-chat
       note: Collapses to fallback hyperlinks due to framework policies.
     - surface: email
       note: Sandboxed editor containers completely blocked.
@@ -3465,7 +3465,7 @@ blocks:
     works_on:
     - web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Script restrictions fallback to basic text links.
     - surface: email
       note: Script inject routines cannot load outside web environments.
@@ -3485,9 +3485,9 @@ blocks:
     works_on:
     - web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Resizing widgets fail to track width variations in streams.
-    - surface: googlechat
+    - surface: google-chat
       note: Theme styling collapses to simple quote blocks.
     - surface: email
       note: Runtime engines drop interactive layout cards.
@@ -3507,9 +3507,9 @@ blocks:
     works_on:
     - web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Slide transitions update sluggishly over video layers.
-    - surface: googlechat
+    - surface: google-chat
       note: Collapses to markdown resource links.
     - surface: email
       note: Slider primitives fail to pass email sandbox parameters.
@@ -3529,9 +3529,9 @@ blocks:
     works_on:
     - web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Multi-frame rendering degrades during active screen streams.
-    - surface: googlechat
+    - surface: google-chat
       note: Vector scripts disappear, producing empty blocks.
     - surface: email
       note: Missing engines stop animation playback.
@@ -3553,9 +3553,9 @@ blocks:
     works_on:
     - web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Vector redraw calls strain stage runtime layers.
-    - surface: googlechat
+    - surface: google-chat
       note: Collapses to remote document shortcuts.
     - surface: email
       note: Design tool canvas structures dropped by secure parsers.
@@ -3574,7 +3574,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
     - surface: email
@@ -3592,9 +3592,9 @@ blocks:
     works_on:
     - web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Sandboxed iframes blocked by stage security policy.
-    - surface: googlechat
+    - surface: google-chat
       note: Collapses to link.
     - surface: email
       note: Iframes stripped.
@@ -3614,7 +3614,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
     - surface: email
@@ -3633,9 +3633,9 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Chart.js canvas rendering inconsistent in stage iframe.
-    - surface: googlechat
+    - surface: google-chat
       note: Canvas not supported.
     - surface: email
       note: Canvas stripped.
@@ -3655,9 +3655,9 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Canvas rendering inconsistent in stage iframe.
-    - surface: googlechat
+    - surface: google-chat
       note: Canvas not supported.
     - surface: email
       note: Canvas stripped.
@@ -3676,7 +3676,7 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Sorting interaction requires JS not available in stage.
     - surface: email
       note: Renders as static table.
@@ -3694,7 +3694,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
     - surface: email
@@ -3714,7 +3714,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
     - surface: email
@@ -3732,7 +3732,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
     - surface: email
@@ -3750,7 +3750,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
     - surface: email
@@ -3770,9 +3770,9 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Keyboard events captured by Meet.
-    - surface: googlechat
+    - surface: google-chat
       note: Interactive overlays not supported.
     - surface: email
       note: Interaction stripped.
@@ -3789,7 +3789,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
     - surface: email
@@ -3811,7 +3811,7 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Renders as plain text line.
     - surface: email
       note: Simplified to plain text.
@@ -3833,7 +3833,7 @@ blocks:
     - email
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Footnotes not visible in viewport-fitted stage.
   fields:
     footnotes: array of {id, text}. Footnote entries.
@@ -3850,7 +3850,7 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Overlay positioning unreliable in stage grid.
     - surface: email
       note: Renders as inline text.
@@ -3869,7 +3869,7 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Expand interaction requires JS not available.
     - surface: email
       note: Renders flat.
@@ -3887,7 +3887,7 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Voting interaction requires JS not available.
     - surface: email
       note: Renders as plain list of options.
@@ -3907,7 +3907,7 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Hover not available; abbreviation shown plain.
     - surface: email
       note: Tooltip stripped; abbreviation shown as text.
@@ -3925,10 +3925,10 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Clipboard API may be blocked.
     - surface: email
       note: Button stripped; shows plain text.
@@ -3946,11 +3946,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on: null
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: Requires detailed custom SVG drawing.
   fields:
     title: string (optional, e.g., 'Acquisition Funnel')
@@ -3967,11 +3967,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on: null
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: Requires complex SVG layouts.
   fields:
     title: string (optional, e.g., 'API Response SLA')
@@ -3990,11 +3990,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on: null
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: Requires complex SVG gradients.
   fields:
     title: string (optional, e.g., 'SaaS Cumulative Workloads')
@@ -4012,11 +4012,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on: null
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: Requires custom grid mapping.
   fields:
     title: string (optional, e.g., 'CSAT vs. Support Response Time')
@@ -4035,11 +4035,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on: null
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: Requires detailed flex layout and gradients.
   fields:
     title: string (optional, e.g., 'Call Mood & Themes Summary')
@@ -4060,11 +4060,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on: null
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: Requires detailed SVG grid rendering.
   fields:
     title: string (optional, e.g., 'GitHub Repository Activity')
@@ -4085,17 +4085,17 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: Google Chat has its own card input model — use key_value or action buttons
     - surface: email
       reason: Interactive form controls do not function in email clients
     - surface: pdf
       reason: Static render only — use table or key_value for read-only representation
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Renders and collects input visually; form submit has no stage routing
         — use with follow_up_chips for conversational submission
   fields:
@@ -4126,17 +4126,17 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: Use Chat card input widget instead
     - surface: email
       reason: Input controls non-functional in email
     - surface: pdf
       reason: Static only
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Renders as a styled input on stage; data capture requires stage-level
         routing
   fields:
@@ -4157,17 +4157,17 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: Use Chat card dropdown widget instead
     - surface: email
       reason: Non-functional in email
     - surface: pdf
       reason: Static only — use key_value
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Renders as a styled select; data capture requires stage-level routing
   fields:
     label: string. Visible label.
@@ -4188,17 +4188,17 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: Use Chat card radio widget instead
     - surface: email
       reason: Non-functional in email
     - surface: pdf
       reason: Static only
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Radio selection renders correctly; value capture requires stage-level
         routing
   fields:
@@ -4221,17 +4221,17 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: Use Chat card multi-select widget instead
     - surface: email
       reason: Non-functional in email
     - surface: pdf
       reason: Static only
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Checkbox selection renders correctly; value capture requires stage-level
         routing
   fields:
@@ -4253,13 +4253,13 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Toggle switches render correctly; value capture requires stage-level routing
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: Use Chat card switch widget instead
     - surface: email
       reason: Non-functional in email
@@ -4283,17 +4283,17 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: Non-functional in Chat cards
     - surface: email
       reason: Non-functional in email
     - surface: pdf
       reason: Static only — use progress_bar for visual representation
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Slider renders and is draggable; value capture requires stage-level routing
   fields:
     label: string (optional). Visible label above the slider.
@@ -4315,17 +4315,17 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: Non-functional in Chat cards
     - surface: email
       reason: Non-functional in email
     - surface: pdf
       reason: Static only
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Date input renders and is clickable; value capture requires stage-level
         routing
   fields:
@@ -4346,11 +4346,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on: []
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: Chat has no modal primitive
     - surface: email
       reason: Non-functional in email
@@ -4375,14 +4375,14 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Chips render correctly; click actions need stage WebSocket routing to
         produce AI responses
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: Use Chat card action buttons instead
     - surface: email
       reason: Non-functional in email
@@ -4409,13 +4409,13 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Cards render and are selectable; value capture requires stage-level routing
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: Use Chat card action buttons instead
     - surface: email
       reason: Non-functional in email
@@ -4442,13 +4442,13 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Renders and is interactive; action_url POST requires stage-level routing
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: Use Chat card star rating widget instead
     - surface: email
       reason: Non-functional in email
@@ -4469,8 +4469,8 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
-    - googlechat
+    - google-meet-stage
+    - google-chat
     - email
     - pdf
     - google-apps-script-web
@@ -4487,11 +4487,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as plain code block without slot highlighting
     - surface: email
       note: Renders as plain code block without slot highlighting
@@ -4510,8 +4510,8 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
-    - googlechat
+    - google-meet-stage
+    - google-chat
     - email
     - pdf
     - google-apps-script-web
@@ -4535,8 +4535,8 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
-    - googlechat
+    - google-meet-stage
+    - google-chat
     - email
     - pdf
     - google-apps-script-web
@@ -4555,8 +4555,8 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
-    - googlechat
+    - google-meet-stage
+    - google-chat
     - email
     - pdf
     - google-apps-script-web
@@ -4575,8 +4575,8 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
-    - googlechat
+    - google-meet-stage
+    - google-chat
     - email
     - pdf
     - google-apps-script-web
@@ -4596,8 +4596,8 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
-    - googlechat
+    - google-meet-stage
+    - google-chat
     - email
     - pdf
     - google-apps-script-web
@@ -4617,8 +4617,8 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
-    - googlechat
+    - google-meet-stage
+    - google-chat
     - email
     - pdf
     - google-apps-script-web
@@ -4638,10 +4638,10 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: renders as plain text prefix with emoji icon; no colour or border styling
     - surface: email
       note: icon glyph only; background colour unreliable across clients
@@ -4662,12 +4662,12 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - email
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: renders as space-separated text labels; no chip styling
   fields:
     tags: array of strings. The tag labels.
@@ -4686,11 +4686,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on: null
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: CSS :checked and :has() pseudo-classes not supported in card rendering
     - surface: email
       reason: CSS pseudo-class interactivity not supported in email clients
@@ -4717,12 +4717,12 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - email
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: some markup stripped by Chat card renderer; tables and code blocks fall
         back to plain text
   fields:
@@ -4742,11 +4742,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: SVG may not render; falls back to percentage list
     incompatible_on:
     - surface: email
@@ -4774,8 +4774,8 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
-    - googlechat
+    - google-meet-stage
+    - google-chat
     - email
     - pdf
     - google-apps-script-web
@@ -4796,12 +4796,12 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - email
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: renders as plain numbered list item; no card styling or excerpt block
   fields:
     sources:
@@ -4819,11 +4819,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: renders as sequential key-value blocks; side-by-side layout not supported
     - surface: email
       note: multi-column layout collapses in most email clients; renders as stacked
@@ -4846,12 +4846,12 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - email
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: renders as plain percentage text e.g. Label 82%; no bar visualisation
   fields:
     label: string. What is being measured, e.g. Positive Sentiment or Retrieval Relevance.
@@ -4870,11 +4870,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: renders as "Used X / Y tokens (Z%)" plain text; no visual meter
     - surface: email
       note: bar renders statically; colour may be stripped by email client
@@ -4899,12 +4899,12 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - email
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: renders as plain text with price; no image or badge styling
   fields:
     title: string. Product display name.
@@ -4928,12 +4928,12 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - email
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: renders as plain order summary text; no colour or badge styling
   fields:
     order_number: string. Order identifier, e.g. "#1042".
@@ -4955,12 +4955,12 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - email
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: renders as a simple text list of product names and quantities
   fields:
     title: string (optional). Table heading.
@@ -4980,12 +4980,12 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - email
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: renders as plain text with key and summary; no type icon or status badge
   fields:
     key: string. Issue key, e.g. "PROJ-123".
@@ -5010,14 +5010,14 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - pdf
     - google-apps-script-web
     degraded_on:
     - surface: email
       note: multi-column layout collapses; renders as sequential column headings with
         bullet lists
-    - surface: googlechat
+    - surface: google-chat
       note: renders as plain text column names with ticket counts and key-summary
         pairs
   fields:
@@ -5038,12 +5038,12 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - email
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: renders as plain uppercase text label; no colour background
   fields:
     text: string. The lozenge label (single lozenge mode).
@@ -5064,13 +5064,13 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - pdf
     - google-apps-script-web
     degraded_on:
     - surface: email
       note: renders as a plain HTML table; no selection checkboxes or sort indicators
-    - surface: googlechat
+    - surface: google-chat
       note: renders as a simple text list; no table structure
   fields:
     title: string (optional). Dark header bar above the grid.
@@ -5095,12 +5095,12 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - email
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: renders as an indented plain text tree; no expand/collapse indicators
   fields:
     title: string (optional). Label above the tree panel.
@@ -5120,13 +5120,13 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - pdf
     - google-apps-script-web
     degraded_on:
     - surface: email
       note: renders as a static colour grid; tooltips unavailable
-    - surface: googlechat
+    - surface: google-chat
       note: renders as a plain text date-count list; no visual grid
   fields:
     title: string (optional). Heading above the calendar grid.
@@ -5147,13 +5147,13 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as a static select; no interactivity
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: No custom form widget support
     - surface: email
       reason: Non-functional in email
@@ -5179,12 +5179,12 @@ blocks:
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Grid collapses to single column on narrow stage panels
     - surface: email
       note: Grid layout may collapse in email clients; renders as stacked list
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: No CSS grid support
   fields:
     heading: string (optional). Section heading above the grid.
@@ -5210,11 +5210,11 @@ blocks:
     - surface: pdf
       note: Renders as a flat link list
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: No navigation widget type
     - surface: email
       reason: Navigation bars are not meaningful in email
-    - surface: meet-stage
+    - surface: google-meet-stage
       reason: Stage canvas has no persistent nav chrome
   fields:
     brand: string (optional). Brand name shown on the left.
@@ -5233,10 +5233,10 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: No custom form widget support
     - surface: email
       reason: Non-functional in email
@@ -5262,14 +5262,14 @@ blocks:
     - web
     - google-apps-script-web
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: No custom input widget support
     - surface: email
       reason: Non-functional in email
     - surface: pdf
       reason: Input fields are non-functional in PDF
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Renders as static digit boxes; no keyboard routing
   fields:
     length: integer (optional). Number of digit boxes. Default 6.
@@ -5676,12 +5676,12 @@ blocks:
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Grid collapses to single column on narrow panels
     - surface: email
       note: Grid may collapse in email clients
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: No CSS grid support
   fields:
     heading: string (optional). Section heading above the grid.
@@ -5705,9 +5705,9 @@ blocks:
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Background color may not render in all stage environments
-    - surface: googlechat
+    - surface: google-chat
       note: No full-width layout support; renders as a card with buttons
   fields:
     heading: string. Main headline.
@@ -5731,10 +5731,10 @@ blocks:
     degraded_on:
     - surface: pdf
       note: Renders as static final values; no animation
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Animation plays; @property support varies by browser version
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: No CSS animation support
     - surface: email
       reason: CSS animations not supported in email clients
@@ -5755,7 +5755,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
     - surface: pdf
@@ -5763,7 +5763,7 @@ blocks:
     - surface: email
       note: Renders as a static linked image placeholder
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: Iframe embeds not supported in Chat cards
   fields:
     url: string (required). Raw URL — YouTube, Loom, Google Slides, Vimeo, or any
@@ -5784,7 +5784,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
     - surface: email
@@ -5792,7 +5792,7 @@ blocks:
     - surface: pdf
       note: Renders as a static bar list
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: Rich progress bar layout not supported in Chat cards
   fields:
     items: array of objects — label (string), value (number), color (optional hex).
@@ -5814,7 +5814,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
     - surface: email
@@ -5822,7 +5822,7 @@ blocks:
     - surface: pdf
       note: Renders as a flat option list
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: Custom button styling not supported in Chat cards
   fields:
     options: array of objects — label (string), value (string), selected (boolean
@@ -5845,7 +5845,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
     - surface: pdf
@@ -5853,7 +5853,7 @@ blocks:
     - surface: email
       note: CSS animations not supported; renders as static icon
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: CSS animation not supported in Chat cards
   fields:
     trigger: string (required). One of confetti, trophy, pulse, fireworks.
@@ -5874,13 +5874,13 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as empty grey boxes without animation
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: CSS animation not supported in Chat cards
     - surface: email
       reason: CSS animations not supported in email clients
@@ -5902,12 +5902,12 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as a static single-line row without animation
-    - surface: googlechat
+    - surface: google-chat
       note: CSS animation not supported; renders as static flex row
     incompatible_on:
     - surface: email
@@ -5935,13 +5935,13 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-side-panel
     - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as fully-visible static text without animation
-    - surface: googlechat
+    - surface: google-chat
       note: CSS animation not supported; renders as plain text
     incompatible_on:
     - surface: email
@@ -5971,12 +5971,12 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as a static card with a solid border; animation not captured
-    - surface: googlechat
+    - surface: google-chat
       note: CSS animation not supported; renders as a plain card
     incompatible_on:
     - surface: email
@@ -6001,17 +6001,17 @@ blocks:
   description: Dark panel with three independently-animating radial gradient blobs
     that drift and scale using CSS @keyframes — creating an aurora borealis effect
     with no JavaScript. Supports optional title and body text overlaid on the effect.
-    Ideal for hero sections, cover slides, and atmospheric backgrounds on meet-stage.
+    Ideal for hero sections, cover slides, and atmospheric backgrounds on google-meet-stage.
   compact_description: animated aurora borealis gradient blob background, CSS-only
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as a static gradient panel without animation
-    - surface: googlechat
+    - surface: google-chat
       note: CSS animation not supported; renders as solid background
     incompatible_on:
     - surface: email
@@ -6039,11 +6039,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: background-image patterns may not render in Chat card containers
     incompatible_on:
     - surface: email
@@ -6072,12 +6072,12 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as a static styled button without animation
-    - surface: googlechat
+    - surface: google-chat
       note: CSS animation not supported; renders as a plain button
     incompatible_on:
     - surface: email
@@ -6107,12 +6107,12 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: CSS transform may not render correctly in all PDF engines
-    - surface: googlechat
+    - surface: google-chat
       note: Absolute positioning and transforms may collapse in Chat card layout
     incompatible_on:
     - surface: email
@@ -6139,12 +6139,12 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as a static dark panel without animation
-    - surface: googlechat
+    - surface: google-chat
       note: CSS animation not supported; renders as a plain dark block
     incompatible_on:
     - surface: email
@@ -6172,7 +6172,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
     - surface: google-apps-script-side-panel
@@ -6180,7 +6180,7 @@ blocks:
         iframe edge. Opacity-only fade works correctly.
     - surface: pdf
       note: Renders as a static visible panel without animation
-    - surface: googlechat
+    - surface: google-chat
       note: CSS animation not supported; renders immediately visible
     incompatible_on:
     - surface: email
@@ -6214,13 +6214,13 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-side-panel
     - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as a static button without glow or animation
-    - surface: googlechat
+    - surface: google-chat
       note: CSS animation not supported; renders as a flat button
     incompatible_on:
     - surface: email
@@ -6250,7 +6250,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
     - surface: google-apps-script-side-panel
@@ -6258,7 +6258,7 @@ blocks:
         to avoid node text overflow.
     - surface: pdf
       note: Renders as a static SVG path without animation
-    - surface: googlechat
+    - surface: google-chat
       note: CSS animation not supported; renders as a static diagram
     incompatible_on:
     - surface: email
@@ -6289,12 +6289,12 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as a static panel showing the final text only
-    - surface: googlechat
+    - surface: google-chat
       note: CSS animation not supported; renders as plain text immediately
     incompatible_on:
     - surface: email
@@ -6327,14 +6327,14 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-side-panel
     - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders all words stacked vertically (overflow visible); use first word
         only as fallback.
-    - surface: googlechat
+    - surface: google-chat
       note: CSS animation not supported; renders the first word only as plain text.
     incompatible_on:
     - surface: email
@@ -6366,13 +6366,13 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-side-panel
     - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as a static coloured circle without ring animation
-    - surface: googlechat
+    - surface: google-chat
       note: CSS animation not supported; renders as a plain coloured dot
     incompatible_on:
     - surface: email
@@ -6400,12 +6400,12 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as static completed text; no animation
-    - surface: googlechat
+    - surface: google-chat
       note: CSS animation not supported; renders as plain text
     incompatible_on:
     - surface: email
@@ -6431,12 +6431,12 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as static number; no animation
-    - surface: googlechat
+    - surface: google-chat
       note: CSS animation not supported; renders as plain number
     incompatible_on:
     - surface: email
@@ -6460,13 +6460,13 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-side-panel
     - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as a static placeholder bubble; no animation
-    - surface: googlechat
+    - surface: google-chat
       note: CSS animation not supported; renders as plain text
     incompatible_on:
     - surface: email
@@ -6487,10 +6487,10 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as plain text time string
     - surface: pdf
       note: Renders as static time display
@@ -6517,12 +6517,12 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as flat-coloured text (first gradient stop)
-    - surface: googlechat
+    - surface: google-chat
       note: CSS background-clip not supported; renders as plain bold text
     incompatible_on:
     - surface: email
@@ -6550,11 +6550,11 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Content renders visible immediately (no scroll context)
     - surface: pdf
       note: Renders as fully visible static block
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as plain text block
     incompatible_on:
     - surface: email
@@ -6580,12 +6580,12 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as the final resolved text only
-    - surface: googlechat
+    - surface: google-chat
       note: CSS animation not supported; renders as final text
     incompatible_on:
     - surface: email
@@ -6609,12 +6609,12 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as a fully-drawn static SVG path
-    - surface: googlechat
+    - surface: google-chat
       note: SVG animation not supported; renders as a static icon
     incompatible_on:
     - surface: email
@@ -6641,12 +6641,12 @@ blocks:
     - web
     - google-apps-script-side-panel
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Renders as a flat dark card; mouse events may not propagate through Meet
         iframe
     - surface: pdf
       note: Renders as a flat static card
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as a plain text card
     - surface: google-apps-script-web
       note: mousemove events may behave differently when page is embedded in a Workspace
@@ -6676,14 +6676,14 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: CSS :checked feedback works inside iframe but radio reset across slides
         may not persist
     - surface: pdf
       note: Renders as a static numbered question list with options as bullet points
         — no interactivity
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: No CSS interactivity — use poll_block instead
     - surface: email
       reason: CSS :checked selectors not supported in email clients
@@ -6709,13 +6709,13 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Inputs render but JS submit handler may be sandboxed — test in target
         iframe
     - surface: pdf
       note: Renders as a sentence with underline placeholder blanks — no interactivity
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: No form input or JS support
     - surface: email
       reason: Form inputs and JS not supported in email clients
@@ -6742,12 +6742,12 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Click events work inside iframe; rendered as two-column grid
     - surface: pdf
       note: Renders as a two-column table of terms and definitions — no interactivity
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: No JS or interactive state
     - surface: email
       reason: No JS support in email clients
@@ -6767,10 +6767,10 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as a plain text block with no toggle — hint always visible
     - surface: pdf
       note: Renders as a static tinted block with hint always visible
@@ -6796,12 +6796,12 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - email
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as a plain text badge name and description — no icon or visual
         styling
   fields:
@@ -6828,11 +6828,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as a plain text score line — no visual card or animation
     - surface: email
       note: CSS counter animation stripped — renders as static score text card
@@ -6861,13 +6861,13 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as a static labelled progress bar — no animation or level-up effect
     incompatible_on:
-    - surface: googlechat
+    - surface: google-chat
       reason: No CSS animation or progress bar support
     - surface: email
       reason: CSS transitions and animation not reliably supported
@@ -6894,12 +6894,12 @@ blocks:
     - web
     - google-apps-script-web
     degraded_on:
-    - surface: meet-stage
+    - surface: google-meet-stage
       note: Renders as a simplified prev/next pill row — localStorage persistence
         unavailable in iframe
     - surface: pdf
       note: Renders as a static prev/next text row with lesson titles
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as a plain text prev/next line — no navigation links
     - surface: email
       note: Renders as a plain text nav row — links may be stripped by email clients
@@ -6927,11 +6927,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Renders as a plain text list of module titles and completion percentages
     - surface: email
       note: CSS progress bars stripped — renders as a static text list with percentages
@@ -6953,11 +6953,11 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - pdf
     - google-apps-script-web
     degraded_on:
-    - surface: googlechat
+    - surface: google-chat
       note: Highlight background stripped — renders as plain text with annotation
         appended in brackets
     - surface: email
@@ -7100,7 +7100,7 @@ blocks:
   surfaces:
     works_on:
     - google-apps-script-web
-    - meet-stage
+    - google-meet-stage
   connectors:
   - id: gas-native
     surfaces:
@@ -7117,7 +7117,7 @@ blocks:
   - id: api
     surfaces:
     - web
-    - meet-stage
+    - google-meet-stage
     live: true
     description: Gmail REST API labels.list — pass auth_token field
     endpoint: https://gmail.googleapis.com/gmail/v1/users/me/labels
@@ -7142,7 +7142,7 @@ blocks:
   surfaces:
     works_on:
     - google-apps-script-web
-    - meet-stage
+    - google-meet-stage
   connectors:
   - id: gas-native
     surfaces:
@@ -7175,7 +7175,7 @@ blocks:
   surfaces:
     works_on:
     - google-apps-script-web
-    - meet-stage
+    - google-meet-stage
   connectors:
   - id: gas-native
     surfaces:
@@ -7193,7 +7193,7 @@ blocks:
   - id: api
     surfaces:
     - web
-    - meet-stage
+    - google-meet-stage
     live: true
     description: Drive About API — pass auth_token field
     endpoint: https://www.googleapis.com/drive/v3/about?fields=storageQuota
@@ -7238,7 +7238,7 @@ blocks:
   surfaces:
     works_on:
     - google-apps-script-web
-    - meet-stage
+    - google-meet-stage
   connectors:
   - id: gas-native
     surfaces:
@@ -7255,7 +7255,7 @@ blocks:
   - id: api
     surfaces:
     - web
-    - meet-stage
+    - google-meet-stage
     live: true
     description: Google Tasks REST API — pass auth_token field
     endpoint: https://tasks.googleapis.com/tasks/v1/lists/@default/tasks
@@ -7282,7 +7282,7 @@ blocks:
     works_on:
     - google-apps-script-web
     - web
-    - meet-stage
+    - google-meet-stage
   fields:
     colour: string (optional). Orb colour. Default
     size: integer (optional). Orb diameter in px. Default 380.
@@ -7301,7 +7301,7 @@ blocks:
     works_on:
     - google-apps-script-web
     - web
-    - meet-stage
+    - google-meet-stage
   fields:
     colour: string (optional). Dot colour. Default
     length: integer (optional). Number of chain dots. Default 16.
@@ -7320,7 +7320,7 @@ blocks:
     works_on:
     - google-apps-script-web
     - web
-    - meet-stage
+    - google-meet-stage
   fields:
     count: integer (optional). Particles per click. Default 14.
     colours: array (optional). Array of hex colour strings.
@@ -7341,7 +7341,7 @@ blocks:
     works_on:
     - google-apps-script-web
     - web
-    - meet-stage
+    - google-meet-stage
   fields:
     radius: integer (optional). Spotlight radius px. Default 180.
     darkness: number (optional). Overlay opacity 0–1. Default 0.82.
@@ -7359,7 +7359,7 @@ blocks:
     works_on:
     - google-apps-script-web
     - web
-    - meet-stage
+    - google-meet-stage
   fields:
     label: string (optional). Text label for the default pill style.
     content: string (optional). Raw HTML to use instead of the default pill.
@@ -7380,7 +7380,7 @@ blocks:
     works_on:
     - google-apps-script-web
     - web
-    - meet-stage
+    - google-meet-stage
   fields:
     content: string (optional). Inner HTML rendered inside the card.
     title: string (optional). Card heading rendered above content.
@@ -7439,7 +7439,7 @@ blocks:
     works_on:
     - google-apps-script-web
     - web
-    - meet-stage
+    - google-meet-stage
   fields:
     text: string. Heading text.
     gradient: string (optional). CSS gradient value. Default indigo→violet→pink.
@@ -7460,7 +7460,7 @@ blocks:
     works_on:
     - google-apps-script-web
     - web
-    - meet-stage
+    - google-meet-stage
   fields:
     text: string. Quote body text.
     attribution: string (optional). Name or source shown below quote.
@@ -7480,7 +7480,7 @@ blocks:
     works_on:
     - google-apps-script-web
     - web
-    - meet-stage
+    - google-meet-stage
   fields:
     value: string. The stat number or short value.
     prefix: string (optional). Text before value (e.g. "$", "~").
@@ -7502,7 +7502,7 @@ blocks:
     works_on:
     - google-apps-script-web
     - web
-    - meet-stage
+    - google-meet-stage
   fields:
     text: string. Text to reveal word by word.
     colour: string (optional). Text colour. Default rgba(255,255,255,0.92).
@@ -7523,7 +7523,7 @@ blocks:
     works_on:
     - google-apps-script-web
     - web
-    - meet-stage
+    - google-meet-stage
   fields:
     text: string. Label text (uppercased automatically).
     colour: string (optional). Accent colour. Default
@@ -7541,7 +7541,7 @@ blocks:
     works_on:
     - google-apps-script-web
     - web
-    - meet-stage
+    - google-meet-stage
   fields:
     value: integer. Target number to count to.
     label: string (optional). Descriptor shown below the number.
@@ -7564,7 +7564,7 @@ blocks:
     works_on:
     - google-apps-script-web
     - web
-    - meet-stage
+    - google-meet-stage
   fields:
     text: string. Body text with **highlighted** words wrapped in double asterisks.
     size: string (optional). Font-size. Default 1.2rem.
@@ -7584,7 +7584,7 @@ blocks:
     works_on:
     - google-apps-script-web
     - web
-    - meet-stage
+    - google-meet-stage
   fields:
     text: string. Text content.
     gradient: string (optional). CSS gradient applied to text. Default indigo→pink.
@@ -7605,7 +7605,7 @@ blocks:
     works_on:
     - google-apps-script-web
     - web
-    - meet-stage
+    - google-meet-stage
   fields:
     count: integer (optional). Number of particles. Default 65.
     colour: string (optional). Hex colour for particles and lines. Default
@@ -7627,7 +7627,7 @@ blocks:
     works_on:
     - google-apps-script-web
     - web
-    - meet-stage
+    - google-meet-stage
   fields:
     nodes: array (optional). Array of {id, label} objects. Defaults to 6 labelled
       nodes.
@@ -7650,7 +7650,7 @@ blocks:
     works_on:
     - google-apps-script-web
     - web
-    - meet-stage
+    - google-meet-stage
   fields:
     grid: integer (optional). Grid dimension N (N×N). Default 16.
     height_scale: number (optional). Vertical exaggeration multiplier. Default 1.0.
@@ -7745,7 +7745,7 @@ blocks:
   surfaces:
     works_on:
     - google-apps-script-web
-    - meet-stage
+    - google-meet-stage
   fields:
     chyron_title: string (optional). Top-left headline overlay.
     chyron_subtitle: string (optional). Top-left subtitle — supports interpolated
@@ -7969,7 +7969,7 @@ blocks:
     works_on:
     - google-apps-script-web
     - web
-    - meet-stage
+    - google-meet-stage
   fields:
     nav_slug: string (required). Slug of the destination named page.
     label: string (optional). Button label. Default "Continue →".
@@ -8823,7 +8823,7 @@ blocks:
   surfaces:
     works_on:
     - google-apps-script-web
-    - meet-stage
+    - google-meet-stage
   connectors:
   - id: gas-native
     surfaces:
@@ -8840,7 +8840,7 @@ blocks:
   - id: api
     surfaces:
     - web
-    - meet-stage
+    - google-meet-stage
     live: true
     description: Gmail REST API threads.list — pass auth_token field
     endpoint: https://gmail.googleapis.com/gmail/v1/users/me/threads
@@ -8863,7 +8863,7 @@ blocks:
   surfaces:
     works_on:
     - google-apps-script-web
-    - meet-stage
+    - google-meet-stage
   connectors:
   - id: gas-native
     surfaces:
@@ -8880,7 +8880,7 @@ blocks:
   - id: api
     surfaces:
     - web
-    - meet-stage
+    - google-meet-stage
     live: true
     description: Drive REST API files.list — pass auth_token field
     endpoint: https://www.googleapis.com/drive/v3/files?orderBy=modifiedTime desc
@@ -8903,7 +8903,7 @@ blocks:
   surfaces:
     works_on:
     - google-apps-script-web
-    - meet-stage
+    - google-meet-stage
   connectors:
   - id: gas-native
     surfaces:
@@ -8920,7 +8920,7 @@ blocks:
   - id: api
     surfaces:
     - web
-    - meet-stage
+    - google-meet-stage
     live: true
     description: Drive REST API files.list with parent filter — pass folder_id + auth_token
     endpoint: https://www.googleapis.com/drive/v3/files?q='{folder_id}' in parents
@@ -8943,7 +8943,7 @@ blocks:
   surfaces:
     works_on:
     - google-apps-script-web
-    - meet-stage
+    - google-meet-stage
   connectors:
   - id: gas-native
     surfaces:
@@ -8977,7 +8977,7 @@ blocks:
   surfaces:
     works_on:
     - google-apps-script-web
-    - meet-stage
+    - google-meet-stage
   connectors:
   - id: gas-native
     surfaces:
@@ -9004,7 +9004,7 @@ blocks:
     works_on:
     - google-apps-script-web
     - web
-    - meet-stage
+    - google-meet-stage
   fields:
     title: string (optional). Section heading. Default "Course Modules".
     columns: integer (optional). Grid columns, max 4. Default 3.
@@ -9026,7 +9026,7 @@ blocks:
     works_on:
     - google-apps-script-web
     - web
-    - meet-stage
+    - google-meet-stage
   fields:
     question: string (required). The comprehension question.
     options: array (required). Array of answer strings.
@@ -9044,7 +9044,7 @@ blocks:
     works_on:
     - google-apps-script-web
     - web
-    - meet-stage
+    - google-meet-stage
   fields:
     score: integer (required). Number of correct answers.
     total: integer (required). Total number of questions.
@@ -9067,7 +9067,7 @@ blocks:
     works_on:
     - google-apps-script-web
     - web
-    - meet-stage
+    - google-meet-stage
   fields:
     scenario: string (required). The situation or challenge presented to the learner.
     context: string (optional). Background context shown in italics above the scenario.
@@ -9085,7 +9085,7 @@ blocks:
     works_on:
     - google-apps-script-web
     - web
-    - meet-stage
+    - google-meet-stage
   fields:
     requires: string (required). Module id that must be complete in progress_store
       to unlock.
@@ -9103,7 +9103,7 @@ blocks:
     works_on:
     - google-apps-script-web
     - web
-    - meet-stage
+    - google-meet-stage
   fields:
     course: string (required). Course name on the certificate.
     issuer: string (optional). Issuing organisation name. Default "A2UI Learning".
@@ -9124,7 +9124,7 @@ blocks:
     works_on:
     - google-apps-script-web
     - web
-    - meet-stage
+    - google-meet-stage
   fields:
     title: string (optional). Chart heading. Default "Skill Profile".
     accent: string (optional). Fill/stroke colour for current polygon. Default
@@ -9141,7 +9141,7 @@ blocks:
     works_on:
     - google-apps-script-web
     - web
-    - meet-stage
+    - google-meet-stage
   fields:
     title: string (optional). Section heading. Default "Achievements".
     columns: integer (optional). Grid columns, max 6. Default 4.
@@ -9159,7 +9159,7 @@ blocks:
     works_on:
     - google-apps-script-web
     - web
-    - meet-stage
+    - google-meet-stage
   fields:
     title: string (optional). Chooser heading. Default "Choose Your Path".
     intro: string (optional). Introductory text below the heading.
@@ -9177,7 +9177,7 @@ blocks:
     works_on:
     - google-apps-script-web
     - web
-    - meet-stage
+    - google-meet-stage
   fields:
     youtube_id: string (required). YouTube video ID.
     title: string (optional). Section heading above the player.
@@ -9195,7 +9195,7 @@ blocks:
     works_on:
     - google-apps-script-web
     - web
-    - meet-stage
+    - google-meet-stage
   connectors:
   - id: gas-native
     surfaces:
@@ -9225,7 +9225,7 @@ blocks:
     works_on:
     - google-apps-script-web
     - web
-    - meet-stage
+    - google-meet-stage
   fields:
     prompt: string (required). The reflection question shown above the textarea.
     prompt_id: string (optional). Key suffix for progress_store. Default "reflection".
@@ -9242,7 +9242,7 @@ blocks:
     works_on:
     - google-apps-script-web
     - web
-    - meet-stage
+    - google-meet-stage
   fields:
     text: string (required). Body text passage. Annotated terms are replaced server-side.
     notes: array (required). Array of {term, explanation, color?} objects. First match
@@ -9259,7 +9259,7 @@ blocks:
     works_on:
     - google-apps-script-web
     - web
-    - meet-stage
+    - google-meet-stage
   fields:
     title: string (optional). Stepper heading. Default "Get Started".
     accent: string (optional). Active step indicator colour. Default
@@ -9277,7 +9277,7 @@ blocks:
     works_on:
     - google-apps-script-web
     - web
-    - meet-stage
+    - google-meet-stage
   fields:
     title: string (required). Case study title.
     situation: string (required). The scenario narrative.
@@ -9297,7 +9297,7 @@ blocks:
     works_on:
     - google-apps-script-web
     - web
-    - meet-stage
+    - google-meet-stage
   fields:
     label: string (optional). Timer heading. Default "Study Timer".
     focus_mins: integer (optional). Focus period in minutes. Default 25.
@@ -9315,7 +9315,7 @@ blocks:
     works_on:
     - google-apps-script-web
     - web
-    - meet-stage
+    - google-meet-stage
   fields:
     title: string (optional). Table heading. Default "Assessment Rubric".
     levels: array (optional). Performance level column headers. Default [Beginning,
@@ -9335,7 +9335,7 @@ blocks:
     works_on:
     - google-apps-script-web
     - web
-    - meet-stage
+    - google-meet-stage
   fields:
     front: string (required). Front face — term or question.
     back: string (required). Back face — answer or definition.
@@ -9354,7 +9354,7 @@ blocks:
     works_on:
     - google-apps-script-web
     - web
-    - meet-stage
+    - google-meet-stage
   connectors:
   - id: gas-native
     surfaces:
@@ -9385,7 +9385,7 @@ blocks:
     works_on:
     - google-apps-script-web
     - web
-    - meet-stage
+    - google-meet-stage
   fields:
     label: string (optional). Small uppercase label above the bar.
     layout: string (optional). "horizontal" (default) or "vertical".
@@ -9484,7 +9484,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     - google-apps-script-side-panel
   fields:
@@ -9499,7 +9499,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     - google-apps-script-side-panel
   fields:
@@ -9513,7 +9513,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     - google-apps-script-side-panel
   fields:
@@ -9532,7 +9532,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     - google-apps-script-side-panel
   fields:
@@ -9547,7 +9547,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     - google-apps-script-side-panel
   fields:
@@ -9578,7 +9578,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     - google-apps-script-side-panel
   fields:
@@ -9594,7 +9594,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     - google-apps-script-side-panel
   fields:
@@ -9610,7 +9610,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     - google-apps-script-side-panel
   fields:
@@ -9626,7 +9626,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     - google-apps-script-side-panel
   fields:
@@ -9642,7 +9642,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     - google-apps-script-side-panel
   fields:
@@ -9660,7 +9660,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     - google-apps-script-side-panel
   fields:
@@ -9678,7 +9678,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     - google-apps-script-side-panel
   fields:
@@ -9691,7 +9691,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     - google-apps-script-side-panel
   fields:
@@ -9708,7 +9708,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-web
     - google-apps-script-side-panel
   fields:
@@ -9722,7 +9722,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-side-panel
     - google-apps-script-web
   fields:
@@ -9740,7 +9740,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-side-panel
     - google-apps-script-web
   fields:
@@ -9758,7 +9758,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-side-panel
     - google-apps-script-web
   fields:
@@ -9821,7 +9821,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-side-panel
     - google-apps-script-web
   fields:
@@ -9838,7 +9838,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - meet-stage
+    - google-meet-stage
     - google-apps-script-side-panel
     - google-apps-script-web
   fields:
