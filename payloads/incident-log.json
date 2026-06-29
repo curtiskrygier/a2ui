@@ -1,0 +1,121 @@
+{
+  "schemaVersion": "1.0",
+  "type": "a2ui_wired_surface",
+  "title": "Incident Log",
+  "theme": "dark",
+  "app": {
+    "id": "incident-log",
+    "storage": { "type": "my_drive", "sheet": "Incident_Log" },
+    "auth":    { "mode": "publisher" },
+    "data":    { "isolation": "none" }
+  },
+  "state_primitives": [
+    { "id": "update_mem",   "primitive": "ValueStore",      "props": { "initialValue": "" } },
+    { "id": "severity_mem", "primitive": "ValueStore",      "props": { "initialValue": "P2" } },
+    { "id": "update_valid", "primitive": "StringValidator", "props": {
+        "source": "#update_mem.value",
+        "pattern": ".{10,}",
+        "errorMessage": "Update must be at least 10 characters"
+    }},
+    { "id": "incident_filter", "primitive": "ArrayFilter", "props": {} },
+    { "id": "update_count",    "primitive": "ValueStore",   "props": { "initialValue": 0 } }
+  ],
+  "actions": [
+    {
+      "id": "load_updates",
+      "type": "gas:sheet_query",
+      "trigger": "onLoad",
+      "props": {
+        "sheet":    "Incident_Log",
+        "order_by": [{ "column": "logged_at", "dir": "desc" }],
+        "limit":    50
+      },
+      "wire": { "result": "#incident_filter.source" }
+    },
+    {
+      "id": "post_update",
+      "type": "gas:sheet_append",
+      "props": {
+        "sheet": "Incident_Log",
+        "collect": {
+          "responder": "{{app.user.name}}",
+          "email":     "{{app.user.email}}",
+          "severity":  "#severity_mem.value",
+          "update":    "#update_mem.value",
+          "logged_at": "{{datetime}}"
+        }
+      },
+      "onSuccess": ["load_updates"]
+    },
+    {
+      "id": "send_summary",
+      "type": "gas:email_send",
+      "props": {
+        "to":      "{{app.user.email}}",
+        "subject": "Incident timeline as of {{datetime}}",
+        "body":    "Incident timeline requested by {{app.user.name}} at {{datetime}}.",
+        "is_html": false
+      }
+    }
+  ],
+  "layout": [
+    {
+      "atom": "heading",
+      "props": { "text": "Incident Log", "level": 2 }
+    },
+    {
+      "atom": "sheet_badge",
+      "props": {}
+    },
+    {
+      "atom": "data_table",
+      "id": "incident-table",
+      "props": {
+        "columns":      ["logged_at", "responder", "severity", "update"],
+        "emptyMessage": "No updates logged yet."
+      },
+      "wire": { "rows": "#incident_filter.output" }
+    },
+    {
+      "atom": "heading",
+      "props": { "text": "Log an update", "level": 3 }
+    },
+    {
+      "atom": "text_input",
+      "id": "severity-field",
+      "props": {
+        "label": "Severity",
+        "placeholder": "P1 / P2 / P3",
+        "value": "P2"
+      },
+      "wire": { "onChange": "#severity_mem.setValue" }
+    },
+    {
+      "atom": "text_input",
+      "id": "update-field",
+      "props": { "label": "Update", "placeholder": "What's happening? What did you just do?" },
+      "wire": { "onChange": "#update_mem.setValue" }
+    },
+    {
+      "atom": "inline_feedback_message",
+      "id": "update-error",
+      "props": { "type": "error", "text": "Update must be at least 10 characters" },
+      "wire": { "visible": "#update_valid.isInvalid" }
+    },
+    {
+      "atom": "ripple_button",
+      "id": "post-btn",
+      "props": { "label": "Log update", "accent": "#ff4444" },
+      "wire": {
+        "onClick":  "#post_update.run",
+        "disabled": "#update_valid.isNotValid"
+      }
+    },
+    {
+      "atom": "ripple_button",
+      "id": "email-btn",
+      "props": { "label": "Email me the timeline", "accent": "#6366f1" },
+      "wire": { "onClick": "#send_summary.run" }
+    }
+  ]
+}

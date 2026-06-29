@@ -1,5 +1,4 @@
-local_serve.js
-Code.js
+*.js
 node_modules/**
 *.md
 *.pdf

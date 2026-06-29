@@ -1,0 +1,148 @@
+surface: gas
+version: "1.0"
+description: >
+  Actions catalogue for the GAS surface. Each verb maps to a server-side handler
+  in Code.private.gs dispatched via a2uiAction(type, payload).
+  All actions share the same output contract and are addressable as state nodes.
+
+# ─── Shared output contract (all actions) ─────────────────────────────────────
+outputs_common:
+  status:          idle | pending | success | error
+  isPending:       boolean — true while google.script.run is in flight
+  isSuccess:       boolean — true on completion with ok: true
+  isError:         boolean — true on completion with ok: false or failure
+  error:           string  — error message, empty when ok
+
+# ─── Action-level fields ──────────────────────────────────────────────────────
+action_fields:
+  id:        string   — node ID, addressable as #id.run / #id.isSuccess etc.
+  type:      string   — surface:verb e.g. gas:sheet_append
+  trigger:   onLoad | null — onLoad fires automatically during boot
+  onSuccess: [actionId, ...]  — cascade: fire these actions when isSuccess fires
+  props:     object   — verb-specific config (see per-verb below)
+  wire:      object   — route action outputs into the state graph
+               e.g. { result: "#filter.source" }
+
+# ─── Verbs ────────────────────────────────────────────────────────────────────
+
+actions:
+
+  sheet_append:
+    description: Append a row to a Google Sheet. Auto-creates the sheet if absent.
+    props:
+      required:
+        sheet:
+          type: string
+          description: Spreadsheet name (matched by filename in My Drive / Shared Drive)
+        collect:
+          type: object
+          description: >
+            Map of column name → wire expr or literal.
+            Wire exprs: "#nodeId.property"
+            Date literal: "{{now}}" → ISO date string (YYYY-MM-DD)
+      optional:
+        folder_id:
+          type: string | null
+          default: null
+          description: Override app.storage.folder_id for this action
+    outputs:
+      insertedRow:  number — 1-based row index of the new row
+    notes:
+      - Headers are written automatically on the first append (keys of collect)
+      - Row order matches the collect key order
+
+  sheet_query:
+    description: >
+      Load rows from a Google Sheet into the state graph.
+      Returns an array of objects keyed by lowercased column headers.
+      Designed to feed directly into an ArrayFilter via wire.result.
+    props:
+      required:
+        sheet:
+          type: string
+      optional:
+        folder_id:
+          type: string | null
+          default: null
+        where:
+          type: object
+          description: "{ columnName: value } — simple equality filter applied server-side"
+        limit:
+          type: number
+          description: Max rows returned (applied after where filter)
+        order_by:
+          type: string
+          description: Column name to sort by ascending
+    outputs:
+      result:  Array<object>  — rows as objects; feeds ArrayFilter.source via wire
+    notes:
+      - Column headers are lowercased and spaces replaced with _ for key names
+        e.g. "Budget Line" → "budget_line"
+      - Returns empty array if sheet does not exist yet
+
+  sheet_upsert:
+    description: Update an existing row matched by key column, or append if not found.
+    props:
+      required:
+        sheet:    { type: string }
+        key_column: { type: string, description: "Column to match on" }
+        key_value:  { type: string, description: "Wire expr or literal for the match value" }
+        collect:  { type: object }
+      optional:
+        folder_id: { type: string | null, default: null }
+    outputs:
+      upserted_row: number
+      was_insert:   boolean
+
+  email_send:
+    description: Send an email via GmailApp.
+    props:
+      required:
+        to:      { type: string, description: "Wire expr or literal email address" }
+        subject: { type: string }
+        body:    { type: string, description: "Wire expr or literal; plain text or HTML" }
+      optional:
+        cc:      { type: string }
+        is_html: { type: boolean, default: false }
+    outputs: {}
+
+  calendar_event:
+    description: Create a Google Calendar event.
+    props:
+      required:
+        title:   { type: string }
+        start:   { type: string, description: "ISO datetime wire expr or literal" }
+        end:     { type: string }
+      optional:
+        description: { type: string }
+        attendees:   { type: string, description: "Comma-separated emails or wire expr" }
+        calendar_id: { type: string, default: primary }
+    outputs:
+      event_id: string
+
+  api_post:
+    description: POST to an external URL via UrlFetchApp. Runs server-side (avoids CORS).
+    props:
+      required:
+        url:     { type: string }
+        collect: { type: object, description: "Map to JSON request body" }
+      optional:
+        headers:      { type: object }
+        content_type: { type: string, default: application/json }
+    outputs:
+      result:       any   — parsed JSON response body
+      status_code:  number
+
+  script_run:
+    description: >
+      Call any named GAS function by name. Escape hatch for custom server-side logic.
+      The function must be defined in the GAS project and return { ok, data, error }.
+    props:
+      required:
+        fn:   { type: string, description: "GAS function name" }
+      optional:
+        args:
+          type: array
+          description: "Array of wire exprs or literals passed as positional args"
+    outputs:
+      result: any — whatever the function returns in data

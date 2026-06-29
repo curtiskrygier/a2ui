@@ -16,8 +16,8 @@ blocks:
     continuation: string (optional)
     note: string (optional)
   source: &id001
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: body
   description: One or more prose paragraphs
@@ -176,8 +176,8 @@ blocks:
       Policy.
 
       '
-    meet_stage_params: 'On google-meet-stage, the renderer uses autoplay+muted params so
-      video starts immediately without user interaction: ?autoplay=1&mute=1&controls=0&loop=1&playlist={vid_id}&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&fs=0
+    meet_stage_params: 'On google-meet-stage, the renderer uses autoplay+muted params
+      so video starts immediately without user interaction: ?autoplay=1&mute=1&controls=0&loop=1&playlist={vid_id}&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&fs=0
       autoplay=1 + mute=1 is required as a pair — Chrome blocks unmuted autoplay.
       controls=0 hides the player bar. loop=1 requires playlist={vid_id} to work.
 
@@ -727,8 +727,8 @@ blocks:
     or commit activity, where bubble size is proportional to activity.
   compact_description: 7x24 grid of glowing activity bubbles representing hourly commits
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -757,8 +757,8 @@ blocks:
   compact_description: curved dual-column gradient flow diagram for financial or pipeline
     streams
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -785,8 +785,8 @@ blocks:
   compact_description: triangular cohort retention grid with continuous color-scale
     rendering
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -841,8 +841,8 @@ blocks:
   description: Renders a key performance indicator with its current value and a numerical
   compact_description: big number metric with directional change indicator or percentage
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -865,8 +865,8 @@ blocks:
   compact_description: glassmorphic structured checklist with priority and assignee
     badges
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -893,8 +893,8 @@ blocks:
     journey area timeline.
   compact_description: meeting sentiment analyzer with index arc and timeline chart
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -921,8 +921,8 @@ blocks:
   description: Renders a simple visual indicator (e.g., arrow, icon) representing
   compact_description: compact inline value with mini trend bar the direction of a
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -943,8 +943,8 @@ blocks:
   description: A navigation aid indicating the user's current location within a hierarchical
   compact_description: navigation breadcrumb trail structure.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.com
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -967,8 +967,8 @@ blocks:
   description: A control for navigating through a series of pages or results.
   compact_description: page number controls
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.com
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -998,8 +998,8 @@ blocks:
   compact_description: CSS animated vertical step sequence with checkmark draw and
     active pulse
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.com
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -1026,8 +1026,8 @@ blocks:
   compact_description: horizontal tab navigation bar typically leading to different
     sections or pages.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.com
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -1051,8 +1051,8 @@ blocks:
   description: A list of links that navigate to specific sections within the current
   compact_description: in-page anchor navigation links document or to external URLs.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.com
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -1072,8 +1072,8 @@ blocks:
   description: Renders a list of questions and answers, where answers are hidden until
   compact_description: collapsible FAQ question and answer list the question is clicked.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.com
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -1094,8 +1094,8 @@ blocks:
   description: Renders a term with its definition, often with an optional link for
   compact_description: definition term with explanation more details.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.com
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -1114,8 +1114,8 @@ blocks:
   description: Renders a numbered footnote reference and its corresponding text, typically
   compact_description: numbered footnote reference at the bottom of a section or page.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.com
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -1133,8 +1133,8 @@ blocks:
   description: Renders a blockquote with an associated avatar and attribution.
   compact_description: testimonial quote with avatar and attribution
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.com
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -1159,8 +1159,8 @@ blocks:
   compact_description: large display number pulled from prose for emphasis descriptive
     label.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.com
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -1180,8 +1180,8 @@ blocks:
   compact_description: single collapsible section with toggle by clicking its header,
     using only CSS.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.com/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -1207,8 +1207,8 @@ blocks:
   compact_description: hover tooltip on a trigger element over a specified trigger
     element, using only CSS.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.com/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -1234,8 +1234,8 @@ blocks:
   compact_description: rich hover card revealed on mouse over specified trigger element,
     using only CSS.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.com/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -1264,8 +1264,8 @@ blocks:
   compact_description: expandable content panel with header toggle visible and hidden
     states by clicking a control, using only CSS.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.com/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -1319,8 +1319,8 @@ blocks:
   description: Renders an embedded audio player for a given URL.
   compact_description: inline audio player with controls
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.com/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -1341,8 +1341,8 @@ blocks:
   description: Renders a clickable link to an audio file, often with an audio icon.
   compact_description: styled link to an audio file
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.com/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -1360,8 +1360,8 @@ blocks:
   description: Renders an image thumbnail of a PDF document with a link to the full
   compact_description: embedded PDF preview panel PDF.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.com/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -1384,8 +1384,8 @@ blocks:
   description: Renders a clickable link to a document (e.g., PDF, DOCX), often with
   compact_description: styled link to a downloadable document a document icon.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.com/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -1404,8 +1404,8 @@ blocks:
   compact_description: clickable video thumbnail with play button and a link to the
     video source.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.com/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -1428,8 +1428,8 @@ blocks:
   description: Renders a card with a video thumbnail, title, and description, linking
   compact_description: video with title description and metadata to the video source.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.com/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -1457,8 +1457,8 @@ blocks:
   compact_description: server-side unified diff view with green additions and red
     removals
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.com/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -1489,8 +1489,8 @@ blocks:
   compact_description: two code blocks side by side without diff highlighting diff
     highlighting.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.com/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -1512,8 +1512,8 @@ blocks:
   description: Renders an image within a decorative frame, simulating a device (e.g.,
   compact_description: device-framed screenshot with optional caption browser, phone).
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.com/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -1537,8 +1537,8 @@ blocks:
   description: Renders a single image with a descriptive caption below it.
   compact_description: image with styled caption below
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.com/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -1605,8 +1605,8 @@ blocks:
     position: '"bottom-right" | "bottom-left" | "top-right" | "top-left"  (optional,
       default "bottom-right")'
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: loading_skeleton
   description: A placeholder UI that shows the structure of content while it's loading,
@@ -1635,8 +1635,8 @@ blocks:
   compact_description: zero-data empty state with icon and call to action image, message,
     and an optional call to action.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.com/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -1700,8 +1700,8 @@ blocks:
   compact_description: inline success error or warning message for validation feedback
     or hints.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.com/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -1768,8 +1768,8 @@ blocks:
   description: A card highlighting an important status or issue that requires immediate
   compact_description: prominent card prompting a required user action user attention,
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.com/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -1791,8 +1791,8 @@ blocks:
   description: Renders a table comparing features across multiple products or versions.
   compact_description: features versus plans comparison matrix
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -1814,8 +1814,8 @@ blocks:
   compact_description: single pricing plan card with features list an optional call
     to action.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -1839,8 +1839,8 @@ blocks:
   compact_description: side-by-side pricing plan comparison different subscription
     plans.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -1859,8 +1859,8 @@ blocks:
   description: Renders a two-column list itemizing advantages and disadvantages for
   compact_description: two-column pros and cons comparison a single subject.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -1878,8 +1878,8 @@ blocks:
   description: Renders a detailed comparison of two items, displaying their attributes
   compact_description: two items compared spec by spec and values side-by-side.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -1902,8 +1902,8 @@ blocks:
   description: Renders a table detailing technical specifications or features for
   compact_description: product specifications in a clean table a single product.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -1925,8 +1925,8 @@ blocks:
   compact_description: multi-item attribute comparison grid often using icons or checkmarks
     to indicate presence.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -1948,8 +1948,8 @@ blocks:
   description: Renders a block explicitly comparing two entities with a prominent
   compact_description: head-to-head two-option versus card "VS" separator.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -1974,8 +1974,8 @@ blocks:
   description: Renders a comparison of multiple items based on star ratings or numerical
   compact_description: multiple items rated across dimensions scores.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -1991,8 +1991,8 @@ blocks:
   description: Renders a list of capabilities, indicating which items possess each
   compact_description: feature capability tick list per tier capability using checkmarks
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -2036,8 +2036,8 @@ blocks:
   description: Renders a block of text that can be expanded or collapsed to reveal
   compact_description: truncated text with read more expand toggle more content.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -2246,8 +2246,8 @@ blocks:
   compact_description: customer testimonial with photo name and quote an optional
     avatar.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.com/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -2314,8 +2314,8 @@ blocks:
   description: Renders a list of individuals who have contributed to a project or
   compact_description: list of contributors with avatar and role community, with their
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.com/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -2336,8 +2336,8 @@ blocks:
   description: Renders a grid or row of logos from featured customers or partners.
   compact_description: grid of customer or partner logos
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.com/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -2381,8 +2381,8 @@ blocks:
   description: Renders a card showcasing a mention or feature in a media publication.
   compact_description: press or media mention with logo and quote
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.com/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -2407,8 +2407,8 @@ blocks:
   description: Renders an endorsement from an industry expert, including their quote,
   compact_description: expert quote with credentials and photo name, and credentials.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.com/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -2433,8 +2433,8 @@ blocks:
   description: Renders a short, impactful quote from a customer review, often accompanied
   compact_description: highlighted customer review excerpt by a star rating.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.com/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -2459,8 +2459,8 @@ blocks:
   description: Renders an embedded snippet of a social media post, such as a tweet
   compact_description: embedded social media post or feed or Instagram post.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.com/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   surfaces:
     works_on:
@@ -2505,8 +2505,8 @@ blocks:
     output: string. The stdout or stderr text block response from the command.
     shell: 'string: bash | zsh | powershell | cmd. The console design theme.'
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: file_tree
   description: Renders a hierarchical layout displaying directory structures, folders,
@@ -2528,7 +2528,7 @@ blocks:
     nodes: array. Highly structured list of folder and file objects with nesting indicators.
   source:
     name: shadcn/ui
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: tabbed_code
   description: Renders multiple code snippets organized inside an interactive, multi-tab
@@ -2551,7 +2551,7 @@ blocks:
       and code string.
   source:
     name: shadcn/ui
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: http_request_block
   description: Renders a formatted API request block displaying the HTTP method badge,
@@ -2576,7 +2576,7 @@ blocks:
     body: string. Optional request payload, typically stringified JSON.
   source:
     name: Flowbite
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: env_var_list
   description: Renders a clear configuration list detailing system environment variable
@@ -2598,8 +2598,8 @@ blocks:
     variables: array. List of objects including key name, description, requirement
       status, and default.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: prerequisite_checklist
   description: Renders a callout box highlighting required tools, knowledge, or setups
@@ -2619,7 +2619,7 @@ blocks:
     items: array. Strings containing descriptions of individual setup requirements.
   source:
     name: Flowbite
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: keyboard_shortcut
   description: Renders inline text visual tags mimicking keyboard keys to highlight
@@ -2640,7 +2640,7 @@ blocks:
     action: string. The function or command triggered by the keystroke combination.
   source:
     name: Flowbite
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: api_param_table
   description: Renders a structured documentation table outlining parameter fields,
@@ -2665,7 +2665,7 @@ blocks:
       and description.
   source:
     name: shadcn/ui
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: version_badge
   description: Displays a small visual tag showing software release or dependency
@@ -2685,7 +2685,7 @@ blocks:
     status: 'string: stable | beta | alpha | rc. The lifecycle stage.'
   source:
     name: Flowbite
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: deprecation_notice
   description: Displays a prominent warning banner indicating a feature or API is
@@ -2705,7 +2705,7 @@ blocks:
     removal_version: string. Optional version when the feature will be removed.
   source:
     name: shadcn/ui
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: experimental_banner
   description: Renders a callout box identifying a feature or code path as experimental
@@ -2724,7 +2724,7 @@ blocks:
     message: string. Context or feedback links for the unstable feature.
   source:
     name: Flowbite
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: cli_command
   description: Displays a copyable single-line command-line prompt for terminal execution.
@@ -2785,8 +2785,8 @@ blocks:
   fields:
     logs: string. The raw console log output text block.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: json_tree_viewer
   description: Displays a nested, expandable visual explorer for structural JSON data
@@ -2807,7 +2807,7 @@ blocks:
     data: string. The raw valid JSON string to parse and render.
   source:
     name: shadcn/ui
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: key_takeaways
   description: Displays a highlighted summary box containing critical bullet points
@@ -2826,7 +2826,7 @@ blocks:
     points: array. Core sentences highlighting the key learnings.
   source:
     name: Flowbite
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: summary_box
   description: Renders a condensed overview panel summarising article content at a
@@ -2845,7 +2845,7 @@ blocks:
     text: string. The summary narrative block.
   source:
     name: shadcn/ui
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: learning_objectives
   description: Displays a checklist-style panel outlining competencies a reader will
@@ -2864,7 +2864,7 @@ blocks:
     objectives: array. Statements describing individual knowledge achievements.
   source:
     name: Flowbite
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: changelog_entry
   description: Renders a single timeline entry documenting additions, fixes, or modifications
@@ -2887,7 +2887,7 @@ blocks:
     changes: array. Objects outlining specific features modified, categorised by type.
   source:
     name: shadcn/ui
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: release_notes
   description: Displays a grouped publication document containing categorised changes
@@ -2909,7 +2909,7 @@ blocks:
     changed: array. Optional modifications to existing behaviour.
   source:
     name: Flowbite
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: further_reading
   description: Displays a curated list of links and references for extending understanding
@@ -2927,8 +2927,8 @@ blocks:
   fields:
     links: array. Objects containing resource titles, URLs, and brief annotations.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: resources_list
   description: Renders a clean inventory list of downloadable assets or reference
@@ -2947,7 +2947,7 @@ blocks:
     items: array. Download assets containing title, size, type, and url.
   source:
     name: Flowbite
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: sidebar_note
   description: Displays an off-axis callout block containing peripheral thoughts,
@@ -2969,7 +2969,7 @@ blocks:
     content: string. The note content.
   source:
     name: shadcn/ui
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: difficulty_badge
   description: Displays a small visual marker representing the technical complexity
@@ -2989,7 +2989,7 @@ blocks:
       tier.'
   source:
     name: Flowbite
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: caution_block
   description: Renders a high-visibility callout box warning readers about potential
@@ -3008,7 +3008,7 @@ blocks:
     message: string. The warning content.
   source:
     name: shadcn/ui
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: checklist_interactive
   description: Renders a list of items with actionable checkboxes for readers to track
@@ -3029,7 +3029,7 @@ blocks:
     items: array. Individual checkpoint task strings.
   source:
     name: Flowbite
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: glossary_inline
   description: Renders a specialised inline element displaying technical term definitions
@@ -3051,7 +3051,7 @@ blocks:
     definition: string. Explanation displayed when term is activated.
   source:
     name: shadcn/ui
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: time_estimate
   description: Displays the estimated duration required to fully read or complete
@@ -3070,7 +3070,7 @@ blocks:
     minutes: integer. The estimated reading time in minutes.
   source:
     name: Flowbite
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: progress_checkpoint
   description: Displays an indicator showing the reader's current location within
@@ -3092,7 +3092,7 @@ blocks:
     total_steps: integer. Total steps in the sequence.
   source:
     name: shadcn/ui
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: social_share_bar
   description: Displays a row of quick-action buttons enabling readers to share the
@@ -3136,7 +3136,7 @@ blocks:
     button_label: string. Optional submit button text, defaults to Subscribe.
   source:
     name: Flowbite
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: author_bio_card
   description: Renders a profile section containing the creator's avatar, bio, and
@@ -3158,7 +3158,7 @@ blocks:
     links: object. Optional key-value pairs of platform names and URLs.
   source:
     name: Flowbite
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: related_posts_grid
   description: Displays a curated grid of preview cards for complementary reading
@@ -3178,8 +3178,8 @@ blocks:
   fields:
     posts: array. Objects containing title, url, and optional topic.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: series_overview_card
   description: Renders a navigation box indexing all parts within a multi-part article
@@ -3199,7 +3199,7 @@ blocks:
     parts: array. Objects with title, url, and optional current boolean.
   source:
     name: shadcn/ui
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: reaction_group
   description: Displays an interactive set of emoji elements collecting emotional
@@ -3242,8 +3242,8 @@ blocks:
     title: string (carousel_slide — slide title)
     body: string (carousel_slide — slide body)
   source:
-    name: a2ui
-    url: https://github.com/curtiskrygier/a2ui
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
 - type: share_quote
   description: Displays a visually distinct callout showcasing a key phrase designed
     for social clipping.
@@ -3264,7 +3264,7 @@ blocks:
     author: string. Optional attribution source.
   source:
     name: Flowbite
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: follow_cta
   description: Renders a banner encouraging readers to connect with official social
@@ -3284,7 +3284,7 @@ blocks:
     platform_links: object. Platform name keys mapped to target URLs.
   source:
     name: Flowbite
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: follow_button
   description: Displays a single button allowing a user to subscribe directly to a
@@ -3326,8 +3326,8 @@ blocks:
   fields:
     color: string. Hexadecimal or design utility color token for the bar.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: table_of_contents
   description: Renders an active list directory of navigation links targeting main
@@ -3348,8 +3348,8 @@ blocks:
   fields:
     headings: array. Structured items detailing section names and anchor tags.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: article_hero
   description: Renders a prominent visual header displaying title, metadata, and background
@@ -3369,8 +3369,8 @@ blocks:
     subtitle: string. Optional accompanying summary text.
     image_url: string. URL to header background media.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: scroll_to_top
   description: Renders an interactive button providing smooth automated viewport reset
@@ -3390,8 +3390,8 @@ blocks:
   fields:
     behavior: 'string: smooth | auto. Scroll animation profile.'
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: article_series_nav
   description: Renders an organized multi-part sequence navigation panel mapping serial
@@ -3410,8 +3410,8 @@ blocks:
     series_id: string. Unique identifier of the series cluster.
     current_part: integer. Ordered index within series limits.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: embed_codepen
   description: Renders an embedded interactive CodePen sandbox workspace within the
@@ -3433,8 +3433,8 @@ blocks:
     pen_id: string. Alphanumeric identity of the target snippet.
     user_handle: string. Profile handle owning the snippet.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: embed_stackblitz
   description: Renders an integrated live development engine frame executing StackBlitz
@@ -3455,8 +3455,8 @@ blocks:
   fields:
     project_id: string. Folder identity indicator for active workspace.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: embed_gist
   description: Displays an inline styled snippet view of remote code from GitHub Gists.
@@ -3474,8 +3474,8 @@ blocks:
   fields:
     gist_id: string. Hexadecimal identifier for target file fragments.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: embed_tweet
   description: Displays a fully rendered standalone publication card containing Twitter
@@ -3496,8 +3496,8 @@ blocks:
   fields:
     tweet_id: string. Unique snowflake identifier for the post.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: embed_google_slides
   description: Renders an interactive presentation iframe viewer loading Google Slides
@@ -3518,8 +3518,8 @@ blocks:
   fields:
     presentation_id: string. Asset identifier for the slide file.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: lottie_animation
   description: Renders an active vector illustration display controlled via Lottie
@@ -3542,8 +3542,8 @@ blocks:
     src_url: string. Direct reference path to remote asset configuration.
     loop: boolean. Whether playback recreates endlessly.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: figma_embed
   description: Renders a real-time collaborative preview referencing explicit Figma
@@ -3564,8 +3564,8 @@ blocks:
   fields:
     embed_url: string. Absolute sharing path generated by Figma.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: color_swatch_grid
   description: Displays a grid of color swatches with labels and hex values for design
@@ -3582,8 +3582,8 @@ blocks:
   fields:
     colors: array of {name, hex}. Color entries to display.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: live_demo_embed
   description: Embeds a live interactive demo or sandbox within the article.
@@ -3604,8 +3604,8 @@ blocks:
     url: string. URL of the live demo.
     title: string (optional). Display title.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: benchmark_comparison
   description: Side-by-side performance benchmark visualization comparing multiple
@@ -3622,8 +3622,8 @@ blocks:
   fields:
     items: array of {label, value}. Benchmark entries.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: chartjs_bar
   description: Renders an interactive bar chart using Chart.js with configurable datasets.
@@ -3643,8 +3643,8 @@ blocks:
     labels: array of strings. X-axis labels.
     datasets: array of {label, data}. Chart datasets.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: chartjs_line
   description: Renders an interactive line chart using Chart.js for time-series or
@@ -3665,8 +3665,8 @@ blocks:
     labels: array of strings. X-axis labels.
     datasets: array of {label, data}. Chart datasets.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: data_table_sortable
   description: Renders a data table with client-side column sorting and optional pagination.
@@ -3684,8 +3684,8 @@ blocks:
     headers: array of strings. Column headers.
     rows: array of arrays. Table rows.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: metric_comparison_card
   description: Card comparing a current metric value against a previous period with
@@ -3704,8 +3704,8 @@ blocks:
     value: number. Current value.
     previous: number. Previous period value.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: mini_sparkline_set
   description: Compact grid of multiple labeled sparklines for at-a-glance multi-metric
@@ -3722,8 +3722,8 @@ blocks:
   fields:
     series: array of {label, data}. Sparkline series.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: status_dashboard
   description: Compact grid showing live operational status of multiple services with
@@ -3740,8 +3740,8 @@ blocks:
   fields:
     metrics: array of {label, value, color}. Status entries.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: uptime_timeline
   description: Visual timeline of service uptime over a rolling window with per-day
@@ -3758,8 +3758,8 @@ blocks:
   fields:
     uptime: number. Uptime percentage (0–100).
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: command_palette
   description: Keyboard-driven command palette overlay for quick navigation and action
@@ -3779,8 +3779,8 @@ blocks:
   fields:
     commands: array of {text, shortcut}. Available commands.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: search_result_card
   description: Styled card displaying a single search result with title, snippet,
@@ -3799,8 +3799,8 @@ blocks:
     description: string. Snippet text.
     url: string (optional). Result URL.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: post_metadata_bar
   description: Displays article metadata — author, publish date, read time, and optional
@@ -3820,8 +3820,8 @@ blocks:
     date: string. Publish date (YYYY-MM-DD).
     readTime: integer. Estimated read time in minutes.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: footnote_group
   description: Renders a numbered list of footnotes at the bottom of an article or
@@ -3838,8 +3838,8 @@ blocks:
   fields:
     footnotes: array of {id, text}. Footnote entries.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: notification_badge
   description: Small badge overlaid on an icon or element to indicate unread count
@@ -3858,8 +3858,8 @@ blocks:
     text: string. Badge label or count.
     color: string (optional). Background colour (hex).
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: expandable_list
   description: Nested tree list where parent items expand to reveal children on click.
@@ -3876,8 +3876,8 @@ blocks:
   fields:
     items: array of {text, children}. Tree nodes.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: poll_block
   description: Interactive poll with a question and vote-count bar for each option.
@@ -3895,8 +3895,8 @@ blocks:
     question: string. Poll question.
     options: array of {text, votes}. Poll choices.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: abbr_tooltip
   description: Inline abbreviation with a tooltip revealing the full expanded form
@@ -3915,8 +3915,8 @@ blocks:
     text: string. The abbreviation to display.
     title: string. The expanded full form.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: copy_to_clipboard
   description: Inline code or text element with a one-click copy button that provides
@@ -3936,8 +3936,8 @@ blocks:
     text: string. Display label.
     value: string. Value copied to clipboard.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: conversion_funnel
   description: Renders a premium pipeline conversion funnel with tapered glowing step
@@ -3957,8 +3957,8 @@ blocks:
     steps: 'list of dictionaries representing funnel stages: [{''stage'': ''Visits'',
       ''value'': 10000}, {''stage'': ''Signups'', ''value'': 4500}, ...]'
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: gauge_sla
   description: Renders a semi-circular radial gauge track with high contrast status
@@ -3980,8 +3980,8 @@ blocks:
     unit: string (optional, e.g., '%')
     label: string (optional, e.g., 'SLA Met')
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: stacked_area
   description: Renders cumulative layered area chart trends utilizing overlapping
@@ -4002,8 +4002,8 @@ blocks:
     series: 'list of dictionaries representing stacked layers: [{''label'': ''Enterprise'',
       ''data'': [10, 25, 45, 60], ''color'': ''#00f2ff''}, ...]'
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: scatter_trend
   description: Renders a coordinate scatter grid representing discrete data points
@@ -4024,8 +4024,8 @@ blocks:
     label_x: string (optional, e.g., 'Response Time (Hours)')
     label_y: string (optional, e.g., 'CSAT Score')
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: call_mood_board
   description: Renders a premium, aesthetic call emotion summary and theme board showing
@@ -4049,8 +4049,8 @@ blocks:
       ''weight'': 90, ''sentiment'': ''neutral''}, ...]'
     summary: string (optional summary paragraph)
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: github_activity_grid
   description: Renders a high-fidelity SVG representation of a GitHub-style contribution
@@ -4074,8 +4074,8 @@ blocks:
     activity: list of integers (0-4) or dictionary of weeks/days for rendering grid
       squares
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: form
   description: Form container with labelled field controls and explicit submit/cancel
@@ -4431,8 +4431,8 @@ blocks:
       type: array
       description: List of {value, title, description?, icon?, disabled?} entries.
   source: &id004
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: feedback_prompt
   description: In-context feedback collection widget for rating content or AI response
@@ -5193,9 +5193,8 @@ blocks:
     features: array of objects with fields — icon (emoji or text), title, description,
       badge (optional short label), color (optional hex accent).
   source:
-    name: Tailwind UI / shadcn
-    url: https://tailwindui.com
-    license: MIT
+    name: shadcn/ui
+    url: https://ui.shadcn.com
 - type: navigation_menu
   description: Multi-level horizontal navigation bar with a brand/logo slot, top-level
     nav items, optional dropdown submenus, and a right-aligned CTA button. First item
@@ -5299,8 +5298,8 @@ blocks:
     skills: 'array (required, alias items). Each: {label, value (0–100, alias percent),
       color?, sublabel?}'
   source:
-    name: a2ui
-    url: https://github.com/curtiskrygier/a2ui
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
 - type: icon_stat_row
   description: Horizontal strip of stats each with a large emoji icon above the number
     and a label below. More visual than metric_row — use when icons reinforce meaning.
@@ -5316,8 +5315,8 @@ blocks:
     stats: 'array (required, alias items). Each: {icon (emoji), value, label, prefix?,
       suffix?, sub?, accent?}'
   source:
-    name: a2ui
-    url: https://github.com/curtiskrygier/a2ui
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
 - type: color_section
   description: Renders child atom blocks inside a colored background container. Use
     to visually group content with tint, solid, or dark style.
@@ -5333,8 +5332,8 @@ blocks:
     padding: string (optional, css, default "24px")
     blocks: array (required, atom blocks rendered inside)
   source:
-    name: a2ui
-    url: https://github.com/curtiskrygier/a2ui
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
 - type: tag_cloud
   description: Visual cloud of tags with variable font size based on weight. Heavier
     tags appear larger. Use for skill tags, topic clouds, keyword displays.
@@ -5352,8 +5351,8 @@ blocks:
     tags: 'array (required, alias items). Each: {label, weight? (default 1), color?}
       or plain string'
   source:
-    name: a2ui
-    url: https://github.com/curtiskrygier/a2ui
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
 - type: step_progress
   description: Horizontal step progress indicator with numbered circles and connecting
     lines. Completed steps show a tick. Use at the top of wizard or onboarding flows.
@@ -5369,8 +5368,8 @@ blocks:
     accent: string (optional, hex, default "#6366f1")
     steps: array (required). Array of {label or title}
   source:
-    name: a2ui
-    url: https://github.com/curtiskrygier/a2ui
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
 - type: split_pane
   description: Two-panel split layout with distinct background colors per pane. Each
     pane renders atom blocks independently. Unlike columns, each side has its own
@@ -5385,8 +5384,8 @@ blocks:
     left: object — {bg (css color, default "#f8fafc"), blocks (atom blocks)}
     right: object — {bg (css color, default "#fff"), blocks (atom blocks)}
   source:
-    name: a2ui
-    url: https://github.com/curtiskrygier/a2ui
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
 - type: gradient_hero
   description: Full-width light/pastel gradient hero with badge, large title, subtitle,
     and optional CTA. Pure CSS — no images. Works on all surfaces. Use when dark_hero
@@ -5408,8 +5407,8 @@ blocks:
     cta_label: string (optional)
     cta_url: string (optional)
   source:
-    name: a2ui
-    url: https://github.com/curtiskrygier/a2ui
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
 - type: icon_list
   description: List of items each with a colored icon circle, label, and text. More
     visual than bullet_list. Use for feature lists, how-it-works, benefits.
@@ -5427,8 +5426,8 @@ blocks:
     items: array (required). Array of {icon (emoji), label (optional), text (optional),
       color (optional hex)}
   source:
-    name: a2ui
-    url: https://github.com/curtiskrygier/a2ui
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
 - type: highlight_box
   description: A visually rich highlighted box with gradient, solid, or outline style.
     Richer than callout — no severity system, pure design focus.
@@ -5446,8 +5445,8 @@ blocks:
     accent: string (optional, hex, default "#6366f1")
     style: string (optional, "gradient"|"solid"|"outline", default "gradient")
   source:
-    name: a2ui
-    url: https://github.com/curtiskrygier/a2ui
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
 - type: two_tone_card
   description: Card with a solid colored header section (title, subtitle, icon) and
     a white body that renders atom blocks. Clean, elegant container for any content.
@@ -5465,8 +5464,8 @@ blocks:
     header_theme: string (optional, "light"|"dark", default "light")
     blocks: array (optional, atom blocks rendered in white body)
   source:
-    name: a2ui
-    url: https://github.com/curtiskrygier/a2ui
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
 - type: metric_row
   description: Horizontal strip of static metrics — value, label, optional prefix/suffix
     and trend indicator. Cleaner than animated_counter for non-animated use.
@@ -5483,8 +5482,8 @@ blocks:
     metrics: 'array (required, alias items). Each item: {value, label, prefix?, suffix?,
       sub?, accent?, trend? ("up"|"down")}'
   source:
-    name: a2ui
-    url: https://github.com/curtiskrygier/a2ui
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
 - type: numbered_list
   description: Numbered list with either large decorative number backgrounds ("large"
     style) or circular number badges ("badge" style). More visual than steps.
@@ -5501,8 +5500,8 @@ blocks:
     style: string (optional, "large"|"badge", default "large")
     items: array (required). Array of {label (optional), text (optional)}
   source:
-    name: a2ui
-    url: https://github.com/curtiskrygier/a2ui
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
 - type: page_header
   description: Full-width app-style page header with title, subtitle, icon, accent
     color, and optional tag badge. Sets the visual tone of a pop-up app or brief.
@@ -5523,8 +5522,8 @@ blocks:
     theme: string (optional, "light"|"dark", default "light")
     background: string (optional, css background override)
   source:
-    name: a2ui
-    url: https://github.com/curtiskrygier/a2ui
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
 - type: back_button
   description: Styled back navigation button. Links to a URL, a named page slug, or
     browser history. Three visual styles.
@@ -5541,8 +5540,8 @@ blocks:
     style: string (optional, "ghost"|"outline"|"text", default "ghost")
     accent: string (optional, hex, default "#6366f1")
   source:
-    name: a2ui
-    url: https://github.com/curtiskrygier/a2ui
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
 - type: section_break
   description: Labeled or plain section divider. Supports solid, dashed, or dotted
     line styles. With a label, renders text centered in the line (Notion-style).
@@ -5558,8 +5557,8 @@ blocks:
     style: string (optional, "line"|"dashed"|"dots", default "line")
     accent: string (optional, hex line color, default "#e5e7eb")
   source:
-    name: a2ui
-    url: https://github.com/curtiskrygier/a2ui
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
 - type: chip_group
   description: Row of filter/tag chips, optionally scrollable. Chips can link to URLs
     and have active state.
@@ -5574,8 +5573,8 @@ blocks:
     layout: string (optional, "wrap"|"scroll", default "wrap")
     chips: array (required). Array of {label, color? (hex), url? (href), active? (bool)}
   source:
-    name: a2ui
-    url: https://github.com/curtiskrygier/a2ui
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
 - type: columns
   description: Generic multi-column layout container. Each column holds an array of
     atom blocks rendered inline. 2–6 columns; collapses to single column on mobile.
@@ -5592,8 +5591,8 @@ blocks:
     items: 'array (required). Each item is {blocks: [atom blocks]} — one entry per
       column.'
   source:
-    name: a2ui
-    url: https://github.com/curtiskrygier/a2ui
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
 - type: person_card
   description: Individual person card with name, role, optional photo, bio, tags,
     and contact links. Use inside a columns atom to build team rosters.
@@ -5613,8 +5612,8 @@ blocks:
     tags: string[] (optional)
     accent: string (optional, hex, default "#6366f1")
   source:
-    name: a2ui
-    url: https://github.com/curtiskrygier/a2ui
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
 - type: agenda_block
   description: Time-slotted schedule view for a day or event. Each slot has a time,
     title, optional speaker, location, type badge, and description.
@@ -5631,8 +5630,8 @@ blocks:
     slots: array (required). Array of {time, title, speaker?, location?, type? ("break"|"keynote"|"workshop"|"panel"|"social"),
       description?}
   source:
-    name: a2ui
-    url: https://github.com/curtiskrygier/a2ui
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
 - type: risk_flag
   description: Structured risk callout list with severity levels, description, and
     mitigation. For meeting prep, project status, incident reports.
@@ -5648,8 +5647,8 @@ blocks:
     risks: array (required). Array of {level ("critical"|"high"|"medium"|"low"), title,
       description?, mitigation?}
   source:
-    name: a2ui
-    url: https://github.com/curtiskrygier/a2ui
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
 - type: action_items
   description: Action items table with owner, due date, and status. For retros, meeting
     notes, sprint planning, incident reports.
@@ -5663,8 +5662,8 @@ blocks:
     title: string (optional)
     items: array (required). Array of {action, owner?, due?, status? ("open"|"in_progress"|"done")}
   source:
-    name: a2ui
-    url: https://github.com/curtiskrygier/a2ui
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
 - type: bento_grid
   description: Asymmetric CSS grid of feature tiles. First tile typically spans multiple
     columns for visual emphasis. Supports per-tile icons, titles, descriptions, and
@@ -5716,9 +5715,8 @@ blocks:
     secondary_cta: object (optional). {label, url} for a ghost secondary button.
     background: string (optional). CSS color for the banner background. Default
   source:
-    name: Tailwind UI
-    url: https://tailwindui.com
-    license: MIT
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
 - type: animated_counter
   description: CSS @property counter animation that counts up from zero to target
     values without JavaScript. Uses @keyframes with CSS custom properties typed as
@@ -5743,8 +5741,8 @@ blocks:
       (optional), color (optional hex).
     duration: number (optional). Animation duration in seconds. Default 2.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: media_stream_card
   description: Auto-detecting media embed that accepts a raw URL and builds the correct
@@ -5772,8 +5770,8 @@ blocks:
       platform name.
     height: string (optional). CSS height for the iframe container. Default 360px.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: live_aggregator
   description: Comparative progress-bar display for real-time vote/response data.
@@ -5802,8 +5800,8 @@ blocks:
     show_values: boolean (optional). Show numeric value next to each bar. Default
       true.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: vote_button_group
   description: Styled multi-option vote selector with three visual variants — pill
@@ -5831,8 +5829,8 @@ blocks:
     title: string (optional). Section heading above the buttons.
     allow_multi: boolean (optional). Allow multiple selections. Default false.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: effect_overlay
   description: CSS-animated celebration overlay triggered by a named effect type.
@@ -5862,8 +5860,8 @@ blocks:
     message: string (optional). Text shown below the icon.
     color: string (optional). Primary accent color for pulse effect. Default
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: skeleton_stage_card
   description: Dark-themed shimmer skeleton loader for stage use while a playbook
@@ -5890,8 +5888,8 @@ blocks:
       3.
     count: integer (optional). Number of skeleton cards to stack. Default 1.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: marquee_strip
   description: Infinite horizontally-scrolling strip of text labels or logo+text items,
@@ -5920,8 +5918,8 @@ blocks:
     label: string (optional). Small header label above the strip.
     gap: string (optional). CSS gap between items. Default "40px".
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   source_inspiration:
     name: Aceternity UI — Infinite Moving Cards
@@ -5955,8 +5953,8 @@ blocks:
     cursor: bool (optional). Show blinking cursor. Default true.
     delay: string (optional). CSS delay before typing starts. Default "0s".
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   source_inspiration:
     name: Aceternity UI — Typewriter Effect
@@ -5990,8 +5988,8 @@ blocks:
     speed: '"slow" | "normal" | "fast"  (optional, default "normal")'
     border_width: integer (optional). Border thickness in px. Default 2.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   source_inspiration:
     name: Aceternity UI — Moving Border
@@ -6024,8 +6022,8 @@ blocks:
     title: string (optional). Text heading overlaid on the aurora.
     body: string (optional). Body text overlaid on the aurora (markdown inline supported).
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   source_inspiration:
     name: Aceternity UI — Aurora Background
@@ -6057,8 +6055,8 @@ blocks:
     spacing: integer (optional). Grid cell size in px. Default 24.
     dot_size: integer (optional). Dot radius in px (dots variant only). Default 1.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   source_inspiration:
     name: Aceternity UI — Grid and Dot Backgrounds
@@ -6091,8 +6089,8 @@ blocks:
     speed: '"slow" | "normal" | "fast"  (optional, default "normal")'
     description: string (optional). Small text below the button.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   source_inspiration:
     name: Aceternity UI — Shimmer Button
@@ -6123,8 +6121,8 @@ blocks:
     border_color: string (optional). Card border colour. Default "rgba(255,255,255,0.08)".
     height: integer (optional). Card height in px. Default 160.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   source_inspiration:
     name: Aceternity UI — Card Stack
@@ -6157,8 +6155,8 @@ blocks:
     title: string (optional). Text heading overlaid on the effect.
     body: string (optional). Body text overlaid on the effect (markdown inline supported).
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   source_inspiration:
     name: Aceternity UI — Meteors
@@ -6197,8 +6195,8 @@ blocks:
     blur: string (optional). Starting blur radius, e.g. "8px". Default "8px".
     background: string (optional). Panel background. Default transparent.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   source_inspiration:
     name: Magic UI — Blur Fade
@@ -6234,8 +6232,8 @@ blocks:
     size: '"sm" | "md" | "lg"  (optional, default "md")'
     description: string (optional). Small caption text below the button.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   source_inspiration:
     name: Magic UI — Shimmer Button / Animated Subscribe Button
@@ -6273,8 +6271,8 @@ blocks:
     speed: '"slow" | "normal" | "fast"  (optional, default "normal")'
     curved: bool (optional). Use a curved cubic-bezier path. Default true.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   source_inspiration:
     name: Magic UI — Animated Beam
@@ -6310,8 +6308,8 @@ blocks:
     frames: integer (optional). Number of scramble frames before lock. Default 8.
     background: string (optional). Container background. Default transparent.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   source_inspiration:
     name: Magic UI — Text Animate / Encrypted Text
@@ -6350,8 +6348,8 @@ blocks:
     size: string (optional). Font size, e.g. "32px". Default "inherit".
     weight: string (optional). Font weight of flipping words. Default "700".
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   source_inspiration:
     name: Magic UI — Text Animate
@@ -6384,8 +6382,8 @@ blocks:
     size: '"sm" | "md" | "lg"  (optional, default "md"). Controls ring diameter.'
     body: string (optional). Caption text below the pulse ring.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
   source_inspiration:
     name: Magic UI — Ripple
@@ -6419,8 +6417,8 @@ blocks:
     weight: string (optional). Font weight. Default "600".
     background: string (optional). Container background. Default "#f8fafc".
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: number_odometer
   description: Slot-machine style digit-by-digit flip animation where each digit column
@@ -6449,8 +6447,8 @@ blocks:
     size: string (optional). Font size. Default "3rem".
     duration: number (optional). Animation duration in seconds. Default 1.2.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: typing_indicator
   description: Three bouncing dots inside a chat bubble that signals an agent or user
@@ -6475,8 +6473,8 @@ blocks:
     name: string (optional). Agent or user name shown above the bubble. Default "Agent".
     variant: '"dark" | "light"  (optional, default "dark"). Bubble colour scheme.'
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: countdown_timer
   description: Flip-clock style countdown display showing hours, minutes, and seconds
@@ -6505,8 +6503,8 @@ blocks:
     variant: '"dark" | "light"  (optional, default "dark").'
     accent: string (optional). Separator and accent colour. Default "#00f2ff".
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: gradient_text
   description: Heading text rendered with an animated shifting gradient fill using
@@ -6536,8 +6534,8 @@ blocks:
     weight: string (optional). Font weight. Default "800".
     duration: number (optional). Cycle duration in seconds. Default 4.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: reveal_on_scroll
   description: Content block that starts invisible and fades + slides into view when
@@ -6568,8 +6566,8 @@ blocks:
     accent: string (optional). Left border accent colour. Default "#4f46e5".
     background: string (optional). Block background. Default "#f8fafc".
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: word_scramble
   description: Text that begins as a stream of random alphanumeric characters and
@@ -6598,8 +6596,8 @@ blocks:
     size: string (optional). Font size. Default "2.5rem".
     weight: string (optional). Font weight. Default "800".
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: svg_path_draw
   description: An SVG path that animates drawing itself from start to end using the
@@ -6627,8 +6625,8 @@ blocks:
     duration: number (optional). Draw duration in seconds. Default 1.5.
     label: string (optional). Caption below the SVG.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: parallax_card
   description: A card with CSS perspective and a mousemove JavaScript handler that
@@ -6662,8 +6660,8 @@ blocks:
     background: string (optional). Card background. Default "#0f172a".
     depth: integer (optional). Maximum tilt angle in degrees. Default 15.
   source:
-    name: a2ui-catalogue
-    url: https://a2ui.dev/catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: quiz_question
   description: Multiple-choice or true/false question card with CSS checkbox trick
@@ -6694,8 +6692,8 @@ blocks:
     explanation: string (optional). Shown after any option is selected.
     style: '"default" | "dark" | "minimal"  (optional, default "default")'
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: fill_in_blank
   description: Cloze-test exercise where one or more blanks in a sentence or paragraph
@@ -6726,8 +6724,8 @@ blocks:
     hint: string (optional). Shown below the exercise as a nudge.
     case_sensitive: boolean (optional, default false).
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: match_exercise
   description: Click-to-pair matching exercise. Two columns of items are shown — left
@@ -6755,8 +6753,8 @@ blocks:
     pairs: 'list[{term: string, definition: string}]. 3 to 8 pairs recommended.'
     shuffle: boolean (optional, default true). Randomise right-column order on render.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: hint_reveal
   description: A "Show hint" disclosure button that expands to reveal help text. Built
@@ -6782,8 +6780,8 @@ blocks:
     label: string (optional). Button label. Default "Show hint".
     accent: string (optional). Left-border and icon colour. Default "#6366f1".
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: achievement_badge
   description: Unlockable achievement or completion badge displayed as a circular
@@ -6815,8 +6813,8 @@ blocks:
     color: string (optional). Badge accent colour. Default "#f59e0b".
     size: '"card" | "pill"  (optional, default "card")'
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: score_summary
   description: End-of-exercise or end-of-module score card showing correct answers,
@@ -6848,8 +6846,8 @@ blocks:
       continue CTA.
     continue_url: url (optional). Destination for the continue button.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: xp_bar
   description: Experience points or gamification progress bar showing current XP,
@@ -6879,8 +6877,8 @@ blocks:
     show_flash: boolean (optional, default true). Trigger level-up flash when xp_current
       >= xp_next.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: lesson_nav
   description: Previous/next lesson navigation bar with the current lesson title centred
@@ -6914,8 +6912,8 @@ blocks:
     show_completion: boolean (optional, default false). Show a "Mark as complete"
       checkbox persisted in localStorage.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: course_progress_card
   description: Overall course completion card showing a list of modules with individual
@@ -6940,8 +6938,8 @@ blocks:
     modules: 'list[{title: string, lessons_total: integer, lessons_done: integer}].'
     accent: string (optional). Progress fill colour. Default "#6366f1".
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: highlighted_text
   description: Inline passage of text with a coloured highlight background and an
@@ -6968,8 +6966,8 @@ blocks:
     color: string (optional). Highlight background colour. Default "#fef08a" (yellow).
     annotation_color: string (optional). Annotation pill background. Default "#fbbf24".
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: drive_file_list
   description: Live list of files in a Google Drive folder rendered with icons and
@@ -6983,8 +6981,8 @@ blocks:
     max_results: integer (optional). Maximum number of files to return. Default is
       10.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: sheet_preview
   description: Live read-only preview of a specified range in a Google Sheet. Renders
@@ -6998,8 +6996,8 @@ blocks:
     sheet_name: string. The name of the sheet tab.
     range: string. The A1 notation range (e.g. A1:D10).
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: gmail_summary
   description: Summary list of recent emails in the user's Gmail matching a search
@@ -7013,8 +7011,8 @@ blocks:
     max_results: integer (optional). Maximum number of emails to display. Default
       is 5.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: calendar_upcoming
   description: List of upcoming events from the user's primary calendar. Works on
@@ -7027,8 +7025,8 @@ blocks:
     max_results: integer (optional). Maximum number of upcoming events to show. Default
       is 5.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: user_greeting
   description: Personalised greeting showing the active user's Google account email.
@@ -7040,8 +7038,8 @@ blocks:
   fields:
     prefix: string (optional). The greeting prefix. Default is "Hello".
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: script_run_button
   description: Interactive button that executes a custom Google Apps Script server
@@ -7056,8 +7054,8 @@ blocks:
     function_name: string. The name of the server-side V8 JavaScript function to call.
     argument: string (optional). Optional string argument to pass to the function.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: calendar_today
   description: Today's events from the user's default Google Calendar, displayed as
@@ -7071,8 +7069,8 @@ blocks:
     title: string (optional). Card heading. Default is "Today's Schedule".
     max_results: integer (optional). Maximum events to show. Default 8.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: sheet_stats
   description: Aggregate statistics (sum, average, count, min, max) computed from
@@ -7090,8 +7088,8 @@ blocks:
       max. Default ["sum","average","count"].
     accent: string (optional). Accent colour for stat values.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: gmail_unread_count
   description: Unread message count badges for one or more Gmail labels, shown as
@@ -7130,8 +7128,8 @@ blocks:
     counts: object (static connector). Label→count map for non-GAS surfaces.
     auth_token: string (api connector). OAuth2 bearer token for REST API.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: user_profile_card
   description: Personalised profile card showing the active user's avatar initial,
@@ -7163,8 +7161,8 @@ blocks:
     accent: string (optional). Avatar background colour.
     subtitle: string (optional). Role or team label shown below the email.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: drive_storage_usage
   description: Google Drive storage quota displayed as a labelled progress bar — used
@@ -7206,8 +7204,8 @@ blocks:
     total_gb: number (static connector). Total quota GB — for non-GAS surfaces.
     auth_token: string (api connector). OAuth2 bearer token for REST API.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: sheet_form_submit
   description: Inline form that appends a timestamped row to a Google Sheet on submit.
@@ -7226,8 +7224,8 @@ blocks:
     submit_label: string (optional). Submit button text. Default is "Submit".
     accent: string (optional). Submit button colour.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: tasks_today
   description: Incomplete tasks displayed as an interactive checkbox list. On GAS
@@ -7269,8 +7267,8 @@ blocks:
       surfaces.
     auth_token: string (api connector). OAuth2 bearer token for REST API.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: cursor_glow
   description: Ambient radial gradient orb that smoothly lerp-follows the cursor across
@@ -7290,8 +7288,8 @@ blocks:
     speed: number (optional). Lerp factor 0–1 — lower = more lag. Default 0.1.
     blend: string (optional). CSS mix-blend-mode. Default screen.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: cursor_trail
   description: A chain of fading dots that follow the cursor using worm-chain physics
@@ -7308,8 +7306,8 @@ blocks:
     size: integer (optional). Lead dot diameter px. Default 10.
     speed: number (optional). Lerp factor per dot. Default 0.35.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: particle_burst
   description: On every click anywhere on the page, coloured particles burst outward
@@ -7328,8 +7326,8 @@ blocks:
     duration: integer (optional). Animation duration ms. Default 700.
     gravity: number (optional). Downward pull factor. Default 1.2.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: spotlight_cursor
   description: A dark overlay with a soft-edged circular cutout that follows the cursor
@@ -7348,8 +7346,8 @@ blocks:
     colour: string (optional). Overlay colour. Default
     soft_edge: integer (optional). Feather distance px beyond radius. Default 60.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: magnetic_element
   description: Wraps content that drifts toward the cursor when it enters the activation
@@ -7367,8 +7365,8 @@ blocks:
     radius: integer (optional). Activation distance px. Default 120.
     strength: number (optional). Pull factor 0–1. Default 0.4.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: tilt_card
   description: A card that tilts in 3D perspective as the cursor moves across it,
@@ -7389,8 +7387,8 @@ blocks:
     accent: string (optional). Glare colour. Default rgba(255,255,255,0.15).
     padding: string (optional). Inner padding. Default 28px.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: doc_ai_summary
   description: Opens a Google Doc by ID, sends its text to Vertex AI Gemini, and renders
@@ -7409,8 +7407,8 @@ blocks:
     accent: string (optional). Accent colour.
     show_meta: boolean (optional). Show word count and doc link. Default true.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: multi_doc_ai_brief
   description: Takes an array of Google Doc IDs and renders one Vertex AI Gemini summary
@@ -7427,8 +7425,8 @@ blocks:
     accent: string (optional). Accent colour for doc links.
     model: string (optional). Gemini model override.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: gradient_heading
   description: Gradient-fill standalone heading using CSS background-clip text. Simpler
@@ -7448,8 +7446,8 @@ blocks:
     align: string (optional). text-align. Default left.
     margin: string (optional). CSS margin. Default 16px 0 6px.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: display_quote
   description: Large typographic quote with a decorative quotation mark at 5rem, quote
@@ -7468,8 +7466,8 @@ blocks:
     size: string (optional). Font-size for quote text. Default clamp(1.4rem,3vw,2.2rem).
     align: string (optional). center or left. Default center.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: split_stat
   description: Two-column layout — a large glowing stat number on the left (with neon
@@ -7490,8 +7488,8 @@ blocks:
     colour: string (optional). Stat glow colour. Default
     flip: boolean (optional). Put stat on right side. Default false.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: word_reveal
   description: Words appear one by one with a fade-up animation that auto-plays on
@@ -7512,8 +7510,8 @@ blocks:
     delay: number (optional). Seconds between each word. Default 0.12.
     align: string (optional). text-align. Default center.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: section_label
   description: Uppercase section marker with a short glowing accent line — use between
@@ -7529,8 +7527,8 @@ blocks:
     colour: string (optional). Accent colour. Default
     margin: string (optional). Vertical margin. Default 24px 0 12px.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: count_up_stat
   description: A stat number that counts up from zero to the target value using a
@@ -7551,8 +7549,8 @@ blocks:
     duration: integer (optional). Count-up duration ms. Default 1800.
     size: string (optional). Font-size. Default 4rem.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: text_highlight
   description: Inline prose sentence where specific words are highlighted in an accent
@@ -7572,8 +7570,8 @@ blocks:
     weight: integer (optional). Base font weight. Default 600.
     align: string (optional). text-align. Default left.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: reveal_line
   description: A single line of text that sweeps in from left using a clip-path animation
@@ -7593,8 +7591,8 @@ blocks:
     duration: integer (optional). Animation duration ms. Default 800.
     delay: integer (optional). Start delay ms. Default 200.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: canvas_plexus
   description: Full-viewport animated particle network — dots connected by proximity
@@ -7615,8 +7613,8 @@ blocks:
     height: integer (optional). Canvas height px. Default 400.
     repulse_radius: integer (optional). Mouse repulsion radius px. Default 90.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: spring_nodes
   description: Interactive mass-spring physics simulation — nodes repel each other
@@ -7637,8 +7635,8 @@ blocks:
     height: integer (optional). Canvas height px. Default 420.
     rest_length: integer (optional). Spring rest length px. Default 110.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: isometric_mesh
   description: Rotating 3D isometric height-field mesh. Default surface is a 16×16
@@ -7660,8 +7658,8 @@ blocks:
     height: integer (optional). Canvas height px. Default 460.
     auto_rotate: boolean (optional). Auto-rotate until user drags. Default true.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: geo_iso_takeoff
   description: Full-viewport isometric 3D canvas animation of an A321neo (or other
@@ -7683,8 +7681,8 @@ blocks:
     aircraft_type: string (optional). ICAO aircraft type code — A21N (A321neo), A320,
       B738. Default A21N.
   source: &id005
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: geo_iso_rocket_launch
   description: Full-viewport isometric 3D canvas animation of an Ariane 6 rocket launch
@@ -7766,8 +7764,8 @@ blocks:
     poll_options: array (optional). Array of option strings for the poll.
     poll_values: array (optional). Array of integer vote counts for each option.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: data_source
   description: Generic HTTP GET data feed. Fetches on server-side render (GAS surface
@@ -7788,8 +7786,8 @@ blocks:
       only. Default 0.
     cache: integer (optional). Server-side CacheService TTL seconds. Default 15.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: adsb_feed
   role: data_source
@@ -7818,8 +7816,8 @@ blocks:
     filter_ground: boolean (optional). Exclude on-ground traffic. Default true.
     cache: integer (optional). Server-side cache TTL seconds. Default 15.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: metar_feed
   role: data_source
@@ -7838,8 +7836,8 @@ blocks:
     refresh: integer (optional). Client refresh interval seconds. Default 60.
     cache: integer (optional). Server-side cache TTL seconds. Default 30.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: firestore_read
   role: data_source
@@ -7865,8 +7863,8 @@ blocks:
     refresh: integer (optional). Client-side refresh interval seconds. 0 = initial
       load only. Default 0.
   source:
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: paragraph
   description: Prose paragraph block (alias for body, google-apps-script-web only)
@@ -7877,8 +7875,8 @@ blocks:
   fields:
     text: string
   source: &id007
-    name: a2ui-catalogue
-    url: https://github.com/curtiskrygier/a2ui-catalogue
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
     license: MIT
 - type: text_block
   description: Plain text block rendered as a paragraph
