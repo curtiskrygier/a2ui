@@ -9,7 +9,7 @@ blocks:
     - googlechat
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
   fields:
     series_label: string
     series_url: url
@@ -29,7 +29,7 @@ blocks:
     - googlechat
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
   fields:
     text: string
   source: *id001
@@ -43,7 +43,7 @@ blocks:
     - googlechat
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
   fields:
     text: string
   source: *id001
@@ -57,7 +57,7 @@ blocks:
     - googlechat
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
   fields:
     text: string
   source: *id001
@@ -70,7 +70,7 @@ blocks:
     - meet-stage
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: blockquote styling stripped — renders as plain text
@@ -86,7 +86,7 @@ blocks:
     - web
     - meet-stage
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: renders as monospace text, no syntax highlighting
@@ -104,7 +104,7 @@ blocks:
     - web
     - meet-stage
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: monospace background stripped — use bullet_list instead
@@ -123,7 +123,7 @@ blocks:
     - googlechat
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
   fields:
     items:
     - label: string (optional)
@@ -138,7 +138,7 @@ blocks:
     - meet-stage
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: hr not supported in Chat cards — omit or use heading instead
@@ -151,8 +151,8 @@ blocks:
     - web
     - meet-stage
     degraded_on:
-    - surface: apps-script-web
-      note: iframe embeds may be blocked by apps-script-web CSP in IFRAME sandbox
+    - surface: google-apps-script-web
+      note: iframe embeds may be blocked by google-apps-script-web CSP in IFRAME sandbox
         mode
     incompatible_on:
     - surface: googlechat
@@ -200,7 +200,7 @@ blocks:
     - meet-stage
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: external images may be blocked by Chat security policy — use Chat-hosted
@@ -219,7 +219,7 @@ blocks:
     - web
     - meet-stage
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: table layout may reflow — use two separate image blocks instead
@@ -243,7 +243,7 @@ blocks:
     - web
     - meet-stage
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: SVG may not render — use PNG export instead
@@ -260,7 +260,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: use repo_links instead — no network fetch at stage render time
@@ -284,7 +284,7 @@ blocks:
     - meet-stage
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: list styling stripped — renders as plain links
@@ -303,7 +303,7 @@ blocks:
     - googlechat
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
   fields:
     text: string
     tags: list[string] (optional)
@@ -316,7 +316,7 @@ blocks:
     - web
     - meet-stage
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: border-left and background colour stripped — use bold text prefix instead
@@ -335,7 +335,7 @@ blocks:
     - web
     - meet-stage
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: custom list styling stripped — use bullet_list with manual numbering
@@ -355,7 +355,7 @@ blocks:
     - meet-stage
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: HTML tables not supported in Chat cards — use bullet_list or key_value
@@ -372,7 +372,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on: null
     incompatible_on:
     - surface: googlechat
@@ -396,7 +396,7 @@ blocks:
     - web
     - meet-stage
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: table layout stripped — use bullet_list with bold keys instead
@@ -417,7 +417,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: colour panels may not export cleanly — use two separate code blocks
@@ -443,7 +443,7 @@ blocks:
     - web
     - meet-stage
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: complex table layout not supported — use key_value + code block instead
@@ -473,7 +473,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: CSS :target lightbox may not work in iframe — images show without lightbox
@@ -499,7 +499,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on: null
     incompatible_on:
     - surface: googlechat
@@ -527,7 +527,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: only first slide renders — use gallery instead
@@ -552,7 +552,7 @@ blocks:
     - web
     - meet-stage
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: flexbox layout and custom styling stripped — use bullet_list with bold
@@ -576,7 +576,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: callout bubbles may not render inline — consider code + steps instead
@@ -604,7 +604,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: glow animations not rendered — displays as flat card
@@ -627,7 +627,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: animation not rendered — shows static bar
@@ -650,7 +650,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: email
       note: background colours may vary — test or use plain text labels
@@ -676,7 +676,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on: null
     incompatible_on:
     - surface: googlechat
@@ -703,7 +703,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on: null
     incompatible_on:
     - surface: googlechat
@@ -734,7 +734,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on: null
     incompatible_on:
     - surface: googlechat
@@ -764,7 +764,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on: null
     incompatible_on:
     - surface: googlechat
@@ -792,7 +792,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on: null
     incompatible_on:
     - surface: googlechat
@@ -818,7 +818,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Only the metric value, label, and percentage will be rendered as text.
@@ -851,7 +851,7 @@ blocks:
     - googlechat
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
   fields:
     label: string (descriptive label for the metric, e.g., 'Sales')
     current_value: string (the current formatted value, e.g., '$12,345')
@@ -872,7 +872,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on: null
     incompatible_on:
     - surface: googlechat
@@ -900,7 +900,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on: null
     incompatible_on:
     - surface: googlechat
@@ -931,7 +931,7 @@ blocks:
     - googlechat
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
   fields:
     trend_direction: enum (up, down, stable) - determines the icon or arrow direction
     label: string (descriptive text for the trend, e.g., 'Improving', 'Declining',
@@ -950,7 +950,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as a series of linked text elements without visual separators
@@ -974,7 +974,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as a set of buttons or text links. Complex styling and active
@@ -1005,8 +1005,8 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-side-panel
-    - apps-script-web
+    - google-apps-script-side-panel
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as a plain text list with emoji status markers; no connectors
@@ -1033,7 +1033,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as a series of buttons or text links. Visual tab styling and active
@@ -1060,7 +1060,7 @@ blocks:
     - meet-stage
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as a list of hyperlinks. Internal document anchors are not supported;
@@ -1080,7 +1080,7 @@ blocks:
     - web
     - meet-stage
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as a simple list of questions and answers without interactive
@@ -1104,7 +1104,7 @@ blocks:
     - googlechat
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
   fields:
     term: string (the term itself)
     definition: string (the explanation)
@@ -1124,7 +1124,7 @@ blocks:
     - googlechat
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
   fields:
     number: integer (the footnote number)
     text: string (the footnote content)
@@ -1141,7 +1141,7 @@ blocks:
     - web
     - meet-stage
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as a simple blockquote with text attribution; avatar image is
@@ -1169,7 +1169,7 @@ blocks:
     - googlechat
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
   fields:
     value: string (the prominent number/statistic, e.g., "99%", "1.2M")
     label: string (descriptive text for the stat, e.g., "customer satisfaction")
@@ -1187,7 +1187,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on: null
     incompatible_on:
     - surface: googlechat
@@ -1214,7 +1214,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on: null
     incompatible_on:
     - surface: googlechat
@@ -1241,7 +1241,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on: null
     incompatible_on:
     - surface: googlechat
@@ -1271,7 +1271,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on: null
     incompatible_on:
     - surface: googlechat
@@ -1297,7 +1297,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on: null
     incompatible_on:
     - surface: googlechat
@@ -1326,7 +1326,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as a clickable link to the audio file, no embedded player.
@@ -1351,7 +1351,7 @@ blocks:
     - googlechat
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
   fields:
     audio_url: string
     label: string
@@ -1367,7 +1367,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as an image followed by a clickable link to the PDF, without complex
@@ -1394,7 +1394,7 @@ blocks:
     - googlechat
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
   fields:
     document_url: string
     label: string
@@ -1411,7 +1411,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as an image followed by a clickable link to the video, no play
@@ -1435,7 +1435,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as a basic card with image, title, description, and link, without
@@ -1464,8 +1464,8 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-side-panel
-    - apps-script-web
+    - google-apps-script-side-panel
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as plain monospace text block; no colour highlighting.
@@ -1496,7 +1496,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders code snippets stacked vertically instead of side-by-side.
@@ -1519,7 +1519,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on: null
     incompatible_on:
     - surface: googlechat
@@ -1547,7 +1547,7 @@ blocks:
     - googlechat
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
   fields:
     image_url: string
     alt_text: string
@@ -1561,7 +1561,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as a basic card with text and button; no custom icons, complex
@@ -1585,8 +1585,8 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-side-panel
-    - apps-script-web
+    - google-apps-script-side-panel
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Fixed positioning relative to Meet iframe; renders at iframe edge
@@ -1617,7 +1617,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on: null
     incompatible_on:
     - surface: googlechat
@@ -1642,7 +1642,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as a basic card with image, title, text, and button; limited layout
@@ -1664,7 +1664,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on: null
     incompatible_on:
     - surface: googlechat
@@ -1682,7 +1682,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as plain text; no custom background colors, rounded corners, or
@@ -1707,7 +1707,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as basic text; no custom icons, colors, or complex inline styling.
@@ -1725,7 +1725,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Can display static stars using Unicode characters or images, but no interactive
@@ -1749,8 +1749,8 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-side-panel
-    - apps-script-web
+    - google-apps-script-side-panel
+    - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as a static arc at target value without mount animation
@@ -1776,7 +1776,7 @@ blocks:
     - web
     - meet-stage
     - googlechat
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: email
       note: Renders as a basic block with title, description, and button; limited
@@ -1799,7 +1799,7 @@ blocks:
     - web
     - meet-stage
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as a series of lists or key-value pairs due to lack of table support.
@@ -1824,7 +1824,7 @@ blocks:
     - googlechat
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
   fields:
     plan_name: string
     price: string
@@ -1847,7 +1847,7 @@ blocks:
     - web
     - meet-stage
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as stacked individual cards or sections within a single card.
@@ -1869,7 +1869,7 @@ blocks:
     - googlechat
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
   fields:
     subject: string
     pros: array
@@ -1886,7 +1886,7 @@ blocks:
     - web
     - meet-stage
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as stacked lists of attributes and values for each item.
@@ -1910,7 +1910,7 @@ blocks:
     - web
     - meet-stage
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as a list of key-value pairs.
@@ -1933,7 +1933,7 @@ blocks:
     - web
     - meet-stage
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as a simplified list of products with their features, losing grid
@@ -1955,7 +1955,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as two stacked cards, losing the explicit 'VS' visual separation.
@@ -1984,7 +1984,7 @@ blocks:
     - googlechat
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
   fields:
     items: array
 - type: capability_checklist
@@ -1999,7 +1999,7 @@ blocks:
     - web
     - meet-stage
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as a simplified list of capabilities with text indicators for
@@ -2019,7 +2019,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on: null
     incompatible_on:
     - surface: googlechat
@@ -2043,7 +2043,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on: null
     incompatible_on:
     - surface: googlechat
@@ -2066,7 +2066,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on: null
     incompatible_on:
     - surface: googlechat
@@ -2089,7 +2089,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on: null
     incompatible_on:
     - surface: googlechat
@@ -2112,7 +2112,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on: null
     incompatible_on:
     - surface: googlechat
@@ -2134,7 +2134,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on: null
     incompatible_on:
     - surface: googlechat
@@ -2157,7 +2157,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on: null
     incompatible_on:
     - surface: googlechat
@@ -2180,7 +2180,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on: null
     incompatible_on:
     - surface: googlechat
@@ -2203,7 +2203,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on: null
     incompatible_on:
     - surface: googlechat
@@ -2226,7 +2226,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on: null
     incompatible_on:
     - surface: googlechat
@@ -2254,7 +2254,7 @@ blocks:
     - web
     - meet-stage
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as basic text and author name; avatar and complex styling are
@@ -2277,7 +2277,7 @@ blocks:
     - web
     - meet-stage
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as text (e.g., '4.5 stars') or using emoji stars; visual styling
@@ -2298,7 +2298,7 @@ blocks:
     - web
     - meet-stage
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as a limited number of small images or a text count; stacking/overlapping
@@ -2322,7 +2322,7 @@ blocks:
     - web
     - meet-stage
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as a basic text list; avatars and rich formatting are not supported.
@@ -2344,7 +2344,7 @@ blocks:
     - web
     - meet-stage
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as a limited number of stacked images or a text list of names;
@@ -2364,7 +2364,7 @@ blocks:
     - web
     - meet-stage
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as basic text and icon; banner styling and rich layout are not
@@ -2389,7 +2389,7 @@ blocks:
     - web
     - meet-stage
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as basic text and publication logo; card styling and rich layout
@@ -2415,7 +2415,7 @@ blocks:
     - web
     - meet-stage
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as basic text and expert name; avatar and rich formatting are
@@ -2441,7 +2441,7 @@ blocks:
     - web
     - meet-stage
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as basic text and author name; star rating may be shown as emojis
@@ -2467,7 +2467,7 @@ blocks:
     - web
     - meet-stage
     degraded_on:
-    - surface: apps-script-web
+    - surface: google-apps-script-web
       note: social platform iframes generally blocked by X-Frame-Options
     incompatible_on:
     - surface: googlechat
@@ -2490,7 +2490,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Interactive copy-to-clipboard actions and prompt animations are disabled.
@@ -2516,7 +2516,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Nested toggle states and hover highlights are completely unavailable.
@@ -2538,7 +2538,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Tab switching logic feels slow or becomes unresponsive.
@@ -2561,7 +2561,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Layout shifts or responsive styling can clip wide URL strings.
@@ -2586,7 +2586,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Copy shortcuts and secret-masking toggle utilities are disabled.
@@ -2608,7 +2608,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Converts the warning wrapper box into a standard unstyled text list.
@@ -2629,7 +2629,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Discards button styles and shows plain text characters in brackets.
@@ -2650,7 +2650,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Wide table blocks introduce harsh horizontal scrolling on restricted screen
@@ -2674,7 +2674,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as unstyled plain text in brackets instead of a colored badge.
@@ -2694,7 +2694,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Box styling lost, collapses into standard text with manual prefix.
@@ -2714,7 +2714,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Converted into basic text without protective boundary boxes.
@@ -2732,7 +2732,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Interactive copy mechanics are disabled.
@@ -2753,7 +2753,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Clipboard API operations are blocked or unsupported.
@@ -2774,7 +2774,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: High-frequency scrollbars are restricted or difficult to navigate.
@@ -2795,7 +2795,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Dynamic node toggles and mouse interaction fully disabled.
@@ -2816,7 +2816,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Outer borders disappear, presenting as plain bullet lists.
@@ -2835,7 +2835,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Outer wrapper styling drops, showing standard paragraph text.
@@ -2854,7 +2854,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Target icons convert back to standard text bullets.
@@ -2873,7 +2873,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Timeline vertical paths and relative positioning can misalign.
@@ -2896,7 +2896,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Multi-column grouping panels flatten to markdown segments.
@@ -2918,7 +2918,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Rich link metadata cards degrade into simple bracketed URLs.
@@ -2937,7 +2937,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: File size badges and download icons are discarded.
@@ -2956,7 +2956,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Floating side positions collapse inline due to confined viewport.
@@ -2978,7 +2978,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as unstyled plain text instead of a color-coded label.
@@ -2998,7 +2998,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Collapses into plain unbordered body copy sentences.
@@ -3017,7 +3017,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Interactive checking performs sluggishly.
@@ -3038,7 +3038,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Hover tooltips and interactive gestures fail to initialise.
@@ -3060,7 +3060,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Falls back to raw text timing statement.
@@ -3079,7 +3079,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Live progression trackers fail to update.
@@ -3101,7 +3101,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: JavaScript popup triggers are blocked in restricted contexts.
@@ -3123,7 +3123,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Form input handling may block submissions.
@@ -3145,7 +3145,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Avatar drops, flattens to generic markdown text.
@@ -3167,7 +3167,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Flexbox card sizing fails to size uniformly.
@@ -3188,7 +3188,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Indexed list flattens into single unstyled lines.
@@ -3208,7 +3208,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Count animations and click actions trigger slowly.
@@ -3230,7 +3230,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
   fields:
     mode: string (optional, "conviction_card"|"stat_card"|"carousel_slide", default
       "conviction_card")
@@ -3251,7 +3251,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Clip-to-copy actions are unavailable.
@@ -3273,7 +3273,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Callout cards break into fundamental text lines.
@@ -3293,7 +3293,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Async profile follow tracking may fail to sync.
@@ -3315,7 +3315,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: High frequency scroll monitoring triggers suffer from visual frame latency.
@@ -3337,7 +3337,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Sticky placement logic loses layout sync relative to video stages.
@@ -3358,7 +3358,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Cover visuals drop, returning unformatted markdown headers.
@@ -3379,7 +3379,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Scroll animation shifts generate noticeable redraw lag.
@@ -3400,7 +3400,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Progress bars convert to basic markdown links.
@@ -3427,7 +3427,7 @@ blocks:
       note: Blocked — degrades to CodePen URL link.
     - surface: email
       note: Third-party sandboxes reject external frame initialization.
-    - surface: apps-script-web
+    - surface: google-apps-script-web
       note: external iframe — depends on site's X-Frame-Options; test before use
   fields:
     pen_id: string. Alphanumeric identity of the target snippet.
@@ -3450,7 +3450,7 @@ blocks:
       note: Collapses to fallback hyperlinks due to framework policies.
     - surface: email
       note: Sandboxed editor containers completely blocked.
-    - surface: apps-script-web
+    - surface: google-apps-script-web
       note: external iframe — depends on site's X-Frame-Options; test before use
   fields:
     project_id: string. Folder identity indicator for active workspace.
@@ -3469,7 +3469,7 @@ blocks:
       note: Script restrictions fallback to basic text links.
     - surface: email
       note: Script inject routines cannot load outside web environments.
-    - surface: apps-script-web
+    - surface: google-apps-script-web
       note: external iframe — depends on site's X-Frame-Options; test before use
   fields:
     gist_id: string. Hexadecimal identifier for target file fragments.
@@ -3491,7 +3491,7 @@ blocks:
       note: Theme styling collapses to simple quote blocks.
     - surface: email
       note: Runtime engines drop interactive layout cards.
-    - surface: apps-script-web
+    - surface: google-apps-script-web
       note: Twitter/X iframe often blocked by X-Frame-Options
   fields:
     tweet_id: string. Unique snowflake identifier for the post.
@@ -3513,7 +3513,7 @@ blocks:
       note: Collapses to markdown resource links.
     - surface: email
       note: Slider primitives fail to pass email sandbox parameters.
-    - surface: apps-script-web
+    - surface: google-apps-script-web
       note: works if viewer has access; Google Slides embeds are generally allowed
   fields:
     presentation_id: string. Asset identifier for the slide file.
@@ -3535,7 +3535,7 @@ blocks:
       note: Vector scripts disappear, producing empty blocks.
     - surface: email
       note: Missing engines stop animation playback.
-    - surface: apps-script-web
+    - surface: google-apps-script-web
       note: requires lottie-web CDN; add the script tag to your Apps Script HtmlService
         page
   fields:
@@ -3559,7 +3559,7 @@ blocks:
       note: Collapses to remote document shortcuts.
     - surface: email
       note: Design tool canvas structures dropped by secure parsers.
-    - surface: apps-script-web
+    - surface: google-apps-script-web
       note: Figma iframes require Figma auth; test before use
   fields:
     embed_url: string. Absolute sharing path generated by Figma.
@@ -3575,7 +3575,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: email
       note: CSS grid collapses; falls back to inline color names.
@@ -3598,7 +3598,7 @@ blocks:
       note: Collapses to link.
     - surface: email
       note: Iframes stripped.
-    - surface: apps-script-web
+    - surface: google-apps-script-web
       note: sandbox iframe restrictions may apply depending on embed target
   fields:
     url: string. URL of the live demo.
@@ -3615,7 +3615,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: email
       note: Renders as plain table.
@@ -3631,7 +3631,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Chart.js canvas rendering inconsistent in stage iframe.
@@ -3653,7 +3653,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Canvas rendering inconsistent in stage iframe.
@@ -3674,7 +3674,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Sorting interaction requires JS not available in stage.
@@ -3695,7 +3695,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: email
       note: Renders as plain text values.
@@ -3715,7 +3715,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: email
       note: SVG sparklines may not render.
@@ -3733,7 +3733,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: email
       note: Colour indicators may not render.
@@ -3751,7 +3751,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: email
       note: Colour blocks may collapse.
@@ -3768,7 +3768,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Keyboard events captured by Meet.
@@ -3790,7 +3790,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: email
       note: Renders as plain link.
@@ -3809,7 +3809,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Renders as plain text line.
@@ -3831,7 +3831,7 @@ blocks:
     works_on:
     - web
     - email
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Footnotes not visible in viewport-fitted stage.
@@ -3848,7 +3848,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Overlay positioning unreliable in stage grid.
@@ -3867,7 +3867,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Expand interaction requires JS not available.
@@ -3885,7 +3885,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Voting interaction requires JS not available.
@@ -3905,7 +3905,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Hover not available; abbreviation shown plain.
@@ -3926,7 +3926,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Clipboard API may be blocked.
@@ -3947,7 +3947,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on: null
     incompatible_on:
     - surface: googlechat
@@ -3968,7 +3968,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on: null
     incompatible_on:
     - surface: googlechat
@@ -3991,7 +3991,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on: null
     incompatible_on:
     - surface: googlechat
@@ -4013,7 +4013,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on: null
     incompatible_on:
     - surface: googlechat
@@ -4036,7 +4036,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on: null
     incompatible_on:
     - surface: googlechat
@@ -4061,7 +4061,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on: null
     incompatible_on:
     - surface: googlechat
@@ -4086,7 +4086,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     incompatible_on:
     - surface: googlechat
       reason: Google Chat has its own card input model — use key_value or action buttons
@@ -4127,7 +4127,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     incompatible_on:
     - surface: googlechat
       reason: Use Chat card input widget instead
@@ -4158,7 +4158,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     incompatible_on:
     - surface: googlechat
       reason: Use Chat card dropdown widget instead
@@ -4189,7 +4189,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     incompatible_on:
     - surface: googlechat
       reason: Use Chat card radio widget instead
@@ -4222,7 +4222,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     incompatible_on:
     - surface: googlechat
       reason: Use Chat card multi-select widget instead
@@ -4254,7 +4254,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Toggle switches render correctly; value capture requires stage-level routing
@@ -4284,7 +4284,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     incompatible_on:
     - surface: googlechat
       reason: Non-functional in Chat cards
@@ -4316,7 +4316,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     incompatible_on:
     - surface: googlechat
       reason: Non-functional in Chat cards
@@ -4347,7 +4347,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on: []
     incompatible_on:
     - surface: googlechat
@@ -4376,7 +4376,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Chips render correctly; click actions need stage WebSocket routing to
@@ -4410,7 +4410,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Cards render and are selectable; value capture requires stage-level routing
@@ -4443,7 +4443,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Renders and is interactive; action_url POST requires stage-level routing
@@ -4473,7 +4473,7 @@ blocks:
     - googlechat
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
   fields:
     items:
       type: array
@@ -4489,7 +4489,7 @@ blocks:
     - web
     - meet-stage
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as plain code block without slot highlighting
@@ -4514,7 +4514,7 @@ blocks:
     - googlechat
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
   fields:
     name: string. Model display name, e.g. "Claude Sonnet 4.6".
     provider: string (optional). Provider name, e.g. "Anthropic".
@@ -4539,7 +4539,7 @@ blocks:
     - googlechat
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
   fields:
     user_label: string (optional, default "You"). Label above the user bubble.
     user: string. The user prompt text.
@@ -4559,7 +4559,7 @@ blocks:
     - googlechat
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
   fields:
     title: string (optional). Heading above the grid.
     items:
@@ -4579,7 +4579,7 @@ blocks:
     - googlechat
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
   fields:
     average: number. Overall average rating (e.g. 4.3).
     total: number. Total number of ratings.
@@ -4600,7 +4600,7 @@ blocks:
     - googlechat
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
   fields:
     title: string (optional). Heading above the roadmap.
     periods:
@@ -4621,7 +4621,7 @@ blocks:
     - googlechat
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
   fields:
     title: string (optional). Heading above the list, e.g. "Notifications".
     items:
@@ -4639,7 +4639,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: renders as plain text prefix with emoji icon; no colour or border styling
@@ -4665,7 +4665,7 @@ blocks:
     - meet-stage
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: renders as space-separated text labels; no chip styling
@@ -4687,7 +4687,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on: null
     incompatible_on:
     - surface: googlechat
@@ -4720,7 +4720,7 @@ blocks:
     - meet-stage
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: some markup stripped by Chat card renderer; tables and code blocks fall
@@ -4744,7 +4744,7 @@ blocks:
     - web
     - meet-stage
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: SVG may not render; falls back to percentage list
@@ -4778,7 +4778,7 @@ blocks:
     - googlechat
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
   fields:
     variant: string. Display variant — "info", "success", "warning", "neutral".
     title: string. Short bold label (e.g. "Tip", "Note", "Good to know").
@@ -4799,7 +4799,7 @@ blocks:
     - meet-stage
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: renders as plain numbered list item; no card styling or excerpt block
@@ -4821,7 +4821,7 @@ blocks:
     - web
     - meet-stage
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: renders as sequential key-value blocks; side-by-side layout not supported
@@ -4849,7 +4849,7 @@ blocks:
     - meet-stage
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: renders as plain percentage text e.g. Label 82%; no bar visualisation
@@ -4872,7 +4872,7 @@ blocks:
     - web
     - meet-stage
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: renders as "Used X / Y tokens (Z%)" plain text; no visual meter
@@ -4902,7 +4902,7 @@ blocks:
     - meet-stage
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: renders as plain text with price; no image or badge styling
@@ -4931,7 +4931,7 @@ blocks:
     - meet-stage
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: renders as plain order summary text; no colour or badge styling
@@ -4958,7 +4958,7 @@ blocks:
     - meet-stage
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: renders as a simple text list of product names and quantities
@@ -4983,7 +4983,7 @@ blocks:
     - meet-stage
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: renders as plain text with key and summary; no type icon or status badge
@@ -5012,7 +5012,7 @@ blocks:
     - web
     - meet-stage
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: email
       note: multi-column layout collapses; renders as sequential column headings with
@@ -5041,7 +5041,7 @@ blocks:
     - meet-stage
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: renders as plain uppercase text label; no colour background
@@ -5066,7 +5066,7 @@ blocks:
     - web
     - meet-stage
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: email
       note: renders as a plain HTML table; no selection checkboxes or sort indicators
@@ -5098,7 +5098,7 @@ blocks:
     - meet-stage
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: renders as an indented plain text tree; no expand/collapse indicators
@@ -5122,7 +5122,7 @@ blocks:
     - web
     - meet-stage
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: email
       note: renders as a static colour grid; tooltips unavailable
@@ -5148,7 +5148,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as a static select; no interactivity
@@ -5177,7 +5177,7 @@ blocks:
     works_on:
     - web
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Grid collapses to single column on narrow stage panels
@@ -5205,7 +5205,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as a flat link list
@@ -5234,7 +5234,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     incompatible_on:
     - surface: googlechat
       reason: No custom form widget support
@@ -5260,7 +5260,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     incompatible_on:
     - surface: googlechat
       reason: No custom input widget support
@@ -5288,7 +5288,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     - pdf
   fields:
     title: string (optional)
@@ -5308,7 +5308,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     - pdf
   fields:
     cols: integer (optional, default 4)
@@ -5326,7 +5326,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
   fields:
     accent: string (optional, hex, default "#6366f1")
     style: string (optional, "tint"|"solid"|"dark"|"light", default "tint")
@@ -5342,7 +5342,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     - pdf
   fields:
     title: string (optional)
@@ -5362,7 +5362,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     - pdf
   fields:
     current: integer (required, 1-based index of active step)
@@ -5380,7 +5380,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
   fields:
     left: object — {bg (css color, default "#f8fafc"), blocks (atom blocks)}
     right: object — {bg (css color, default "#fff"), blocks (atom blocks)}
@@ -5395,7 +5395,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     - pdf
   fields:
     title: string (required, alias heading)
@@ -5418,7 +5418,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     - pdf
   fields:
     title: string (optional)
@@ -5437,7 +5437,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     - pdf
   fields:
     title: string (optional)
@@ -5456,7 +5456,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
   fields:
     title: string (required)
     subtitle: string (optional)
@@ -5475,7 +5475,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     - pdf
   fields:
     cols: integer (optional, default 4)
@@ -5493,7 +5493,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     - pdf
   fields:
     title: string (optional)
@@ -5512,7 +5512,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     - pdf
   fields:
     title: string (required, markdown)
@@ -5533,7 +5533,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
   fields:
     label: string (optional, default "← Back")
     url: string (optional, href)
@@ -5551,7 +5551,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     - pdf
   fields:
     label: string (optional, centered in divider line)
@@ -5568,7 +5568,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
   fields:
     label: string (optional, group heading)
     layout: string (optional, "wrap"|"scroll", default "wrap")
@@ -5583,7 +5583,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     - pdf
   fields:
     cols: integer (optional, 2–6, default 2)
@@ -5601,7 +5601,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     - pdf
   fields:
     name: string (required)
@@ -5623,7 +5623,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
   fields:
     title: string (optional)
     date: string (optional)
@@ -5641,7 +5641,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     - pdf
   fields:
     title: string (optional)
@@ -5657,7 +5657,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     - pdf
   fields:
     title: string (optional)
@@ -5674,7 +5674,7 @@ blocks:
     works_on:
     - web
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Grid collapses to single column on narrow panels
@@ -5703,7 +5703,7 @@ blocks:
     - web
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Background color may not render in all stage environments
@@ -5727,7 +5727,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as static final values; no animation
@@ -5756,7 +5756,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as a linked thumbnail image only
@@ -5785,7 +5785,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: email
       note: Renders as a static bar list; no transitions
@@ -5815,7 +5815,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: email
       note: Renders as a static button list; no selection state
@@ -5846,7 +5846,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as a static icon and message only
@@ -5875,7 +5875,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as empty grey boxes without animation
@@ -5903,7 +5903,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as a static single-line row without animation
@@ -5936,8 +5936,8 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-side-panel
-    - apps-script-web
+    - google-apps-script-side-panel
+    - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as fully-visible static text without animation
@@ -5972,7 +5972,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as a static card with a solid border; animation not captured
@@ -6007,7 +6007,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as a static gradient panel without animation
@@ -6041,7 +6041,7 @@ blocks:
     - web
     - meet-stage
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: background-image patterns may not render in Chat card containers
@@ -6073,7 +6073,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as a static styled button without animation
@@ -6108,7 +6108,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: CSS transform may not render correctly in all PDF engines
@@ -6140,7 +6140,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as a static dark panel without animation
@@ -6173,9 +6173,9 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
-    - surface: apps-script-side-panel
+    - surface: google-apps-script-side-panel
       note: Use direction "none" — translation offsets can clip against the 300px
         iframe edge. Opacity-only fade works correctly.
     - surface: pdf
@@ -6215,8 +6215,8 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-side-panel
-    - apps-script-web
+    - google-apps-script-side-panel
+    - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as a static button without glow or animation
@@ -6251,9 +6251,9 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
-    - surface: apps-script-side-panel
+    - surface: google-apps-script-side-panel
       note: SVG width is constrained to 300px; use short from_label/to_label (≤6 chars)
         to avoid node text overflow.
     - surface: pdf
@@ -6290,7 +6290,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as a static panel showing the final text only
@@ -6328,8 +6328,8 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-side-panel
-    - apps-script-web
+    - google-apps-script-side-panel
+    - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders all words stacked vertically (overflow visible); use first word
@@ -6367,8 +6367,8 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-side-panel
-    - apps-script-web
+    - google-apps-script-side-panel
+    - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as a static coloured circle without ring animation
@@ -6401,7 +6401,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as static completed text; no animation
@@ -6432,7 +6432,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as static number; no animation
@@ -6461,8 +6461,8 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-side-panel
-    - apps-script-web
+    - google-apps-script-side-panel
+    - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as a static placeholder bubble; no animation
@@ -6488,7 +6488,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as plain text time string
@@ -6518,7 +6518,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as flat-coloured text (first gradient stop)
@@ -6548,7 +6548,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Content renders visible immediately (no scroll context)
@@ -6581,7 +6581,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as the final resolved text only
@@ -6610,7 +6610,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as a fully-drawn static SVG path
@@ -6639,7 +6639,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-side-panel
+    - google-apps-script-side-panel
     degraded_on:
     - surface: meet-stage
       note: Renders as a flat dark card; mouse events may not propagate through Meet
@@ -6648,7 +6648,7 @@ blocks:
       note: Renders as a flat static card
     - surface: googlechat
       note: Renders as a plain text card
-    - surface: apps-script-web
+    - surface: google-apps-script-web
       note: mousemove events may behave differently when page is embedded in a Workspace
         sidebar
     incompatible_on:
@@ -6674,7 +6674,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: CSS :checked feedback works inside iframe but radio reset across slides
@@ -6707,7 +6707,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Inputs render but JS submit handler may be sandboxed — test in target
@@ -6740,7 +6740,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Click events work inside iframe; rendered as two-column grid
@@ -6768,7 +6768,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as a plain text block with no toggle — hint always visible
@@ -6799,7 +6799,7 @@ blocks:
     - meet-stage
     - email
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as a plain text badge name and description — no icon or visual
@@ -6830,7 +6830,7 @@ blocks:
     - web
     - meet-stage
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as a plain text score line — no visual card or animation
@@ -6862,7 +6862,7 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: pdf
       note: Renders as a static labelled progress bar — no animation or level-up effect
@@ -6892,7 +6892,7 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: meet-stage
       note: Renders as a simplified prev/next pill row — localStorage persistence
@@ -6929,7 +6929,7 @@ blocks:
     - web
     - meet-stage
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Renders as a plain text list of module titles and completion percentages
@@ -6955,7 +6955,7 @@ blocks:
     - web
     - meet-stage
     - pdf
-    - apps-script-web
+    - google-apps-script-web
     degraded_on:
     - surface: googlechat
       note: Highlight background stripped — renders as plain text with annotation
@@ -6977,7 +6977,7 @@ blocks:
   compact_description: live list of Drive folder files
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
   fields:
     folder_id: string. The Google Drive folder ID to list files from.
     max_results: integer (optional). Maximum number of files to return. Default is
@@ -6992,7 +6992,7 @@ blocks:
   compact_description: live read-only Google Sheet range preview
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
   fields:
     spreadsheet_id: string. The Google Sheets ID.
     sheet_name: string. The name of the sheet tab.
@@ -7007,7 +7007,7 @@ blocks:
   compact_description: list of recent Gmail messages matching query
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
   fields:
     query: string. The search query (e.g. "is:unread label:work").
     max_results: integer (optional). Maximum number of emails to display. Default
@@ -7022,7 +7022,7 @@ blocks:
   compact_description: list of upcoming calendar events
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
   fields:
     max_results: integer (optional). Maximum number of upcoming events to show. Default
       is 5.
@@ -7036,7 +7036,7 @@ blocks:
   compact_description: personalised greeting with active user email
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
   fields:
     prefix: string (optional). The greeting prefix. Default is "Hello".
   source:
@@ -7050,7 +7050,7 @@ blocks:
   compact_description: button to trigger server-side Apps Script function
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
   fields:
     label: string. The button text.
     function_name: string. The name of the server-side V8 JavaScript function to call.
@@ -7066,7 +7066,7 @@ blocks:
   compact_description: today's calendar events from the user's default calendar
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
   fields:
     title: string (optional). Card heading. Default is "Today's Schedule".
     max_results: integer (optional). Maximum events to show. Default 8.
@@ -7080,7 +7080,7 @@ blocks:
   compact_description: aggregate stats from a sheet range displayed as stat badges
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
   fields:
     spreadsheet_id: string. The Google Sheets ID.
     sheet_name: string (optional). Sheet tab name.
@@ -7099,12 +7099,12 @@ blocks:
   compact_description: unread count badges for Gmail labels
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - meet-stage
   connectors:
   - id: gas-native
     surfaces:
-    - apps-script-web
+    - google-apps-script-web
     live: true
     description: Live unread counts via GmailApp — no config needed
   - id: static
@@ -7141,12 +7141,12 @@ blocks:
     static fields elsewhere
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - meet-stage
   connectors:
   - id: gas-native
     surfaces:
-    - apps-script-web
+    - google-apps-script-web
     live: true
     description: Live user identity via Session.getActiveUser() — no config needed
   - id: static
@@ -7174,12 +7174,12 @@ blocks:
     for static
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - meet-stage
   connectors:
   - id: gas-native
     surfaces:
-    - apps-script-web
+    - google-apps-script-web
     live: true
     description: Live quota via DriveApp.getStorageUsed() — no config needed
   - id: static
@@ -7216,7 +7216,7 @@ blocks:
   compact_description: inline form that appends a row to a Google Sheet on submit
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
   fields:
     spreadsheet_id: string. Target Google Sheets ID.
     sheet_name: string (optional). Sheet tab name. Default is "Sheet1".
@@ -7237,12 +7237,12 @@ blocks:
     other surfaces
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - meet-stage
   connectors:
   - id: gas-native
     surfaces:
-    - apps-script-web
+    - google-apps-script-web
     live: true
     description: Live tasks via Tasks API (must be enabled in GAS project)
   - id: static
@@ -7280,7 +7280,7 @@ blocks:
     blend
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - web
     - meet-stage
   fields:
@@ -7299,7 +7299,7 @@ blocks:
   compact_description: chain of fading dots following the cursor with worm physics
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - web
     - meet-stage
   fields:
@@ -7318,7 +7318,7 @@ blocks:
     point
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - web
     - meet-stage
   fields:
@@ -7339,7 +7339,7 @@ blocks:
     effect
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - web
     - meet-stage
   fields:
@@ -7357,7 +7357,7 @@ blocks:
   compact_description: content that drifts toward cursor and springs back with overshoot
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - web
     - meet-stage
   fields:
@@ -7378,7 +7378,7 @@ blocks:
     position
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - web
     - meet-stage
   fields:
@@ -7399,7 +7399,7 @@ blocks:
   compact_description: AI-powered Google Doc summary via Vertex AI Gemini
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
   fields:
     doc_id: string. Google Doc ID to summarise.
     prompt: string (optional). Instruction sent to Gemini before the doc text.
@@ -7420,7 +7420,7 @@ blocks:
     Doc
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
   fields:
     docs: array. Array of {doc_id, title?, prompt?} objects.
     default_prompt: string (optional). Fallback prompt for docs without their own.
@@ -7437,7 +7437,7 @@ blocks:
   compact_description: gradient-fill standalone heading
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - web
     - meet-stage
   fields:
@@ -7458,7 +7458,7 @@ blocks:
   compact_description: typographic pull quote with decorative mark and attribution
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - web
     - meet-stage
   fields:
@@ -7478,7 +7478,7 @@ blocks:
   compact_description: two-column stat + text keynote layout with neon glow
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - web
     - meet-stage
   fields:
@@ -7500,7 +7500,7 @@ blocks:
   compact_description: auto-play word-by-word fade-up reveal animation
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - web
     - meet-stage
   fields:
@@ -7521,7 +7521,7 @@ blocks:
   compact_description: uppercase section marker with glowing accent pill
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - web
     - meet-stage
   fields:
@@ -7539,7 +7539,7 @@ blocks:
     load
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - web
     - meet-stage
   fields:
@@ -7562,7 +7562,7 @@ blocks:
     colour
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - web
     - meet-stage
   fields:
@@ -7582,7 +7582,7 @@ blocks:
   compact_description: clip-path sweep-in reveal line, auto-plays on load
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - web
     - meet-stage
   fields:
@@ -7603,7 +7603,7 @@ blocks:
   compact_description: animated particle plexus with proximity lines and mouse repulsion
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - web
     - meet-stage
   fields:
@@ -7625,7 +7625,7 @@ blocks:
   compact_description: interactive mass-spring physics graph with drag-to-pin nodes
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - web
     - meet-stage
   fields:
@@ -7648,7 +7648,7 @@ blocks:
   compact_description: rotating 3D isometric mesh with height-colour mapping and drag-rotate
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - web
     - meet-stage
   fields:
@@ -7675,7 +7675,7 @@ blocks:
     roll, rotation, gear-up, climb; HUD with airline/runway
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
   fields:
     title: string (optional). HUD title line. Default "LFBO RWY 32L — A321neo DEPARTURE".
     airline: string (optional). ICAO airline code for accent colour — AIB, EZY, AFR,
@@ -7694,7 +7694,7 @@ blocks:
     animated liftoff and ascent; mission HUD
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
   fields:
     title: string (optional). HUD title. Default "KOUROU ELA-4 — HEAVY LIFT INJECTION
       PROFILE".
@@ -7708,7 +7708,7 @@ blocks:
     downwash, HUD
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
   fields:
     title: string (optional). HUD title. Default "LFBO HELIPAD 2 — AIRBUS H160 HOVER
       PROFILE".
@@ -7724,7 +7724,7 @@ blocks:
     + H160 hover with tab switcher
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
   fields:
     airline: string (optional). Airline ICAO for A321neo accent — AIB, EZY, AFR, BAW,
       DLH, RYR. Default AIB.
@@ -7744,7 +7744,7 @@ blocks:
     and live METAR ticker
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - meet-stage
   fields:
     chyron_title: string (optional). Top-left headline overlay.
@@ -7778,7 +7778,7 @@ blocks:
     refresh via surface transport
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
   fields:
     name: string. Feed identifier — other atoms subscribe to this name (required).
     url: string. HTTP GET endpoint.
@@ -7806,7 +7806,7 @@ blocks:
     transport: adsb.lol REST API via GAS UrlFetchApp + google.script.run setInterval
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
   fields:
     name: string (optional). Feed name other atoms subscribe to. Default adsb.
     lat_min: number (optional). Bounding box south edge degrees. Default 43.1 (LFBO
@@ -7831,7 +7831,7 @@ blocks:
     station
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
   fields:
     name: string (optional). Feed name other atoms subscribe to. Default metar.
     station: string (optional). ICAO station code. Default LFBO.
@@ -7855,7 +7855,7 @@ blocks:
     data connector; visual atoms subscribe by name
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
   fields:
     name: string. Connector name — visual atoms subscribe via window.A2UI_CALLBACKS[name]
       (required).
@@ -7869,11 +7869,11 @@ blocks:
     url: https://github.com/curtiskrygier/a2ui-catalogue
     license: MIT
 - type: paragraph
-  description: Prose paragraph block (alias for body, apps-script-web only)
+  description: Prose paragraph block (alias for body, google-apps-script-web only)
   compact_description: prose paragraph (GAS alias for body)
   surfaces:
     works_on: &id006
-    - apps-script-web
+    - google-apps-script-web
   fields:
     text: string
   source: &id007
@@ -7967,7 +7967,7 @@ blocks:
     for back-button support
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - web
     - meet-stage
   fields:
@@ -8046,7 +8046,7 @@ blocks:
     box
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
   fields:
     title: string (optional). Card heading text.
     content: string (optional). Inner HTML content of the card.
@@ -8822,12 +8822,12 @@ blocks:
     connector on web/meet
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - meet-stage
   connectors:
   - id: gas-native
     surfaces:
-    - apps-script-web
+    - google-apps-script-web
     live: true
     description: Live inbox threads via GmailApp.getInboxThreads() — no config needed
   - id: static
@@ -8862,12 +8862,12 @@ blocks:
     connector on web/meet
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - meet-stage
   connectors:
   - id: gas-native
     surfaces:
-    - apps-script-web
+    - google-apps-script-web
     live: true
     description: Live files via DriveApp.searchFiles() — no config needed
   - id: static
@@ -8902,12 +8902,12 @@ blocks:
     connector on web/meet
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - meet-stage
   connectors:
   - id: gas-native
     surfaces:
-    - apps-script-web
+    - google-apps-script-web
     live: true
     description: Live folder contents via DriveApp.getFolderById(folder_id)
   - id: static
@@ -8942,12 +8942,12 @@ blocks:
     lookup via file_id on GAS
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - meet-stage
   connectors:
   - id: gas-native
     surfaces:
-    - apps-script-web
+    - google-apps-script-web
     live: true
     description: Live file metadata via DriveApp.getFileById(file_id)
   - id: static
@@ -8976,12 +8976,12 @@ blocks:
     on web; exposes window._A2UI_STORE
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - meet-stage
   connectors:
   - id: gas-native
     surfaces:
-    - apps-script-web
+    - google-apps-script-web
     live: true
     description: Reads/writes a per-course Google Sheet via a2uiProgressRead / a2uiProgressWrite
   - id: static
@@ -9002,7 +9002,7 @@ blocks:
     status from progress_store
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - web
     - meet-stage
   fields:
@@ -9024,7 +9024,7 @@ blocks:
     no score pressure
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - web
     - meet-stage
   fields:
@@ -9042,7 +9042,7 @@ blocks:
     to progress_store
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - web
     - meet-stage
   fields:
@@ -9065,7 +9065,7 @@ blocks:
     with good/neutral/bad outcome
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - web
     - meet-stage
   fields:
@@ -9083,7 +9083,7 @@ blocks:
     progress_store
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - web
     - meet-stage
   fields:
@@ -9101,7 +9101,7 @@ blocks:
     in progress_store; earner from GAS session
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - web
     - meet-stage
   fields:
@@ -9122,7 +9122,7 @@ blocks:
     before/after growth overlay
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - web
     - meet-stage
   fields:
@@ -9139,7 +9139,7 @@ blocks:
     grey; status from progress_store
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - web
     - meet-stage
   fields:
@@ -9157,7 +9157,7 @@ blocks:
     to progress_store, optional navigation
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - web
     - meet-stage
   fields:
@@ -9175,7 +9175,7 @@ blocks:
     answer to continue
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - web
     - meet-stage
   fields:
@@ -9193,13 +9193,13 @@ blocks:
     live on GAS
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - web
     - meet-stage
   connectors:
   - id: gas-native
     surfaces:
-    - apps-script-web
+    - google-apps-script-web
     live: true
     description: Live read from course progress Sheet via a2uiCohortRead(course_id)
   - id: static
@@ -9223,7 +9223,7 @@ blocks:
     revisit
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - web
     - meet-stage
   fields:
@@ -9240,7 +9240,7 @@ blocks:
     explanations
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - web
     - meet-stage
   fields:
@@ -9257,7 +9257,7 @@ blocks:
     on revisit
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - web
     - meet-stage
   fields:
@@ -9275,7 +9275,7 @@ blocks:
     optional model answer reveal
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - web
     - meet-stage
   fields:
@@ -9295,7 +9295,7 @@ blocks:
     persistence
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - web
     - meet-stage
   fields:
@@ -9313,7 +9313,7 @@ blocks:
     columns
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - web
     - meet-stage
   fields:
@@ -9333,7 +9333,7 @@ blocks:
     to progress_store
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - web
     - meet-stage
   fields:
@@ -9352,13 +9352,13 @@ blocks:
     web; medal top 3
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - web
     - meet-stage
   connectors:
   - id: gas-native
     surfaces:
-    - apps-script-web
+    - google-apps-script-web
     live: true
     description: Reads and ranks from course progress Sheet via a2uiCohortRead
   - id: static
@@ -9383,7 +9383,7 @@ blocks:
     active page auto-highlighted
   surfaces:
     works_on:
-    - apps-script-web
+    - google-apps-script-web
     - web
     - meet-stage
   fields:
@@ -9402,8 +9402,8 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
-    - apps-script-side-panel
+    - google-apps-script-web
+    - google-apps-script-side-panel
   fields:
     accent: hex colour string. Sets --a2ui-accent CSS var used by all atoms as default
       accent.
@@ -9417,8 +9417,8 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
-    - apps-script-side-panel
+    - google-apps-script-web
+    - google-apps-script-side-panel
   fields:
     label: string (default "Print this page")
     align: left, center, or right
@@ -9431,8 +9431,8 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
-    - apps-script-side-panel
+    - google-apps-script-web
+    - google-apps-script-side-panel
   fields:
     url: Drive share URL OR file ID
     id: alias for url
@@ -9448,8 +9448,8 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
-    - apps-script-side-panel
+    - google-apps-script-web
+    - google-apps-script-side-panel
   fields:
     q: address or place name to search (required)
     height: iframe height in px (default 360)
@@ -9463,8 +9463,8 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
-    - apps-script-side-panel
+    - google-apps-script-web
+    - google-apps-script-side-panel
     degraded_on:
     - surface: web
       note: Renders a static form preview only — submission requires Apps Script runtime
@@ -9485,8 +9485,8 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
-    - apps-script-side-panel
+    - google-apps-script-web
+    - google-apps-script-side-panel
   fields:
     animation: fade_up (default), fade_in, slide_left, slide_right, scale_in, stagger
     duration: animation duration in ms (default 500)
@@ -9500,8 +9500,8 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
-    - apps-script-side-panel
+    - google-apps-script-web
+    - google-apps-script-side-panel
   fields:
     type: text (default), card, avatar_row, image, list, table
     rows: number of placeholder rows (default 3)
@@ -9514,8 +9514,8 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
-    - apps-script-side-panel
+    - google-apps-script-web
+    - google-apps-script-side-panel
   fields:
     items: array of {text?, label?, icon?, image_url?, url?}
     title: optional label above the marquee strip
@@ -9533,8 +9533,8 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
-    - apps-script-side-panel
+    - google-apps-script-web
+    - google-apps-script-side-panel
   fields:
     color: dot colour (default
     size: sm, md (default), lg
@@ -9548,8 +9548,8 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
-    - apps-script-side-panel
+    - google-apps-script-web
+    - google-apps-script-side-panel
   fields:
     color: dot colour (default var(--a2ui-accent))
     size: sm, md (default), lg
@@ -9561,8 +9561,8 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
-    - apps-script-side-panel
+    - google-apps-script-web
+    - google-apps-script-side-panel
   fields:
     value: numeric value 0-100 (required)
     size: ring diameter in px (default 100)
@@ -9579,8 +9579,8 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
-    - apps-script-side-panel
+    - google-apps-script-web
+    - google-apps-script-side-panel
   fields:
     trigger: button (default) or load
     label: button label (default Celebrate!)
@@ -9595,8 +9595,8 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
-    - apps-script-side-panel
+    - google-apps-script-web
+    - google-apps-script-side-panel
   fields:
     label: button text (required)
     url: optional link target
@@ -9611,8 +9611,8 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
-    - apps-script-side-panel
+    - google-apps-script-web
+    - google-apps-script-side-panel
   fields:
     color: wave fill colour (default var(--a2ui-accent))
     height: wave height in px (default 60)
@@ -9627,8 +9627,8 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
-    - apps-script-side-panel
+    - google-apps-script-web
+    - google-apps-script-side-panel
   fields:
     icon: emoji or character to float (required)
     label: optional caption below
@@ -9643,8 +9643,8 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
-    - apps-script-side-panel
+    - google-apps-script-web
+    - google-apps-script-side-panel
   fields:
     text: the text to render (required)
     size: font-size CSS value (default 2rem)
@@ -9661,8 +9661,8 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
-    - apps-script-side-panel
+    - google-apps-script-web
+    - google-apps-script-side-panel
   fields:
     value: the number or string to display (required)
     prefix: text before the number
@@ -9679,8 +9679,8 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
-    - apps-script-side-panel
+    - google-apps-script-web
+    - google-apps-script-side-panel
   fields:
     blocks: array of child atoms inside the card
     content: markdown string (if no blocks)
@@ -9692,8 +9692,8 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
-    - apps-script-side-panel
+    - google-apps-script-web
+    - google-apps-script-side-panel
   fields:
     blocks: array of child atoms inside
     content: markdown string (if no blocks)
@@ -9709,8 +9709,8 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-web
-    - apps-script-side-panel
+    - google-apps-script-web
+    - google-apps-script-side-panel
   fields:
     duration_sec: total countdown in seconds (required, default 60)
     size: ring diameter in px (default 80)
@@ -9723,8 +9723,8 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-side-panel
-    - apps-script-web
+    - google-apps-script-side-panel
+    - google-apps-script-web
   fields:
     name: icon ligature name (required, e.g. "home", "check_circle", "rocket_launch")
     size: font-size CSS value (default 24px)
@@ -9741,8 +9741,8 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-side-panel
-    - apps-script-web
+    - google-apps-script-side-panel
+    - google-apps-script-web
   fields:
     name: icon ligature name (required)
     icon_size: icon size in px (default 24)
@@ -9759,8 +9759,8 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-side-panel
-    - apps-script-web
+    - google-apps-script-side-panel
+    - google-apps-script-web
   fields:
     items: array of {name or icon, label or text, color?}
     icon_size: px (default 20)
@@ -9774,8 +9774,8 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
-    - apps-script-side-panel
+    - google-apps-script-web
+    - google-apps-script-side-panel
   fields:
     app: app name (required) — gmail, drive, docs, sheets, slides, calendar, meet,
       forms, chat, classroom, keep, sites, vault, groups, tasks, contacts, jamboard,
@@ -9790,8 +9790,8 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
-    - apps-script-side-panel
+    - google-apps-script-web
+    - google-apps-script-side-panel
   fields:
     apps: array of app names (default gmail, drive, docs, sheets, slides, meet)
     title: optional label above the strip
@@ -9806,8 +9806,8 @@ blocks:
   surfaces:
     works_on:
     - web
-    - apps-script-web
-    - apps-script-side-panel
+    - google-apps-script-web
+    - google-apps-script-side-panel
   fields:
     apps: array of app names (default all 20 known apps)
     title: optional section heading
@@ -9822,8 +9822,8 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-side-panel
-    - apps-script-web
+    - google-apps-script-side-panel
+    - google-apps-script-web
   fields:
     title: optional section heading
     cols: grid columns (default 3)
@@ -9839,8 +9839,8 @@ blocks:
     works_on:
     - web
     - meet-stage
-    - apps-script-side-panel
-    - apps-script-web
+    - google-apps-script-side-panel
+    - google-apps-script-web
   fields:
     title: optional heading
     default_icon: fallback icon for items without one (default check_circle)

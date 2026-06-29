@@ -1,4 +1,4 @@
-| Atom | web | meet-stage | googlechat | email | pdf | apps-script-web | Source |
+| Atom | web | meet-stage | googlechat | email | pdf | google-apps-script-web | Source |
 |---|---|---|---|---|---|---|---|
 | `intro` | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | [a2ui-catalogue](https://github.com/curtiskrygier/a2ui-catalogue) |
 | `body` | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | [a2ui-catalogue](https://github.com/curtiskrygier/a2ui-catalogue) |

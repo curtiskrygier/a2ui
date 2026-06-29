@@ -6,7 +6,7 @@ platform_support:
   web: 25/25
   meet-stage: 20/25
   googlechat: 6/25
-  apps-script-web: 25/25
+  google-apps-script-web: 25/25
   email: 0/25
   pdf: 0/25
 maturity: stable

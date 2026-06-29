@@ -1,6 +1,6 @@
 # A2UI-State Specification v1.0
 **Status:** Pilot — 10-atom reference implementation  
-**Surface target:** `apps-script-web` (GAS sidebar)  
+**Surface target:** `google-apps-script-web` (GAS sidebar)  
 **Schema version:** `1.0`
 
 ---
@@ -202,7 +202,7 @@ Step index tracker. Drives multi-step wizard flows.
   "schemaVersion": "1.0",
   "type": "a2ui_wired_surface",
   "surfaceId": "string — unique identifier",
-  "surfaceCompatibility": "apps-script-web | web | meet-stage",
+  "surfaceCompatibility": "google-apps-script-web | web | meet-stage",
   "stepBinding": "#<navigatorId>.activeIndex",
   "state_primitives": [
     {

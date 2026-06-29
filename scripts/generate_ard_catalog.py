@@ -98,7 +98,7 @@ def main():
         "displayName": "A2UI Multi-Surface Renderer",
         "type": "application/vnd.a2ui.renderer+json",
         "url": f"{base}/spec.json",
-        "capabilities": ["web", "meet-stage", "apps-script-web", "googlechat", "email", "pdf"],
+        "capabilities": ["web", "meet-stage", "google-apps-script-web", "googlechat", "email", "pdf"],
         "description": (
             f"Open-source renderer with {len(unique)} typed atoms for generating rich UI "
             "across Google Meet stages, Chat Cards, Apps Script web apps, and web surfaces "

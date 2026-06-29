@@ -137,7 +137,7 @@ SURFACE_LABELS = {
     'web':            'Web/Blog',
     'meet-stage':     'Meet Stage',
     'googlechat':     'Google Chat',
-    'apps-script-web':'GAS Web App',
+    'google-apps-script-web':'GAS Web App',
     'email':          'Email',
     'pdf':            'PDF',
 }
@@ -148,7 +148,7 @@ def surface_badges(atom):
     degraded = {d['surface'] for d in s.get('degraded_on', [])} if s.get('degraded_on') else set()
     incompat = {d['surface'] for d in s.get('incompatible_on', [])} if s.get('incompatible_on') else set()
     parts = []
-    for surf in ['web','meet-stage','googlechat','apps-script-web','email','pdf']:
+    for surf in ['web','meet-stage','googlechat','google-apps-script-web','email','pdf']:
         label = SURFACE_LABELS[surf]
         if surf in works:
             if surf in degraded:
@@ -209,7 +209,7 @@ for cat, title in CATEGORY_TITLES.items():
     if not cat_atoms:
         continue
 
-    surface_keys = ['apps-script-web','web','meet-stage','googlechat']
+    surface_keys = ['google-apps-script-web','web','meet-stage','googlechat']
     support_summary = {}
     for surf in surface_keys:
         count = sum(1 for a in cat_atoms

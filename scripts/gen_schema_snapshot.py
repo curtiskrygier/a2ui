@@ -24,7 +24,7 @@ lines = []
 for b in blocks:
     surfaces = b.get('surfaces', {})
     works_on = surfaces.get('works_on', [])
-    if 'apps-script-web' not in works_on:
+    if 'google-apps-script-web' not in works_on:
         continue
     t = b.get('type', '')
     desc = b.get('compact_description') or b.get('description', '')
@@ -55,7 +55,7 @@ escaped = schema_text.replace('\\', '\\\\').replace('`', '\\`').replace('${', '\
 
 gs_content = (
     '// AUTO-GENERATED — run scripts/gen_schema_snapshot.py before clasp push\n'
-    '// Source: atoms/schema.yaml  (apps-script-web surface only)\n'
+    '// Source: atoms/schema.yaml  (google-apps-script-web surface only)\n'
     '// Do not edit by hand.\n\n'
     'var _ATOM_SCHEMA_SNAPSHOT = `' + escaped + '`;\n'
 )
@@ -77,7 +77,7 @@ for gs_file in glob.glob(os.path.join(RENDERER_DIR, 'atom*.gs')):
         for m in re.finditer(r"_RENDERERS\['([^']+)'\]", f.read()):
             renderer_types.add(m.group(1))
 
-schema_types = set(b.get('type','') for b in blocks if 'apps-script-web' in b.get('surfaces',{}).get('works_on',[]))
+schema_types = set(b.get('type','') for b in blocks if 'google-apps-script-web' in b.get('surfaces',{}).get('works_on',[]))
 missing = sorted(renderer_types - schema_types)
 if missing:
     print(f"\n⚠️  {len(missing)} renderer atom(s) not in schema — add them before clasp push:")

@@ -19509,7 +19509,7 @@ def _render_multi_surface(b: dict) -> str:
     for n in nodes:
         label = _esc(n.get('label', ''))
         surface = _esc(n.get('surface', ''))
-        icon = {'web': '🌐', 'meet-stage': '📽️', 'apps-script-web': '⚙️',
+        icon = {'web': '🌐', 'meet-stage': '📽️', 'google-apps-script-web': '⚙️',
                 'googlechat': '💬', 'email': '📧', 'pdf': '📄'}.get(surface, '●')
         rows += ('<div style="display:flex;align-items:center;gap:10px;padding:8px 0;'
                  'border-bottom:1px solid #f3f4f6;">'
@@ -19597,7 +19597,7 @@ def _render_surface_map(b: dict) -> str:
     title = _esc(b.get('title', 'Surface Map'))
     surfaces = b.get('surfaces', [])
     accent = _esc(b.get('accent', '#6366f1'))
-    surface_icons = {'web': '🌐', 'meet-stage': '📽️', 'apps-script-web': '⚙️',
+    surface_icons = {'web': '🌐', 'meet-stage': '📽️', 'google-apps-script-web': '⚙️',
                      'googlechat': '💬', 'email': '📧', 'pdf': '📄'}
     items = ''
     for s in surfaces:

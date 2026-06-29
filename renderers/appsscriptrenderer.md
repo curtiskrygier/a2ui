@@ -93,11 +93,11 @@ These atoms have no equivalent on any other surface. They leverage Workspace API
 | `user_greeting` | `Session.getActiveUser().getEmail()` | Personalised "Hello, curtis@…" |
 | `script_run_button` | Calls any named `.gs` function | Button that triggers a server function; shows spinner + result |
 
-These are **new atom types** that only exist on `apps-script-web`. They should be added to `schema.yaml` with `works_on: [apps-script-web]` only.
+These are **new atom types** that only exist on `google-apps-script-web`. They should be added to `schema.yaml` with `works_on: [google-apps-script-web]` only.
 
 ### Category E — Degraded atoms (iframe / CDN restricted)
 
-These are tagged `degraded_on: apps-script-web` in the schema. The renderer must output a graceful fallback instead of a broken embed.
+These are tagged `degraded_on: google-apps-script-web` in the schema. The renderer must output a graceful fallback instead of a broken embed.
 
 > **Confirmed:** GAS HtmlService IFRAME sandbox blocks dynamic CDN script loading (`document.createElement('script')`) and external image sources via CSP. Do not attempt client-side CDN loading — use `UrlFetchApp` server-side or avoid the dependency entirely.
 

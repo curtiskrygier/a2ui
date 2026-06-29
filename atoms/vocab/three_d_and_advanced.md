@@ -6,7 +6,7 @@ platform_support:
   web: 4/4
   meet-stage: 4/4
   googlechat: 0/4
-  apps-script-web: 4/4
+  google-apps-script-web: 4/4
   email: 0/4
   pdf: 0/4
 maturity: stable

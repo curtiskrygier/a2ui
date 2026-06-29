@@ -9,7 +9,7 @@ SOURCE = {
     'url': 'https://github.com/curtiskrygier/a2ui-catalogue',
     'license': 'MIT',
 }
-ASW = ['apps-script-web']
+ASW = ['google-apps-script-web']
 
 def atom(type_, desc, compact, fields):
     return {
@@ -23,7 +23,7 @@ def atom(type_, desc, compact, fields):
 
 NEW_ATOMS = [
     # ── Core primitives ────────────────────────────────────────────────────────
-    atom('paragraph', 'Prose paragraph block (alias for body, apps-script-web only)',
+    atom('paragraph', 'Prose paragraph block (alias for body, google-apps-script-web only)',
          'prose paragraph (GAS alias for body)',
          {'text': 'string'}),
     atom('text_block', 'Plain text block rendered as a paragraph',

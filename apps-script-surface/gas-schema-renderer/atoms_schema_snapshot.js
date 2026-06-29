@@ -1,5 +1,5 @@
 // AUTO-GENERATED — run scripts/gen_schema_snapshot.py before clasp push
-// Source: atoms/schema.yaml  (apps-script-web surface only)
+// Source: atoms/schema.yaml  (google-apps-script-web surface only)
 // Do not edit by hand.
 
 var _ATOM_SCHEMA_SNAPSHOT = `intro  — series link or transparency note at article top
@@ -531,18 +531,18 @@ sheet_stats  — aggregate stats from a sheet range displayed as stat badges
   fields: spreadsheet_id: string. The Google Sheets ID., sheet_name: string (optional). Sheet tab name., range: string. A1 notation range (e.g. B2:B50)., label: string (optional). Card heading. Default is "Sheet Stats"., show: array (optional). Which stats to show — any of sum, average, count, min, max. Default ["sum","average","count"]., accent: string (optional). Accent colour for stat values.
 gmail_unread_count  — unread count badges for Gmail labels
   fields: labels: array (optional). Gmail label names to count. Default ["INBOX"]., title: string (optional). Card heading. Default is "Gmail"., accent: string (optional). Badge colour for non-zero counts. Default red., counts: object (static connector). Label→count map for non-GAS surfaces., auth_token: string (api connector). OAuth2 bearer token for REST API.
-  connectors: gas-native(apps-script-web,live); static(all-surfaces,static); api(web|meet-stage,live)
+  connectors: gas-native(google-apps-script-web,live); static(all-surfaces,static); api(web|meet-stage,live)
 user_profile_card  — user avatar, display name, email and domain — live on GAS, static fields elsewhere
   fields: name: string (static connector). Display name for non-GAS surfaces., email: string (static connector). Email address for non-GAS surfaces., accent: string (optional). Avatar background colour., subtitle: string (optional). Role or team label shown below the email.
-  connectors: gas-native(apps-script-web,live); static(all-surfaces,static)
+  connectors: gas-native(google-apps-script-web,live); static(all-surfaces,static)
 drive_storage_usage  — Drive storage quota progress bar — live on GAS, or pass used_gb/total_gb for static
   fields: label: string (optional). Card heading. Default is "Drive Storage"., accent: string (optional). Bar colour below 70% usage., used_gb: number (static connector). GB used — for non-GAS surfaces., total_gb: number (static connector). Total quota GB — for non-GAS surfaces., auth_token: string (api connector). OAuth2 bearer token for REST API.
-  connectors: gas-native(apps-script-web,live); static(all-surfaces,static); api(web|meet-stage,live)
+  connectors: gas-native(google-apps-script-web,live); static(all-surfaces,static); api(web|meet-stage,live)
 sheet_form_submit  — inline form that appends a row to a Google Sheet on submit
   fields: spreadsheet_id: string. Target Google Sheets ID., sheet_name: string (optional). Sheet tab name. Default is "Sheet1"., title: string (optional). Form heading., fields: array. Array of {label, name, type, placeholder} objects. type is text, email, number, or textarea., submit_label: string (optional). Submit button text. Default is "Submit"., accent: string (optional). Submit button colour.
 tasks_today  — task checklist — live via Tasks API on GAS, items[] array on other surfaces
   fields: title: string (optional). Card heading. Default is "Today's Tasks"., max_results: integer (optional). Maximum tasks to show. Default 10., list_name: string (optional, gas-native). Name of the task list., items: array (static connector). Array of {title, due, completed} for non-GAS surfaces., auth_token: string (api connector). OAuth2 bearer token for REST API.
-  connectors: gas-native(apps-script-web,live); static(all-surfaces,static); api(web|meet-stage,live)
+  connectors: gas-native(google-apps-script-web,live); static(all-surfaces,static); api(web|meet-stage,live)
 cursor_glow  — ambient glowing orb that lerp-follows the cursor with screen blend
   fields: colour: string (optional). Orb colour. Default, size: integer (optional). Orb diameter in px. Default 380., opacity: number (optional). Orb opacity 0–1. Default 0.18., speed: number (optional). Lerp factor 0–1 — lower = more lag. Default 0.1., blend: string (optional). CSS mix-blend-mode. Default screen.
 cursor_trail  — chain of fading dots following the cursor with worm physics
@@ -801,19 +801,19 @@ live_demo_embed  — live demo embed — degrades to link card with Open Demo bu
   fields: title: string (optional). Demo title shown in card header., url: string (required). Demo URL to open in new tab., note: string (optional). Explanatory note shown in the card body.
 gmail_inbox  — swipeable Gmail inbox carousel — live on GAS, items[] or api connector on web/meet
   fields: title: string (optional). Section label above carousel. Default "Inbox"., count: integer (optional). Number of threads, max 20. Default 10., accent: string (optional). Accent colour for unread indicator and nav dot. Default, items: array (static connector). Email objects for non-GAS surfaces., auth_token: string (api connector). OAuth2 bearer token for REST API.
-  connectors: gas-native(apps-script-web,live); static(all-surfaces,static); api(web|meet-stage,live)
+  connectors: gas-native(google-apps-script-web,live); static(all-surfaces,static); api(web|meet-stage,live)
 drive_recent_files  — swipeable Drive files carousel — live on GAS, items[] or api connector on web/meet
   fields: title: string (optional). Section label above carousel. Default "Recent Files"., count: integer (optional). Number of files to show, max 20. Default 10., accent: string (optional). Accent colour for active nav dot. Default, items: array (static connector). File objects for non-GAS surfaces., auth_token: string (api connector). OAuth2 bearer token for REST API.
-  connectors: gas-native(apps-script-web,live); static(all-surfaces,static); api(web|meet-stage,live)
+  connectors: gas-native(google-apps-script-web,live); static(all-surfaces,static); api(web|meet-stage,live)
 drive_folder_contents  — Drive folder grid — live on GAS via folder_id, items[] or api connector on web/meet
   fields: folder_id: string (gas-native/api). The Google Drive folder ID to browse., title: string (optional). Override for the folder name shown as header., count: integer (optional). Max items to show. Default 12., items: array (static connector). File objects for non-GAS surfaces., auth_token: string (api connector). OAuth2 bearer token for REST API.
-  connectors: gas-native(apps-script-web,live); static(all-surfaces,static); api(web|meet-stage,live)
+  connectors: gas-native(google-apps-script-web,live); static(all-surfaces,static); api(web|meet-stage,live)
 drive_file_card  — single Drive file card — static on all surfaces; live name/type lookup via file_id on GAS
   fields: file_id: string (gas-native). Drive file ID for live name/type lookup on GAS., name: string. File display name — required on non-GAS surfaces., mime: string. MIME type for badge colour (e.g. application/vnd.google-apps.spreadsheet)., url: string. URL to open — required on non-GAS surfaces., description: string (optional). Short description shown below the file name.
-  connectors: gas-native(apps-script-web,live); static(all-surfaces,static)
+  connectors: gas-native(google-apps-script-web,live); static(all-surfaces,static)
 progress_store  — invisible LMS state connector — Sheet on GAS, localStorage on web; exposes window._A2UI_STORE
   fields: course_id: string (required). Unique course identifier — scopes the Sheet and localStorage key.
-  connectors: gas-native(apps-script-web,live); static(all-surfaces,static)
+  connectors: gas-native(google-apps-script-web,live); static(all-surfaces,static)
 module_map  — course curriculum grid — module cards with live locked/available/complete status from progress_store
   fields: title: string (optional). Section heading. Default "Course Modules"., columns: integer (optional). Grid columns, max 4. Default 3., modules: array (required). Array of module objects. Each module supports: id (string, required), title, description, icon, duration, lessons, required[] (array of module ids that must be complete to unlock), and either: page (array of atom blocks, PREFERRED — auto-encoded into a self-contained URL at render time, no separate save needed) or url (string — only for external URLs or pre-saved nav pages). Always use page for inline module content.
 knowledge_check  — inline comprehension pulse — single question, instant feedback, no score pressure
@@ -836,7 +836,7 @@ video_checkpoint  — YouTube video with pausing quiz checkpoints — learner mu
   fields: youtube_id: string (required). YouTube video ID., title: string (optional). Section heading above the player., checkpoints: array (required). Array of {at_seconds, question, options[], correct (0-based index), explanation} objects.
 cohort_progress_board  — instructor cohort table — per-learner module completion + scores; live on GAS
   fields: course_id: string (required). Matches the progress_store course_id., title: string (optional). Board heading. Default "Cohort Progress"., modules: array (optional). Array of {id, label} for column headers. Drives per-module completion dots., items: array (optional, web/static). Array of {email, progress{}, updated_at} learner objects.
-  connectors: gas-native(apps-script-web,live); static(all-surfaces,static)
+  connectors: gas-native(google-apps-script-web,live); static(all-surfaces,static)
 reflection_prompt  — reflection textarea — saves to progress_store; restores on revisit
   fields: prompt: string (required). The reflection question shown above the textarea., prompt_id: string (optional). Key suffix for progress_store. Default "reflection"., placeholder: string (optional). Textarea placeholder text., accent: string (optional). Accent colour. Default
 annotation_highlight  — annotated body text — click highlighted terms to reveal inline explanations
@@ -853,7 +853,7 @@ spaced_repetition_card  — flip flashcard with confidence rating 1-5 — writes
   fields: front: string (required). Front face — term or question., back: string (required). Back face — answer or definition., card_id: string (optional). Key for progress_store SRS data. Auto-generated if omitted., accent: string (optional). Front card highlight colour. Default
 leaderboard_card  — ranked score leaderboard — live on GAS from Sheet, static on web; medal top 3
   fields: course_id: string (required). Matches progress_store course_id., score_key: string (optional). Which quiz score to rank on. Default "quiz1"., limit: integer (optional). Max entries shown. Default 10., title: string (optional). Card heading. Default "Leaderboard"., items: array (optional, web/static). Array of {name, score} objects for static rendering.
-  connectors: gas-native(apps-script-web,live); static(all-surfaces,static)
+  connectors: gas-native(google-apps-script-web,live); static(all-surfaces,static)
 nav_bar  — named-page nav bar — generates ?nav= URLs at runtime from _A2UI_NAV; active page auto-highlighted
   fields: label: string (optional). Small uppercase label above the bar., layout: string (optional). "horizontal" (default) or "vertical"., sticky: boolean (optional). Whether to stick below the system nav header. Default true., top_offset: integer (optional). Top offset in px when sticky. Default 52., accent: string (optional). Active link accent colour. Default, links: array (required). Array of {nav_slug, label, icon?, active?} objects. nav_slug is the saved page slug; the correct URL is generated at runtime.
 nav_link  — single CTA link to a named page — appends from= automatically for back-button support

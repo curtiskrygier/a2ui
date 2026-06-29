@@ -53,7 +53,7 @@ const url = A2UI.url([
 The A2UI Atomic Catalog changes the equation:
 
 - **`a2uicatalog.ai/atoms/stat_card`** — every atom has a reference page with fields, example payload, and a live "Try it" render
-- **`a2uicatalog.ai/surfaces/apps-script-web`** — curated list of atoms that work in GAS
+- **`a2uicatalog.ai/surfaces/google-apps-script-web`** — curated list of atoms that work in GAS
 - The catalog makes the library discoverable and self-documenting — a developer can browse atoms, click "Try it live", see what renders, then copy the JSON payload directly into their script
 
 Without the catalog the library is abstract. With it, the atom vocabulary is tangible before you write a line of code.

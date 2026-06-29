@@ -39,7 +39,7 @@ Each atom maps directly:
   "displayName": "Stat Card",
   "type": "application/vnd.a2ui.atom+json",
   "url": "https://a2uicatalog.ai/atoms/stat_card",
-  "capabilities": ["web", "meet-stage", "apps-script-web", "googlechat"],
+  "capabilities": ["web", "meet-stage", "google-apps-script-web", "googlechat"],
   "representativeQueries": [
     "show an animated stat card with label and trend",
     "render a stat card"

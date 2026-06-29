@@ -56,10 +56,10 @@ What makes A2UI's approach structurally coherent is the connector layer now embe
 ```yaml
 - type: gmail_inbox
   surfaces:
-    works_on: [apps-script-web, web, meet-stage]
+    works_on: [google-apps-script-web, web, meet-stage]
   connectors:
   - id: gas-native
-    surfaces: [apps-script-web]
+    surfaces: [google-apps-script-web]
     live: true
     description: Live data via GmailApp — no config needed
   - id: static

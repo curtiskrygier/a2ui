@@ -21,7 +21,7 @@ usage: Load this file at the start of any agent session to give Gemini full voca
 
 | Code | Surface |
 |------|---------|
-| `apps-script-web` | Google Apps Script Web App |
+| `google-apps-script-web` | Google Apps Script Web App |
 | `web` | Web/Blog (Google Sites HTML) |
 | `meet-stage` | Meet Stage |
 | `googlechat` | Google Chat card |

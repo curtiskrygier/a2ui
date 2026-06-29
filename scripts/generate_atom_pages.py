@@ -395,7 +395,7 @@ def _infer_string(name, atom_type):
     if n in ["from", "source"]: return "start-node"
     if n in ["to", "target"]:   return "end-node"
     if n == "center":     return "Core Concept"
-    if n == "surface":    return "apps-script-web"
+    if n == "surface":    return "google-apps-script-web"
     if n == "result":     return "Improved"
     if n == "mime":       return "application/pdf"
     if n == "scenario":   return "Success path"
@@ -736,14 +736,14 @@ def generate_index(atoms):
 SURFACE_NAMES = {
     "web":              "Web",
     "meet-stage":       "Google Meet Stage",
-    "apps-script-web":  "Apps Script Web",
+    "google-apps-script-web":  "Apps Script Web",
     "googlechat":       "Google Chat",
-    "apps-script-side-panel": "Apps Script Side Panel",
+    "google-apps-script-side-panel": "Apps Script Side Panel",
     "email":            "Email",
     "pdf":              "PDF",
 }
 
-GAS_SURFACES = {"meet-stage", "apps-script-web", "apps-script-side-panel", "googlechat"}
+GAS_SURFACES = {"meet-stage", "google-apps-script-web", "google-apps-script-side-panel", "googlechat"}
 
 
 def generate_surface_page(surface, atoms):
