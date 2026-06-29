@@ -695,9 +695,10 @@ def generate_index(atoms):
         surfaces  = (atom.get("surfaces") or {}).get("works_on") or []
         degraded  = {d["surface"] for d in ((atom.get("surfaces") or {}).get("degraded_on") or [])}
         display   = atom_type.replace("_", " ").title()
-        source    = (atom.get("source") or {}).get("name", "a2ui").lower()
+        source     = (atom.get("source") or {}).get("name", "a2ui").lower()
+        origin_label = "a2uicatalog" if source == "a2ui" else source
         origin_cls = {"a2ui": "origin-a2ui", "uiverse": "origin-uiverse", "openui": "origin-openui"}.get(source, "origin-other")
-        origin_html = f'<span class="origin {origin_cls}">{source}</span>'
+        origin_html = f'<span class="origin {origin_cls}">{origin_label}</span>'
         visible_surfaces = [s for s in surfaces if s not in HIDDEN_SURFACES]
         badges    = "".join(
             f'<span class="badge {"bd" if s in degraded else "bs"}">{s}</span>'
