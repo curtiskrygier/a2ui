@@ -609,7 +609,7 @@ INDEX_CSS = """
 html,body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:16px;line-height:1.6}
 body{max-width:1100px;margin:0 auto;padding:48px 24px 96px}
 header{margin-bottom:40px}
-h1{font-size:2.4rem;font-weight:800;letter-spacing:-1px;margin-bottom:6px}
+h1{font-size:2.8rem;font-weight:900;letter-spacing:-2px;margin-bottom:6px;color:#fff;text-shadow:0 0 30px rgba(0,242,255,.7),0 0 60px rgba(0,242,255,.4),0 0 100px rgba(0,242,255,.2)}
 .tagline{font-size:1.15rem;color:var(--cyan);font-weight:600;margin-bottom:6px;letter-spacing:.01em}
 .sub{color:var(--muted);font-size:1rem;margin-bottom:24px}
 .sub a{color:var(--cyan);text-decoration:none}
@@ -626,10 +626,16 @@ h1{font-size:2.4rem;font-weight:800;letter-spacing:-1px;margin-bottom:6px}
 .atom-card:hover{border-color:var(--cyan);background:rgba(0,242,255,.04)}
 .atom-card h3{font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px}
 .atom-card p{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.badges{display:flex;flex-wrap:wrap;gap:4px}
+.card-footer{display:flex;justify-content:space-between;align-items:flex-end;gap:6px;margin-top:8px}
+.badges{display:flex;flex-wrap:wrap;gap:4px;flex:1}
 .badge{font-size:10px;font-weight:600;padding:2px 8px;border-radius:100px}
 .bs{background:rgba(0,242,255,.08);border:1px solid rgba(0,242,255,.2);color:var(--cyan)}
 .bd{background:rgba(255,196,0,.08);border:1px solid rgba(255,196,0,.2);color:#ffc400}
+.origin{font-size:9px;font-weight:700;padding:2px 6px;border-radius:100px;letter-spacing:.06em;white-space:nowrap;flex-shrink:0}
+.origin-a2ui{background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.3);color:#a5b4fc}
+.origin-uiverse{background:rgba(236,72,153,.12);border:1px solid rgba(236,72,153,.3);color:#f9a8d4}
+.origin-openui{background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.3);color:#6ee7b7}
+.origin-other{background:rgba(156,163,175,.1);border:1px solid rgba(156,163,175,.25);color:#9ca3af}
 .hidden{display:none}
 footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--border);font-size:12px;color:var(--muted);display:flex;justify-content:space-between}
 footer a{color:var(--cyan);text-decoration:none}
@@ -689,6 +695,9 @@ def generate_index(atoms):
         surfaces  = (atom.get("surfaces") or {}).get("works_on") or []
         degraded  = {d["surface"] for d in ((atom.get("surfaces") or {}).get("degraded_on") or [])}
         display   = atom_type.replace("_", " ").title()
+        source    = (atom.get("source") or {}).get("name", "a2ui").lower()
+        origin_cls = {"a2ui": "origin-a2ui", "uiverse": "origin-uiverse", "openui": "origin-openui"}.get(source, "origin-other")
+        origin_html = f'<span class="origin {origin_cls}">{source}</span>'
         visible_surfaces = [s for s in surfaces if s not in HIDDEN_SURFACES]
         badges    = "".join(
             f'<span class="badge {"bd" if s in degraded else "bs"}">{s}</span>'
@@ -699,7 +708,7 @@ def generate_index(atoms):
             f'<a class="atom-card" href="/atoms/{atom_type}" '
             f'data-name="{atom_type}" data-desc="{desc.lower()}" data-surfaces="{surfaces_str}">'
             f'<h3>{display}</h3><p>{desc}</p>'
-            f'<div class="badges">{badges}</div></a>\n'
+            f'<div class="card-footer"><div class="badges">{badges}</div>{origin_html}</div></a>\n'
         )
 
     return f"""<!DOCTYPE html>
@@ -734,16 +743,16 @@ def generate_index(atoms):
 
 
 SURFACE_NAMES = {
-    "web":              "Web",
-    "meet-stage":       "Google Meet Stage",
-    "google-apps-script-web":  "Apps Script Web",
-    "googlechat":       "Google Chat",
-    "google-apps-script-side-panel": "Apps Script Side Panel",
-    "email":            "Email",
-    "pdf":              "PDF",
+    "web":                          "Web",
+    "google-meet-stage":            "Google Meet Stage",
+    "google-apps-script-web":       "Apps Script Web",
+    "google-chat":                  "Google Chat",
+    "google-apps-script-side-panel":"Apps Script Side Panel",
+    "email":                        "Email",
+    "pdf":                          "PDF",
 }
 
-GAS_SURFACES = {"meet-stage", "google-apps-script-web", "google-apps-script-side-panel", "googlechat"}
+GAS_SURFACES = {"google-meet-stage", "google-apps-script-web", "google-apps-script-side-panel", "google-chat"}
 
 
 def generate_surface_page(surface, atoms):
