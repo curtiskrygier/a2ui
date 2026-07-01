@@ -3808,7 +3808,7 @@
   },
   {
    "type": "palette",
-   "compact": "Sets page-level CSS custom properties (accent colours, block gap) for consistent theming across all atoms. Use as the first block in any payload.",
+   "compact": "page-level accent colour and spacing theme variables",
    "surfaces": [
     "web",
     "google-apps-script-web",
@@ -3817,7 +3817,7 @@
   },
   {
    "type": "print_button",
-   "compact": "A button that triggers window.print() to print or save the current page as PDF.",
+   "compact": "button to print or save page as PDF",
    "surfaces": [
     "web",
     "google-apps-script-web",
@@ -3826,7 +3826,7 @@
   },
   {
    "type": "drive_image",
-   "compact": "Embeds a Google Drive image by file ID or share URL, converting it to the correct export URL that works inside GAS iframes.",
+   "compact": "Google Drive image embed by file ID",
    "surfaces": [
     "web",
     "google-apps-script-web",
@@ -3835,7 +3835,7 @@
   },
   {
    "type": "maps_embed",
-   "compact": "Embeds a Google Maps location search in an iframe. Suitable for event location, office address, field ops context.",
+   "compact": "Google Maps location embed iframe",
    "surfaces": [
     "web",
     "google-apps-script-web",
@@ -3844,7 +3844,7 @@
   },
   {
    "type": "sheet_form",
-   "compact": "A form that submits data to a named Google Sheet tab via google.script.run. Requires the GAS project to be bound to a Spreadsheet.",
+   "compact": "form submitting rows to a Google Sheet tab",
    "surfaces": [
     "web",
     "google-apps-script-web",
@@ -3853,7 +3853,7 @@
   },
   {
    "type": "reveal",
-   "compact": "Wraps child blocks with entrance animations triggered on load. animation choices: fade_up, fade_in, slide_left, slide_right, scale_in, stagger.",
+   "compact": "entrance animation wrapper for child blocks",
    "surfaces": [
     "web",
     "google-meet-stage",
@@ -3863,7 +3863,7 @@
   },
   {
    "type": "skeleton",
-   "compact": "CSS shimmer loading placeholder. type choices: text, card, avatar_row, image, list, table.",
+   "compact": "shimmer loading placeholder shapes",
    "surfaces": [
     "web",
     "google-meet-stage",
@@ -3873,7 +3873,7 @@
   },
   {
    "type": "marquee",
-   "compact": "Infinite horizontal scrolling ticker. Items can be text strings, logos (image_url), or icon+label chips.",
+   "compact": "infinite horizontal scrolling ticker strip",
    "surfaces": [
     "web",
     "google-meet-stage",
@@ -3883,7 +3883,7 @@
   },
   {
    "type": "pulse_dot",
-   "compact": "Pulsing status or attention indicator dot. Inline or block display.",
+   "compact": "pulsing status indicator dot",
    "surfaces": [
     "web",
     "google-meet-stage",
@@ -3893,7 +3893,7 @@
   },
   {
    "type": "loading_dots",
-   "compact": "Three-dot pulsing loader. Use during async content load or as a status indicator.",
+   "compact": "three-dot pulsing loader",
    "surfaces": [
     "web",
     "google-meet-stage",
@@ -3903,7 +3903,7 @@
   },
   {
    "type": "progress_ring",
-   "compact": "Animated SVG circular progress gauge. Animates from 0 to value on load.",
+   "compact": "animated circular progress gauge",
    "surfaces": [
     "web",
     "google-apps-script-web",
@@ -3912,7 +3912,7 @@
   },
   {
    "type": "confetti_burst",
-   "compact": "JS confetti celebration effect. trigger load fires immediately, trigger button shows a clickable button.",
+   "compact": "confetti celebration burst effect",
    "surfaces": [
     "web",
     "google-meet-stage",
@@ -3922,7 +3922,7 @@
   },
   {
    "type": "ripple_button",
-   "compact": "CTA button with a CSS ripple click effect. Optionally links to a URL.",
+   "compact": "CTA button with ripple click effect",
    "surfaces": [
     "web",
     "google-meet-stage",
@@ -3932,7 +3932,7 @@
   },
   {
    "type": "wave_divider",
-   "compact": "Animated SVG wave as a decorative section separator.",
+   "compact": "animated wave section separator",
    "surfaces": [
     "web",
     "google-meet-stage",
@@ -3942,7 +3942,7 @@
   },
   {
    "type": "floating_badge",
-   "compact": "An emoji or icon that bobs up and down continuously. Great for CTAs and achievement moments.",
+   "compact": "bobbing emoji or icon badge",
    "surfaces": [
     "web",
     "google-meet-stage",
@@ -3952,7 +3952,7 @@
   },
   {
    "type": "shimmer_text",
-   "compact": "Headline text with an animated shimmer/gloss sweep across a gradient. Use for hero taglines.",
+   "compact": "headline text with shimmer gloss sweep",
    "surfaces": [
     "web",
     "google-meet-stage",
@@ -3962,7 +3962,7 @@
   },
   {
    "type": "number_flip",
-   "compact": "Slot-machine style digit reveal. Each digit flips in from above on load.",
+   "compact": "slot-machine digit reveal counter",
    "surfaces": [
     "web",
     "google-meet-stage",
@@ -3972,7 +3972,7 @@
   },
   {
    "type": "spotlight_card",
-   "compact": "A content card where a radial gradient spotlight follows the cursor. Child blocks or content field.",
+   "compact": "card with cursor-following spotlight",
    "surfaces": [
     "web",
     "google-meet-stage",
@@ -3982,7 +3982,7 @@
   },
   {
    "type": "animated_border",
-   "compact": "Card or section with a rotating conic gradient border. Child blocks or content inside.",
+   "compact": "card with rotating gradient border",
    "surfaces": [
     "web",
     "google-meet-stage",
@@ -3992,7 +3992,7 @@
   },
   {
    "type": "countdown_ring",
-   "compact": "Circular SVG countdown that depletes as seconds tick down.",
+   "compact": "circular countdown timer ring",
    "surfaces": [
     "web",
     "google-meet-stage",
@@ -4002,7 +4002,7 @@
   },
   {
    "type": "google_icon",
-   "compact": "A single Material Symbol icon from Google Fonts CDN. Browse 2500+ icon names at fonts.google.com/icons.",
+   "compact": "single Material Symbol icon",
    "surfaces": [
     "web",
     "google-meet-stage",
@@ -4012,7 +4012,7 @@
   },
   {
    "type": "icon_badge",
-   "compact": "Material Symbol icon inside a coloured circular badge. Good for stat rows and feature lists.",
+   "compact": "Material icon in coloured circular badge",
    "surfaces": [
     "web",
     "google-meet-stage",
@@ -4022,7 +4022,7 @@
   },
   {
    "type": "icon_row",
-   "compact": "Horizontal strip of Material Symbol icon + label pairs. Good for feature/capability lists.",
+   "compact": "horizontal icon and label strip",
    "surfaces": [
     "web",
     "google-meet-stage",
@@ -4032,7 +4032,7 @@
   },
   {
    "type": "workspace_logo",
-   "compact": "A single Google Workspace product logo from Google's official CDN (fonts.gstatic.com). Falls back to coloured letter badge for unknown apps.",
+   "compact": "single Google Workspace product logo",
    "surfaces": [
     "web",
     "google-apps-script-web",
@@ -4041,7 +4041,7 @@
   },
   {
    "type": "workspace_logo_strip",
-   "compact": "Horizontal strip of Google Workspace product logos. Greyscale by default, restores colour on hover.",
+   "compact": "horizontal strip of Workspace logos",
    "surfaces": [
     "web",
     "google-apps-script-web",
@@ -4050,7 +4050,7 @@
   },
   {
    "type": "workspace_logo_grid",
-   "compact": "Grid of Google Workspace product logos with labels. Good for \"Integrations\" or \"Works with\" sections.",
+   "compact": "labelled grid of Workspace logos",
    "surfaces": [
     "web",
     "google-apps-script-web",
@@ -4059,7 +4059,7 @@
   },
   {
    "type": "icon_feature_grid",
-   "compact": "Feature grid using Material Symbol icons — better than emoji for Workspace UI contexts.",
+   "compact": "feature grid with Material icons",
    "surfaces": [
     "web",
     "google-meet-stage",
@@ -4069,7 +4069,7 @@
   },
   {
    "type": "icon_checklist",
-   "compact": "Checklist where each item has a Material Symbol icon (not just a check mark). Good for capability or requirements lists.",
+   "compact": "checklist items with Material icons",
    "surfaces": [
     "web",
     "google-meet-stage",

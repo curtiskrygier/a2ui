@@ -4,7 +4,7 @@ title: Social & Content Marketing
 atom_count: 21
 platform_support:
   web: 21/21
-  meet-stage: 9/21
+  meet-stage: 0/21
   googlechat: 0/21
   google-apps-script-web: 20/21
   email: 0/21
@@ -19,15 +19,15 @@ source: atoms/schema.yaml
 
 | Atom type | Description | Surfaces | Key fields |
 |-----------|-------------|----------|------------|
-| `testimonial_card` | customer testimonial with photo name and quote an optional avatar. | **Web/Blog** · **Meet Stage** · **GAS Web App** · **PDF** | `text` — string<br>`author_name` — string<br>`author_title` — string<br>`author_avatar_url` — string<br>`rating` — integer |
-| `avatar_group` | stacked user avatar group with overflow count or community. | **Web/Blog** · **Meet Stage** · **GAS Web App** · **PDF** | `avatars` — list<br>`total_count` — integer<br>`label` — string |
-| `contributor_list` | list of contributors with avatar and role community, with their names, roles, and optional links or avatars. | **Web/Blog** · **Meet Stage** · **GAS Web App** · **PDF** | `contributors` — list<br>`title` — string |
-| `customer_logo_grid` | grid of customer or partner logos | **Web/Blog** · **Meet Stage** · **GAS Web App** · **PDF** | `logos` — list<br>`title` — string |
-| `social_proof_banner` | social proof strip with stats and logos achievement. | **Web/Blog** · **Meet Stage** · **GAS Web App** · **PDF** | `metric_value` — string<br>`metric_label` — string<br>`icon_url` — string<br>`link_url` — string |
-| `media_mention_card` | press or media mention with logo and quote | **Web/Blog** · **Meet Stage** · **GAS Web App** · **PDF** | `publication_name` — string<br>`publication_logo_url` — string<br>`headline` — string<br>`article_url` — string<br>`date` — string |
-| `expert_endorsement` | expert quote with credentials and photo name, and credentials. | **Web/Blog** · **Meet Stage** · **GAS Web App** · **PDF** | `quote` — string<br>`expert_name` — string<br>`expert_title` — string<br>`expert_organization` — string<br>`expert_avatar_url` — string |
-| `review_callout` | highlighted customer review excerpt by a star rating. | **Web/Blog** · **Meet Stage** · **GAS Web App** · **PDF** | `review_text` — string<br>`author_name` — string<br>`rating` — number<br>`max_rating` — integer<br>`product_name` — string |
-| `social_feed_embed` | embedded social media post or feed or Instagram post. | **Web/Blog** · **Meet Stage** | `embed_code` — string<br>`platform` — string<br>`post_url` — string |
+| `testimonial_card` | customer testimonial with photo name and quote an optional avatar. | **Web/Blog** · **GAS Web App** · **PDF** | `text` — string<br>`author_name` — string<br>`author_title` — string<br>`author_avatar_url` — string<br>`rating` — integer |
+| `avatar_group` | stacked user avatar group with overflow count or community. | **Web/Blog** · **GAS Web App** · **PDF** | `avatars` — list<br>`total_count` — integer<br>`label` — string |
+| `contributor_list` | list of contributors with avatar and role community, with their | **Web/Blog** · **GAS Web App** · **PDF** | `contributors` — list<br>`title` — string |
+| `customer_logo_grid` | grid of customer or partner logos | **Web/Blog** · **GAS Web App** · **PDF** | `logos` — list<br>`title` — string |
+| `social_proof_banner` | social proof strip with stats and logos achievement. | **Web/Blog** · **GAS Web App** · **PDF** | `metric_value` — string<br>`metric_label` — string<br>`icon_url` — string<br>`link_url` — string |
+| `media_mention_card` | press or media mention with logo and quote | **Web/Blog** · **GAS Web App** · **PDF** | `publication_name` — string<br>`publication_logo_url` — string<br>`headline` — string<br>`article_url` — string<br>`date` — string |
+| `expert_endorsement` | expert quote with credentials and photo name, and credentials. | **Web/Blog** · **GAS Web App** · **PDF** | `quote` — string<br>`expert_name` — string<br>`expert_title` — string<br>`expert_organization` — string<br>`expert_avatar_url` — string |
+| `review_callout` | highlighted customer review excerpt by a star rating. | **Web/Blog** · **GAS Web App** · **PDF** | `review_text` — string<br>`author_name` — string<br>`rating` — number<br>`max_rating` — integer<br>`product_name` — string |
+| `social_feed_embed` | embedded social media post or feed or Instagram post. | **Web/Blog** | `embed_code` — string<br>`platform` — string<br>`post_url` — string |
 | `social_share_bar` | social media buttons for sharing article to external networks | **Web/Blog** · **GAS Web App** | `platforms` — array. Permitted networks: twitter | linkedin | facebook | reddit.<br>`url` — string. Optional URL override, defaults to current page. |
 | `newsletter_cta` | email subscription form for recurring reader updates | **Web/Blog** · **GAS Web App** | `headline` — string. Header message prompting subscription.<br>`button_label` — string. Optional submit button text, defaults to Subscribe. |
 | `author_bio_card` | profile block displaying content creator biographical details | **Web/Blog** · **GAS Web App** | `name` — string. Full name of the content creator.<br>`avatar_url` — string. URL to the profile image.<br>`bio` — string. Short narrative profiling the writer.<br>`links` — object. Optional key-value pairs of platform names and URLs. |

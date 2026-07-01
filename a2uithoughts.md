@@ -242,3 +242,15 @@ Vercel Geist is tier 3 — documented at vercel.com/geist/introduction but not M
 **History rewriting is a one-shot operation, not a chore.** 78 commits with a personal email in a public repo is the kind of thing that feels hard to fix but takes three minutes with `git filter-repo`. The right identity for a project repo is `a2uicatalog@users.noreply.github.com` — GitHub's noreply format, no personal email exposed, no domain required. One rewrite, force push, done. Future commits inherit the repo-local config.
 
 **The catalogue is now a live-deployed product, not a local script.** Push to main → build → deploy. The atom vocabulary is published, versioned, and reachable. The next step is making it useful as a reference surface — not just a list of atom names, but a browsable vocabulary that agents and developers can query to understand what each atom renders and when to use it.
+
+---
+
+## Compliance checks must dereference, not just validate structure (2026-07-02)
+
+**The ARD catalog was compliant; the thing it pointed to didn't exist.** `ai-catalog.json` passed every structural check — well-known location, robots.txt Agentmap, link rel — while its renderer entry URL (`/spec.json`) returned 404 for weeks. The generator wrote the pointer; nothing ever generated the target. Lesson: any check that validates a discovery document must also dereference the URLs inside it. A compliant pointer to a dead resource is worse than no pointer — agents trust it and fail downstream.
+
+**The three retrieval tiers are now published artifacts, not just architecture.** `spec.json` (full 467-atom catalog, 430KB), `atoms/index.json` (compact tier, 88KB), `runbooks/index.json` (zero-token tier, 4KB) — all generated from schema.yaml by `gen_public_catalog.py` in CI on every push. The runbook generator validates every atom type against the schema at build time, so a renamed atom breaks the build instead of silently breaking a playbook. `catalogue/gdm-v0.2.json` closes the Catalog URI to-do.
+
+**Runbooks as data vs runbooks as prose.** The four stage patterns (sprint review, architecture, standup, demo/launch) lived as prose in these notes and inside playbook-creator's SKILL.md. As YAML they become validated, fetchable, and consumable by anything — the substrate thesis applied to its own working notes.
+
+**Schema drift is visible on main:** 3 failing tests (`palette` missing description, `linkedin_post_image` missing license, surface-name drift `meet-stage` vs `google-meet-stage` between test whitelist and schema). The substrate needs its own targets_audit-style guardrail or it rots.

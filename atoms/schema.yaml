@@ -3244,6 +3244,7 @@ blocks:
   source:
     name: a2uicatalog
     url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: share_quote
   description: Displays a visually distinct callout showcasing a key phrase designed
     for social clipping.
@@ -5195,6 +5196,7 @@ blocks:
   source:
     name: shadcn/ui
     url: https://ui.shadcn.com
+    license: MIT
 - type: navigation_menu
   description: Multi-level horizontal navigation bar with a brand/logo slot, top-level
     nav items, optional dropdown submenus, and a right-aligned CTA button. First item
@@ -5300,6 +5302,7 @@ blocks:
   source:
     name: a2uicatalog
     url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: icon_stat_row
   description: Horizontal strip of stats each with a large emoji icon above the number
     and a label below. More visual than metric_row — use when icons reinforce meaning.
@@ -5317,6 +5320,7 @@ blocks:
   source:
     name: a2uicatalog
     url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: color_section
   description: Renders child atom blocks inside a colored background container. Use
     to visually group content with tint, solid, or dark style.
@@ -5334,6 +5338,7 @@ blocks:
   source:
     name: a2uicatalog
     url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: tag_cloud
   description: Visual cloud of tags with variable font size based on weight. Heavier
     tags appear larger. Use for skill tags, topic clouds, keyword displays.
@@ -5353,6 +5358,7 @@ blocks:
   source:
     name: a2uicatalog
     url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: step_progress
   description: Horizontal step progress indicator with numbered circles and connecting
     lines. Completed steps show a tick. Use at the top of wizard or onboarding flows.
@@ -5370,6 +5376,7 @@ blocks:
   source:
     name: a2uicatalog
     url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: split_pane
   description: Two-panel split layout with distinct background colors per pane. Each
     pane renders atom blocks independently. Unlike columns, each side has its own
@@ -5386,6 +5393,7 @@ blocks:
   source:
     name: a2uicatalog
     url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: gradient_hero
   description: Full-width light/pastel gradient hero with badge, large title, subtitle,
     and optional CTA. Pure CSS — no images. Works on all surfaces. Use when dark_hero
@@ -5409,6 +5417,7 @@ blocks:
   source:
     name: a2uicatalog
     url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: icon_list
   description: List of items each with a colored icon circle, label, and text. More
     visual than bullet_list. Use for feature lists, how-it-works, benefits.
@@ -5428,6 +5437,7 @@ blocks:
   source:
     name: a2uicatalog
     url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: highlight_box
   description: A visually rich highlighted box with gradient, solid, or outline style.
     Richer than callout — no severity system, pure design focus.
@@ -5447,6 +5457,7 @@ blocks:
   source:
     name: a2uicatalog
     url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: two_tone_card
   description: Card with a solid colored header section (title, subtitle, icon) and
     a white body that renders atom blocks. Clean, elegant container for any content.
@@ -5466,6 +5477,7 @@ blocks:
   source:
     name: a2uicatalog
     url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: metric_row
   description: Horizontal strip of static metrics — value, label, optional prefix/suffix
     and trend indicator. Cleaner than animated_counter for non-animated use.
@@ -5484,6 +5496,7 @@ blocks:
   source:
     name: a2uicatalog
     url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: numbered_list
   description: Numbered list with either large decorative number backgrounds ("large"
     style) or circular number badges ("badge" style). More visual than steps.
@@ -5502,6 +5515,7 @@ blocks:
   source:
     name: a2uicatalog
     url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: page_header
   description: Full-width app-style page header with title, subtitle, icon, accent
     color, and optional tag badge. Sets the visual tone of a pop-up app or brief.
@@ -5524,6 +5538,7 @@ blocks:
   source:
     name: a2uicatalog
     url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: back_button
   description: Styled back navigation button. Links to a URL, a named page slug, or
     browser history. Three visual styles.
@@ -5542,6 +5557,7 @@ blocks:
   source:
     name: a2uicatalog
     url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: section_break
   description: Labeled or plain section divider. Supports solid, dashed, or dotted
     line styles. With a label, renders text centered in the line (Notion-style).
@@ -5559,6 +5575,7 @@ blocks:
   source:
     name: a2uicatalog
     url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: chip_group
   description: Row of filter/tag chips, optionally scrollable. Chips can link to URLs
     and have active state.
@@ -5575,6 +5592,7 @@ blocks:
   source:
     name: a2uicatalog
     url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: columns
   description: Generic multi-column layout container. Each column holds an array of
     atom blocks rendered inline. 2–6 columns; collapses to single column on mobile.
@@ -5593,6 +5611,7 @@ blocks:
   source:
     name: a2uicatalog
     url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: person_card
   description: Individual person card with name, role, optional photo, bio, tags,
     and contact links. Use inside a columns atom to build team rosters.
@@ -5614,6 +5633,7 @@ blocks:
   source:
     name: a2uicatalog
     url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: agenda_block
   description: Time-slotted schedule view for a day or event. Each slot has a time,
     title, optional speaker, location, type badge, and description.
@@ -5632,6 +5652,7 @@ blocks:
   source:
     name: a2uicatalog
     url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: risk_flag
   description: Structured risk callout list with severity levels, description, and
     mitigation. For meeting prep, project status, incident reports.
@@ -5649,6 +5670,7 @@ blocks:
   source:
     name: a2uicatalog
     url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: action_items
   description: Action items table with owner, due date, and status. For retros, meeting
     notes, sprint planning, incident reports.
@@ -5664,6 +5686,7 @@ blocks:
   source:
     name: a2uicatalog
     url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: bento_grid
   description: Asymmetric CSS grid of feature tiles. First tile typically spans multiple
     columns for visual emphasis. Supports per-tile icons, titles, descriptions, and
@@ -5717,6 +5740,7 @@ blocks:
   source:
     name: a2uicatalog
     url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: animated_counter
   description: CSS @property counter animation that counts up from zero to target
     values without JavaScript. Uses @keyframes with CSS custom properties typed as
@@ -9395,8 +9419,9 @@ blocks:
       is the saved page slug; the correct URL is generated at runtime.
   source: *id005
 - type: palette
-  compact_description: Sets page-level CSS custom properties (accent colours, block
+  description: Sets page-level CSS custom properties (accent colours, block
     gap) for consistent theming across all atoms. Use as the first block in any payload.
+  compact_description: page-level accent colour and spacing theme variables
   surfaces:
     works_on:
     - web
@@ -9409,9 +9434,14 @@ blocks:
     block_gap: CSS length (default 1.25rem). Vertical gap between atom blocks.
     text_color: hex (optional). Overrides --text CSS var.
     bg_color: hex (optional). Overrides --bg CSS var.
+  source:
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: print_button
-  compact_description: A button that triggers window.print() to print or save the
+  description: A button that triggers window.print() to print or save the
     current page as PDF.
+  compact_description: button to print or save page as PDF
   surfaces:
     works_on:
     - web
@@ -9423,9 +9453,14 @@ blocks:
     size: sm, md, or lg
     accent: hex colour for button background
     icon: boolean (default true) — show printer emoji prefix
+  source:
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: drive_image
-  compact_description: Embeds a Google Drive image by file ID or share URL, converting
+  description: Embeds a Google Drive image by file ID or share URL, converting
     it to the correct export URL that works inside GAS iframes.
+  compact_description: Google Drive image embed by file ID
   surfaces:
     works_on:
     - web
@@ -9440,9 +9475,14 @@ blocks:
     width: CSS width string (default "max-width:100%")
   connectors:
   - drive
+  source:
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: maps_embed
-  compact_description: Embeds a Google Maps location search in an iframe. Suitable
+  description: Embeds a Google Maps location search in an iframe. Suitable
     for event location, office address, field ops context.
+  compact_description: Google Maps location embed iframe
   surfaces:
     works_on:
     - web
@@ -9455,9 +9495,14 @@ blocks:
     caption: optional caption below the map
   connectors:
   - maps
+  source:
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: sheet_form
-  compact_description: A form that submits data to a named Google Sheet tab via google.script.run.
+  description: A form that submits data to a named Google Sheet tab via google.script.run.
     Requires the GAS project to be bound to a Spreadsheet.
+  compact_description: form submitting rows to a Google Sheet tab
   surfaces:
     works_on:
     - web
@@ -9476,9 +9521,14 @@ blocks:
       placeholder, required, hint, options (for select), rows (for textarea)
   connectors:
   - sheets
+  source:
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: reveal
-  compact_description: 'Wraps child blocks with entrance animations triggered on load.
+  description: 'Wraps child blocks with entrance animations triggered on load.
     animation choices: fade_up, fade_in, slide_left, slide_right, scale_in, stagger.'
+  compact_description: entrance animation wrapper for child blocks
   surfaces:
     works_on:
     - web
@@ -9491,9 +9541,14 @@ blocks:
     delay: initial delay in ms before first block animates (default 0)
     stagger_delay: ms between each block when animation is stagger (default 120)
     blocks: array of child atoms to wrap
+  source:
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: skeleton
-  compact_description: 'CSS shimmer loading placeholder. type choices: text, card,
+  description: 'CSS shimmer loading placeholder. type choices: text, card,
     avatar_row, image, list, table.'
+  compact_description: shimmer loading placeholder shapes
   surfaces:
     works_on:
     - web
@@ -9505,9 +9560,14 @@ blocks:
     rows: number of placeholder rows (default 3)
     cols: number of columns for table type (default 3)
     height: height for image type (default 200px)
+  source:
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: marquee
-  compact_description: Infinite horizontal scrolling ticker. Items can be text strings,
+  description: Infinite horizontal scrolling ticker. Items can be text strings,
     logos (image_url), or icon+label chips.
+  compact_description: infinite horizontal scrolling ticker strip
   surfaces:
     works_on:
     - web
@@ -9524,9 +9584,14 @@ blocks:
     pause_on_hover: pause animation on hover (default true)
     bg: background colour (default var(--surface))
     rounded: rounded corners (default true)
+  source:
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: pulse_dot
-  compact_description: Pulsing status or attention indicator dot. Inline or block
+  description: Pulsing status or attention indicator dot. Inline or block
     display.
+  compact_description: pulsing status indicator dot
   surfaces:
     works_on:
     - web
@@ -9539,9 +9604,14 @@ blocks:
     label: optional text beside the dot
     speed: animation cycle in seconds (default 1.8)
     inline: render inline (default true)
+  source:
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: loading_dots
-  compact_description: Three-dot pulsing loader. Use during async content load or
+  description: Three-dot pulsing loader. Use during async content load or
     as a status indicator.
+  compact_description: three-dot pulsing loader
   surfaces:
     works_on:
     - web
@@ -9553,9 +9623,14 @@ blocks:
     size: sm, md (default), lg
     label: optional text beside the dots
     align: flex-start (default) or center
+  source:
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: progress_ring
-  compact_description: Animated SVG circular progress gauge. Animates from 0 to value
+  description: Animated SVG circular progress gauge. Animates from 0 to value
     on load.
+  compact_description: animated circular progress gauge
   surfaces:
     works_on:
     - web
@@ -9570,9 +9645,14 @@ blocks:
     label: optional caption below the ring
     show_value: show numeric value inside ring (default true)
     unit: unit string (default %)
+  source:
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: confetti_burst
-  compact_description: JS confetti celebration effect. trigger load fires immediately,
+  description: JS confetti celebration effect. trigger load fires immediately,
     trigger button shows a clickable button.
+  compact_description: confetti celebration burst effect
   surfaces:
     works_on:
     - web
@@ -9586,9 +9666,14 @@ blocks:
     colors: array of hex colours
     duration: total animation duration in ms (default 2000)
     accent: button colour
+  source:
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: ripple_button
-  compact_description: CTA button with a CSS ripple click effect. Optionally links
+  description: CTA button with a CSS ripple click effect. Optionally links
     to a URL.
+  compact_description: CTA button with ripple click effect
   surfaces:
     works_on:
     - web
@@ -9603,8 +9688,13 @@ blocks:
     size: sm, md (default), lg
     full_width: stretch to container width (default false)
     align: flex-start (default), center, right
+  source:
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: wave_divider
-  compact_description: Animated SVG wave as a decorative section separator.
+  description: Animated SVG wave as a decorative section separator.
+  compact_description: animated wave section separator
   surfaces:
     works_on:
     - web
@@ -9618,9 +9708,14 @@ blocks:
     opacity: fill opacity (default 0.15)
     flip: reverse wave direction (default false)
     animate: animate the wave (default true)
+  source:
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: floating_badge
-  compact_description: An emoji or icon that bobs up and down continuously. Great
+  description: An emoji or icon that bobs up and down continuously. Great
     for CTAs and achievement moments.
+  compact_description: bobbing emoji or icon badge
   surfaces:
     works_on:
     - web
@@ -9634,9 +9729,14 @@ blocks:
     speed: bob cycle in seconds (default 3)
     shadow: drop shadow that deepens on rise (default true)
     align: center (default), left, right
+  source:
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: shimmer_text
-  compact_description: Headline text with an animated shimmer/gloss sweep across a
+  description: Headline text with an animated shimmer/gloss sweep across a
     gradient. Use for hero taglines.
+  compact_description: headline text with shimmer gloss sweep
   surfaces:
     works_on:
     - web
@@ -9652,9 +9752,14 @@ blocks:
     speed: animation cycle in seconds (default 2.5)
     weight: font-weight (default 800)
     align: left (default), center, right
+  source:
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: number_flip
-  compact_description: Slot-machine style digit reveal. Each digit flips in from above
+  description: Slot-machine style digit reveal. Each digit flips in from above
     on load.
+  compact_description: slot-machine digit reveal counter
   surfaces:
     works_on:
     - web
@@ -9670,9 +9775,14 @@ blocks:
     color: digit colour (default var(--a2ui-accent))
     duration: total animation window in ms (default 1200)
     align: center (default), left
+  source:
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: spotlight_card
-  compact_description: A content card where a radial gradient spotlight follows the
+  description: A content card where a radial gradient spotlight follows the
     cursor. Child blocks or content field.
+  compact_description: card with cursor-following spotlight
   surfaces:
     works_on:
     - web
@@ -9683,9 +9793,14 @@ blocks:
     blocks: array of child atoms inside the card
     content: markdown string (if no blocks)
     accent: spotlight tint colour (default var(--a2ui-accent))
+  source:
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: animated_border
-  compact_description: Card or section with a rotating conic gradient border. Child
+  description: Card or section with a rotating conic gradient border. Child
     blocks or content inside.
+  compact_description: card with rotating gradient border
   surfaces:
     works_on:
     - web
@@ -9701,8 +9816,13 @@ blocks:
     speed: rotation speed in seconds (default 3)
     padding: inner padding (default 20px)
     radius: border radius (default 12px)
+  source:
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: countdown_ring
-  compact_description: Circular SVG countdown that depletes as seconds tick down.
+  description: Circular SVG countdown that depletes as seconds tick down.
+  compact_description: circular countdown timer ring
   surfaces:
     works_on:
     - web
@@ -9714,9 +9834,14 @@ blocks:
     size: ring diameter in px (default 80)
     color: ring colour (default var(--a2ui-accent))
     label: caption below
+  source:
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: google_icon
-  compact_description: A single Material Symbol icon from Google Fonts CDN. Browse
+  description: A single Material Symbol icon from Google Fonts CDN. Browse
     2500+ icon names at fonts.google.com/icons.
+  compact_description: single Material Symbol icon
   surfaces:
     works_on:
     - web
@@ -9732,9 +9857,14 @@ blocks:
     style: outlined (default) or rounded
     label: optional text beside the icon
     inline: render inline-flex (default true)
+  source:
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: icon_badge
-  compact_description: Material Symbol icon inside a coloured circular badge. Good
+  description: Material Symbol icon inside a coloured circular badge. Good
     for stat rows and feature lists.
+  compact_description: Material icon in coloured circular badge
   surfaces:
     works_on:
     - web
@@ -9750,9 +9880,14 @@ blocks:
     radius: badge border radius (default 50%)
     filled: filled icon variant (default false)
     label: optional caption below
+  source:
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: icon_row
-  compact_description: Horizontal strip of Material Symbol icon + label pairs. Good
+  description: Horizontal strip of Material Symbol icon + label pairs. Good
     for feature/capability lists.
+  compact_description: horizontal icon and label strip
   surfaces:
     works_on:
     - web
@@ -9766,9 +9901,14 @@ blocks:
     filled: filled icon variant (default false)
     style: outlined (default) or rounded
     gap: gap between items (default 12px)
+  source:
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: workspace_logo
-  compact_description: A single Google Workspace product logo from Google's official
+  description: A single Google Workspace product logo from Google's official
     CDN (fonts.gstatic.com). Falls back to coloured letter badge for unknown apps.
+  compact_description: single Google Workspace product logo
   surfaces:
     works_on:
     - web
@@ -9782,9 +9922,14 @@ blocks:
     label: caption below logo (default capitalised app name; set to empty string to
       hide)
     inline: render inline (default true)
+  source:
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: workspace_logo_strip
-  compact_description: Horizontal strip of Google Workspace product logos. Greyscale
+  description: Horizontal strip of Google Workspace product logos. Greyscale
     by default, restores colour on hover.
+  compact_description: horizontal strip of Workspace logos
   surfaces:
     works_on:
     - web
@@ -9798,9 +9943,14 @@ blocks:
     greyscale: render greyscale until hover (default true)
     bg: strip background colour (default transparent)
     align: flex-start (default), center, flex-end
+  source:
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: workspace_logo_grid
-  compact_description: Grid of Google Workspace product logos with labels. Good for
+  description: Grid of Google Workspace product logos with labels. Good for
     "Integrations" or "Works with" sections.
+  compact_description: labelled grid of Workspace logos
   surfaces:
     works_on:
     - web
@@ -9813,9 +9963,14 @@ blocks:
     cols: grid columns (default 5)
     greyscale: render greyscale (default false)
     show_labels: show app name labels (default true)
+  source:
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: icon_feature_grid
-  compact_description: Feature grid using Material Symbol icons — better than emoji
+  description: Feature grid using Material Symbol icons — better than emoji
     for Workspace UI contexts.
+  compact_description: feature grid with Material icons
   surfaces:
     works_on:
     - web
@@ -9830,9 +9985,14 @@ blocks:
     accent: default icon colour
     style: outlined (default) or rounded
     items: array of {icon (ligature name), title, text, color?}
+  source:
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
+    license: MIT
 - type: icon_checklist
-  compact_description: Checklist where each item has a Material Symbol icon (not just
+  description: Checklist where each item has a Material Symbol icon (not just
     a check mark). Good for capability or requirements lists.
+  compact_description: checklist items with Material icons
   surfaces:
     works_on:
     - web
@@ -9846,3 +10006,7 @@ blocks:
     filled: filled icon variant (default true)
     accent: default icon colour
     items: array of strings or {text, icon?, sublabel?, color?}
+  source:
+    name: a2uicatalog
+    url: https://github.com/a2uicatalog/a2ui
+    license: MIT
