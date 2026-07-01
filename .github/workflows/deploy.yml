@@ -20,6 +20,9 @@ jobs:
       - name: Build atom pages
         run: python3 scripts/generate_atom_pages.py
 
+      - name: Build machine-readable catalog (spec.json, compact index, runbooks)
+        run: python3 scripts/gen_public_catalog.py
+
       - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@ebbaa1584979971c8614a24965b4405ff95890e0  # v4.0.0
         with:
